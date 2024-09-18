@@ -2,7 +2,7 @@
  
 [open in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2024/gr2436/gr2436?new)
 
-[open test branch in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2024/gr2436/gr2436/-/tree/15-koble-prosjektet-til-eclipse-che?new)
+[open test branch in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2024/gr2436/gr2436/-/tree/15-koble-prosjektet-til-eclipse-che)
 
 
 ## Nødvendige versioner for å kjøre prosjektet:
