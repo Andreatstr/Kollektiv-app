@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
           <groupId>it1901</groupId>
-          <artifactId>modules-template</artifactId>
+          <artifactId>app-gruppe36</artifactId>
           <version>0.0.1-SNAPSHOT</version>
     </parent>
 
