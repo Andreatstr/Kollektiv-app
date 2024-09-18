@@ -83,9 +83,9 @@ public class AppController {
         String vareNavn = VareNavnFelt.getText();
         String antallText = AntallInput.getText();
 
-        Vare newTestVare = new Vare("Test Vare", 5);
-        list.add(newTestVare);
-        System.out.println("Added test item: " + newTestVare.getVareNavn());
+        // Vare newTestVare = new Vare("Test Vare", 5);
+        // list.add(newTestVare);
+        // System.out.println("Added test item: " + newTestVare.getVareNavn());
 
         if (!vareNavn.isEmpty() && !antallText.isEmpty()) {
             try {
@@ -110,25 +110,19 @@ public class AppController {
         }
     }
 
-    ObservableList<Vare> list = FXCollections.observableArrayList(
-
-    // new Vare("Poteter", 2),
-    // new Vare("Monster", 3),
-    // new Vare("Pepsi max", 1)
-
-    );
+    ObservableList<Vare> list = FXCollections.observableArrayList();
 
     public void initialize() {
         VareKolonne.setCellValueFactory(new PropertyValueFactory<>("vareNavn")); // Adjusted for JavaFX property
         AntallKolonne.setCellValueFactory(new PropertyValueFactory<>("antallAvVare")); // Adjusted for JavaFX property
 
         table.setItems(list);
-        System.out.println("Initialized table with items: " + list);
+        // System.out.println("Initialized table with items: " + list);
 
         list.addListener((ListChangeListener<Vare>) c -> {
             while (c.next()) {
                 if (c.wasAdded()) {
-                    System.out.println("Items added: " + c.getAddedSubList());
+                    // System.out.println("Items added: " + c.getAddedSubList());
                 }
             }
         });
