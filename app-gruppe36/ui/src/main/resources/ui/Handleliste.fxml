@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AppController">
+   <children>
+      <Label layoutX="44.0" layoutY="21.0" text="Handleliste">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="LeggTilKnapp" layoutX="571.0" layoutY="295.0" mnemonicParsing="false" onAction="#LeggTilVareOgAntall" prefHeight="40.0" prefWidth="100.0" text="Legg til" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="VareNavnFelt" layoutX="571.0" layoutY="174.0" prefHeight="32.0" prefWidth="300.0" />
+      <Label layoutX="571.0" layoutY="95.0" text="Legg til ny vare">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="571.0" layoutY="221.0" text="Antall">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="571.0" layoutY="143.0" text="Varenavn">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="AntallInput" layoutX="571.0" layoutY="251.0" prefHeight="32.0" prefWidth="74.0" />
+      <TableView fx:id="table" layoutX="44.0" layoutY="91.0" prefHeight="570.0" prefWidth="509.0">
+         <columns>
+            <TableColumn fx:id="VareKolonne" prefWidth="411.20003509521484" text="Vare" />
+            <TableColumn fx:id="AntallKolonne" prefWidth="63.199981689453125" text="Antall" />
+            <TableColumn fx:id="SjekkKnapper" prefWidth="32.00006103515625">
+               <graphic>
+                  <CheckBox fx:id="MarkerAlle" mnemonicParsing="false" />
+               </graphic>
+            </TableColumn>
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
