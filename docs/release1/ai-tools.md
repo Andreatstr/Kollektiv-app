@@ -1,0 +1,1 @@
+Vi har ikke brukt Ai verktøy
