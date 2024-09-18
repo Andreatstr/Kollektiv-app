@@ -1,30 +1,27 @@
 package ui;
 
 public class Vare {
-    String VareNavn;
-    int AntallAvVare;
+    private String vareNavn; // Use camelCase
+    private int antallAvVare;
 
-    
-    public Vare(String VareNavn, int AntallAvVare) {
-        this.VareNavn = VareNavn;
-        this.AntallAvVare = AntallAvVare;
+    public Vare(String vareNavn, int antallAvVare) {
+        this.vareNavn = vareNavn;
+        this.antallAvVare = antallAvVare;
     }
 
     public String getVareNavn() {
-        return VareNavn;
+        return vareNavn;
     }
 
-    public void setVareNavn(String VareNavn) {
-        this.VareNavn = VareNavn;
+    public void setVareNavn(String vareNavn) {
+        this.vareNavn = vareNavn;
     }
 
     public int getAntallAvVare() {
-        return AntallAvVare;
+        return antallAvVare;
     }
 
-    public void setAntallAvVare(int AntallAvVare) {
-        this.AntallAvVare = AntallAvVare;
-
+    public void setAntallAvVare(int antallAvVare) {
+        this.antallAvVare = antallAvVare;
     }
-
 }
