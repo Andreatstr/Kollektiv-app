@@ -1,27 +1,41 @@
 package ui;
 
+import org.junit.jupiter.api.Test;
+import static org.testfx.api.FxAssert.verifyThat;
+import org.testfx.framework.junit5.ApplicationTest;
+import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Stream;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.matcher.control.LabeledMatchers;
-
-/**
- * TestFX App test
- */
 public class AppTest extends ApplicationTest {
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Handleliste.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @Test
+    public void testVareNavnFeltInput() {
+        // Simulerer å skrive "Epler" i VareNavnFelt
+        clickOn("#VareNavnFelt").write("Vaskemiddel");
+        clickOn("#AntallInput").write("2");
+        //clickOn("#LeggTilKnapp").clickOn("#LeggTilKnapp");
+        try {
+            Thread.sleep(1000);
+        } 
+        
+        catch (InterruptedException e) {
+            System.out.println("Kunne ikke pause!");
+        }
+        
+        // Verifiserer at VareNavnFelt inneholder "Epler"
+        verifyThat("#VareNavnFelt", hasText("Vaskemiddel"));
+        verifyThat("#AntallInput", hasText("2"));
+    }
 }
