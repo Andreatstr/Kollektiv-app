@@ -31,3 +31,4 @@ components:
           name: 5500-tcp
           protocol: http
           targetPort: 5500
+
