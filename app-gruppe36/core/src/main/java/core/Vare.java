@@ -1,8 +1,10 @@
-package ui;
+package core;
 
 public class Vare {
     private String vareNavn; // Use camelCase
     private int antallAvVare;
+
+    public Vare(){}
 
     public Vare(String vareNavn, int antallAvVare) {
         this.vareNavn = vareNavn;

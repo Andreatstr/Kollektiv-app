@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
+import core.JsonFileManager;
+import core.Vare;
+
+
 // import javafx.event.ActionEvent;
 // import javafx.fxml.FXML;
 // import javafx.scene.control.Label;
@@ -15,6 +19,8 @@ import java.util.function.UnaryOperator;
 // import javafx.scene.control.TableColumn;
 // import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.List;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,8 +37,10 @@ import javafx.collections.ListChangeListener;
 
 public class AppController {
 
-    public AppController() {
+    private JsonFileManager fileManager;
 
+    public AppController() {
+        fileManager = new JsonFileManager();
     }
 
     // @FXML
@@ -92,7 +100,9 @@ public class AppController {
                 int antall = Integer.parseInt(antallText);
     
                 Vare newVare = new Vare(vareNavn, antall);
+                
                 list.add(newVare);
+                storeData();
                 System.out.println("Added new item: " + newVare.getVareNavn() + ", Antall: " + newVare.getAntallAvVare());
                 System.out.println(list);
 
@@ -113,6 +123,9 @@ public class AppController {
     ObservableList<Vare> list = FXCollections.observableArrayList();
 
     public void initialize() {
+        
+        loadData();
+
         VareKolonne.setCellValueFactory(new PropertyValueFactory<>("vareNavn")); // Adjusted for JavaFX property
         AntallKolonne.setCellValueFactory(new PropertyValueFactory<>("antallAvVare")); // Adjusted for JavaFX property
 
@@ -133,5 +146,26 @@ public class AppController {
             }
             return null; // Reject change
         }));
+        
+    }
+
+    private void loadData()
+    {
+        List<Vare> storedData = fileManager.getSavedList();
+        if (storedData == null || storedData.size() == 0) return;
+        for (Vare vare : storedData)
+        {
+            list.add(vare);
+        }
+    }
+
+    private void storeData()
+    {
+        //List<Vare> dataToStore = new ArrayList<Vare>();
+        //for (Vare vare : list)
+        //{
+        //    dataToStore.add(vare);
+        //}
+        fileManager.storeObject(list);
     }
 }
