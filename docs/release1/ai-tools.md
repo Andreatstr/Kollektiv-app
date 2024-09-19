@@ -1,0 +1,1 @@
+# Det har ikke blitt brukt AI/KI-verktøy i denne delen av prosjektet.
