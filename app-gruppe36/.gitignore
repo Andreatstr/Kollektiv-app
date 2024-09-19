@@ -1,5 +1,6 @@
 # ignore maven build folder
 target/
+shoppinglist.json
 
 # pom-derived eclipse jdt files
 .project
