@@ -4,7 +4,7 @@ metadata:
 components:
   - name: app-gruppe36
     container:
-      image: it1901/groups-2024/gr2436/gr2436:latest
+      image: adrianstocia/it1901:latest
       memoryLimit: 3Gi
       endpoints:
         - exposure: public
