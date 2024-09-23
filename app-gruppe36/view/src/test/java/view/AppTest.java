@@ -1,4 +1,4 @@
-package ui;
+package view;
 
 import org.junit.jupiter.api.Test;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -21,9 +21,9 @@ public class AppTest extends ApplicationTest {
     }
 
     @Test
-    public void testVareNavnFeltInput() {
-        // Simulerer å skrive "Epler" i VareNavnFelt
-        clickOn("#VareNavnFelt").write("Vaskemiddel");
+    public void testItemNavnFeltInput() {
+        // Simulerer å skrive "Epler" i ItemNavnFelt
+        clickOn("#ItemNavnFelt").write("Vaskemiddel");
         clickOn("#AntallInput").write("2");
         //clickOn("#LeggTilKnapp").clickOn("#LeggTilKnapp");
         try {
@@ -34,8 +34,8 @@ public class AppTest extends ApplicationTest {
             System.out.println("Kunne ikke pause!");
         }
         
-        // Verifiserer at VareNavnFelt inneholder "Epler"
-        verifyThat("#VareNavnFelt", hasText("Vaskemiddel"));
+        // Verifiserer at ItemNavnFelt inneholder "Epler"
+        verifyThat("#ItemNavnFelt", hasText("Vaskemiddel"));
         verifyThat("#AntallInput", hasText("2"));
     }
 }
