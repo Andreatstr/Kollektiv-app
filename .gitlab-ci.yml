@@ -23,6 +23,7 @@ test:
   script:
     - "ls"
     - "cd app-gruppe36; cd ui; mvn clean test $MAVEN_CLI_OPTS"
+    - "ls"
 
 build:
   stage: build
