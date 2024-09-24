@@ -1,0 +1,3 @@
+run_test:
+  script:
+    - echo "første test av pipeline"
