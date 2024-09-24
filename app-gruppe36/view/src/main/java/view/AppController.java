@@ -53,7 +53,7 @@ public class AppController {
     private TableView<Item> table;
 
     @FXML
-    private void LeggTilItemOgAntall(ActionEvent event) {
+    private void addItem(ActionEvent event) {
         // legge til Item og antall
         String itemName = ItemNameInput.getText();
         String antallText = itemCountInput.getText();
@@ -71,29 +71,25 @@ public class AppController {
 
                 ItemNameInput.clear();
                 itemCountInput.clear();
-
-                //table.refresh();
             }
             catch (NumberFormatException e) {
                 System.out.println("Invalid number entered in itemCountInput: " + antallText);
             }
         } else {
-            // Handle case where one or both fields are empty
             System.out.println("itemName or Antall input is empty");
         }
     }
 
-    ObservableList<Item> list = FXCollections.observableArrayList();
+    private ObservableList<Item> list = FXCollections.observableArrayList();
 
     public void initialize() {
         
         loadData();
 
         itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName")); // Adjusted for JavaFX property
-        countColumn.setCellValueFactory(new PropertyValueFactory<>("antallAvItem")); // Adjusted for JavaFX property
+        countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount")); // Adjusted for JavaFX property
 
         table.setItems(list);
-        // System.out.println("Initialized table with items: " + list);
 
         list.addListener((ListChangeListener<Item>) c -> {
             while (c.next()) {
