@@ -35,7 +35,6 @@ public class JsonFileManager
         }
         catch (IOException e) 
         {
-            e.printStackTrace();
             return null;
         }
     }
