@@ -1,3 +1,32 @@
-run_test:
+image: maven:latest
+
+start:
+  stage: build
   script:
-    - echo "første test av pipeline"
+    - echo "Starter bygging"
+
+variables:
+  MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
+
+stages:
+  - test
+  - build
+
+cache:
+  paths:
+    - .m2/repository
+  key: "$CI_BUILD_REF_NAME"
+
+test:
+  stage: test
+  script:
+    - "ls"
+    - "cd app-gruppe36; cd ui; mvn clean test $MAVEN_CLI_OPTS"
+
+build:
+  stage: build
+  when: manual
+  script:
+    - "ls"
+    - "cd app-gruppe36; cd ui; mvn clean install $MAVEN_CLI_OPTS"
