@@ -16,11 +16,11 @@ cache:
 test:
   stage: test
   script:
-    - "cd todolist; mvn clean test $MAVEN_CLI_OPTS"
+    - "cd app-gruppe36; mvn clean test $MAVEN_CLI_OPTS"
 
 build:
   stage: build
   when: manual
   script:
-    - "cd todolist; mvn clean install $MAVEN_CLI_OPTS"
+    - "cd app-gruppe36; mvn clean install $MAVEN_CLI_OPTS"
 
