@@ -8,7 +8,7 @@ before_script:
 
 stages:
   - compile
-
+  - test
 cache:
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
@@ -19,8 +19,7 @@ test:
   stage: test
   script:
     - echo "GIKK INN I TEST"
-    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=true
-
+    
 compile:
   stage: compile
   script:
