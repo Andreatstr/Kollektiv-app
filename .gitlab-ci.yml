@@ -15,4 +15,4 @@ cache:
 test:
   stage: test
   script:
-    - "cd app-gruppe36; mvn clean install $MAVEN_CLI_OPTS -X"
+    - "cd app-gruppe36; mvn clean install $MAVEN_CLI_OPTS"
