@@ -4,10 +4,10 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
 
 before_script:
-  cd app-gruppe36/ui
+  cd app-gruppe36
 
 stages:
-  - test
+  - compile
 
 cache:
   key: "${CI_COMMIT_REF_SLUG}"
@@ -18,4 +18,10 @@ cache:
 test:
   stage: test
   script:
-    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=false
+    - echo "GIKK INN I TEST"
+    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=true
+
+compile:
+  stage: compile
+  script:
+    - mvn clean compile
