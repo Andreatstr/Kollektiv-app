@@ -1,22 +1,21 @@
-image: maven:3.8.3-openjdk-17-slim
+image: maven:3.8.3-openjdk-17
 
 variables:
-  MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
-  MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
+  MAVEN_CLI_OPTS: "--batch-mode"
+
+before_script:
+  cd app-gruppe36
 
 stages:
   - test
 
 cache:
+  key: "${CI_COMMIT_REF_SLUG}"
   paths:
     - .m2/repository
-  key: "$CI_BUILD_REF_NAME"
+
 
 test:
   stage: test
-  before_script:
-    - cd app-gruppe36
-    - apt-get update
-    - apt-get install -y libx11-6 libxext6 libxrender1 libxtst6 libxi6
   script:
-    - mvn clean test $MAVEN_CLI_OPTS
+    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=true
