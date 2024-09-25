@@ -1,0 +1,35 @@
+image: maven:3.8.3-openjdk-17
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+
+before_script:
+  cd app-gruppe36
+
+stages:
+  - compile
+  - test
+  - install
+cache:
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - .m2/repository
+
+
+test:
+  stage: test
+  script:
+    - echo "Kjører tester utenom UI"
+    - mvn $MAVEN_CLI_OPTS -pl '!view' test
+
+    
+compile:
+  stage: compile
+  script:
+    - mvn clean compile
+
+install:
+  stage: install
+  script:
+    - mvn install -DskipTests
+
