@@ -8,8 +8,8 @@ before_script:
 
 stages:
   - compile
-  - install
   - test
+  - install
 cache:
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
@@ -20,7 +20,7 @@ test:
   stage: test
   script:
     - echo "Kjører tester utenom UI"
-    - mvn $MAVEN_CLI_OPTS -pl '!ui' test
+    - mvn $MAVEN_CLI_OPTS -pl '!view' test
 
     
 compile:
