@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="HistorikkTabell" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
+         <columns>
+            <TableColumn fx:id="VareKolonne" prefWidth="411.20003509521484" text="Vare" />
+            <TableColumn fx:id="AntallKolonne" prefWidth="63.199981689453125" text="Antall" />
+            <TableColumn fx:id="SjekkKnapper" prefWidth="230.39999999999998" text="Når" />
+         </columns>
+      </TableView>
+      <Button fx:id="TilbakeFraHandlelisteHistorikk" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonTilbakeFraHandlelisteHistorikk" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+         <graphic>
+            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </graphic>
+      </Button>
+      <Label layoutX="232.0" layoutY="30.0" text="Handleliste Historikk">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
