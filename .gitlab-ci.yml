@@ -4,7 +4,7 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
 
 before_script:
-  cd app-gruppe36
+  cd app-gruppe36/ui
 
 stages:
   - test
@@ -18,4 +18,4 @@ cache:
 test:
   stage: test
   script:
-    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=true
+    - mvn test $MAVEN_CLI_OPTS -DskipUiTests=false
