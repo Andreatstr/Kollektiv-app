@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>it1901</groupId>
-    <artifactId>Model.core</artifactId>
+    <groupId>gr36</groupId>
+    <artifactId>model</artifactId>
 
     <parent>
-        <groupId>it1901</groupId>
+        <groupId>gr36</groupId>
         <artifactId>app-gruppe36</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
@@ -17,6 +17,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.0</version> 
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -26,7 +27,9 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.0</version> 
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -49,7 +52,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>
+                    @{jaCoCoArgLine}
+                    </argLine>
+                </configuration>
 	        </plugin>
+
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            <configuration>
+                <propertyName> jaCoCoArgLine </propertyName>
+            </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

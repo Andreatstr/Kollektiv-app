@@ -1,4 +1,4 @@
-package ui;
+package view;
 
 import org.junit.jupiter.api.Test;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -14,17 +14,17 @@ public class AppTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Handleliste.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShoppingList.fxml"));
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     @Test
-    public void testVareNavnFeltInput() {
-        // Simulerer å skrive "Epler" i VareNavnFelt
-        clickOn("#VareNavnFelt").write("Vaskemiddel");
-        clickOn("#AntallInput").write("2");
+    public void testItemNavnFeltInput() {
+        // Simulerer å skrive "Epler" i ItemNavnFelt
+        clickOn("#itemNameInput").write("Vaskemiddel");
+        clickOn("#itemCountInput").write("2");
         //clickOn("#LeggTilKnapp").clickOn("#LeggTilKnapp");
         try {
             Thread.sleep(1000);
@@ -34,8 +34,8 @@ public class AppTest extends ApplicationTest {
             System.out.println("Kunne ikke pause!");
         }
         
-        // Verifiserer at VareNavnFelt inneholder "Epler"
-        verifyThat("#VareNavnFelt", hasText("Vaskemiddel"));
-        verifyThat("#AntallInput", hasText("2"));
+        // Verifiserer at ItemNavnFelt inneholder "Epler"
+        verifyThat("#itemNameInput", hasText("Vaskemiddel"));
+        verifyThat("#itemCountInput", hasText("2"));
     }
 }

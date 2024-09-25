@@ -21,21 +21,21 @@ Vi bruker UI modulen for å håndtere brukergrensesnittet. AppController, håndt
 For å kjøre prosjektet må du følge disse 4 stegene:
 
 ### 1
-For å bygge prosjektet må man først beffine seg i app-gruppe36.
+For å bygge prosjektet må man først befinnne seg i app-gruppe36 ved å bruke følgende kommando:
 cd app-gruppe36
 
 ### 2
-så kan man bygge prosjektet med
+Deretter kan man bygge prosjektet med
 
 mvn install
 
 ### 3
-For å kjøre prosjektet må man først befinne seg under filen ui
+For å kjøre prosjektet må man befinne seg i ui:
 
 cd ui
 
 ### 4 
-Så kan man kjøre prosjektet
+Deretter kan man kjøre prosjektet
 
 mvn javafx:run
 
