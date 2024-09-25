@@ -23,11 +23,11 @@ import javafx.scene.control.TextFormatter;
 import javafx.collections.ListChangeListener;
 
 
-public class AppController {
+public class ShoppingListView {
 
     private JsonFileManager fileManager;
 
-    public AppController() {
+    public ShoppingListView() {
         fileManager = new JsonFileManager();
     }
 
@@ -47,7 +47,7 @@ public class AppController {
     private TableColumn<Item, String> itemColumn;
 
     @FXML
-    private TextField ItemNameInput;
+    private TextField itemNameInput;
     
     @FXML
     private TableView<Item> table;
@@ -55,7 +55,7 @@ public class AppController {
     @FXML
     private void addItem(ActionEvent event) {
         // legge til Item og antall
-        String itemName = ItemNameInput.getText();
+        String itemName = itemNameInput.getText();
         String antallText = itemCountInput.getText();
 
         if (!itemName.isEmpty() && !antallText.isEmpty()) {
@@ -69,7 +69,7 @@ public class AppController {
                 System.out.println("Added new item: " + newItem.getItemName() + ", Antall: " + newItem.getItemCount());
                 System.out.println(list);
 
-                ItemNameInput.clear();
+                itemNameInput.clear();
                 itemCountInput.clear();
             }
             catch (NumberFormatException e) {

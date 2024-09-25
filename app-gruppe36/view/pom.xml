@@ -63,7 +63,8 @@
         		<artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>
-                    --add-opens view/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    --add-opens view/view=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    @{jaCoCoArgLine}
                     </argLine>
                 </configuration>
 	        </plugin>
@@ -76,6 +77,13 @@
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
                     <mainClass>view/view.App</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <propertyName>jaCoCoArgLine</propertyName>
                 </configuration>
             </plugin>
         </plugins>

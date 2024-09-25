@@ -14,7 +14,7 @@ public class AppTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Handleliste.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShoppingList.fxml"));
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
@@ -23,8 +23,8 @@ public class AppTest extends ApplicationTest {
     @Test
     public void testItemNavnFeltInput() {
         // Simulerer å skrive "Epler" i ItemNavnFelt
-        clickOn("#ItemNavnFelt").write("Vaskemiddel");
-        clickOn("#AntallInput").write("2");
+        clickOn("#itemNameInput").write("Vaskemiddel");
+        clickOn("#itemCountInput").write("2");
         //clickOn("#LeggTilKnapp").clickOn("#LeggTilKnapp");
         try {
             Thread.sleep(1000);
@@ -35,7 +35,7 @@ public class AppTest extends ApplicationTest {
         }
         
         // Verifiserer at ItemNavnFelt inneholder "Epler"
-        verifyThat("#ItemNavnFelt", hasText("Vaskemiddel"));
-        verifyThat("#AntallInput", hasText("2"));
+        verifyThat("#itemNameInput", hasText("Vaskemiddel"));
+        verifyThat("#itemCountInput", hasText("2"));
     }
 }
