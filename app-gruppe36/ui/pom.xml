@@ -145,7 +145,7 @@
             </build>
         </profile>
 
-        <profile>
+        <profile> <!-- headless profil for å kjøre pipeline!!-->
             <id>headless</id>
             <properties>
                 <headlessTests>true</headlessTests>
