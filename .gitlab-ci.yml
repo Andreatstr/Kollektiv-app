@@ -19,8 +19,8 @@ cache:
 test:
   stage: test
   script:
-    - echo "GIKK INN I TEST"
-    - mvn $MAVEN_CLI_OPTS -Dui.skip.tests=true test
+    - echo "Kjører tester utenom UI"
+    - mvn $MAVEN_CLI_OPTS -pl '!ui' test
 
     
 compile:
