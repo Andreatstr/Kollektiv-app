@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="HistorikkTabell" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
+      <TableView fx:id="ShoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
          <columns>
-            <TableColumn fx:id="VareKolonne" prefWidth="411.20003509521484" text="Vare" />
-            <TableColumn fx:id="AntallKolonne" prefWidth="63.199981689453125" text="Antall" />
-            <TableColumn fx:id="SjekkKnapper" prefWidth="230.39999999999998" text="Når" />
+            <TableColumn fx:id="itemColumnHistory" prefWidth="411.20003509521484" text="Item" />
+            <TableColumn fx:id="countColumnHistory" prefWidth="82.39999389648438" text="Count" />
+            <TableColumn fx:id="whenColumnHistory" prefWidth="211.20001220703125" text="When" />
          </columns>
       </TableView>
-      <Button fx:id="TilbakeFraHandlelisteHistorikk" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonTilbakeFraHandlelisteHistorikk" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="BackFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>

@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="293.0" layoutY="87.0" text="Handleliste">
@@ -13,7 +12,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="TilbakeFraHandlelisteOversikt" layoutX="19.0" layoutY="28.0" mnemonicParsing="false" onAction="#ButtonTilbakeFraHandlelisteOversikt" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="BackFromShoppingListOverview" layoutX="19.0" layoutY="28.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListOverview" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -22,12 +21,12 @@
             </Label>
          </graphic>
       </Button>
-      <Button fx:id="AktivHandleliste" layoutX="122.0" layoutY="200.0" mnemonicParsing="false" onAction="#ButtonAktivHandleliste" prefHeight="430.0" prefWidth="300.0" text="Aktiv Handleliste" textAlignment="CENTER">
+      <Button fx:id="ActivShoppingList" layoutX="122.0" layoutY="200.0" mnemonicParsing="false" onAction="#ButtonActivShoppingList" prefHeight="430.0" prefWidth="300.0" text="Aktiv Handleliste" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="Historikk" layoutX="480.0" layoutY="200.0" mnemonicParsing="false" onAction="#ButtonHistorikk" prefHeight="430.0" prefWidth="300.0" text="Historikk">
+      <Button fx:id="ShoppingListHistory" layoutX="480.0" layoutY="200.0" mnemonicParsing="false" onAction="#ButtonShoppingListHistory" prefHeight="430.0" prefWidth="300.0" text="Historikk">
          <font>
             <Font size="24.0" />
          </font>

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListView">
    <children>
       <Label layoutX="332.0" layoutY="20.0" text="Handleliste">
@@ -33,7 +32,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="571.0" layoutY="143.0" text="itemName">
+      <Label layoutX="571.0" layoutY="143.0" text="Vare Navn">
          <font>
             <Font size="18.0" />
          </font>
@@ -42,15 +41,15 @@
       <TableView fx:id="table" layoutX="44.0" layoutY="91.0" prefHeight="570.0" prefWidth="509.0">
          <columns>
             <TableColumn fx:id="itemColumn" prefWidth="411.20003509521484" text="Item" />
-            <TableColumn fx:id="countColumn" prefWidth="63.199981689453125" text="Antall" />
-            <TableColumn fx:id="SjekkKnapper" prefWidth="32.00006103515625">
+            <TableColumn fx:id="countColumn" prefWidth="63.199981689453125" text="Count" />
+            <TableColumn fx:id="checkboxColumn" prefWidth="32.00006103515625">
                <graphic>
                   <CheckBox fx:id="checkAll" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="TilbakeFraHandlelisteOversikt" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonTilbakeFraHandlelisteOversikt" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="BackFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
