@@ -1,4 +1,4 @@
-package core;
+package model;
 import java.io.IOException;
 import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,16 +26,15 @@ public class JsonFileManager
         }
     }
 
-    public List<Vare> getSavedList()
+    public List<Item> getSavedList()
     {
         ObjectMapper mapper = new ObjectMapper();
         try
         {
-            return mapper.readValue(new File(filePath),mapper.getTypeFactory().constructCollectionType(List.class, Vare.class));
+            return mapper.readValue(new File(filePath),mapper.getTypeFactory().constructCollectionType(List.class, Item.class));
         }
         catch (IOException e) 
         {
-            e.printStackTrace();
             return null;
         }
     }
