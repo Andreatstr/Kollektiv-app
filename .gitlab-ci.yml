@@ -19,6 +19,8 @@ test:
   stage: test
   script:
     - echo "GIKK INN I TEST"
+    - mvn $MAVEN_CLI_OPTS -Dui.skip.tests=true test
+
     
 compile:
   stage: compile
