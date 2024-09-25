@@ -19,10 +19,10 @@ before_script:
 test:
   stage: test
   script:
-    - "cd app-gruppe36; mvn clean test $MAVEN_CLI_OPTS"
+    - "cd app-gruppe36; cd ui; mvn clean test $MAVEN_CLI_OPTS"
 
 build:
   stage: build
   when: manual
   script:
-    - "cd app-gruppe36; mvn clean install $MAVEN_CLI_OPTS"
+    - "cd app-gruppe36; cd ui; mvn clean install $MAVEN_CLI_OPTS"
