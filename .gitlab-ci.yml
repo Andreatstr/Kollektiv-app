@@ -15,6 +15,6 @@ cache:
 test:
   stage: test
   before_script:
-    - apt-get install -y libx11-6 libxext6 libxrender1 libxtst6 libxi6
+    - sudo apt-get install -y libx11-6 libxext6 libxrender1 libxtst6 libxi6
   script:
     - "cd app-gruppe36; mvn clean install $MAVEN_CLI_OPTS"
