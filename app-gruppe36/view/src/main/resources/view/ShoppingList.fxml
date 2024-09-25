@@ -49,7 +49,7 @@
             </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="BackFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="BackFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
