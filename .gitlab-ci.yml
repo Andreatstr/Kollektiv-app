@@ -5,8 +5,8 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
 
 stages:
-  - test
   - build
+  - test
 
 cache:
   paths:
