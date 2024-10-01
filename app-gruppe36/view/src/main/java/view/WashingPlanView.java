@@ -7,8 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.GeneratedWashingTable;
+import java.io.IOException;
 
-public class GeneratedWashingPlanView {
+public class WashingPlanView {
 
     // legge til den lagrede tabell informasjonen
 
@@ -19,16 +20,16 @@ public class GeneratedWashingPlanView {
     private Button editWashingPlan;
 
     @FXML
-    private TableView<GeneratedWashingPlanView> generatedWashingPlanTable;
+    private TableView<WashingPlanView> generatedWashingPlanTable;
 
     @FXML
     private Button leftArrowButton;
 
     @FXML
-    private TableColumn<GeneratedWashingPlanView, String> listOfNamesForWashingPlan;
+    private TableColumn<WashingPlanView, String> listOfNamesForWashingPlan;
 
     @FXML
-    private TableColumn<GeneratedWashingPlanView, String> listOfTasksForWashingPlan;
+    private TableColumn<WashingPlanView, String> listOfTasksForWashingPlan;
 
     @FXML
     private Button rightArrowButton;
@@ -37,23 +38,23 @@ public class GeneratedWashingPlanView {
     private Label weekNumberField;
 
     @FXML
-    void ButtonBackFromWashingPlan(ActionEvent event) {
-
+    void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
     }
 
     @FXML
-    void ButtonEditWashingPlan(ActionEvent event) {
-
+    void ButtonEditWashingPlan(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
     }
 
     @FXML
     void ButtonLeftArrow(ActionEvent event) {
-
+        //TODO: switch to previous week
     }
 
     @FXML
     void ButtonRightArrow(ActionEvent event) {
-
+        //TODO: switch to next week
     }
 
 }

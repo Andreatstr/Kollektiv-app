@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.NewWashingTableName;
 import model.NewWashingTableTask;
+import java.io.IOException;
 
 public class NewWashingPlanView {
 
@@ -49,7 +50,6 @@ public class NewWashingPlanView {
 
     @FXML
     void ButtonAddPerson(ActionEvent event) {
-
     }
 
     @FXML
@@ -58,13 +58,14 @@ public class NewWashingPlanView {
     }
 
     @FXML
-    void ButtonBackFromNewWashingPlan(ActionEvent event) {
-
+    void ButtonBackFromNewWashingPlan(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
     }
 
     @FXML
-    void ButtonGenerateWashingPlan(ActionEvent event) {
-
+    void ButtonGenerateWashingPlan(ActionEvent event) throws IOException {
+        //TODO: generere vaskeplan-logikk
+        SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
     }
 
 }

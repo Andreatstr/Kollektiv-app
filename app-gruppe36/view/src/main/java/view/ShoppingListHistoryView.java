@@ -6,8 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.HistoryShoppingListTable;
+import java.io.IOException;
 
-public class HistoryShoppingListView {
+public class ShoppingListHistoryView {
 
     @FXML
     private Button BackFromShoppingListHistory;
@@ -25,8 +26,8 @@ public class HistoryShoppingListView {
     private TableColumn<HistoryShoppingListTable, Integer> whenColumnHistory;
 
     @FXML
-    void ButtonBackFromShoppingListHistory(ActionEvent event) {
-
+    void ButtonBackFromShoppingListHistory(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
 
 }
