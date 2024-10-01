@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextFormatter;
 import javafx.collections.ListChangeListener;
+import java.io.IOException;
 
 
 public class ShoppingListView {
@@ -51,6 +52,14 @@ public class ShoppingListView {
     
     @FXML
     private TableView<Item> table;
+
+    @FXML
+    private Button BackFromShoppingList;
+
+    @FXML
+    void BackFromShoppingList(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
+    }
 
     @FXML
     private void addItem(ActionEvent event) {

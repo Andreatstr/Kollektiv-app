@@ -12,21 +12,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="BackFromMainMenu" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#ButtonBackFromMainMenu" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
-         <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </graphic>
-      </Button>
-      <Button fx:id="WashingPlan" layoutX="152.0" layoutY="327.0" mnemonicParsing="false" onAction="#ButtonToWashingPlanOverview" prefHeight="159.0" prefWidth="263.0" text="Vaskeplan">
+      <Button fx:id="openLoginHouseIDButton" layoutX="152.0" layoutY="327.0" mnemonicParsing="false" onAction="#ButtonToLoginHouseID" prefHeight="159.0" prefWidth="263.0" text="Logg inn med kollektiv-ID">
          <font>
-            <Font size="36.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ShoppingList" layoutX="507.0" layoutY="325.0" mnemonicParsing="false" onAction="#ButtonToShoppingListOverview" prefHeight="159.0" prefWidth="263.0" text="Handleliste">
+      <Button fx:id="openCreateHouseIDButton" layoutX="507.0" layoutY="325.0" mnemonicParsing="false" onAction="#ButtonToCreateHouseID" prefHeight="159.0" prefWidth="263.0" text="Nytt kollektiv">
          <font>
             <Font size="36.0" />
          </font>
