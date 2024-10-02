@@ -57,7 +57,7 @@ public class ShoppingListView {
     private Button BackFromShoppingList;
 
     @FXML
-    void BackFromShoppingList(ActionEvent event) throws IOException {
+    void ButtonBackFromShoppingList(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
 
