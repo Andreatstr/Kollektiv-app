@@ -2,9 +2,6 @@ package model;
 import java.io.IOException;
 import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import java.util.List;
 
 public class JsonFileManager
 {
@@ -26,12 +23,12 @@ public class JsonFileManager
         }
     }
 
-    public List<Item> getSavedList()
+    public Collective getSavedCollective()
     {
         ObjectMapper mapper = new ObjectMapper();
         try
         {
-            return mapper.readValue(new File(filePath),mapper.getTypeFactory().constructCollectionType(List.class, Item.class));
+            return mapper.readValue(new File(filePath),Collective.class);
         }
         catch (IOException e) 
         {
