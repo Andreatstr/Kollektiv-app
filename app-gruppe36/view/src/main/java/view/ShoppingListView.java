@@ -15,6 +15,8 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextFormatter;
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 
@@ -57,6 +59,14 @@ import java.io.IOException;
     }
 
     private Button BackFromShoppingList;
+
+    @FXML
+    private Button HomeButton;
+
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
     @FXML
     void ButtonBackFromShoppingList(ActionEvent event) throws IOException {
@@ -103,6 +113,14 @@ public void initialize() {
             }
             return null; // Reject change
         }));
+
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(66);  
+        imageView.setFitHeight(63); 
+        imageView.setPreserveRatio(true);
+
+        HomeButton.setGraphic(imageView);
     }
 }
