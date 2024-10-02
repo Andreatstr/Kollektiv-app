@@ -17,17 +17,17 @@ public class WashingPlanOverviewView {
     private Button openWashingPlanButton;
 
     @FXML
-    private void handleButtonBackFromWashingPlan(ActionEvent event) throws IOException {
+    private void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    private void handleButtonCreateNewWashingPlan(ActionEvent event) throws IOException {
+    private void ButtonCreateNewWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
     }
 
     @FXML
-    private void handleButtonOpenWashingPlan(ActionEvent event) throws IOException {
+    private void ButtonOpenWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
     }
 }
