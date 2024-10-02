@@ -3,6 +3,8 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 public class WashingPlanOverviewView {
@@ -17,6 +19,14 @@ public class WashingPlanOverviewView {
     private Button openWashingPlanButton;
 
     @FXML
+    private Button HomeButton;
+
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
+
+    @FXML
     private void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
@@ -29,5 +39,16 @@ public class WashingPlanOverviewView {
     @FXML
     private void ButtonOpenWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
+    }
+
+    public void initialize (){
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
+        
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(66);  
+        imageView.setFitHeight(63); 
+        imageView.setPreserveRatio(true);
+
+        HomeButton.setGraphic(imageView);
     }
 }

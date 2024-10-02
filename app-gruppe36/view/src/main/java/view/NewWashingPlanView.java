@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import model.NewWashingTableName;
 import model.NewWashingTableTask;
 import java.io.IOException;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class NewWashingPlanView {
 
@@ -49,12 +51,20 @@ public class NewWashingPlanView {
     private TableView<NewWashingTableTask> newWashingPlanTaskTable;
 
     @FXML
+    private Button HomeButton;
+
+    @FXML
     void ButtonAddPerson(ActionEvent event) {
     }
 
     @FXML
     void ButtonAddTask(ActionEvent event) {
 
+    }
+
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
@@ -66,6 +76,17 @@ public class NewWashingPlanView {
     void ButtonGenerateWashingPlan(ActionEvent event) throws IOException {
         //TODO: generere vaskeplan-logikk
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
+    }
+
+    public void initialize (){
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
+        
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(66);  
+        imageView.setFitHeight(63); 
+        imageView.setPreserveRatio(true);
+
+        HomeButton.setGraphic(imageView);
     }
 
 }

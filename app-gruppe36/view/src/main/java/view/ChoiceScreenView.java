@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.io.IOException;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class ChoiceScreenView {
 
     @FXML
@@ -17,8 +20,8 @@ public class ChoiceScreenView {
     private Button openWashingPlanOverviewButton;
 
     @FXML
-    void ButtonBackFromChoiceScreen(ActionEvent event) {
-        //TODO: bytte til previous scene eller bare til mainmenu?
+    void ButtonBackFromChoiceScreen(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
     }
 
     @FXML
