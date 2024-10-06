@@ -3,7 +3,7 @@ package model;
 public class HistoryShoppingListTable {
     private String item;
     private int count;
-    private int when; //TODO: bruke int her?
+    private int when; 
 
     public HistoryShoppingListTable(){}
 

@@ -40,10 +40,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="newWashingPlanTable" layoutX="439.0" layoutY="142.0" prefHeight="498.0" prefWidth="446.0">
+      <TableView fx:id="newWashingPlanNameTable" layoutX="439.0" layoutY="142.0" prefHeight="498.0" prefWidth="446.0">
          <columns>
             <TableColumn fx:id="listOfNamesForNewWashingPlan" prefWidth="156.00003051757812" text="Navn" />
-            <TableColumn fx:id="listOfTasksForNewWashingPlan" prefWidth="289.5999755859375" text="Oppgave" />
+         </columns>
+      </TableView>
+      <TableView fx:id="newWashingPlanTaskTable" layoutX="597.0" layoutY="142.0" prefHeight="498.0" prefWidth="288.0">
+         <columns>
+               <TableColumn fx:id="listOfTasksForNewWashingPlan" prefWidth="289.5999755859375" text="Oppgave" />
          </columns>
       </TableView>
       <Label layoutX="208.0" layoutY="416.0" text="Til Uke:">

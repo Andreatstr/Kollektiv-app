@@ -7,6 +7,7 @@ public class JsonFileManager
 {
 
     private String filePath = "shoppinglist.json";
+    private String washingPath = "washingplan.json";
 
 
     public void storeObject(Object objectToSave)
@@ -29,6 +30,34 @@ public class JsonFileManager
         try
         {
             return mapper.readValue(new File(filePath),Collective.class);
+        }
+        catch (IOException e) 
+        {
+            return null;
+        }
+    }
+
+    public void storeWashingObject(Object objectToSave)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        try
+        {
+            mapper.writeValue(new File(washingPath), objectToSave);
+            String jsonString = mapper.writeValueAsString(objectToSave);
+        }
+        catch (IOException e) 
+        {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public Collective getSavedWashingCollective()
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        try
+        {
+            return mapper.readValue(new File(washingPath),Collective.class);
         }
         catch (IOException e) 
         {
