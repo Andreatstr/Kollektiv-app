@@ -2,6 +2,7 @@ package model.viewmodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.model.ShoppingListModel;
+import model.HistoryShoppingListTable;
 import model.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ShoppingListViewModel
     private ShoppingListModel shoppingListModel;
 
     private ObservableList<Item> shoppingList = FXCollections.observableArrayList();
-    private ObservableList<Item> shoppingListHistory = FXCollections.observableArrayList();;
+    private ObservableList<HistoryShoppingListTable> shoppingListHistory = FXCollections.observableArrayList();;
 
     private ShoppingListViewModel(){
         shoppingListModel = ShoppingListModel.getInstance();
@@ -76,7 +77,7 @@ public class ShoppingListViewModel
         return shoppingList;
     }
 
-    public ObservableList<Item> getShoppingListHistory()
+    public ObservableList<HistoryShoppingListTable> getShoppingListHistory()
     {
         updateShoppingListHistory();
         return shoppingListHistory;
@@ -93,7 +94,10 @@ public class ShoppingListViewModel
     {
         List<Item> newShoppingList = shoppingListModel.getshoppingListHistory();
         shoppingListHistory.clear();
-        shoppingListHistory.addAll(newShoppingList);
+        for (Item item : newShoppingList)
+        {
+            shoppingListHistory.add(new HistoryShoppingListTable(item.getItemName(),item.getItemCount(),item.getBoughtDate()));
+        }
     }
 
     public void selectAllCheckBoxChanged(Boolean selected)

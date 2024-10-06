@@ -9,8 +9,7 @@ public class JsonFileManager
     private String filePath = "shoppinglist.json";
     private String washingPath = "washingplan.json";
 
-
-    public void storeObject(Object objectToSave)
+    public void storeObject(Collective objectToSave)
     {
         ObjectMapper mapper = new ObjectMapper();
         try
@@ -29,10 +28,13 @@ public class JsonFileManager
         ObjectMapper mapper = new ObjectMapper();
         try
         {
+            
             return mapper.readValue(new File(filePath),Collective.class);
         }
         catch (IOException e) 
         {
+            System.out.println("Could not find exisitng collective");
+            System.out.println(e.getMessage());
             return null;
         }
     }

@@ -34,13 +34,11 @@ public class ShoppingListModel
     {
         JsonFileManager fileManager = new JsonFileManager();
         collective = fileManager.getSavedCollective();
-        if (collective == null)
-        {
-            collective = new Collective(); 
-            return;
-        }
-        if (collective.getShoppingList() != null) shoppingList = collective.getShoppingList();
-        if (collective.getShoppingListHistory() != null) shoppingListHistory = collective.getShoppingListHistory();
+
+        if (collective == null) collective = new Collective();
+
+        shoppingList = collective.getShoppingList();
+        shoppingListHistory = collective.getShoppingListHistory();
     }
 
     private void resetItemActivation()
@@ -97,10 +95,7 @@ public class ShoppingListModel
 
     public void removeItem(List<Item> items)
     {
-        for (Item itemToRemove : items)
-        {
-            shoppingList.removeIf(b->b.getItemName().equals(itemToRemove.getItemName()));
-        }   
+        for (Item itemToRemove : items) shoppingList.removeIf(b->b.getItemName().equals(itemToRemove.getItemName()));
         storeToFile();
     }
     
