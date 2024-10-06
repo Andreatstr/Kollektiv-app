@@ -3,11 +3,12 @@ package model;
 public class HistoryShoppingListTable {
     private String item;
     private int count;
-    private int when; 
+    private String when;
 
     public HistoryShoppingListTable(){}
 
-    public HistoryShoppingListTable(String item, int count, int when) {
+
+    public HistoryShoppingListTable(String item, int count, String when) {
         this.item = item;
         this.count = count;
         this.when = when;
@@ -29,11 +30,11 @@ public class HistoryShoppingListTable {
         this.count = count;
     }
 
-    public int getWhen() {
+    public String getWhen() {
         return when;
     }
 
-    public void setWhen(int when) {
+    public void setWhen(String when) {
         this.when = when;
     }
 }

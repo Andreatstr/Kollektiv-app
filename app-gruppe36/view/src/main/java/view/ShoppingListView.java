@@ -99,9 +99,6 @@ import java.io.IOException;
         table.setEditable(true);
         table.setItems(list);
         
-
-        
-
         itemCountInput.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getControlNewText();
             if (newText.matches("\\d*")) { // Allow only digits
