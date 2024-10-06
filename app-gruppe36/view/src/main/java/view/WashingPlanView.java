@@ -13,15 +13,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Person;
-import model.Task;
-import model.WashingTable;
-import model.WashingPlan;
-import model.WashingPlanEntry;
-import model.viewmodel.WashingPlanViewModel;
+import viewmodel.WashingPlanViewModel;
 
 import java.io.IOException;
 import java.util.List;
+
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
 
 public class WashingPlanView {
 
@@ -115,7 +116,6 @@ public class WashingPlanView {
 
         int fromWeek = washingPlanViewModel.getStartWeek();
         int toWeek = washingPlanViewModel.getEndWeek();
-        washingPlanViewModel.generateWashingPlan(fromWeek, toWeek);
         
         newWashingPlanTable.setItems(observableList);
 

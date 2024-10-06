@@ -7,8 +7,11 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import viewmodel.MenueViewModel;
 
 public class LogInHouseIDView {
+
+    MenueViewModel viewModel;
 
     @FXML
     private Button BackFromLogInHouseID;
@@ -34,8 +37,17 @@ public class LogInHouseIDView {
 
     @FXML
     void ButtonLoginHouseID(ActionEvent event) throws IOException  {
-        //TODO: prosessere ID-input
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+        if (viewModel.setCollective(loginHouseIDField.getText()))
+        {
+            SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+        }
+        else
+        {
+            //Vise at id ikke finnes
+        }
+    }
+    public void initialize() {
+    viewModel = MenueViewModel.getInstance();
     }
 
 }

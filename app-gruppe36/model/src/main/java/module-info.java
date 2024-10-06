@@ -3,6 +3,6 @@ module model {
     requires com.fasterxml.jackson.databind;
     requires javafx.controls;
     requires javafx.fxml;
-    exports model.viewmodel;
-    exports model;
+    exports viewmodel;
+    exports data;
 }

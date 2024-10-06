@@ -1,7 +1,7 @@
-package model.model;
-import model.JsonFileManager;
-import model.Item;
-import model.Collective;
+package model;
+import json.JsonFileManager;
+import data.Item;
+import data.House;
 import java.util.ArrayList; 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class ShoppingListModel
 {
     private static ShoppingListModel shoppingListModel = null;
 
-    private Collective collective;
+    private House collective;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();  
 
@@ -32,11 +32,7 @@ public class ShoppingListModel
 
     private void readShoppingListFromFile()
     {
-        JsonFileManager fileManager = new JsonFileManager();
-        collective = fileManager.getSavedCollective();
-
-        if (collective == null) collective = new Collective();
-
+        collective = HouseManager.getInstance().getHouse();
         shoppingList = collective.getShoppingList();
         shoppingListHistory = collective.getShoppingListHistory();
     }
@@ -48,10 +44,9 @@ public class ShoppingListModel
 
     private void storeToFile()
     {
-        JsonFileManager fileManager = new JsonFileManager();
         collective.setShoppingList(shoppingList);
         collective.setShoppingListHistory(shoppingListHistory);
-        fileManager.storeObject(collective);
+        HouseManager.getInstance().saveHouse();
     }
 
     public List<Item> getShoppingList()

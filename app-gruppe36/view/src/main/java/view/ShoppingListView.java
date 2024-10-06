@@ -1,7 +1,7 @@
 package view;
 
-import model.Item;
-import model.viewmodel.ShoppingListViewModel;
+import data.Item;
+import viewmodel.ShoppingListViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,6 +81,8 @@ import java.io.IOException;
     @FXML
     private void addItem(ActionEvent event) {
         shoppingListViewModel.addItem(itemNameInput.getText(), itemCountInput.getText());
+        itemNameInput.clear();
+        itemCountInput.clear();
     }
 
     @FXML

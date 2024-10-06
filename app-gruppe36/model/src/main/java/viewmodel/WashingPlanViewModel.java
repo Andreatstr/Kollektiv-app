@@ -1,16 +1,16 @@
-package model.viewmodel;
+package viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Person;
-import model.Task;
-import model.WashingPlan;
-import model.WashingPlanEntry;
-import model.WashingTable;
-import model.model.WashingPlanModel;
+import model.WashingPlanModel;
 
 public class WashingPlanViewModel {
     
@@ -118,7 +118,6 @@ public class WashingPlanViewModel {
 
     public ObservableList<WashingPlanEntry> getWashingPlanEntriesForCurrentWeek() {
         List<WashingPlan> plansForCurrentWeek = washingPlanModel.getWashingTableForWeek(currentWeek);
-        
         washingPlanEntry.clear();
         for (WashingPlan plan : plansForCurrentWeek) {
             washingPlanEntry.addAll(plan.getEntries());

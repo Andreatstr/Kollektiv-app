@@ -1,4 +1,4 @@
-package model;
+package data;
 
 public class HistoryShoppingListTable {
     private String item;

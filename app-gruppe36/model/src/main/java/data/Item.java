@@ -1,4 +1,4 @@
-package model;
+package data;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import java.time.Period;
@@ -20,6 +20,11 @@ public class Item {
     public Item(String itemName, int itemCount) {
         this.itemName = itemName;
         this.itemCount = itemCount;
+    }
+
+    public void setBoughtDate(String bougthDate)
+    {
+        this.bougthDate = bougthDate;
     }
 
     public String getItemName() {
