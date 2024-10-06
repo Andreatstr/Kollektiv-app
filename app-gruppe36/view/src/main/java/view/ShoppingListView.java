@@ -88,15 +88,11 @@ import java.io.IOException;
         shoppingListViewModel.selectAllCheckBoxChanged(checkAll.isSelected());
     }    
 
-public void initialize() {
+    public void initialize() {
         list = shoppingListViewModel.getShoppingList();
         itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName")); // Adjusted for JavaFX property
         countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount")); // Adjusted for JavaFX property
 
-        checkButtonsColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkButtonsColumn));
-        checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
-
-        table.setEditable(true);
         checkButtonsColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkButtonsColumn));
         checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
 
