@@ -9,17 +9,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Item;
-import model.Person;
-import model.Task;
-import model.WashingPlan;
-import model.WashingPlanEntry;
-import model.WashingTable;
-import model.viewmodel.WashingPlanViewModel;
+import data.Item;
+import viewmodel.WashingPlanViewModel;
 
 import java.io.IOException;
 import java.util.List;
 
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

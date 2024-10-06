@@ -1,9 +1,9 @@
-package model.viewmodel;
+package viewmodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.model.ShoppingListModel;
-import model.HistoryShoppingListTable;
-import model.Item;
+import model.ShoppingListModel;
+import data.HistoryShoppingListTable;
+import data.Item;
 import java.util.ArrayList;
 import java.util.List;
 

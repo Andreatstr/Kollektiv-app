@@ -1,25 +1,25 @@
-package model.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Collective;
-import model.Item;
-import model.JsonFileManager;
-import model.Person;
-import model.Task;
-import model.WashingPlan;
-import model.WashingPlanEntry;
-import model.WashingTable;
+import data.House;
+import data.Item;
+
 
 public class WashingPlanModel {
 
     public int currentWeek = 1;
     private static WashingPlanModel washingPlanModel = null;
 
-    private Collective collective;
+    private House collective;
 
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
@@ -31,23 +31,18 @@ public class WashingPlanModel {
 
     private void readWashingPlanFromFile()
     {
-        JsonFileManager fileManager = new JsonFileManager();
-        collective = fileManager.getSavedWashingCollective();
-        if (collective == null)
-        {
-            collective = new Collective(); 
-            return;
-        }
-        if (collective.getWashingPlanPerson() != null) washingPlanPersons = collective.getWashingPlanPerson();
-        if (collective.getWashingPlanTask() != null) washingPlanTasks = collective.getWashingPlanTask();
-        if (collective.getWashingTable() != null) washingTables = collective.getWashingTable();
+        collective = HouseManager.getInstance().getHouse();
+        //washingPlanPersons = collective.getWashingPlanPerson();
+        //washingPlanTasks = collective.getWashingPlanTask();
+        washingTables = collective.getWashingTable();
     }
 
     private void storeToFile()
     {
-        JsonFileManager fileManager = new JsonFileManager();
         collective.setWashingTable(washingTables);
-        fileManager.storeWashingObject(collective);
+        //collective.setWashingPlanPerson(washingPlanPersons);
+        //collective.setWashingPlanTask(washingPlanTasks);
+        HouseManager.getInstance().saveHouse();
     }
 
     public static WashingPlanModel getInstance()
@@ -117,6 +112,7 @@ public class WashingPlanModel {
             washingTable.addWashingPlanEntry(washingPlan);
             washingTables.add(washingTable);
         }
+        storeToFile();
     }
 
     public List<Person> rotateNames(List<Person> names) {

@@ -1,19 +1,25 @@
-package model;
+package data;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.SecureRandom;
 
-public class Collective
+public class House
 {
-    private Integer id;
 
+
+    private String id;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
-
     private List<Person> washingPlanPerson = new ArrayList<Person>();
     private List<Task> washingPlanTask = new ArrayList<Task>();
     private List<WashingTable> washingTable = new ArrayList<WashingTable>();  
 
-    public Collective(){}
+    public House(){
+    }
+
+    public House(String id){
+    this.id = id;
+    }
 
     public List<Item>  getShoppingList() {
         return shoppingList;
@@ -23,6 +29,15 @@ public class Collective
         return shoppingListHistory;
     }
     
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
     public void setShoppingList(List<Item> shoppingList) {
         this.shoppingList = shoppingList;
     }
@@ -31,14 +46,11 @@ public class Collective
         this.shoppingListHistory = shoppingListHistory;
     }
 
-
-
-
     public List<Person>  getWashingPlanPerson() {
         return washingPlanPerson;
     }
 
-    public List<Task>  getWashingPlanTask() {
+    public List<Task> getWashingPlanTask() {
         return washingPlanTask;
     }
     
@@ -54,8 +66,8 @@ public class Collective
         this.washingPlanTask = newTaskList;
     }
     
-    public void setWashingTable(List<WashingTable> newWashingTable) {
-        this.washingTable = newWashingTable;
+    public void setWashingTable(List<WashingTable> washingTable) {
+        this.washingTable = washingTable;
     }
 
 
