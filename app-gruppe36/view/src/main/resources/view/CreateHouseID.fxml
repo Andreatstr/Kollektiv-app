@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateHouseIDView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateHouseIDView">
    <children>
       <Button fx:id="BackFromCreateHouseID" layoutX="59.0" layoutY="68.0" mnemonicParsing="false" onAction="#ButtonBackFromCreateHouseID" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
@@ -22,7 +21,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="generateNewHouseIDButton" layoutX="157.0" layoutY="273.0" mnemonicParsing="false" onAction="#ButtonGenerateNewHouseID" prefHeight="164.0" prefWidth="247.0" text="Lag Nytt Kollektiv" wrapText="true">
+      <Button fx:id="generateNewHouseIDButton" layoutX="84.0" layoutY="317.0" mnemonicParsing="false" onAction="#ButtonGenerateNewHouse" prefHeight="86.0" prefWidth="193.0" text="Lag Nytt Kollektiv" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
@@ -42,5 +41,10 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Button fx:id="generateNewHouseButton" layoutX="307.0" layoutY="317.0" mnemonicParsing="false" onAction="#ButtonGenerateNewHouseID" prefHeight="86.0" prefWidth="193.0" text="Lag Ny Id" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
