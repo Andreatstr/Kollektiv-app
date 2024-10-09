@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import data.House;
 import data.Item;
 
-
 public class WashingPlanModel {
 
     public int currentWeek = 1;
@@ -24,29 +23,26 @@ public class WashingPlanModel {
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
     private List<WashingTable> washingTables = new ArrayList<>();
-    
+
     private WashingPlanModel() {
         readWashingPlanFromFile();
     }
 
-    private void readWashingPlanFromFile()
-    {
+    private void readWashingPlanFromFile() {
         collective = HouseManager.getInstance().getHouse();
-        //washingPlanPersons = collective.getWashingPlanPerson();
-        //washingPlanTasks = collective.getWashingPlanTask();
+        washingPlanPersons = collective.getWashingPlanPerson();
+        washingPlanTasks = collective.getWashingPlanTask();
         washingTables = collective.getWashingTable();
     }
 
-    private void storeToFile()
-    {
+    private void storeToFile() {
         collective.setWashingTable(washingTables);
-        //collective.setWashingPlanPerson(washingPlanPersons);
-        //collective.setWashingPlanTask(washingPlanTasks);
+        collective.setWashingPlanPerson(washingPlanPersons);
+        collective.setWashingPlanTask(washingPlanTasks);
         HouseManager.getInstance().saveHouse();
     }
 
-    public static WashingPlanModel getInstance()
-    {   
+    public static WashingPlanModel getInstance() {
         if (washingPlanModel != null)
             return washingPlanModel;
         washingPlanModel = new WashingPlanModel();
@@ -65,12 +61,9 @@ public class WashingPlanModel {
         return washingTables;
     }
 
-    public void addPerson(Person newPerson)
-    {
-        for (Person name : washingPlanPersons)
-        {
-            if (name.getName().equals(newPerson.getName()))
-            {
+    public void addPerson(Person newPerson) {
+        for (Person name : washingPlanPersons) {
+            if (name.getName().equals(newPerson.getName())) {
                 System.out.println("Name already in list");
                 return;
             }
@@ -81,10 +74,8 @@ public class WashingPlanModel {
     }
 
     public void addTask(Task newTask) {
-        for (Task task : washingPlanTasks)
-        {
-            if (task.getTask().equals(newTask.getTask()))
-            {
+        for (Task task : washingPlanTasks) {
+            if (task.getTask().equals(newTask.getTask())) {
                 System.out.println("Task already in list");
                 return;
             }
@@ -98,13 +89,13 @@ public class WashingPlanModel {
         List<Person> names = persons;
         int numPeople = names.size();
         int numTasks = tasks.size();
-        
+
         for (int week = fromWeek; week <= toWeek; week++) {
             WashingPlan washingPlan = new WashingPlan(week);
 
             for (int i = 0; i < numTasks; i++) {
                 Task task = tasks.get(i);
-                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople); 
+                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
                 WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
                 washingPlan.addEntry(entry);
             }
@@ -127,7 +118,7 @@ public class WashingPlanModel {
 
     public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
         if (weekNumber < 1 || weekNumber > washingTables.size()) {
-            return new ArrayList<>(); //returns empty if week is out of range
+            return new ArrayList<>(); // returns empty if week is out of range
         }
         return washingTables.get(weekNumber - 1).getWashingPlans();
     }
@@ -138,5 +129,12 @@ public class WashingPlanModel {
 
     public void setCurrentWeek(int week) {
         this.currentWeek = week;
+    }
+
+    public void reset() {
+        washingPlanPersons.clear();
+        washingPlanTasks.clear();
+        washingTables.clear();
+        currentWeek = 1;
     }
 }
