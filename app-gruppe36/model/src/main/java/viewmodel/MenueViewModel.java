@@ -29,7 +29,7 @@ public class MenueViewModel {
 
     public String getProposedHouseId()
     {
-        proposedHouseId = houseManager.GetNewId();
+        proposedHouseId = houseManager.getNewId();
         return proposedHouseId;
     }
 

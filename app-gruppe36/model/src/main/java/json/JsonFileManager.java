@@ -9,69 +9,78 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.House;
 
-public class JsonFileManager
-{
+public class JsonFileManager {
 
+    String path = "data.json";
 
-
-    public void saveHouse(House house)
-    {
+    public void saveHouse(House house) {
         List<House> houses = getNewHouseList(house);
+        saveToFile(houses);
+
+    }
+
+    public void deleteHouse(String id) {
+        List<House> houses = getHouses();
+        House houseToDelete = null;
+        for (House house : houses) {
+            if (house.getId().equals(id)) {
+                houseToDelete = house;
+                break;
+            }
+        }
+        if (houseToDelete == null)
+            return;
+        houses.remove(houseToDelete);
+        saveToFile(houses);
+    }
+
+    private void saveToFile(List<House> houses) {
         ObjectMapper mapper = new ObjectMapper();
-        try
-        {
+        try {
             mapper.writeValue(getPath(), houses);
             String jsonString = mapper.writeValueAsString(houses);
-        }
-        catch (IOException e) 
-        {
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("An error occured while saving data    " + e.getMessage());
         }
     }
 
-    
-
-
-    private List<House> getHouses()
-    {
+    private List<House> getHouses() {
         ObjectMapper mapper = new ObjectMapper();
-        try
-        {
-            return mapper.readValue(getPath() ,mapper.getTypeFactory().constructCollectionType(List.class, House.class));
-        }
-        catch (IOException e) 
-        {
+        try {
+            return mapper.readValue(getPath(),
+                    mapper.getTypeFactory().constructCollectionType(List.class, House.class));
+        } catch (IOException e) {
             System.out.println("An error occured while loading data    " + e.getMessage());
             return new ArrayList<>();
         }
     }
+    /*
+     * public File getPath() {
+     * URL resource = getClass().getClassLoader().getResource("data.json");
+     * if (resource != null) {
+     * return new File(resource.getFile());
+     * } else {
+     * File newFile = new File("src/main/resources/data.json");
+     * try {
+     * newFile.createNewFile();
+     * } catch (IOException e) {
+     * System.err.println("An error occurred while creating the file.");
+     * e.printStackTrace();
+     * }
+     * return newFile;
+     * }
+     * }
+     */
 
     public File getPath() {
-        URL resource = getClass().getClassLoader().getResource("data.json");
-        if (resource != null) {
-            return new File(resource.getFile());
-        } else {
-            File newFile = new File("src/main/resources/data.json");
-            try {
-                newFile.createNewFile();
-            } catch (IOException e) {
-                System.err.println("An error occurred while creating the file.");
-                e.printStackTrace();
-            }
-            return newFile;
-        }
+        return new File(path);
     }
-    
 
-
-    private List<House> getNewHouseList(House house)
-    {
+    private List<House> getNewHouseList(House house) {
         List<House> houses = getHouses();
-        for (int i = 0; i < houses.size(); i++)
-        {
-            if (houses.get(i).getId().equals(house.getId()))
-            {
+        for (int i = 0; i < houses.size(); i++) {
+            if (houses.get(i).getId().equals(house.getId())) {
                 houses.set(i, house);
                 return houses;
             }
@@ -80,27 +89,15 @@ public class JsonFileManager
         return houses;
     }
 
-    public House getSavedHouse(String id)
-    {
+    public House getSavedHouse(String id) {
         List<House> houses = getHouses();
-        if (houses == null) return null;
-        if (houses.size() == 0) return null;
-        for (House house : houses) 
-            if (house.getId().equals(id)) return house;
+        if (houses == null)
+            return null;
+        if (houses.size() == 0)
+            return null;
+        for (House house : houses)
+            if (house.getId().equals(id))
+                return house;
         return null;
     }
-
-    public House DebugGetFirstHouse()
-    {
-        List<House> houses = getHouses();
-        if (houses == null) return null;
-        if (houses.size() == 0) return null;
-        return houses.get(0);
-    }
-
-
-
-
-
-
 }

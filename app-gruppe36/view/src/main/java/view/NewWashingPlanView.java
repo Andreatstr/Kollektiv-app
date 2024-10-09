@@ -73,11 +73,13 @@ public class NewWashingPlanView {
     @FXML
     private void ButtonAddPerson(ActionEvent event) {
         washingPlanViewModel.addPerson(addPersonField.getText());
+        addPersonField.setText("");
     }
 
     @FXML
     private void ButtonAddTask(ActionEvent event) {
         washingPlanViewModel.addTask(addTaskField.getText());
+        addTaskField.setText("");
     }
 
     @FXML
@@ -92,41 +94,51 @@ public class NewWashingPlanView {
 
     @FXML
     void ButtonGenerateWashingPlan(ActionEvent event) throws IOException {
-        System.out.println("Button Pressed");               //debug comment
+        System.out.println("Button Pressed"); // debug comment
         String fromWeekInput = fromWeek.getText();
         String toWeekInput = toWeek.getText();
 
+        int start = Integer.parseInt(fromWeekInput);
+        int end = Integer.parseInt(toWeekInput);
+
+        if (start > end) {
+            washingPlanViewModel.setStartWeek(toWeekInput);
+            washingPlanViewModel.setEndWeek(fromWeekInput);
+        }
+        else {
         washingPlanViewModel.setStartWeek(fromWeekInput);
         washingPlanViewModel.setEndWeek(toWeekInput);
+        }
 
         int fromWeek = washingPlanViewModel.getStartWeek();
         int toWeek = washingPlanViewModel.getEndWeek();
-        
+
         if (fromWeek > toWeek) {
-            System.out.println("From Week cannot be greater than To Week.");  //TODO: include plans that go over new years
+            System.out.println("From Week cannot be greater than To Week."); // TODO: include plans that go over new
+                                                                             // years
             return;
         }
 
         washingPlanViewModel.setCurrentWeek(fromWeek);
+        washingPlanViewModel.generateWashingPlan(fromWeek, toWeek);
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
     }
 
     public void initialize() {
         listOfNamesForNewWashingPlan.setCellValueFactory(new PropertyValueFactory<>("name"));
-        listOfTasksForNewWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task")); 
+        listOfTasksForNewWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));
 
         newWashingPlanNameTable.setItems(washingPlanViewModel.getWashingPlanPersons());
         newWashingPlanTaskTable.setItems(washingPlanViewModel.getWashingPlanTasks());
-        
-        
-        //---//
+
+        // ---//
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(66);
+        imageView.setFitHeight(63);
         imageView.setPreserveRatio(true);
         HomeButton.setGraphic(imageView);
-        
+
     }
 
 }
