@@ -53,7 +53,7 @@ public class HouseManager {
         saveHouse();
     }
 
-    public String GetNewId()
+    public String getNewId()
     {
         return generateRandomId(5);
     }
