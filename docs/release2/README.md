@@ -47,3 +47,19 @@ I prosjektet vårt har vi en enkel teststrategi som dekker enhetstester, integra
 
 ### Oppsummering av testing
 Alle verktøyene våre spiller sammen for å sikre høy kodekvalitet. Testene forbedrer dekningsgraden i CI-pipelinen, som automatisk sikrer at prosjektet bygger og kjører. Jacoco gir oversikt over testdekning, mens SpotBugs og Checkstyle hjelper oss med å identifisere bugs og kodekonvensjoner vi må forbedre. Dette gir oss mulighet til å iterativt forbedre koden, samt alltid levere kode av høy kvalitet.
+
+
+### Arkitekur og diagrammer
+Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjektet med forskjellige mengde abstraksjon. 
+
+ Først har vi et enkelt diagram som beskriver flyt av data og ansvar over logikk i prosjektet. View har ansvar for brukergrensesnitt og vising av data. Viewmodel er et mellomlag som forbereder data mellom view og model. Model Inneholder logikken til applikasjonen og persistance har ansvar for lagring. Dette er arkitekturen i prosjektet vårt. 
+
+![](MVVMDiagram.png)
+
+Package diagram beskriver hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Data pakken et er bibliotek for klasser som trengs av flere andre pakker samtidig.
+
+![](packagediagram.png)
+
+Class diagram viser klasene i prosjekter og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra data pakken.
+
+![](classdiagram.png)
