@@ -1,4 +1,4 @@
-# Beskrivelse av prosjektet
+# Beskrivelse av prosjektet (release 1)
 
 Denne appen gjør det enkelt for beboere i et kollektiv å holde oversikt over både vaskelister og innkjøpslister. Beboerne får en god oversikt over rengjøringsoppgavene, samtidig som de kan være sikre på at nødvendige varer alltid er på plass. Når et nytt kollektiv opprettes, genereres en unik kollektiv-ID som kan brukes til å enten starte et nytt kollektiv eller bli med i et eksisterende.
 
