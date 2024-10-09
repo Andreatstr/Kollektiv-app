@@ -120,6 +120,7 @@ public class NewWashingPlanView {
         }
 
         washingPlanViewModel.setCurrentWeek(fromWeek);
+        washingPlanViewModel.generateWashingPlan(fromWeek, toWeek);
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
     }
 
