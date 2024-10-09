@@ -93,6 +93,8 @@ public class WashingPlanViewModel {
 
     public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
         washingPlanModel.generateWashingPlan(persons, tasks, fromWeek, toWeek);
+        currentWeek = fromWeek;
+        updateWashingPlans();
     }
 
     public void updateWashingPlans(List<WashingPlan> generatedPlans) {
@@ -127,7 +129,7 @@ public class WashingPlanViewModel {
     }
 
     public ObservableList<WashingPlan> getWashingPlans() {
-        updateWashingPlans();
+        //updateWashingPlans();     // works for tests
         return washingPlans;
     }
 
@@ -140,14 +142,15 @@ public class WashingPlanViewModel {
     }
 
     public int getCurrentWeek() {
-        System.out.println("current week in wpVm: " + currentWeek);
-        System.out.println("current week in wpm: " + washingPlanModel.getCurrentWeek());
+        // System.out.println("current week in wpVm: " + currentWeek);
+        // System.out.println("current week in wpm: " + washingPlanModel.getCurrentWeek());
         return washingPlanModel.getCurrentWeek();
     }
 
     public void setCurrentWeek(int week) {
+        currentWeek = week;
         washingPlanModel.setCurrentWeek(week);
-        System.out.println("current week in wpm: " + washingPlanModel.getCurrentWeek());
+        // System.out.println("current week in wpm: " + washingPlanModel.getCurrentWeek());
     }
 
     public boolean isThisTheFirstWeek(int thisWeek) {
@@ -197,12 +200,25 @@ public class WashingPlanViewModel {
         return endWeek;
     }
 
-    private boolean isInteger(String input) {
+    public boolean isInteger(String input) {
         try {
             Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public void reset() {
+        // System.out.println("Resetting WashingPlanViewModel...");
+        washingPlanPersons.clear();
+        washingPlanTasks.clear();
+        washingPlans.clear();
+        currentWeek = 1;
+        // System.out.println("Reset complete. Current week: " + currentWeek);
+        // System.out.println("Persons: " + washingPlanPersons.size());
+        // System.out.println("Tasks: " + washingPlanTasks.size());
+        // System.out.println("Plans: " + washingPlans.size());
+        washingPlanModel.reset();
     }
 }

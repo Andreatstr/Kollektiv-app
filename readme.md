@@ -39,8 +39,26 @@ Deretter kan man kjøre prosjektet
 mvn javafx:run
 
 
+
 ## Brukerhistorier, Beskrivelse av prosjekt og flytdiagram
-Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner man i README.md filen under docs/release1. Her er det også grafiske illustrasjoner.
+
+
+Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner du på README.md filen under docs/release1. Her er det også grafiske illustrasjoner.
+
+
+## Testrapporter fra JaCoCo, Checkstyle og SpotBugs
+
+Testrapportene fra JaCoCo, Checkstyle og SpotBugs er å finne i target-mappen i hver modul etter å ha kjørt følgende kommandoer:
+
+### Jacoco:
+ - mvn jacoco:prepare-agent test jacoco:report
+
+### Ckeckstyle:
+ - mvn checkstyle:check
+
+### SpotBugs:
+ - mvn spotbugs:spotbugs
 
 ## Mer om arbeidsflyt, arbeidsvaner og kodekvalitet
 Beskrivelse arbeidsflyt, arbeidsvaner og testdekning finner man i README.md under docs/release2.
+
