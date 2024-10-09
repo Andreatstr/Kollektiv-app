@@ -24,6 +24,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class NewWashingPlanView {
+    
+    private WashingPlanViewModel washingPlanViewModel;
+
+    public NewWashingPlanView() {
+        washingPlanViewModel = WashingPlanViewModel.getInstance();
+    }
 
     private WashingPlanViewModel washingPlanViewModel;
 
