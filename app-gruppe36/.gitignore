@@ -5,4 +5,5 @@ shoppinglist.json
 # pom-derived eclipse jdt files
 .project
 .classpath
+data.json
 org.eclipse.*.prefs

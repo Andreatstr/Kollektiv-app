@@ -1,7 +1,7 @@
 package view;
 
-import model.Item;
-import model.viewmodel.ShoppingListViewModel;
+import data.Item;
+import viewmodel.ShoppingListViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +15,8 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextFormatter;
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 
@@ -59,6 +61,14 @@ import java.io.IOException;
     private Button BackFromShoppingList;
 
     @FXML
+    private Button HomeButton;
+
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
+
+    @FXML
     void ButtonBackFromShoppingList(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
@@ -71,6 +81,8 @@ import java.io.IOException;
     @FXML
     private void addItem(ActionEvent event) {
         shoppingListViewModel.addItem(itemNameInput.getText(), itemCountInput.getText());
+        itemNameInput.clear();
+        itemCountInput.clear();
     }
 
     @FXML
@@ -78,7 +90,7 @@ import java.io.IOException;
         shoppingListViewModel.selectAllCheckBoxChanged(checkAll.isSelected());
     }    
 
-public void initialize() {
+    public void initialize() {
         list = shoppingListViewModel.getShoppingList();
         itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName")); // Adjusted for JavaFX property
         countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount")); // Adjusted for JavaFX property
@@ -87,15 +99,8 @@ public void initialize() {
         checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
 
         table.setEditable(true);
-        checkButtonsColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkButtonsColumn));
-        checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
-
-        table.setEditable(true);
         table.setItems(list);
         
-
-        
-
         itemCountInput.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getControlNewText();
             if (newText.matches("\\d*")) { // Allow only digits
@@ -103,6 +108,14 @@ public void initialize() {
             }
             return null; // Reject change
         }));
+
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(66);  
+        imageView.setFitHeight(63); 
+        imageView.setPreserveRatio(true);
+
+        HomeButton.setGraphic(imageView);
     }
 }

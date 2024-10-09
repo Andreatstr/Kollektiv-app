@@ -5,8 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.io.IOException;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import viewmodel.MenueViewModel;
 
 public class CreateHouseIDView {
+
+    MenueViewModel menueViewModel;
 
     @FXML
     private Button BackFromCreateHouseID;
@@ -21,18 +26,38 @@ public class CreateHouseIDView {
     private Button loginFromCreateHouseIDButton;
 
     @FXML
+    private Button HomeButton;
+
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
+
+    @FXML
     void ButtonBackFromCreateHouseID(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "MainMenu.fxml");
     }
 
     @FXML
     void ButtonGenerateNewHouseID(ActionEvent event) throws IOException {
-        //TODO: generere unik kollektiv-ID
+        generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
+    }
+
+    @FXML
+    void ButtonGenerateNewHouse(ActionEvent event) throws IOException {
+        menueViewModel.generateHouse();
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
     void ButtonLoginFromCreateHouseID(ActionEvent event) throws IOException {
+        menueViewModel.generateHouse();
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
+
+    public void initialize() {
+        menueViewModel = MenueViewModel.getInstance();
+        generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
     }
 
 }
