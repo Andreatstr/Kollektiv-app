@@ -59,8 +59,6 @@ Testrapportene fra JaCoCo, Checkstyle og SpotBugs er å finne i target-mappen i 
 ### SpotBugs:
  - mvn spotbugs:spotbugs
 
-Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner man i README.md filen under docs/release1. Her er det også grafiske illustrasjoner.
-
 ## Mer om arbeidsflyt, arbeidsvaner og kodekvalitet
 Beskrivelse arbeidsflyt, arbeidsvaner og testdekning finner man i README.md under docs/release2.
 
