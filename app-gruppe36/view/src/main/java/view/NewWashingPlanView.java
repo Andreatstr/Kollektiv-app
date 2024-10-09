@@ -31,12 +31,6 @@ public class NewWashingPlanView {
         washingPlanViewModel = WashingPlanViewModel.getInstance();
     }
 
-    private WashingPlanViewModel washingPlanViewModel;
-
-    public NewWashingPlanView() {
-        washingPlanViewModel = WashingPlanViewModel.getInstance();
-    }
-
     @FXML
     private Button BackFromNewWashingPlan;
 
