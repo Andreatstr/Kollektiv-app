@@ -56,9 +56,9 @@ public class SceneSwitcherTest extends ApplicationTest {
         clickAndWait("#BackFromShoppingListOverview", waitTime);
 
         // Choice screen button test
-        clickAndWait("#BackFromChoiceScreen", waitTime);
+        clickAndWait("#backFromChoiceScreen", waitTime);
         clickAndWait("#openCreateHouseIDButton", waitTime);
-        clickAndWait("#BackFromCreateHouseID", waitTime);
+        clickAndWait("#backFromCreateHouseID", waitTime);
         clickAndWait("#openLoginHouseIDButton", waitTime);
 
     }

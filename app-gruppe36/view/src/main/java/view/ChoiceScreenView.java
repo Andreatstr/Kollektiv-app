@@ -1,17 +1,16 @@
 package view;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.IOException;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ChoiceScreenView {
 
     @FXML
-    private Button BackFromChoiceScreen;
+    private Button backFromChoiceScreen;
 
     @FXML
     private Button openShoppingListOverviewButton;
@@ -20,17 +19,17 @@ public class ChoiceScreenView {
     private Button openWashingPlanOverviewButton;
 
     @FXML
-    void ButtonBackFromChoiceScreen(ActionEvent event) throws IOException {
+    void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "MainMenu.fxml");
     }
 
     @FXML
-    void ButtonOpenShoppingListOverview(ActionEvent event) throws IOException {
+    void handleOpenShoppingListOverview(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
 
     @FXML
-    void ButtonOpenWashingPlanOverview(ActionEvent event) throws IOException {
+    void handleOpenWashingPlanOverview(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
     }
 
