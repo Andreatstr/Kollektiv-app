@@ -39,12 +39,12 @@ public class SceneSwitcherTest extends ApplicationTest {
         // Washinglist button test
         clickAndWait("#openWashingPlanOverviewButton", waitTime);
         clickAndWait("#createNewWashingPlanButton", waitTime);
-        clickAndWait("#BackFromNewWashingPlan", waitTime);
+        clickAndWait("#backFromNewWashingPlan", waitTime);
         clickAndWait("#openWashingPlanButton", waitTime);
         clickAndWait("#leftArrowButton", waitTime);
         clickAndWait("#rightArrowButton", waitTime);
         clickAndWait("#editWashingPlan", waitTime);
-        clickAndWait("#BackFromNewWashingPlan", waitTime);
+        clickAndWait("#backFromNewWashingPlan", waitTime);
         clickAndWait("#BackFromWashingPlan", waitTime);
 
         // Shopping list button test
@@ -57,9 +57,9 @@ public class SceneSwitcherTest extends ApplicationTest {
 
         // Choice screen button test
         clickAndWait("#backFromChoiceScreen", waitTime);
-        clickAndWait("#openCreateHouseIDButton", waitTime);
+        clickAndWait("#openCreateButton", waitTime);
         clickAndWait("#backFromCreateHouseID", waitTime);
-        clickAndWait("#openLoginHouseIDButton", waitTime);
+        clickAndWait("#openLoginButton", waitTime);
 
     }
 }
