@@ -1,7 +1,14 @@
 package view;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
+// import javafx.application.Platform;
+// import javafx.beans.property.SimpleStringProperty;
+// import data.Person;
+// import data.Task;
+// import data.WashingPlan;
+// import data.WashingTable;
+import data.WashingPlanEntry;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,15 +22,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
 
-import java.io.IOException;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
-
 public class WashingPlanView {
 
   private WashingPlanViewModel washingPlanViewModel;
@@ -35,7 +33,7 @@ public class WashingPlanView {
   }
 
   @FXML
-  private Button BackFromWashingPlan;
+  private Button backFromWashingPlan;
 
   @FXML
   private Button editWashingPlan;
@@ -56,45 +54,49 @@ public class WashingPlanView {
   private Button rightArrowButton;
 
   @FXML
-  private Button HomeButton;
+  private Button homeButton;
 
   @FXML
   private Label weekNumberField;
 
   @FXML
-  void ButtonHome(ActionEvent event) throws IOException {
+  void buttonHome(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
   }
 
   @FXML
-  void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
+  void buttonBackFromWashingPlan(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
   }
 
   @FXML
-  void ButtonEditWashingPlan(ActionEvent event) throws IOException {
+  void buttonEditWashingPlan(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
   }
 
   @FXML
-  void ButtonLeftArrow(ActionEvent event) {
+  void buttonLeftArrow(ActionEvent event) {
     int currentWeek = washingPlanViewModel.getCurrentWeek();
+
     if (washingPlanViewModel.isThisTheFirstWeek(currentWeek)) {
       System.out.println("Already at the first week.");
       return;
     }
+
     washingPlanViewModel.previousWeek();
     weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     updateWashingPlanTable();
   }
 
   @FXML
-  void ButtonRightArrow(ActionEvent event) {
+  void buttonRightArrow(ActionEvent event) {
     int currentWeek = washingPlanViewModel.getCurrentWeek();
+
     if (washingPlanViewModel.isThisTheLastWeek(currentWeek)) {
       System.out.println("Already at the last week.");
       return;
     }
+
     washingPlanViewModel.nextWeek();
     weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     updateWashingPlanTable();
@@ -106,31 +108,27 @@ public class WashingPlanView {
     imageView.setFitWidth(66);
     imageView.setFitHeight(63);
     imageView.setPreserveRatio(true);
-
-    HomeButton.setGraphic(imageView);
-    // ---//
-
+    homeButton.setGraphic(imageView);
+    
     listOfNamesForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("person"));
     listOfTasksForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));
-
-    // int fromWeek = washingPlanViewModel.getStartWeek();
-    // int toWeek = washingPlanViewModel.getEndWeek();
     String startNumber = String.valueOf(washingPlanViewModel.getCurrentWeek());
-
     weekNumberField.setText(startNumber);
     newWashingPlanTable.setItems(observableList);
-
     updateWashingPlanTable();
   }
 
   private void updateWashingPlanTable() {
-    List<WashingPlanEntry> entriesForCurrentWeek = washingPlanViewModel.getWashingPlanEntriesForCurrentWeek();
-    for (WashingPlanEntry entry : entriesForCurrentWeek)
+    WashingPlanViewModel wpvm = washingPlanViewModel;
+    List<WashingPlanEntry> entriesForCurrentWeek = wpvm.getWashingPlanEntriesForCurrentWeek();
+
+    for (WashingPlanEntry entry : entriesForCurrentWeek) {
       System.out.println(entry.getPerson() + "  " + entry.getTask());
+    }
+
     if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) {
       observableList.clear();
       observableList.addAll(entriesForCurrentWeek);
     }
   }
-
 }

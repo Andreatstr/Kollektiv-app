@@ -33,7 +33,7 @@ public class SceneSwitcherTest extends ApplicationTest {
   public void HomeButtonTest() {
     int waitTime = 1;
 
-    clickAndWait("#HomeButton", waitTime);
+    clickAndWait("#homeButton", waitTime);
 
     // Washinglist button test
     clickAndWait("#openWashingPlanOverviewButton", waitTime);
@@ -44,15 +44,15 @@ public class SceneSwitcherTest extends ApplicationTest {
     clickAndWait("#rightArrowButton", waitTime);
     clickAndWait("#editWashingPlan", waitTime);
     clickAndWait("#backFromNewWashingPlan", waitTime);
-    clickAndWait("#BackFromWashingPlan", waitTime);
+    clickAndWait("#backFromWashingPlan", waitTime);
 
     // Shopping list button test
     clickAndWait("#openShoppingListOverviewButton", waitTime);
-    clickAndWait("#ShoppingListHistory", waitTime);
+    clickAndWait("#shoppingListHistory", waitTime);
     clickAndWait("#backFromShoppingListHistory", waitTime);
-    clickAndWait("#ActiveShoppingList", waitTime);
-    clickAndWait("#BackFromShoppingList", waitTime);
-    clickAndWait("#BackFromShoppingListOverview", waitTime);
+    clickAndWait("#activeShoppingList", waitTime);
+    clickAndWait("#backFromShoppingList", waitTime);
+    clickAndWait("#backFromShoppingListOverview", waitTime);
 
     // Choice screen button test
     clickAndWait("#backFromChoiceScreen", waitTime);

@@ -1,8 +1,9 @@
 package view;
 
+// import javafx.collections.ListChangeListener;
+// import javafx.collections.FXCollections;
 import data.Item;
-import viewmodel.ShoppingListViewModel;
-import javafx.collections.FXCollections;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,13 +12,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TextFormatter;
-import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.IOException;
+import viewmodel.ShoppingListViewModel;
 
 public class ShoppingListView {
 
@@ -35,7 +35,13 @@ public class ShoppingListView {
   private TableColumn<Item, Integer> countColumn;
 
   @FXML
-  private Button AddButton;
+  private Button addButton;
+
+  @FXML
+  private Button buyButton;
+
+  @FXML
+  private Button deleteButton;
 
   @FXML
   private CheckBox checkAll;
@@ -57,18 +63,19 @@ public class ShoppingListView {
     shoppingListViewModel.buyItems();
   }
 
-  private Button BackFromShoppingList;
+  @FXML
+  private Button backFromShoppingList;
 
   @FXML
-  private Button HomeButton;
+  private Button homeButton;
 
   @FXML
-  void ButtonHome(ActionEvent event) throws IOException {
+  void buttonHome(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
   }
 
   @FXML
-  void ButtonBackFromShoppingList(ActionEvent event) throws IOException {
+  void buttonBackFromShoppingList(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
   }
 
@@ -91,8 +98,8 @@ public class ShoppingListView {
 
   public void initialize() {
     list = shoppingListViewModel.getShoppingList();
-    itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName")); // Adjusted for JavaFX property
-    countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount")); // Adjusted for JavaFX property
+    itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+    countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount"));
 
     checkButtonsColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkButtonsColumn));
     checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
@@ -115,6 +122,6 @@ public class ShoppingListView {
     imageView.setFitHeight(63);
     imageView.setPreserveRatio(true);
 
-    HomeButton.setGraphic(imageView);
+    homeButton.setGraphic(imageView);
   }
 }

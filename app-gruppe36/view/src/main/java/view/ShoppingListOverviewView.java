@@ -10,13 +10,13 @@ import javafx.scene.image.ImageView;
 public class ShoppingListOverviewView {
 
   @FXML
-  private Button ActiveShoppingList;
+  private Button activeShoppingList;
 
   @FXML
-  private Button BackFromShoppingListOverview;
+  private Button backFromShoppingListOverview;
 
   @FXML
-  private Button ShoppingListHistory;
+  private Button shoppingListHistory;
 
   @FXML
   private Button homeButton;
@@ -27,17 +27,17 @@ public class ShoppingListOverviewView {
   }
 
   @FXML
-  void ButtonActiveShoppingList(ActionEvent event) throws IOException {
+  void buttonActiveShoppingList(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ShoppingList.fxml");
   }
 
   @FXML
-  void ButtonBackFromShoppingListOverview(ActionEvent event) throws IOException {
+  void buttonBackFromShoppingListOverview(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
   }
 
   @FXML
-  void ButtonShoppingListHistory(ActionEvent event) throws IOException {
+  void buttonShoppingListHistory(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "ShoppingListHistory.fxml");
   }
 

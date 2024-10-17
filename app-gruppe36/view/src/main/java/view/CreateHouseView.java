@@ -9,21 +9,21 @@ import javafx.scene.control.Label;
 // import javafx.scene.image.ImageView;
 import viewmodel.MenueViewModel;
 
-public class CreateHouseIDView {
+public class CreateHouseView {
 
   MenueViewModel menueViewModel;
 
   @FXML
-  private Button backFromCreateHouseID;
+  private Button backButton;
 
   @FXML
-  private Button generateNewHouseIDButton;
+  private Button generateHouseIdButton;
 
   @FXML
-  private Label generatedHouseIDText;
+  private Label generatedHouseIdLabel;
 
   @FXML
-  private Button loginFromCreateHouseIDButton;
+  private Button loginButton;
 
   // @FXML
   // private Button HomeButton;
@@ -34,13 +34,13 @@ public class CreateHouseIDView {
   // }
 
   @FXML
-  void handleBackFromCreateHouseID(ActionEvent event) throws IOException {
+  void handleBack(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "MainMenu.fxml");
   }
 
   @FXML
-  void handleGenerateNewHouseID(ActionEvent event) throws IOException {
-    generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
+  void handleGenerateNewHouseId(ActionEvent event) throws IOException {
+    generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
   }
 
   @FXML
@@ -50,14 +50,14 @@ public class CreateHouseIDView {
   }
 
   @FXML
-  void handleLoginFromCreateHouseID(ActionEvent event) throws IOException {
+  void handleLoginFromCreateHouseId(ActionEvent event) throws IOException {
     menueViewModel.generateHouse();
     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
   }
 
   public void initialize() {
     menueViewModel = MenueViewModel.getInstance();
-    generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
+    generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
   }
 
 }

@@ -20,7 +20,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="BackFromWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#ButtonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -40,12 +40,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#ButtonLeftArrow" prefHeight="54.0" prefWidth="118.0" text="&lt;">
+      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonLeftArrow" prefHeight="54.0" prefWidth="118.0" text="&lt;">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#ButtonRightArrow" prefHeight="54.0" prefWidth="118.0" text="&gt;">
+      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonRightArrow" prefHeight="54.0" prefWidth="118.0" text="&gt;">
          <font>
             <Font size="24.0" />
          </font>
@@ -55,7 +55,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="HomeButton" layoutX="797.0" layoutY="30.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="797.0" layoutY="30.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
