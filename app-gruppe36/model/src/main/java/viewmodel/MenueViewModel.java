@@ -4,40 +4,37 @@ import model.HouseManager;
 
 public class MenueViewModel {
 
-    private String proposedHouseId;
-    
-    private static MenueViewModel instance;
+  private String proposedHouseId;
 
-    private HouseManager houseManager;
+  private static MenueViewModel instance;
 
-    private MenueViewModel(){
-        houseManager = HouseManager.getInstance();
-    }
+  private HouseManager houseManager;
 
-    public static MenueViewModel getInstance()
-    {
-        if (instance == null) instance = new MenueViewModel();
-        return instance;
-    }
+  private MenueViewModel() {
+    houseManager = HouseManager.getInstance();
+  }
 
-    public Boolean setCollective(String id)
-    {
-        if (id == null) return false;
-        if (id.length() == 0) return false;
-        return HouseManager.getInstance().setHouse(id);
-    }
+  public static MenueViewModel getInstance() {
+    if (instance == null)
+      instance = new MenueViewModel();
+    return instance;
+  }
 
-    public String getProposedHouseId()
-    {
-        proposedHouseId = houseManager.getNewId();
-        return proposedHouseId;
-    }
+  public Boolean setCollective(String id) {
+    if (id == null)
+      return false;
+    if (id.length() == 0)
+      return false;
+    return HouseManager.getInstance().setHouse(id);
+  }
 
-    public void generateHouse()
-    {
-        houseManager.CreateHouse(proposedHouseId);
-    }
+  public String getProposedHouseId() {
+    proposedHouseId = houseManager.getNewId();
+    return proposedHouseId;
+  }
 
-
+  public void generateHouse() {
+    houseManager.CreateHouse(proposedHouseId);
+  }
 
 }
