@@ -1,12 +1,12 @@
 package viewmodel;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.ShoppingListModel;
 import data.HistoryShoppingListTable;
 import data.Item;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.ShoppingListModel;
 
 public class ShoppingListViewModel {
   public static ShoppingListViewModel shoppingListViewModel;
@@ -14,28 +14,30 @@ public class ShoppingListViewModel {
   private ShoppingListModel shoppingListModel;
 
   private ObservableList<Item> shoppingList = FXCollections.observableArrayList();
-  private ObservableList<HistoryShoppingListTable> shoppingListHistory = FXCollections.observableArrayList();;
+  private ObservableList<HistoryShoppingListTable> shopHist = FXCollections.observableArrayList();
 
   private ShoppingListViewModel() {
     shoppingListModel = ShoppingListModel.getInstance();
   }
 
   public static ShoppingListViewModel getInstance() {
-    if (shoppingListViewModel != null)
+    if (shoppingListViewModel != null) {
       return shoppingListViewModel;
+    }
     shoppingListViewModel = new ShoppingListViewModel();
     return shoppingListViewModel;
   }
 
   public void addItem(String itemName, String itemCountString) {
-    if (itemName.isEmpty() || itemCountString.isEmpty())
+    if (itemName.isEmpty() || itemCountString.isEmpty()) {
       return;
+    }
     try {
       int intemCount = Integer.parseInt(itemCountString);
       Item newItem = new Item(itemName, intemCount);
       shoppingListModel.addItem(newItem);
       updateShoppingList();
-    } catch (NumberFormatException e) { // specify the exception type
+    } catch (NumberFormatException e) {
       System.out.println("Invalid number format for item count: " + itemCountString);
     }
     updateShoppingList();
@@ -43,8 +45,9 @@ public class ShoppingListViewModel {
 
   public void buyItems() {
     List<Item> activeItems = getActiveItems();
-    if (activeItems.size() == 0)
+    if (activeItems.size() == 0) {
       return;
+    }
     shoppingListModel.buyItems(activeItems);
     updateShoppingList();
 
@@ -52,8 +55,9 @@ public class ShoppingListViewModel {
 
   public void removeItems() {
     List<Item> activeItems = getActiveItems();
-    if (activeItems.size() == 0)
+    if (activeItems.size() == 0) {
       return;
+    }
     shoppingListModel.removeItem(activeItems);
     updateShoppingList();
 
@@ -62,8 +66,9 @@ public class ShoppingListViewModel {
   private List<Item> getActiveItems() {
     List<Item> activeList = new ArrayList<Item>();
     for (Item item : shoppingList) {
-      if (item.getActive())
+      if (item.getActive()) {
         activeList.add(item);
+      }
     }
     return activeList;
   }
@@ -75,7 +80,7 @@ public class ShoppingListViewModel {
 
   public ObservableList<HistoryShoppingListTable> getShoppingListHistory() {
     updateShoppingListHistory();
-    return shoppingListHistory;
+    return shopHist;
   }
 
   public void updateShoppingList() {
@@ -86,15 +91,18 @@ public class ShoppingListViewModel {
 
   public void updateShoppingListHistory() {
     List<Item> newShoppingList = shoppingListModel.getshoppingListHistory();
-    shoppingListHistory.clear();
+    shopHist.clear();
     for (Item item : newShoppingList) {
-      shoppingListHistory
-          .add(new HistoryShoppingListTable(item.getItemName(), item.getItemCount(), item.getBoughtDate()));
+      String name = item.getItemName();
+      int count = item.getItemCount();
+      String date = item.getBoughtDate();
+      shopHist.add(new HistoryShoppingListTable(name, count, date));
     }
   }
 
   public void selectAllCheckBoxChanged(Boolean selected) {
-    for (Item item : shoppingList)
+    for (Item item : shoppingList) {
       item.setActive(selected);
+    }
   }
 }

@@ -1,17 +1,16 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+// import javafx.collections.ObservableList;
+// import data.Item;
+import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import data.House;
-import data.Item;
 
 public class WashingPlanModel {
 
@@ -43,8 +42,9 @@ public class WashingPlanModel {
   }
 
   public static WashingPlanModel getInstance() {
-    if (washingPlanModel != null)
+    if (washingPlanModel != null) {
       return washingPlanModel;
+    }
     washingPlanModel = new WashingPlanModel();
     return washingPlanModel;
   }
@@ -84,17 +84,17 @@ public class WashingPlanModel {
     storeToFile();
   }
 
-  public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
+  public void generateWashingPlan(List<Person> ps, List<Task> ts, int fromWeek, int toWeek) {
     washingTables.clear();
-    List<Person> names = persons;
+    List<Person> names = ps;
     int numPeople = names.size();
-    int numTasks = tasks.size();
+    int numTasks = ts.size();
 
     for (int week = fromWeek; week <= toWeek; week++) {
       WashingPlan washingPlan = new WashingPlan(week);
 
       for (int i = 0; i < numTasks; i++) {
-        Task task = tasks.get(i);
+        Task task = ts.get(i);
         Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
         WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
         washingPlan.addEntry(entry);

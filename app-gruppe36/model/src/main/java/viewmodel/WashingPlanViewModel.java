@@ -1,13 +1,12 @@
 package viewmodel;
 
-import java.util.ArrayList;
-import java.util.List;
-
+// import java.util.ArrayList;
+// import data.WashingTable;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.WashingPlanModel;
@@ -31,8 +30,9 @@ public class WashingPlanViewModel {
   }
 
   public static WashingPlanViewModel getInstance() {
-    if (washingPlanViewModel != null)
+    if (washingPlanViewModel != null) {
       return washingPlanViewModel;
+    }
     washingPlanViewModel = new WashingPlanViewModel();
     return washingPlanViewModel;
   }
@@ -55,12 +55,6 @@ public class WashingPlanViewModel {
     Person newPerson = new Person(person);
     washingPlanModel.addPerson(newPerson);
     updateWashingPlanPersons();
-  }
-
-  public void generateWashingPlan(int fromWeek, int toWeek) {
-    washingPlanModel.generateWashingPlan(washingPlanPersons, washingPlanTasks, fromWeek, toWeek);
-    currentWeek = fromWeek;
-    updateWashingPlans();
   }
 
   public ObservableList<WashingPlan> getWashingPlansForCurrentWeek() {
@@ -91,8 +85,14 @@ public class WashingPlanViewModel {
     }
   }
 
-  public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-    washingPlanModel.generateWashingPlan(persons, tasks, fromWeek, toWeek);
+  public void generateWashingPlan(int fromWeek, int toWeek) {
+    washingPlanModel.generateWashingPlan(washingPlanPersons, washingPlanTasks, fromWeek, toWeek);
+    currentWeek = fromWeek;
+    updateWashingPlans();
+  }
+
+  public void generateWashingPlan(List<Person> people, List<Task> tasks, int fromWeek, int toWeek) {
+    washingPlanModel.generateWashingPlan(people, tasks, fromWeek, toWeek);
     currentWeek = fromWeek;
     updateWashingPlans();
   }

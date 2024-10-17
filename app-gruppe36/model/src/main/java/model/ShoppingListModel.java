@@ -1,8 +1,8 @@
 package model;
 
-import json.JsonFileManager;
-import data.Item;
+// import json.JsonFileManager;
 import data.House;
+import data.Item;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +21,9 @@ public class ShoppingListModel {
   }
 
   public static ShoppingListModel getInstance() {
-    if (shoppingListModel != null)
+    if (shoppingListModel != null) {
       return shoppingListModel;
+    }
     shoppingListModel = new ShoppingListModel();
     return shoppingListModel;
   }
@@ -34,8 +35,9 @@ public class ShoppingListModel {
   }
 
   private void resetItemActivation() {
-    for (Item item : shoppingList)
+    for (Item item : shoppingList) {
       item.setActive(false);
+    }
   }
 
   private void storeToFile() {
@@ -58,8 +60,9 @@ public class ShoppingListModel {
       }
     }
 
-    if (historyChanged)
+    if (historyChanged) {
       storeToFile();
+    }
     return shoppingListHistory;
   }
 
@@ -78,17 +81,18 @@ public class ShoppingListModel {
   }
 
   public void removeItem(List<Item> items) {
-    for (Item itemToRemove : items)
+    for (Item itemToRemove : items) {
       shoppingList.removeIf(b -> b.getItemName().equals(itemToRemove.getItemName()));
+    }
     storeToFile();
   }
 
   public void buyItems(List<Item> items) {
     removeItem(items);
-    for (Item item : items)
+    for (Item item : items) {
       item.setBoughtDate();
+    }
     shoppingListHistory.addAll(items);
     storeToFile();
   }
-
 }

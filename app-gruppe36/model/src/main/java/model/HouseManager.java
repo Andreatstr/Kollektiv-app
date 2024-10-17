@@ -1,14 +1,13 @@
 package model;
 
-import java.security.SecureRandom;
-import java.util.Collection;
-
-import json.JsonFileManager;
+// import java.util.Collection;
 import data.House;
+import java.security.SecureRandom;
+import json.JsonFileManager;
 
 public class HouseManager {
 
-  private String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  private String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   private House selectedHouse;
 
@@ -21,32 +20,36 @@ public class HouseManager {
   }
 
   public static HouseManager getInstance() {
-    if (instance == null)
+    if (instance == null) {
       instance = new HouseManager();
+    }
     return instance;
   }
 
   public boolean setHouse(String houseId) {
     selectedHouse = jsonFileManager.getSavedHouse(houseId);
-    if (selectedHouse == null)
+    if (selectedHouse == null) {
       return false;
+    }
     return true;
 
   }
 
   public House getHouse() {
-    if (selectedHouse == null)
+    if (selectedHouse == null) {
       selectedHouse = new House();
+    }
     return selectedHouse;
   }
 
   public void saveHouse() {
-    if (selectedHouse.getId() == null)
+    if (selectedHouse.getId() == null) {
       return;
+    }
     jsonFileManager.saveHouse(selectedHouse);
   }
 
-  public void CreateHouse(String id) {
+  public void createHouse(String id) {
     selectedHouse = new House(id);
     saveHouse();
   }
@@ -60,8 +63,8 @@ public class HouseManager {
     StringBuilder stringBuilder = new StringBuilder(length);
 
     for (int i = 0; i < length; i++) {
-      int index = random.nextInt(CHARACTERS.length());
-      stringBuilder.append(CHARACTERS.charAt(index));
+      int index = random.nextInt(characters.length());
+      stringBuilder.append(characters.charAt(index));
     }
 
     return stringBuilder.toString();

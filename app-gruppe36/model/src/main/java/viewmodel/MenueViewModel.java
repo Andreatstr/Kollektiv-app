@@ -15,16 +15,19 @@ public class MenueViewModel {
   }
 
   public static MenueViewModel getInstance() {
-    if (instance == null)
+    if (instance == null) {
       instance = new MenueViewModel();
+    }
     return instance;
   }
 
   public Boolean setCollective(String id) {
-    if (id == null)
+    if (id == null) {
       return false;
-    if (id.length() == 0)
+    }
+    if (id.length() == 0) {
       return false;
+    }
     return HouseManager.getInstance().setHouse(id);
   }
 
@@ -34,7 +37,6 @@ public class MenueViewModel {
   }
 
   public void generateHouse() {
-    houseManager.CreateHouse(proposedHouseId);
+    houseManager.createHouse(proposedHouseId);
   }
-
 }
