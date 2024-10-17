@@ -7,20 +7,20 @@ import javafx.scene.control.Button;
 
 public class MainMenuView {
 
-    @FXML
-    private Button openLoginButton;
+  @FXML
+  private Button openLoginButton;
 
-    @FXML
-    private Button openCreateButton;
+  @FXML
+  private Button openCreateButton;
 
-    @FXML
-    void buttonToLogin(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "LoginHouseID.fxml");
-    }
+  @FXML
+  void buttonToLogin(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "LoginHouseID.fxml");
+  }
 
-    @FXML
-    void buttonToCreate(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
-    }
+  @FXML
+  void buttonToCreate(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
+  }
 
 }

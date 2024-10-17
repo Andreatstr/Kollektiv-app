@@ -11,53 +11,53 @@ import viewmodel.MenueViewModel;
 
 public class CreateHouseIDView {
 
-    MenueViewModel menueViewModel;
+  MenueViewModel menueViewModel;
 
-    @FXML
-    private Button backFromCreateHouseID;
+  @FXML
+  private Button backFromCreateHouseID;
 
-    @FXML
-    private Button generateNewHouseIDButton;
+  @FXML
+  private Button generateNewHouseIDButton;
 
-    @FXML
-    private Label generatedHouseIDText;
+  @FXML
+  private Label generatedHouseIDText;
 
-    @FXML
-    private Button loginFromCreateHouseIDButton;
+  @FXML
+  private Button loginFromCreateHouseIDButton;
 
-    // @FXML
-    // private Button HomeButton;
+  // @FXML
+  // private Button HomeButton;
 
-    // @FXML
-    // void handleHome(ActionEvent event) throws IOException {
-    //     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    // }
+  // @FXML
+  // void handleHome(ActionEvent event) throws IOException {
+  // SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  // }
 
-    @FXML
-    void handleBackFromCreateHouseID(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
-    }
+  @FXML
+  void handleBackFromCreateHouseID(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+  }
 
-    @FXML
-    void handleGenerateNewHouseID(ActionEvent event) throws IOException {
-        generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
-    }
+  @FXML
+  void handleGenerateNewHouseID(ActionEvent event) throws IOException {
+    generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
+  }
 
-    @FXML
-    void handleGenerateNewHouse(ActionEvent event) throws IOException {
-        menueViewModel.generateHouse();
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
+  @FXML
+  void handleGenerateNewHouse(ActionEvent event) throws IOException {
+    menueViewModel.generateHouse();
+    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  }
 
-    @FXML
-    void handleLoginFromCreateHouseID(ActionEvent event) throws IOException {
-        menueViewModel.generateHouse();
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
+  @FXML
+  void handleLoginFromCreateHouseID(ActionEvent event) throws IOException {
+    menueViewModel.generateHouse();
+    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  }
 
-    public void initialize() {
-        menueViewModel = MenueViewModel.getInstance();
-        generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
-    }
+  public void initialize() {
+    menueViewModel = MenueViewModel.getInstance();
+    generatedHouseIDText.setText(menueViewModel.getProposedHouseId());
+  }
 
 }

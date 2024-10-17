@@ -9,28 +9,28 @@ import javafx.scene.image.ImageView;
 
 public class ChoiceScreenView {
 
-    @FXML
-    private Button backFromChoiceScreen;
+  @FXML
+  private Button backFromChoiceScreen;
 
-    @FXML
-    private Button openShoppingListOverviewButton;
+  @FXML
+  private Button openShoppingListOverviewButton;
 
-    @FXML
-    private Button openWashingPlanOverviewButton;
+  @FXML
+  private Button openWashingPlanOverviewButton;
 
-    @FXML
-    void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
-    }
+  @FXML
+  void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+  }
 
-    @FXML
-    void handleOpenShoppingListOverview(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
-    }
+  @FXML
+  void handleOpenShoppingListOverview(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
+  }
 
-    @FXML
-    void handleOpenWashingPlanOverview(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
-    }
+  @FXML
+  void handleOpenWashingPlanOverview(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
+  }
 
 }

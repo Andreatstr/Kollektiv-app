@@ -9,46 +9,46 @@ import java.io.IOException;
 
 public class WashingPlanOverviewView {
 
-    @FXML
-    private Button BackFromWashingPlan;
+  @FXML
+  private Button BackFromWashingPlan;
 
-    @FXML
-    private Button createNewWashingPlanButton;
+  @FXML
+  private Button createNewWashingPlanButton;
 
-    @FXML
-    private Button openWashingPlanButton;
+  @FXML
+  private Button openWashingPlanButton;
 
-    @FXML
-    private Button HomeButton;
+  @FXML
+  private Button HomeButton;
 
-    @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
+  @FXML
+  void ButtonHome(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  }
 
-    @FXML
-    private void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
+  @FXML
+  private void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  }
 
-    @FXML
-    private void ButtonCreateNewWashingPlan(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
-    }
+  @FXML
+  private void ButtonCreateNewWashingPlan(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
+  }
 
-    @FXML
-    private void ButtonOpenWashingPlan(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
-    }
+  @FXML
+  private void ButtonOpenWashingPlan(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
+  }
 
-    public void initialize (){
-        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
-        
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
-        imageView.setPreserveRatio(true);
+  public void initialize() {
+    Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
 
-        HomeButton.setGraphic(imageView);
-    }
+    ImageView imageView = new ImageView(image);
+    imageView.setFitWidth(66);
+    imageView.setFitHeight(63);
+    imageView.setPreserveRatio(true);
+
+    HomeButton.setGraphic(imageView);
+  }
 }

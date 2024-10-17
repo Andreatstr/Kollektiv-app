@@ -11,39 +11,39 @@ import viewmodel.MenueViewModel;
 
 public class LogInHouseIDView {
 
-    MenueViewModel viewModel;
+  MenueViewModel viewModel;
 
-    @FXML
-    private Button backFromLogInHouseID;
+  @FXML
+  private Button backFromLogInHouseID;
 
-    @FXML
-    private Button loginHouseIDButton;
+  @FXML
+  private Button loginHouseIDButton;
 
-    // @FXML
-    // private Button HomeButton;
+  // @FXML
+  // private Button HomeButton;
 
-    @FXML
-    private TextField loginHouseIDField;
-    
-    // @FXML
-    // void ButtonHome(ActionEvent event) throws IOException {
-    //     SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    // }
+  @FXML
+  private TextField loginHouseIDField;
 
-    @FXML
-    void handleBackFromLogInHouseID(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+  // @FXML
+  // void ButtonHome(ActionEvent event) throws IOException {
+  // SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  // }
+
+  @FXML
+  void handleBackFromLogInHouseID(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+  }
+
+  @FXML
+  void handleLoginHouseID(ActionEvent event) throws IOException {
+    if (viewModel.setCollective(loginHouseIDField.getText())) {
+      SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
+  }
 
-    @FXML
-    void handleLoginHouseID(ActionEvent event) throws IOException  {
-        if (viewModel.setCollective(loginHouseIDField.getText()))
-        {
-            SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-        }
-    }
-    public void initialize() {
+  public void initialize() {
     viewModel = MenueViewModel.getInstance();
-    }
+  }
 
 }

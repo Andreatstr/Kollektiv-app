@@ -10,14 +10,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListHistoryView">
    <children>
-      <TableView fx:id="ShoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
+      <TableView fx:id="shoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
          <columns>
             <TableColumn fx:id="itemColumnHistory" prefWidth="411.20003509521484" text="Item" />
             <TableColumn fx:id="countColumnHistory" prefWidth="82.39999389648438" text="Count" />
             <TableColumn fx:id="whenColumnHistory" prefWidth="211.20001220703125" text="When" />
          </columns>
       </TableView>
-      <Button fx:id="BackFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -31,7 +31,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="HomeButton" layoutX="806.0" layoutY="20.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="806.0" layoutY="20.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
