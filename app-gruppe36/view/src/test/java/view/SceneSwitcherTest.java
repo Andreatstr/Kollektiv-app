@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.testfx.api.FxAssert.verifyThat;
 
 public class SceneSwitcherTest extends ApplicationTest {
 

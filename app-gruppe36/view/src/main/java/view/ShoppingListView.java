@@ -2,7 +2,6 @@ package view;
 
 import data.Item;
 import viewmodel.ShoppingListViewModel;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextFormatter;
-import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
@@ -57,8 +55,6 @@ import java.io.IOException;
     private void buyItem(ActionEvent event) {
         shoppingListViewModel.buyItems();
     }
-
-    private Button BackFromShoppingList;
 
     @FXML
     private Button HomeButton;

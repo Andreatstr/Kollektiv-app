@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.io.IOException;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 public class ChoiceScreenView {
 
     @FXML

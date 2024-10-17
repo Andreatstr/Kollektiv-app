@@ -9,13 +9,11 @@ import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import data.House;
-import data.Item;
 
 public class WashingPlanModel {
 
-    public int currentWeek = 1;
+    private int currentWeek = 1;
     private static WashingPlanModel washingPlanModel = null;
 
     private House collective;

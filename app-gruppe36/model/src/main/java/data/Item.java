@@ -71,7 +71,7 @@ public class Item {
 
     public String getBoughtDate()
     {
-        if (bougthDate == null || bougthDate == "") return "?";
+        if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
         return bougthDate;
     }
 }

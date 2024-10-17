@@ -1,13 +1,10 @@
 package viewmodel;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.WashingPlanModel;
@@ -16,7 +13,7 @@ public class WashingPlanViewModel {
     
     public static WashingPlanViewModel washingPlanViewModel;
     private WashingPlanModel washingPlanModel;
-    public int currentWeek = 1;
+    private int currentWeek = 1;
     public int startWeek;
     public int endWeek;
 

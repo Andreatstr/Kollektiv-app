@@ -10,7 +10,6 @@ import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

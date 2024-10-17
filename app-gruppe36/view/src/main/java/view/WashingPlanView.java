@@ -1,7 +1,5 @@
 package view;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,11 +16,7 @@ import viewmodel.WashingPlanViewModel;
 import java.io.IOException;
 import java.util.List;
 
-import data.Person;
-import data.Task;
-import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
 
 public class WashingPlanView {
 
@@ -126,9 +120,11 @@ public class WashingPlanView {
 
     private void updateWashingPlanTable() {
         List<WashingPlanEntry> entriesForCurrentWeek = washingPlanViewModel.getWashingPlanEntriesForCurrentWeek();
-        for (WashingPlanEntry entry : entriesForCurrentWeek) System.out.println(entry.getPerson() + "  " + entry.getTask());
-        if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) 
-        {
+        
+        if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) {
+            for (WashingPlanEntry entry : entriesForCurrentWeek) {
+                System.out.println(entry.getPerson() + "  " + entry.getTask());
+            }
             observableList.clear();
             observableList.addAll(entriesForCurrentWeek);
         }

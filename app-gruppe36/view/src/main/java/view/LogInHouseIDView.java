@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import viewmodel.MenueViewModel;
 
 public class LogInHouseIDView {

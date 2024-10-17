@@ -1,8 +1,6 @@
 package model;
 
 import java.security.SecureRandom;
-import java.util.Collection;
-
 import json.JsonFileManager;
 import data.House;
 
@@ -20,9 +18,14 @@ public class HouseManager {
         jsonFileManager = new JsonFileManager();
     }
 
-    public static HouseManager getInstance()
-    {
-        if (instance == null) instance = new HouseManager();
+    public static HouseManager getInstance() {
+        if (instance == null) {
+            synchronized (HouseManager.class) {         //synchronization is only used during first access
+                if (instance == null) {
+                    instance = new HouseManager();
+                }
+            }
+        }
         return instance;
     }
 
@@ -69,13 +72,4 @@ public class HouseManager {
 
         return stringBuilder.toString();
     }
-
-
-
-
-
-
-
-
-
 }
