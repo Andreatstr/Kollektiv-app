@@ -1,16 +1,14 @@
 package view;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
-
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,7 +36,7 @@ public class ShoppingListTest extends ApplicationTest {
         // Simulerer å skrive "Epler" i ItemNavnFelt
         clickOn("#itemNameInput").write("Vaskemiddel");
         clickOn("#itemCountInput").write("1");
-        clickOn("#AddButton");
+        clickOn("#addButton");
 
         try {
             Thread.sleep(50);

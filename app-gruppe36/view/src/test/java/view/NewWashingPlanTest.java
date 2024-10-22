@@ -1,18 +1,17 @@
 package view;
 
+// import javafx.scene.input.KeyCode;
 import data.Person;
 import data.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import viewmodel.WashingPlanViewModel;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
@@ -133,6 +132,6 @@ public class NewWashingPlanTest extends ApplicationTest {
 
         assertEquals(1, viewModel.getCurrentWeek(), "The current week should be set to the start week.");
         assertEquals(52, viewModel.getEndWeek(), "The end week should be set correctly.");
-        clickOn("#HomeButton");
+        clickOn("#homeButton");
     }
 }

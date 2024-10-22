@@ -16,7 +16,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="BackFromNewWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#ButtonBackFromNewWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromNewWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#buttonBackFromNewWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -59,22 +59,22 @@
       <TextField fx:id="addTaskField" layoutX="58.0" layoutY="358.0" prefHeight="26.0" prefWidth="213.0" />
       <TextField fx:id="fromWeek" layoutX="57.0" layoutY="451.0" prefHeight="26.0" prefWidth="86.0" />
       <TextField fx:id="toWeek" layoutX="208.0" layoutY="451.0" prefHeight="26.0" prefWidth="86.0" />
-      <Button fx:id="generateWashingPlan" layoutX="123.0" layoutY="536.0" mnemonicParsing="false" onAction="#ButtonGenerateWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Generer Vaskeplan">
+      <Button fx:id="generateWashingPlan" layoutX="123.0" layoutY="536.0" mnemonicParsing="false" onAction="#buttonGenerateWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Generer Vaskeplan">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="addPersonButton" layoutX="280.0" layoutY="258.0" mnemonicParsing="false" onAction="#ButtonAddPerson" text="+">
+      <Button fx:id="addPersonButton" layoutX="280.0" layoutY="258.0" mnemonicParsing="false" onAction="#buttonAddPerson" text="+">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="addTaskButton" layoutX="280.0" layoutY="359.0" mnemonicParsing="false" onAction="#ButtonAddTask" text="+">
+      <Button fx:id="addTaskButton" layoutX="280.0" layoutY="359.0" mnemonicParsing="false" onAction="#buttonAddTask" text="+">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="HomeButton" layoutX="799.0" layoutY="30.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="799.0" layoutY="30.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
