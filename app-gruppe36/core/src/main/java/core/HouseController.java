@@ -1,0 +1,74 @@
+package core;
+import json.JsonFileManager;
+import java.util.List;
+import java.security.SecureRandom;
+import data.*;
+
+public class HouseController {
+
+    private List<House> houses;
+
+    private String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    private static HouseController instance;
+
+    JsonFileManager jsonFileManager;
+
+    private HouseController(){
+        jsonFileManager = new JsonFileManager();
+    }
+
+    public static HouseController getInstance()
+    {
+        if (instance == null) instance = new HouseController();
+        return instance;
+    }
+
+    public House getHouse(String id)
+    {
+        for (House house : houses)
+        {
+            if (house.getId().equals(id))
+            return house;
+        }
+        return null;
+    }
+
+    public void saveHouse()
+    {
+        jsonFileManager.saveToFile(houses);
+    }
+
+    public void CreateHouse(String id)
+    {
+        House newHouse = new House(id);
+        houses.add(newHouse);
+        saveHouse();
+    }
+
+    public String getNewId()
+    {
+        return generateRandomId(5);
+    }
+
+    private  String generateRandomId(int length) {
+        SecureRandom random = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            stringBuilder.append(CHARACTERS.charAt(index));
+        }
+
+        return stringBuilder.toString();
+    }
+
+
+
+
+
+
+
+
+
+}
