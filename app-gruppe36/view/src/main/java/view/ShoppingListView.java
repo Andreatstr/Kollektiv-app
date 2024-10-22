@@ -64,9 +64,6 @@ public class ShoppingListView {
   }
 
   @FXML
-  private Button backFromShoppingList;
-
-  @FXML
   private Button homeButton;
 
   @FXML

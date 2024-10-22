@@ -12,12 +12,12 @@ import javafx.collections.ObservableList;
 import model.WashingPlanModel;
 
 public class WashingPlanViewModel {
-
-  public static WashingPlanViewModel washingPlanViewModel;
-  private WashingPlanModel washingPlanModel;
-  public int currentWeek = 1;
-  public int startWeek;
-  public int endWeek;
+    
+    public static WashingPlanViewModel washingPlanViewModel;
+    private WashingPlanModel washingPlanModel;
+    private int currentWeek = 1;
+    public int startWeek;
+    public int endWeek;
 
   private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
   private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
