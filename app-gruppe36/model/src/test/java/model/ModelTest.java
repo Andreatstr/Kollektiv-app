@@ -36,7 +36,7 @@ public class ModelTest {
         HouseManager houseManager = HouseManager.getInstance();
         String id = houseManager.getNewId();
         new JsonFileManager().deleteHouse(id);
-        houseManager.CreateHouse(id);
+        houseManager.createHouse(id);
         assertEquals(houseManager.setHouse(id), true);
         new JsonFileManager().deleteHouse(id);
     }

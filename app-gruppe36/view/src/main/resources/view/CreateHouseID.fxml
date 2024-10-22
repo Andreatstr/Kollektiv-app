@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateHouseIDView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateHouseView">
    <children>
-      <Button fx:id="BackFromCreateHouseID" layoutX="59.0" layoutY="68.0" mnemonicParsing="false" onAction="#ButtonBackFromCreateHouseID" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backButton" layoutX="59.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -21,12 +21,12 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="generateNewHouseIDButton" layoutX="84.0" layoutY="317.0" mnemonicParsing="false" onAction="#ButtonGenerateNewHouse" prefHeight="86.0" prefWidth="193.0" text="Lag Nytt Kollektiv" wrapText="true">
+      <Button fx:id="generateHouseIdButton" layoutX="84.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleGenerateNewHouse" prefHeight="86.0" prefWidth="193.0" text="Lag Nytt Kollektiv" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="loginFromCreateHouseIDButton" layoutX="688.0" layoutY="570.0" mnemonicParsing="false" onAction="#ButtonLoginFromCreateHouseID" text="Logg På">
+      <Button fx:id="loginButton" layoutX="688.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleLoginFromCreateHouseId" text="Logg På">
          <font>
             <Font size="24.0" />
          </font>
@@ -36,12 +36,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="generatedHouseIDText" alignment="CENTER" layoutX="476.0" layoutY="368.0" prefHeight="27.0" prefWidth="275.0" text="ID" textAlignment="CENTER">
+      <Label fx:id="generatedHouseIdLabel" alignment="CENTER" layoutX="476.0" layoutY="368.0" prefHeight="27.0" prefWidth="275.0" text="ID" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="generateNewHouseButton" layoutX="307.0" layoutY="317.0" mnemonicParsing="false" onAction="#ButtonGenerateNewHouseID" prefHeight="86.0" prefWidth="193.0" text="Lag Ny Id" wrapText="true">
+      <Button fx:id="generateNewHouseButton" layoutX="307.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleGenerateNewHouseId" prefHeight="86.0" prefWidth="193.0" text="Lag Ny Id" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
