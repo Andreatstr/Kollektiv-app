@@ -18,6 +18,8 @@ public class App extends Application {
     Parent parent = fxmlLoader.load();
     stage.setScene(new Scene(parent));
     stage.show();
+    WasteCollectionScraper scraper = new WasteCollectionScraper();
+    scraper.scrapeWasteCollection();
   }
 
   public static void main(String[] args) {
