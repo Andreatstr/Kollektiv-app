@@ -15,7 +15,7 @@ public class HouseController {
     JsonFileManager jsonFileManager;
 
     private HouseController(){
-        jsonFileManager = new JsonFileManager();
+        jsonFileManager = JsonFileManager.getInstance();
     }
 
     public static HouseController getInstance()
@@ -62,13 +62,4 @@ public class HouseController {
 
         return stringBuilder.toString();
     }
-
-
-
-
-
-
-
-
-
 }

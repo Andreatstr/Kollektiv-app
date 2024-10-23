@@ -11,6 +11,17 @@ import data.House;
 
 public class JsonFileManager {
 
+    private static JsonFileManager instance;
+
+    private JsonFileManager() {}
+
+    public static JsonFileManager getInstance()
+    {
+        if (instance == null)
+            instance = new JsonFileManager();
+        return instance;
+    }
+
     String path = "data.json";
 
     public void saveHouse(House house) {

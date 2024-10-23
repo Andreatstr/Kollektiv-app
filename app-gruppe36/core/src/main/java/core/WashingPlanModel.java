@@ -2,6 +2,7 @@ package core;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import data.Person;
 import data.Task;
 import data.WashingPlan;
@@ -17,21 +18,45 @@ public class WashingPlanController {
 
     private House collective;
 
-    private WashingPlanController() {
+    private List<Person> washingPlanPersons = FXCollections.observableArrayList();
+    private List<Task> washingPlanTasks = FXCollections.observableArrayList();
+    private List<WashingTable> washingTables = new ArrayList<>();
+
+    private WashingPlanModel() {
+        readWashingPlanFromFile();
+    }
+
+    private void readWashingPlanFromFile() {
+        collective = HouseManager.getInstance().getHouse();
+        washingPlanPersons = collective.getWashingPlanPerson();
+        washingPlanTasks = collective.getWashingPlanTask();
+        washingTables = collective.getWashingTable();
     }
 
     private void storeToFile() {
+        collective.setWashingTable(washingTables);
+        collective.setWashingPlanPerson(washingPlanPersons);
+        collective.setWashingPlanTask(washingPlanTasks);
+        HouseManager.getInstance().saveHouse();
     }
 
-    public static WashingPlanController getInstance() {
+    public static WashingPlanModel getInstance() {
         if (washingPlanModel != null)
             return washingPlanModel;
         washingPlanModel = new WashingPlanModel();
         return washingPlanModel;
     }
 
+    public List<Task> getWashingPlanTasks() {
+        return washingPlanTasks;
+    }
+
+    public List<Person> getWashingPlanPersons() {
+        return washingPlanPersons;
+    }
+
     public List<WashingTable> getWashingTables() {
-    //    return washingTables;
+        return washingTables;
     }
 
     public void addPerson(Person newPerson) {
@@ -79,6 +104,16 @@ public class WashingPlanController {
         storeToFile();
     }
 
+    public List<Person> rotateNames(List<Person> names) {
+        if (names.size() > 1) {
+            List<Person> rotatedNames = names;
+            Person last = rotatedNames.remove(rotatedNames.size() - 1);
+            rotatedNames.add(0, last);
+            return rotatedNames;
+        }
+        return names;
+    }
+
     public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
         if (weekNumber < 1 || weekNumber > washingTables.size()) {
             return new ArrayList<>(); // returns empty if week is out of range
@@ -86,4 +121,18 @@ public class WashingPlanController {
         return washingTables.get(weekNumber - 1).getWashingPlans();
     }
 
+    public int getCurrentWeek() {
+        return currentWeek;
+    }
+
+    public void setCurrentWeek(int week) {
+        this.currentWeek = week;
+    }
+
+    public void reset() {
+        washingPlanPersons.clear();
+        washingPlanTasks.clear();
+        washingTables.clear();
+        currentWeek = 1;
+    }
 }

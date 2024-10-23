@@ -1,4 +1,4 @@
-package gr36.demo1;
+package restserver;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;

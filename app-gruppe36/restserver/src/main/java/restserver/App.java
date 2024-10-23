@@ -1,4 +1,4 @@
-package gr36.demo1;
+package restserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
