@@ -6,24 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanOverviewView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanOverviewView" stylesheets="@styles.css">
    <children>
       <Label layoutX="307.0" layoutY="87.0" text="Vaskeplan">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="openWashingPlanButton" layoutX="112.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonOpenWashingPlan" prefHeight="430.0" prefWidth="287.0" text="Eksisterende Vaskeplan" textAlignment="CENTER">
+      <Button fx:id="openWashingPlanButton" layoutX="112.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonOpenWashingPlan" prefHeight="430.0" prefWidth="287.0" text="Eksisterende Vaskeplan" textAlignment="CENTER" styleClass="sceneButton">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="createNewWashingPlanButton" layoutX="499.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonCreateNewWashingPlan" prefHeight="430.0" prefWidth="287.0" text="Lag ny vaskeplan" textAlignment="CENTER">
+      <Button fx:id="createNewWashingPlanButton" layoutX="499.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonCreateNewWashingPlan" prefHeight="430.0" prefWidth="287.0" text="Lag ny vaskeplan" textAlignment="CENTER" styleClass="sceneButton">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="backFromWashingPlan" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromWashingPlan" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake" styleClass="backButton">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -32,7 +32,7 @@
             </Label>
          </graphic>
       </Button>
-      <Button fx:id="homeButton" layoutX="797.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="797.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0" styleClass="homeButton">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

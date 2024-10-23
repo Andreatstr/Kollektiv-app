@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListHistoryView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListHistoryView" stylesheets="@styles.css">
    <children>
       <TableView fx:id="shoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
          <columns>
@@ -17,7 +17,7 @@
             <TableColumn fx:id="whenColumnHistory" prefWidth="211.20001220703125" text="When" />
          </columns>
       </TableView>
-      <Button fx:id="backFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake" styleClass="backButton">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -31,7 +31,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="homeButton" layoutX="806.0" layoutY="20.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="806.0" layoutY="20.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0" styleClass="homeButton">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

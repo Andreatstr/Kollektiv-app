@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListView" stylesheets="@styles.css">
    <children>
       <Label layoutX="332.0" layoutY="20.0" text="Handleliste">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="571.0" layoutY="295.0" mnemonicParsing="false" onAction="#addItem" prefHeight="39.0" prefWidth="236.0" text="Legg til" textAlignment="CENTER">
+      <Button fx:id="addButton" layoutX="571.0" layoutY="295.0" mnemonicParsing="false" onAction="#addItem" prefHeight="39.0" prefWidth="236.0" text="Legg til" textAlignment="CENTER" styleClass="editButton">
          <font>
             <Font size="18.0" />
          </font>
@@ -50,17 +50,17 @@
             </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="buyButton" layoutX="571.0" layoutY="357.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="32.0" prefWidth="236.0" text="Marker som kjøpt" textAlignment="CENTER">
+      <Button fx:id="buyButton" layoutX="571.0" layoutY="357.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="32.0" prefWidth="236.0" text="Marker som kjøpt" textAlignment="CENTER" styleClass="editButton">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="deleteButton" layoutX="571.0" layoutY="416.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="35.0" prefWidth="236.0" text="Slett" textAlignment="CENTER">
+      <Button fx:id="deleteButton" layoutX="571.0" layoutY="416.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="35.0" prefWidth="236.0" text="Slett" textAlignment="CENTER" styleClass="deleteButton">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="backFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingList" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingList" prefHeight="25.0" prefWidth="98.0" text="Tilbake" styleClass="backButton">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -69,7 +69,7 @@
             </Label>
          </graphic>
       </Button>
-      <Button fx:id="homeButton" layoutX="795.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="795.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0" styleClass="homeButton">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

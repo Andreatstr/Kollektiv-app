@@ -1,0 +1,103 @@
+/* CSS File */
+.root {
+  -fx-background-color: #C4D8E2;
+}
+
+.homeButton {
+  -fx-background-color: #a0a3ff;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.homeButton:hover {
+  -fx-background-color: #c3c5ff;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.backButton {
+  -fx-background-color: #a0a3ff;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.backButton:hover {
+  -fx-background-color: #c3c5ff;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.addButton {
+  -fx-background-color: #008CBA;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.addButton:hover {
+  -fx-background-color: #B0D1E8;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.deleteButton {
+  -fx-background-color: #ed6e7bcf;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.deleteButton:hover {
+  -fx-background-color: #e8c1c5cf;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.editButton {
+  -fx-background-color: #6caef0;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.homeButton:hover {
+  -fx-background-color: #B0D1E8;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.sceneButton {
+  -fx-background-color: #a0a2f5;
+  -fx-border-radius: 16px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.sceneButton:hover {
+  -fx-background-color: #bdbef1;
+  -fx-border-radius: 16px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.arrowButton {
+  -fx-background-color: #7697fa;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.arrowButton:hover {
+  -fx-background-color: #B0D1E8;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+

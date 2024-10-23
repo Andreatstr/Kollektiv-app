@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanView" stylesheets="@styles.css">
    <children>
-      <Button fx:id="editWashingPlan" layoutX="601.0" layoutY="550.0" mnemonicParsing="false" onAction="#buttonEditWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Rediger Vaskeplan">
+      <Button fx:id="editWashingPlan" layoutX="601.0" layoutY="550.0" mnemonicParsing="false" onAction="#buttonEditWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Rediger Vaskeplan" styleClass="editButton">
          <font>
             <Font size="18.0" />
          </font>
@@ -20,7 +20,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="backFromWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="backFromWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake" styleClass="backButton">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -40,12 +40,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonLeftArrow" prefHeight="54.0" prefWidth="118.0" text="&lt;">
+      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonLeftArrow" prefHeight="54.0" prefWidth="118.0" text="&lt;" styleClass="arrowButton">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonRightArrow" prefHeight="54.0" prefWidth="118.0" text="&gt;">
+      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonRightArrow" prefHeight="54.0" prefWidth="118.0" text="&gt;" styleClass="arrowButton">
          <font>
             <Font size="24.0" />
          </font>
@@ -55,7 +55,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="homeButton" layoutX="797.0" layoutY="30.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="797.0" layoutY="30.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0" styleClass="homeButton">
          <graphic>
             <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
