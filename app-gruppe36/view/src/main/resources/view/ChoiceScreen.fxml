@@ -17,12 +17,17 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="openWashingPlanOverviewButton" layoutX="122.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenWashingPlanOverview" prefHeight="430.0" prefWidth="287.0" text="Vaskeplan" textAlignment="CENTER">
+      <Button fx:id="openWashingPlanOverviewButton" layoutX="69.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenWashingPlanOverview" prefHeight="430.0" prefWidth="238.0" text="Vaskeplan" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="openShoppingListOverviewButton" layoutX="508.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenShoppingListOverview" prefHeight="430.0" prefWidth="287.0" text="Handleliste" textAlignment="CENTER">
+      <Button fx:id="openShoppingListOverviewButton" layoutX="343.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenShoppingListOverview" prefHeight="430.0" prefWidth="238.0" text="Handleliste" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="openTrash" layoutX="618.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenTrash" prefHeight="430.0" prefWidth="238.0" text="Bosstømming" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
