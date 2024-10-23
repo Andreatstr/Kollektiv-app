@@ -1,9 +1,8 @@
 package core;
-import json.JsonFileManager;
-import data.Item;
-import data.House;
-import java.util.ArrayList; 
 import java.util.List;
+
+import data.Item;
+import json.JsonFileManager;
 
 public class ShoppingListController
 {
@@ -34,7 +33,7 @@ public class ShoppingListController
     {
         controller.saveHouse();
     }
-
+    //api 
     public void addItem(Item newItem, String id)
     {
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
@@ -50,14 +49,14 @@ public class ShoppingListController
         shoppingList.add(newItem);
         storeToFile();
     }
-
+    //api 
     public void removeItem(List<Item> items, String id)
     {
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
         for (Item itemToRemove : items) shoppingList.removeIf(b->b.getItemName().equals(itemToRemove.getItemName()));
         storeToFile();
     }
-    
+    //api 
     public void buyItems(List<Item> items, String id)
     {
         List<Item> shoppingListHistory = controller.getHouse(id).getShoppingListHistory();

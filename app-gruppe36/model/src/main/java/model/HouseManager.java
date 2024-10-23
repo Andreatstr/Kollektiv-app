@@ -1,10 +1,10 @@
 package model;
 
 import java.security.SecureRandom;
-import java.util.Collection;
 
-import json.JsonFileManager;
 import data.House;
+import json.JsonFileManager;
+import restclient.Client;
 
 public class HouseManager {
 
@@ -18,6 +18,7 @@ public class HouseManager {
 
     private HouseManager(){
         jsonFileManager = new JsonFileManager();
+        Client client = new Client();
     }
 
     public static HouseManager getInstance()
@@ -51,6 +52,7 @@ public class HouseManager {
     {
         selectedHouse = new House(id);
         saveHouse();
+
     }
 
     public String getNewId()

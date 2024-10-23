@@ -1,8 +1,9 @@
 package core;
-import json.JsonFileManager;
-import java.util.List;
 import java.security.SecureRandom;
-import data.*;
+import java.util.List;
+
+import data.House;
+import json.JsonFileManager;
 
 public class HouseController {
 
@@ -24,6 +25,7 @@ public class HouseController {
         return instance;
     }
 
+    //api 
     public House getHouse(String id)
     {
         for (House house : houses)
@@ -39,6 +41,7 @@ public class HouseController {
         jsonFileManager.saveToFile(houses);
     }
 
+    //api 
     public void CreateHouse(String id)
     {
         House newHouse = new House(id);
