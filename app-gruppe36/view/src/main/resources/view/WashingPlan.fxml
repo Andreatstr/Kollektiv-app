@@ -29,10 +29,10 @@
             </Label>
          </graphic>
       </Button>
-      <TableView fx:id="newWashingPlanTable" layoutX="39.0" layoutY="172.0" prefHeight="513.0" prefWidth="498.0">
+      <TableView fx:id="newWashingPlanTable" layoutX="39.0" layoutY="172.0" prefHeight="513.0" prefWidth="498.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="listOfNamesForWashingPlan" prefWidth="174.39998626708984" text="Navn" />
-            <TableColumn fx:id="listOfTasksForWashingPlan" prefWidth="324.0000305175781" text="Oppgave" />
+            <TableColumn fx:id="listOfNamesForWashingPlan" prefWidth="174.39998626708984" text="Navn" styleClass="tableColumn" />
+            <TableColumn fx:id="listOfTasksForWashingPlan" prefWidth="324.0000305175781" text="Oppgave" styleClass="tableColumn" />
          </columns>
       </TableView>
       <Label layoutX="560.0" layoutY="187.0" prefHeight="54.0" prefWidth="134.0" text="Uke:">

@@ -118,8 +118,8 @@ public class ShoppingListView {
     Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
 
     ImageView imageView = new ImageView(image);
-    imageView.setFitWidth(66);
-    imageView.setFitHeight(63);
+    // imageView.setFitWidth(66);
+    // imageView.setFitHeight(63);
     imageView.setPreserveRatio(true);
 
     homeButton.setGraphic(imageView);

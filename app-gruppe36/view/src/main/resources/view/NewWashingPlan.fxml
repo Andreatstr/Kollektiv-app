@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewWashingPlanView" stylesheets="@styles.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewWashingPlanView">
    <children>
       <Label layoutX="258.0" layoutY="48.0" text="Ny Vaskeplan">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="backFromNewWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#buttonBackFromNewWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake" styleClass="backButton">
+      <Button fx:id="backFromNewWashingPlan" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonBackFromNewWashingPlan" prefHeight="28.0" prefWidth="78.0" styleClass="backButton" text="Tilbake">
          <graphic>
             <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
                <font>
@@ -40,14 +40,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="newWashingPlanNameTable" layoutX="439.0" layoutY="142.0" prefHeight="498.0" prefWidth="446.0">
+      <TableView fx:id="newWashingPlanNameTable" layoutX="433.0" layoutY="142.0" prefHeight="498.0" prefWidth="161.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="listOfNamesForNewWashingPlan" prefWidth="156.00003051757812" text="Navn" />
+            <TableColumn fx:id="listOfNamesForNewWashingPlan" prefWidth="156.00003051757812" styleClass="tableColumn" text="Navn" />
          </columns>
       </TableView>
-      <TableView fx:id="newWashingPlanTaskTable" layoutX="597.0" layoutY="142.0" prefHeight="498.0" prefWidth="288.0">
+      <TableView fx:id="newWashingPlanTaskTable" layoutX="595.0" layoutY="142.0" prefHeight="498.0" prefWidth="294.0" styleClass="tableView">
          <columns>
-               <TableColumn fx:id="listOfTasksForNewWashingPlan" prefWidth="289.5999755859375" text="Oppgave" />
+               <TableColumn fx:id="listOfTasksForNewWashingPlan" prefWidth="289.5999755859375" styleClass="tableColumn" text="Oppgave" />
          </columns>
       </TableView>
       <Label layoutX="208.0" layoutY="416.0" text="Til Uke:">
@@ -59,24 +59,24 @@
       <TextField fx:id="addTaskField" layoutX="58.0" layoutY="358.0" prefHeight="26.0" prefWidth="213.0" />
       <TextField fx:id="fromWeek" layoutX="57.0" layoutY="451.0" prefHeight="26.0" prefWidth="86.0" />
       <TextField fx:id="toWeek" layoutX="208.0" layoutY="451.0" prefHeight="26.0" prefWidth="86.0" />
-      <Button fx:id="generateWashingPlan" layoutX="123.0" layoutY="536.0" mnemonicParsing="false" onAction="#buttonGenerateWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Generer Vaskeplan" styleClass="editButton">
+      <Button fx:id="generateWashingPlan" layoutX="123.0" layoutY="536.0" mnemonicParsing="false" onAction="#buttonGenerateWashingPlan" prefHeight="76.0" prefWidth="182.0" styleClass="editButton" text="Generer Vaskeplan">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="addPersonButton" layoutX="280.0" layoutY="258.0" mnemonicParsing="false" onAction="#buttonAddPerson" text="+" styleClass="addButton">
+      <Button fx:id="addPersonButton" layoutX="280.0" layoutY="258.0" mnemonicParsing="false" onAction="#buttonAddPerson" styleClass="addButton" text="+">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="addTaskButton" layoutX="280.0" layoutY="359.0" mnemonicParsing="false" onAction="#buttonAddTask" text="+" styleClass="addButton">
+      <Button fx:id="addTaskButton" layoutX="280.0" layoutY="359.0" mnemonicParsing="false" onAction="#buttonAddTask" styleClass="addButton" text="+">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="homeButton" layoutX="799.0" layoutY="30.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0" styleClass="homeButton">
+      <Button fx:id="homeButton" layoutX="830.0" layoutY="19.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="37.0" prefWidth="48.0" styleClass="homeButton">
          <graphic>
-            <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="HouseImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </Button>
    </children>

@@ -26,7 +26,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="loginButton" layoutX="688.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleLoginFromCreateHouseId" text="Logg På" styleClass="addButton">
+      <Button fx:id="loginButton" layoutX="688.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleLoginFromCreateHouseId" text="Logg På" styleClass="sceneButton">
          <font>
             <Font size="24.0" />
          </font>
