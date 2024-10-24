@@ -4,6 +4,17 @@
 }
 
 /* Button */
+.button {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 5, 5);
+  -fx-padding: 10px;
+  -fx-border-insets: 0;
+  -fx-background-insets: 0;
+}
+
+.button:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 7, 0.4, 3, 3);
+}
+
 .homeButton {
   -fx-background-color: #59a4f4;
   -fx-background-radius: 8px;
@@ -147,4 +158,13 @@
 .tableView .table-cell:selected {
   -fx-background-color: #c8e4f7;
   -fx-text-fill: black;
+}
+
+/* TextField */
+.textFieldWithShadow {
+  -fx-background-color: white;
+  -fx-border-color: black;
+  -fx-border-width: 1px;
+  
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 5, 5);
 }

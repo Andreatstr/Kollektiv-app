@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
-      <TextField fx:id="loginField" layoutX="264.0" layoutY="322.0" prefHeight="53.0" prefWidth="324.0">
+      <TextField fx:id="loginField" layoutX="264.0" layoutY="322.0" prefHeight="53.0" prefWidth="324.0" styleClass="textFieldWithShadow">
          <font>
             <Font size="14.0" />
          </font>
