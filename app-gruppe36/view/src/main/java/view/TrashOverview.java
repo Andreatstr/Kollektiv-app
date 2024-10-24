@@ -47,8 +47,8 @@ public class TrashOverview {
     //house photo
     Image imageHouse = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
     ImageView imageViewHouse = new ImageView(imageHouse);
-    imageViewHouse.setFitWidth(66);
-    imageViewHouse.setFitHeight(63);
+    imageViewHouse.setFitWidth(30);
+    imageViewHouse.setFitHeight(30);
     imageViewHouse.setPreserveRatio(true);
     homeButton.setGraphic(imageViewHouse);
 
