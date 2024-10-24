@@ -21,7 +21,11 @@ public class HouseManager {
 
   public static HouseManager getInstance() {
     if (instance == null) {
-      instance = new HouseManager();
+        synchronized (HouseManager.class) {         //synchronization is only used during first access
+            if (instance == null) {
+                instance = new HouseManager();
+            }
+        }
     }
     return instance;
   }

@@ -122,11 +122,10 @@ public class WashingPlanView {
     WashingPlanViewModel wpvm = washingPlanViewModel;
     List<WashingPlanEntry> entriesForCurrentWeek = wpvm.getWashingPlanEntriesForCurrentWeek();
 
-    for (WashingPlanEntry entry : entriesForCurrentWeek) {
-      System.out.println(entry.getPerson() + "  " + entry.getTask());
-    }
-
     if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) {
+      for (WashingPlanEntry entry : entriesForCurrentWeek) {
+          System.out.println(entry.getPerson() + "  " + entry.getTask());
+      }
       observableList.clear();
       observableList.addAll(entriesForCurrentWeek);
     }

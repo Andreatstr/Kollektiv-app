@@ -13,6 +13,9 @@ public class ChoiceScreenView {
   private Button backFromChoiceScreen;
 
   @FXML
+    private Button openTrash;
+
+  @FXML
   private Button openShoppingListOverviewButton;
 
   @FXML
@@ -22,6 +25,11 @@ public class ChoiceScreenView {
   void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "MainMenu.fxml");
   }
+
+  @FXML
+    void handleOpenTrash(ActionEvent event) throws IOException {
+      SceneSwitcher.switchToScene(event, "Trash.fxml");
+    }
 
   @FXML
   void handleOpenShoppingListOverview(ActionEvent event) throws IOException {
