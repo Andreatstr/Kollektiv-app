@@ -1,5 +1,14 @@
 # De to største utfordringene i løpet av prosjektet
 
-## Utfordring 1
+## Maven og kodeverktøy
 
-## Utfordring 2
+I dette prosjektet har gruppen måtte vendt seg til bruk av Maven og alle dets funksjonaliteter. Selv om Maven har vært et godt verktøy for å bygge prosjektet, har gruppen opplevd noen utfordringer, spesielt med tanke på dependencies og integrering av nye verktøy i prosjektet. Maven krever at dependencies skal fungere sammen, og gir gjerne kryptiske feilmeldinger når dependencies er av feil versjon, ikke er kompatible med hverandre, eller er oppført feil. Det er til tider vært tidkrevende å feilsøke og rette opp i disse feilene, og å sette seg inn i strukturen og syntaksen Maven krever i pom.xml-filene. Dette har vært spesielt merkbart ved integrering av nye verktøy, som SpotBugs og Checkstyle, hvor gruppen har måttet brukt tid på å lese og rette opp i kompileringsfeil. 
+
+Vi har etterhvert blir mer vant til å bruke Maven, med god hjelp fra trening i å lese feilmeldinger, samt mye dokumentasjon på nett. For å forebygge at man ender opp med for mange kompileringsfeil, har vi kompilert ofte, og i tillegg hatt pipelines i git, som gjør at vi raskt ser om noe er feil, og det er ofte enklere å vite hva som kan ha skapt feilen. Vi har gjennom Maven-utfordringen lært mye om prosjektstruktur og versjonshåndtering, og har erfart hvordan eksterne verktøy integreres i et slikt prosjekt, og ikke minst fått mye trening i feilsøking.
+
+
+## Stegvis utvikling
+
+I et prosjekt som dette hvor apputvikling skjer i steg uten så mye forhåndsinformasjon om neste oppgave, kreves en fleksibel tilnærming og evne til å tilpasse seg nye krav. For oss har dette vært både en utfordring og en verdifull læringsprosess. Det har til tider vært vanskelig å forutse sluttproduktet vi skulle ende opp med, noe som krever at vi bygger appen på en måte som er robust og fleksibel nok til å kunne tilpasses nye oppgaver, og har for flere av oss vært et første møte med viktigheten av modularitet i et kodeprosjekt. 
+
+Selv om det har vært utfordrende å finne ut hva som må prioriteres ved hvert steg i utviklingen, har det vært en svært lærerik prosess for oss, både når det kommer til planlegging og modularitet, men også tilpasning, restruktureringav prosjektet og etterpåklokskap. Vi sitter igjen med en god forståelse av hvordan man kan strukturere et prosjekt for å skape et stabilt og tilpasningsdyktig produkt, og vi vet at denne erfaringen gjør oss bedre rustet til blant annet reelle kundeprosjekter ute i jobb, hvor man kan oppleve at kunden både er usikker på hvordan sluttproduktet skal se ut, og kan komme med nye funksjonaliteter som skal legges til underveis i, og i etterkant av, prosessen.
