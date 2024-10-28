@@ -55,9 +55,9 @@ public class Item {
   }
 
   public void setBoughtDate() {
-    System.out.println("Set bougth date!");
+    // System.out.println("Set bougth date!");
     this.bougthDate = formatter.format(LocalDate.now());
-    System.out.println(getBoughtDate());
+    // System.out.println(getBoughtDate());
   }
 
   public String getBoughtDate() {

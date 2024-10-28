@@ -28,7 +28,7 @@ public class ChoiceScreenView {
 
   @FXML
     void handleOpenTrash(ActionEvent event) throws IOException {
-      SceneSwitcher.switchToScene(event, "Trash.fxml");
+      SceneSwitcher.switchToScene(event, "WasteOverview.fxml");
     }
 
   @FXML

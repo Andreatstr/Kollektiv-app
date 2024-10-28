@@ -19,7 +19,7 @@ public class SceneSwitcherTest extends ApplicationTest {
     stage.show();
   }
 
-  // Hjelpemetode for å simulere klikk og vente
+  // Help method to simulate click and wait
   private void clickAndWait(String buttonId, int waitTime) {
     clickOn(buttonId);
     try {
