@@ -1,7 +1,9 @@
 package restserver;
 import java.util.List;
-
+import data.*;
+import core.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class Controller {
-    /* 
+    
     @GetMapping("/health-check")
     public String getHealthCheck()
     {
         return "Yeehaw";
-    }*/
+    }
 
     //Get mapping som sender id og får et object
 

@@ -4,7 +4,6 @@ import java.security.SecureRandom;
 
 import data.House;
 import json.JsonFileManager;
-import restclient.Client;
 
 public class HouseManager {
 

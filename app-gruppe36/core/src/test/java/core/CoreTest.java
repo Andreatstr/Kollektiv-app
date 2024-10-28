@@ -16,7 +16,7 @@ public class CoreTest {
         HouseController houseController = HouseController.getInstance();
         houseController.CreateHouse(id);
         assertEquals(houseController.getHouse(id).getId(),id);
-        new JsonFileManager().deleteHouse(id);
+        JsonFileManager.getInstance().deleteHouse(id);
     }
 
 }

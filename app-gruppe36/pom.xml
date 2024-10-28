@@ -36,7 +36,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
-            
         </dependencies>
     </dependencyManagement>
 
@@ -143,7 +142,6 @@
         <module>model</module>
         <module>view</module>
         <module>restserver</module>
-        <module>restclient</module>
         <module>core</module>
     </modules>    
 </project>

@@ -1,4 +1,4 @@
-package restclient;
+package model;
 import org.springframework.web.client.RestTemplate;
 
 public class Client

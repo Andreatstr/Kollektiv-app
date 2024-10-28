@@ -26,39 +26,25 @@ public class WashingPlanController {
     public static WashingPlanController getInstance() {
         if (washingPlanModel != null)
             return washingPlanModel;
-        washingPlanModel = new WashingPlanModel();
+        washingPlanModel = new WashingPlanController();
         return washingPlanModel;
     }
 
     public List<WashingTable> getWashingTables() {
     //    return washingTables;
+    return null;
     }
 
     public void addPerson(Person newPerson) {
-        for (Person name : washingPlanPersons) {
-            if (name.getName().equals(newPerson.getName())) {
-                System.out.println("Name already in list");
-                return;
-            }
-        }
 
-        washingPlanPersons.add(newPerson);
-        storeToFile();
     }
 
     public void addTask(Task newTask) {
-        for (Task task : washingPlanTasks) {
-            if (task.getTask().equals(newTask.getTask())) {
-                System.out.println("Task already in list");
-                return;
-            }
-        }
-        washingPlanTasks.add(newTask);
-        storeToFile();
+
     }
 
     public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        washingTables.clear();
+        /*washingTables.clear();
         List<Person> names = persons;
         int numPeople = names.size();
         int numTasks = tasks.size();
@@ -76,14 +62,15 @@ public class WashingPlanController {
             washingTable.addWashingPlanEntry(washingPlan);
             washingTables.add(washingTable);
         }
-        storeToFile();
+        storeToFile();*/
     }
 
     public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
-        if (weekNumber < 1 || weekNumber > washingTables.size()) {
-            return new ArrayList<>(); // returns empty if week is out of range
-        }
-        return washingTables.get(weekNumber - 1).getWashingPlans();
+        //if (weekNumber < 1 || weekNumber > washingTables.size()) {
+        //    return new ArrayList<>(); // returns empty if week is out of range
+        //}
+        //return washingTables.get(weekNumber - 1).getWashingPlans();
+        return null;
     }
 
 }
