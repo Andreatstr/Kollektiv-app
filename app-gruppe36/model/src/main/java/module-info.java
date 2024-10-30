@@ -9,4 +9,5 @@ module model {
     requires spring.webflux;
     exports viewmodel;
     exports data;
+    exports data.requests;
 }

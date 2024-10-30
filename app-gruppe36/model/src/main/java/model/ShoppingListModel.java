@@ -1,6 +1,4 @@
 package model;
-
-import json.JsonFileManager;
 import data.Item;
 import data.House;
 import data.requests.*;
@@ -27,7 +25,7 @@ public class ShoppingListModel implements UpdateEvent {
         houseManager = HouseManager.getInstance();
         restTemplate = new RestTemplate();
         setShoppingLists();
-        resetItemActivation();
+        resetItemActivation(); 
     }
 
     public static ShoppingListModel getInstance() {
@@ -58,7 +56,7 @@ public class ShoppingListModel implements UpdateEvent {
 
     /* Metoder som sender til server */
     public void addItem(Item newItem) {
-        itemRequest request = new itemRequest(newItem, house.getId());
+        ItemRequest request = new ItemRequest(newItem, house.getId());
         house = restTemplate.postForObject(url + "additem", request, House.class);
         houseManager.updateHouse(house);
     }
@@ -71,7 +69,7 @@ public class ShoppingListModel implements UpdateEvent {
 
     public void buyItems(List<Item> items) {
         ItemListRequest request = new ItemListRequest(items, house.getId());
-        house = restTemplate.postForObject(url + "buyitems", items, House.class);
+        house = restTemplate.postForObject(url + "buyitems", request, House.class);
         houseManager.updateHouse(house);
     }
 

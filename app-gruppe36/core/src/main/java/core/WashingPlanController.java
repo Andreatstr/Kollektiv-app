@@ -1,6 +1,5 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.List;
 import data.Person;
 import data.Task;
@@ -8,7 +7,7 @@ import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
 import data.House;
-import data.Item;
+
 
 public class WashingPlanController {
 
@@ -35,28 +34,31 @@ public class WashingPlanController {
         return null;
     }
 
-    public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        /*
-         * washingTables.clear();
-         * List<Person> names = persons;
-         * int numPeople = names.size();
-         * int numTasks = tasks.size();
-         * 
-         * for (int week = fromWeek; week <= toWeek; week++) {
-         * WashingPlan washingPlan = new WashingPlan(week);
-         * 
-         * for (int i = 0; i < numTasks; i++) {
-         * Task task = tasks.get(i);
-         * Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
-         * WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
-         * washingPlan.addEntry(entry);
-         * }
-         * WashingTable washingTable = new WashingTable();
-         * washingTable.addWashingPlanEntry(washingPlan);
-         * washingTables.add(washingTable);
-         * }
-         * storeToFile();
-         */
+    public House generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek,String id) {
+        House house = HouseController.getInstance().getHouse(id);
+        List<WashingTable> washingTables = house.getWashingTable();
+        if (house == null) return null;
+
+          List<Person> names = persons;
+          int numPeople = names.size();
+          int numTasks = tasks.size();
+          
+          for (int week = fromWeek; week <= toWeek; week++) {
+          WashingPlan washingPlan = new WashingPlan(week);
+          
+          for (int i = 0; i < numTasks; i++) {
+          Task task = tasks.get(i);
+          Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
+          WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
+          washingPlan.addEntry(entry);
+          }
+          WashingTable washingTable = new WashingTable();
+          washingTable.addWashingPlanEntry(washingPlan);
+          washingTables.add(washingTable);
+          }
+          storeToFile();
+          return house;
+         
     }
 
 }

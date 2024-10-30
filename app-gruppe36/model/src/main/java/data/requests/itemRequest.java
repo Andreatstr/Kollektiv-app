@@ -2,15 +2,15 @@ package data.requests;
 
 import data.Item;
 
-public class itemRequest {
-    private Item item;
+public class ItemRequest {
+    public Item item;
 
-    private String id;
+    public String id;
 
-    public itemRequest() {
+    public ItemRequest() {
     }
 
-    public itemRequest(Item item, String id) {
+    public ItemRequest(Item item, String id) {
         this.id = id;
         this.item = item;
     }
@@ -23,11 +23,11 @@ public class itemRequest {
         this.item = item;
     }
 
-    public String getString() {
+    public String getId() {
         return this.id;
     }
 
-    public void setString(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 

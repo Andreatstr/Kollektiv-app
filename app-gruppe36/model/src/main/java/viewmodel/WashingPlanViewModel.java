@@ -210,15 +210,10 @@ public class WashingPlanViewModel {
     }
 
     public void reset() {
-        // System.out.println("Resetting WashingPlanViewModel...");
         washingPlanPersons.clear();
         washingPlanTasks.clear();
         washingPlans.clear();
         currentWeek = 1;
-        // System.out.println("Reset complete. Current week: " + currentWeek);
-        // System.out.println("Persons: " + washingPlanPersons.size());
-        // System.out.println("Tasks: " + washingPlanTasks.size());
-        // System.out.println("Plans: " + washingPlans.size());
         washingPlanModel.reset();
     }
 }

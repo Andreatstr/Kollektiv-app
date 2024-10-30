@@ -3,34 +3,45 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
 import data.Person;
 import data.Task;
 import data.WashingPlan;
-import data.WashingPlanEntry;
 import data.WashingTable;
+import data.requests.ItemListRequest;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import data.requests.CreateWashingPlanRequest;
 import data.House;
-import data.Item;
+
 
 public class WashingPlanModel implements UpdateEvent {
+
+    private RestTemplate restTemplate;
+    private String url = "http://localhost:8080/";
 
     public int currentWeek = 1;
     private static WashingPlanModel washingPlanModel = null;
 
-    private House collective;
+    private House house;
+
+    private HouseManager houseManager;
 
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
     private List<WashingTable> washingTables = new ArrayList<>();
 
     private WashingPlanModel() {
-        readWashingPlanFromFile();
+        restTemplate = new RestTemplate();
+        houseManager = HouseManager.getInstance();
+        setWashingPlan();
     }
 
-    private void readWashingPlanFromFile() {
-        collective = HouseManager.getInstance().getHouse();
-        washingTables = collective.getWashingTable();
+    private void setWashingPlan() {
+        house = houseManager.getHouse();
+        washingTables = house.getWashingTable();
     }
 
     public static WashingPlanModel getInstance() {
@@ -73,7 +84,9 @@ public class WashingPlanModel implements UpdateEvent {
     }
 
     public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-
+        CreateWashingPlanRequest request = new CreateWashingPlanRequest(persons, tasks, fromWeek, toWeek, house.getId());
+        house = restTemplate.postForObject(url + "generateWashingplan", request, House.class);
+        houseManager.updateHouse(house);
     }
 
     public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
@@ -93,6 +106,14 @@ public class WashingPlanModel implements UpdateEvent {
 
     @Override
     public void updateEvent() {
+        setWashingPlan();
+    }
 
+    public void reset()
+    {
+        washingPlanPersons.clear();
+        washingPlanTasks.clear();
+        washingTables.clear();
+        currentWeek = 1;
     }
 }

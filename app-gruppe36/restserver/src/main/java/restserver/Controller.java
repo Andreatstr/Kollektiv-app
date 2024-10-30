@@ -1,6 +1,7 @@
 package restserver;
 import java.util.List;
 import data.*;
+import data.requests.*;
 import core.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,30 +39,29 @@ public class Controller {
     //ShoppingList
 
     @PostMapping ("/additem")
-    public House additem(@RequestBody Item item, @RequestBody String id)
+    public House additem(@RequestBody ItemRequest request)
     {
-        System.out.println(item.getItemName());
-        return new House(id);
+        return ShoppingListController.getInstance().addItem(request.getItem(), request.getId());
     }
 
-    @PostMapping ("/buyItems")
-    public House buyItem(@RequestBody List<Item> items, @RequestBody String id)
+    @PostMapping ("/buyitems")
+    public House buyItem(@RequestBody ItemListRequest request)
     {
-        return null;
+        return ShoppingListController.getInstance().buyItems(request.getItems(), request.getId());
     }
 
-    @PostMapping ("/deleteItems")
-    public House deleteItems(@RequestBody List<Item> items, @RequestBody String id)
+    @PostMapping ("/deleteitems")
+    public House deleteItems(@RequestBody ItemListRequest request)
     {
-        return null;
+        return ShoppingListController.getInstance().removeItem(request.getItems(), request.getId());
     }
 
     //WashingPlan
 
     @PostMapping ("/generateWashingplan")
-    public House generateWashingplan()
+    public House generateWashingplan(@RequestBody CreateWashingPlanRequest request)
     {
-        return null;
+        return WashingPlanController.getInstance().generateWashingPlan(request.persons, request.tasks, request.fromWeek, request.toWeek,request.id);
     }
     
 

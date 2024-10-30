@@ -6,7 +6,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import data.House;
-import json.JsonFileManager;
 
 public class HouseManager {
 
@@ -28,6 +27,7 @@ public class HouseManager {
     }
 
     public boolean setHouse(String houseId) {
+        System.out.println("Creating House");
         try {
             House house = restTemplate.postForObject(url + "gethouse", houseId, House.class);
             updateHouse(house);
@@ -64,6 +64,7 @@ public class HouseManager {
     }
 
     public String getNewId() {
+        System.out.println("Getting id");
         return restTemplate.getForObject(url + "newvalidid", String.class);
     }
 }

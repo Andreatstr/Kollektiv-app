@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import data.HistoryShoppingListTable;
 import data.Item;
 import data.Task;
-import json.JsonFileManager;
 import viewmodel.MenueViewModel;
 import viewmodel.ShoppingListViewModel;
 import data.WashingTable;
@@ -35,16 +34,13 @@ public class ModelTest {
     public void CreateNewHouse() {
         HouseManager houseManager = HouseManager.getInstance();
         String id = houseManager.getNewId();
-        new JsonFileManager().deleteHouse(id);
         houseManager.CreateHouse(id);
         assertEquals(houseManager.setHouse(id), true);
-        new JsonFileManager().deleteHouse(id);
     }
 
     @Test
     public void SetHouseToNonExisting() {
         String id = "fffff";
-        new JsonFileManager().deleteHouse(id);
         HouseManager houseManager = HouseManager.getInstance();
         assertEquals(houseManager.setHouse(id), false);
     }
@@ -56,7 +52,6 @@ public class ModelTest {
         menueViewModel.generateHouse();
         menueViewModel.setCollective(id);
         assertEquals(HouseManager.getInstance().getHouse().getId(), id);
-        new JsonFileManager().deleteHouse(id);
     }
 
     // Test for default constructor and parameterized constructor in Item
