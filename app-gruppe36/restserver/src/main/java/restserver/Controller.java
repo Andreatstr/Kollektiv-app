@@ -15,26 +15,55 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class Controller {
     
-    @GetMapping("/health-check")
-    public String getHealthCheck()
+    @GetMapping("/newvalidid")
+    public String getNewValidId()
     {
-        return "Yeehaw";
+        return null;
     }
 
-    //Get mapping som sender id og får et object
-
-    @PostMapping ("/sethouse")
-    public void CreateNewHouse(@RequestBody String id)
+    @PostMapping ("/createnewhouse")
+    public House CreateNewHouse(@RequestBody String id)
     {
-        System.out.println(id);
+        return null;
     }
+    
+
+    //logge inn i ett hus
+    @PostMapping ("/gethouse")
+    public House GetHouse(@RequestBody String id)
+    {
+        return new House(id);
+    }
+
+    //ShoppingList
 
     @PostMapping ("/additem")
-    public void getHouse(List<Float> item)
+    public House additem(@RequestBody Item item, @RequestBody String id)
     {
-        System.out.print(item.size());
-        //core
+        System.out.println(item.getItemName());
+        return new House(id);
     }
+
+    @PostMapping ("/buyItems")
+    public House buyItem(@RequestBody List<Item> items, @RequestBody String id)
+    {
+        return null;
+    }
+
+    @PostMapping ("/deleteItems")
+    public House deleteItems(@RequestBody List<Item> items, @RequestBody String id)
+    {
+        return null;
+    }
+
+    //WashingPlan
+
+    @PostMapping ("/generateWashingplan")
+    public House generateWashingplan()
+    {
+        return null;
+    }
+    
 
 
 }
