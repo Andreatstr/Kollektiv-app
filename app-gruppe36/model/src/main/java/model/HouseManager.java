@@ -1,82 +1,69 @@
 package model;
 
 import java.security.SecureRandom;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 import data.House;
 import json.JsonFileManager;
 
 public class HouseManager {
 
-    private String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    
+    private RestTemplate restTemplate;
+    private String url = "http://localhost:8080/";
+
     private House selectedHouse;
 
     private static HouseManager instance;
 
-    JsonFileManager jsonFileManager;
-
-    private HouseManager(){
-        jsonFileManager = new JsonFileManager();
-        Client client = new Client();
+    private HouseManager() {
+        restTemplate = new RestTemplate();
     }
 
-    public static HouseManager getInstance()
-    {
-        if (instance == null) instance = new HouseManager();
+    public static HouseManager getInstance() {
+        if (instance == null)
+            instance = new HouseManager();
         return instance;
     }
 
-
-    public boolean setHouse(String houseId)
-    {
-        selectedHouse = jsonFileManager.getSavedHouse(houseId);
-        if (selectedHouse == null) return false;
+    public boolean setHouse(String houseId) {
+        try {
+            House house = restTemplate.postForObject(url + "gethouse", houseId, House.class);
+            updateHouse(house);
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
         return true;
-
     }
 
-    public House getHouse()
-    {
-        if (selectedHouse == null) selectedHouse = new House();
+    public House getHouse() {
+        if (selectedHouse == null)
+            selectedHouse = new House();
         return selectedHouse;
     }
 
-    public void saveHouse()
-    {
-        if (selectedHouse.getId() == null) return;
-        jsonFileManager.saveHouse(selectedHouse);
-    }
-
-    public void CreateHouse(String id)
-    {
-        selectedHouse = new House(id);
-        saveHouse();
-
-    }
-
-    public String getNewId()
-    {
-        return generateRandomId(5);
-    }
-
-    private  String generateRandomId(int length) {
-        SecureRandom random = new SecureRandom();
-        StringBuilder stringBuilder = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            stringBuilder.append(CHARACTERS.charAt(index));
+    public boolean CreateHouse(String id) {
+        try {
+            House house = restTemplate.postForObject(url + "createnewhouse", id, House.class);
+            updateHouse(house);
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-
-        return stringBuilder.toString();
+        return true;
     }
 
+    public void updateHouse(House house) {
+        if (house == null)
+            return;
+        selectedHouse = house;
+        ShoppingListModel.getInstance().updateEvent();
 
+    }
 
-
-
-
-
-
-
+    public String getNewId() {
+        return restTemplate.getForObject(url + "newvalidid", String.class);
+    }
 }

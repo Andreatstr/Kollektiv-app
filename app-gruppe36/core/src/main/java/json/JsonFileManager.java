@@ -1,4 +1,5 @@
 package json;
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.CollationElementIterator;
@@ -13,10 +14,10 @@ public class JsonFileManager {
 
     private static JsonFileManager instance;
 
-    private JsonFileManager() {}
+    private JsonFileManager() {
+    }
 
-    public static JsonFileManager getInstance()
-    {
+    public static JsonFileManager getInstance() {
         if (instance == null)
             instance = new JsonFileManager();
         return instance;
@@ -55,7 +56,7 @@ public class JsonFileManager {
         }
     }
 
-    private List<House> getHouses() {
+    public List<House> getHouses() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(getPath(),

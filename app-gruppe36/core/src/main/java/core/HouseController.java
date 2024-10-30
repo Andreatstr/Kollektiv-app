@@ -1,4 +1,5 @@
 package core;
+
 import java.security.SecureRandom;
 import java.util.List;
 
@@ -15,46 +16,57 @@ public class HouseController {
 
     JsonFileManager jsonFileManager;
 
-    private HouseController(){
+    private HouseController() {
         jsonFileManager = JsonFileManager.getInstance();
+        houses = jsonFileManager.getHouses();
     }
 
-    public static HouseController getInstance()
-    {
-        if (instance == null) instance = new HouseController();
+    public static HouseController getInstance() {
+        if (instance == null)
+            instance = new HouseController();
         return instance;
     }
 
-    //api 
-    public House getHouse(String id)
-    {
-        for (House house : houses)
-        {
+    // api
+    public House getHouse(String id) {
+        for (House house : houses) {
             if (house.getId().equals(id))
-            return house;
+                return house;
         }
         return null;
     }
 
-    public void saveHouse()
-    {
+    public void saveHouse() {
         jsonFileManager.saveToFile(houses);
     }
 
-    //api 
-    public void CreateHouse(String id)
-    {
+    // api
+    public House CreateHouse(String id) {
         House newHouse = new House(id);
         houses.add(newHouse);
         saveHouse();
+        return newHouse;
     }
 
-    public String getNewId()
-    {
-        return generateRandomId(5);
+    public String getNewId() {
+        int maxTries = 100;
+        int i = 0;
+        while (i < maxTries) {
+            boolean validId = true;
+            i++;
+            String randomId = generateRandomId(5);
+            for (House house : houses) {
+                if (house.getId().equals(randomId)) {
+                    validId = false;
+                }
+            }
+            if (validId)
+                return randomId;
+        }
+        return null;
     }
 
-    private  String generateRandomId(int length) {
+    private String generateRandomId(int length) {
         SecureRandom random = new SecureRandom();
         StringBuilder stringBuilder = new StringBuilder(length);
 

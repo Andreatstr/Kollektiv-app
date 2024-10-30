@@ -1,27 +1,29 @@
 package model;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import data.House;
+import data.Item;
 
-public class Client
-{
+public class Client {
     private RestTemplate restTemplate;
 
     private String url = "http://localhost:8080/";
 
-    public Client()
-    {
+    public Client() {
         restTemplate = new RestTemplate();
         System.out.println(restTemplate.getForObject(url + "health-check", String.class));
         System.out.println(getHouse("fffff").getId());
-        //System.out.println(restTemplate.postForObject( + "health-check", this, responseType));
-
+        // System.out.println(restTemplate.postForObject( + "health-check", this,
+        // responseType));
 
     }
 
-    public House getHouse(String id)
-    {
-         return restTemplate.postForObject(url + "gethouse", id, House.class);
+    public House getHouse(String id) {
+        return restTemplate.postForObject(url + "gethouse", id, House.class);
     }
+
 }

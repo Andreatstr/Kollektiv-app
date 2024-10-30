@@ -18,13 +18,13 @@ public class Controller {
     @GetMapping("/newvalidid")
     public String getNewValidId()
     {
-        return null;
+        return HouseController.getInstance().getNewId();
     }
 
     @PostMapping ("/createnewhouse")
     public House CreateNewHouse(@RequestBody String id)
     {
-        return null;
+        return HouseController.getInstance().CreateHouse(id);
     }
     
 

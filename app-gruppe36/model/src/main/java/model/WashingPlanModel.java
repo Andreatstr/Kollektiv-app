@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import data.House;
 import data.Item;
 
-public class WashingPlanModel {
+public class WashingPlanModel implements UpdateEvent {
 
     public int currentWeek = 1;
     private static WashingPlanModel washingPlanModel = null;
@@ -30,16 +30,7 @@ public class WashingPlanModel {
 
     private void readWashingPlanFromFile() {
         collective = HouseManager.getInstance().getHouse();
-        washingPlanPersons = collective.getWashingPlanPerson();
-        washingPlanTasks = collective.getWashingPlanTask();
         washingTables = collective.getWashingTable();
-    }
-
-    private void storeToFile() {
-        collective.setWashingTable(washingTables);
-        collective.setWashingPlanPerson(washingPlanPersons);
-        collective.setWashingPlanTask(washingPlanTasks);
-        HouseManager.getInstance().saveHouse();
     }
 
     public static WashingPlanModel getInstance() {
@@ -68,9 +59,7 @@ public class WashingPlanModel {
                 return;
             }
         }
-
         washingPlanPersons.add(newPerson);
-        storeToFile();
     }
 
     public void addTask(Task newTask) {
@@ -81,39 +70,10 @@ public class WashingPlanModel {
             }
         }
         washingPlanTasks.add(newTask);
-        storeToFile();
     }
 
     public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        washingTables.clear();
-        List<Person> names = persons;
-        int numPeople = names.size();
-        int numTasks = tasks.size();
 
-        for (int week = fromWeek; week <= toWeek; week++) {
-            WashingPlan washingPlan = new WashingPlan(week);
-
-            for (int i = 0; i < numTasks; i++) {
-                Task task = tasks.get(i);
-                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
-                WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
-                washingPlan.addEntry(entry);
-            }
-            WashingTable washingTable = new WashingTable();
-            washingTable.addWashingPlanEntry(washingPlan);
-            washingTables.add(washingTable);
-        }
-        storeToFile();
-    }
-
-    public List<Person> rotateNames(List<Person> names) {
-        if (names.size() > 1) {
-            List<Person> rotatedNames = names;
-            Person last = rotatedNames.remove(rotatedNames.size() - 1);
-            rotatedNames.add(0, last);
-            return rotatedNames;
-        }
-        return names;
     }
 
     public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
@@ -131,10 +91,8 @@ public class WashingPlanModel {
         this.currentWeek = week;
     }
 
-    public void reset() {
-        washingPlanPersons.clear();
-        washingPlanTasks.clear();
-        washingTables.clear();
-        currentWeek = 1;
+    @Override
+    public void updateEvent() {
+
     }
 }

@@ -1,108 +1,87 @@
 package model;
+
 import json.JsonFileManager;
 import data.Item;
 import data.House;
-import java.util.ArrayList; 
+import data.requests.*;
+import viewmodel.ShoppingListViewModel;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingListModel
-{
+import org.springframework.web.client.RestTemplate;
+
+public class ShoppingListModel implements UpdateEvent {
     private static ShoppingListModel shoppingListModel = null;
 
-    private House collective;
+    private House house;
     private List<Item> shoppingList = new ArrayList<Item>();
-    private List<Item> shoppingListHistory = new ArrayList<Item>();  
-
+    private List<Item> shoppingListHistory = new ArrayList<Item>();
+    private HouseManager houseManager;
 
     private Integer daysInHistory = 14;
 
-    private ShoppingListModel() 
-    {
-        readShoppingListFromFile();
+    private RestTemplate restTemplate;
+    private String url = "http://localhost:8080/";
+
+    private ShoppingListModel() {
+        houseManager = HouseManager.getInstance();
+        restTemplate = new RestTemplate();
+        setShoppingLists();
         resetItemActivation();
     }
 
-    public static ShoppingListModel getInstance()
-    {   
+    public static ShoppingListModel getInstance() {
         if (shoppingListModel != null)
             return shoppingListModel;
         shoppingListModel = new ShoppingListModel();
         return shoppingListModel;
     }
 
-    private void readShoppingListFromFile()
-    {
-        collective = HouseManager.getInstance().getHouse();
-        shoppingList = collective.getShoppingList();
-        shoppingListHistory = collective.getShoppingListHistory();
+    private void setShoppingLists() {
+        house = HouseManager.getInstance().getHouse();
+        shoppingList = house.getShoppingList();
+        shoppingListHistory = house.getShoppingListHistory();
     }
 
-    private void resetItemActivation()
-    {
-        for (Item item : shoppingList) item.setActive(false);
+    private void resetItemActivation() {
+        for (Item item : shoppingList)
+            item.setActive(false);
     }
 
-    private void storeToFile()
-    {
-        collective.setShoppingList(shoppingList);
-        collective.setShoppingListHistory(shoppingListHistory);
-        HouseManager.getInstance().saveHouse();
-    }
-
-    public List<Item> getShoppingList()
-    {
+    public List<Item> getShoppingList() {
         return shoppingList;
     }
 
-    public List<Item> getshoppingListHistory()
-    {
-        boolean historyChanged = false;
-
-        for (Item item : shoppingListHistory)
-        {
-            if (item.timePassed(daysInHistory))
-            {
-                shoppingListHistory.remove(item);
-                historyChanged = true;
-            }
-        }
-
-        if (historyChanged) storeToFile(); 
+    public List<Item> getshoppingListHistory() {
         return shoppingListHistory;
     }
 
-    public void addItem(Item newItem)
-    {
-        //Sjekke at produktet ikke eksisterer allerede isåfall legg til Funker ikke
-        for (Item item : shoppingList)
-        {
-            if (item.getItemName().equals(newItem.getItemName()))
-            {
-                item.setItemCount(item.getItemCount() + newItem.getItemCount());
-                storeToFile();
-                return;
-            }
-        }
-
-        shoppingList.add(newItem);
-        storeToFile();
+    /* Metoder som sender til server */
+    public void addItem(Item newItem) {
+        itemRequest request = new itemRequest(newItem, house.getId());
+        house = restTemplate.postForObject(url + "additem", request, House.class);
+        houseManager.updateHouse(house);
     }
 
-    public void removeItem(List<Item> items)
-    {
-        for (Item itemToRemove : items) shoppingList.removeIf(b->b.getItemName().equals(itemToRemove.getItemName()));
-        storeToFile();
-    }
-    
-    public void buyItems(List<Item> items)
-    {
-        removeItem(items);
-        for (Item item : items) item.setBoughtDate();
-        shoppingListHistory.addAll(items);
-        storeToFile();
+    public void removeItem(List<Item> items) {
+        ItemListRequest request = new ItemListRequest(items, house.getId());
+        house = restTemplate.postForObject(url + "removeitem", request, House.class);
+        houseManager.updateHouse(house);
     }
 
+    public void buyItems(List<Item> items) {
+        ItemListRequest request = new ItemListRequest(items, house.getId());
+        house = restTemplate.postForObject(url + "buyitems", items, House.class);
+        houseManager.updateHouse(house);
+    }
 
+    @Override
+    public void updateEvent() {
+        ShoppingListViewModel viewmodel = ShoppingListViewModel.getInstance();
+        setShoppingLists();
+        viewmodel.updateShoppingList();
+        viewmodel.updateShoppingListHistory();
 
+    }
 
 }
