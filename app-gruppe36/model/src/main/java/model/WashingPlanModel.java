@@ -13,8 +13,10 @@ import data.WashingPlan;
 import data.WashingTable;
 import data.requests.ItemListRequest;
 import javafx.collections.FXCollections;
+import viewmodel.WashingPlanViewModel;
 import data.requests.CreateWashingPlanRequest;
 import data.House;
+import data.Item;
 
 
 public class WashingPlanModel implements UpdateEvent {
@@ -31,17 +33,19 @@ public class WashingPlanModel implements UpdateEvent {
 
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
-    private List<WashingTable> washingTables = new ArrayList<>();
+    private WashingTable washingTable = new WashingTable();
 
     private WashingPlanModel() {
         restTemplate = new RestTemplate();
         houseManager = HouseManager.getInstance();
+        houseManager.subscribeToEvents(this);
         setWashingPlan();
     }
 
     private void setWashingPlan() {
         house = houseManager.getHouse();
-        washingTables = house.getWashingTable();
+        washingTable = house.getWashingTable();
+        currentWeek = washingTable.getLowestWeek();
     }
 
     public static WashingPlanModel getInstance() {
@@ -59,8 +63,8 @@ public class WashingPlanModel implements UpdateEvent {
         return washingPlanPersons;
     }
 
-    public List<WashingTable> getWashingTables() {
-        return washingTables;
+    public WashingTable getWashingTables() {
+        return washingTable;
     }
 
     public void addPerson(Person newPerson) {
@@ -89,11 +93,8 @@ public class WashingPlanModel implements UpdateEvent {
         houseManager.updateHouse(house);
     }
 
-    public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
-        if (weekNumber < 1 || weekNumber > washingTables.size()) {
-            return new ArrayList<>(); // returns empty if week is out of range
-        }
-        return washingTables.get(weekNumber - 1).getWashingPlans();
+    public WashingPlan getPlanForWeek() {
+        return washingTable.getWashingPlanOfWeek(currentWeek);
     }
 
     public int getCurrentWeek() {
@@ -101,19 +102,41 @@ public class WashingPlanModel implements UpdateEvent {
     }
 
     public void setCurrentWeek(int week) {
+        if (week < washingTable.getLowestWeek() || week > washingTable.getHighestWeek()) {
+            return;
+        }
         this.currentWeek = week;
     }
 
     @Override
     public void updateEvent() {
         setWashingPlan();
+        WashingPlanViewModel.getInstance().updateWashingPlans();
+    }
+
+    @Override
+    public void logoutEvent() {
+        System.out.println("Logout");
+        reset();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
+    }
+
+    public void editWashingPlan()
+    {
+        washingPlanPersons = washingTable.getPersons();
+        washingPlanTasks = washingTable.getTasks();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
     }
 
     public void reset()
     {
         washingPlanPersons.clear();
         washingPlanTasks.clear();
-        washingTables.clear();
-        currentWeek = 1;
+        washingTable = null;
+        currentWeek = 0;
     }
 }

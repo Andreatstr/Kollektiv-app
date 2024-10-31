@@ -6,6 +6,7 @@ import java.util.List;
 import data.House;
 import json.JsonFileManager;
 
+
 public class HouseController {
 
     private List<House> houses;

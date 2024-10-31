@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import viewmodel.MenueViewModel;
 
 public class ChoiceScreenView {
 
@@ -21,6 +22,7 @@ public class ChoiceScreenView {
 
     @FXML
     void ButtonBackFromChoiceScreen(ActionEvent event) throws IOException {
+        MenueViewModel.getInstance().logOut();
         SceneSwitcher.switchToScene(event, "MainMenu.fxml");
     }
 

@@ -40,6 +40,7 @@ public class ShoppingListTest extends ApplicationTest {
         clickOn("#itemCountInput").write("1");
         clickOn("#AddButton");
 
+        //Nødvendig?
         try {
             Thread.sleep(50);
         }

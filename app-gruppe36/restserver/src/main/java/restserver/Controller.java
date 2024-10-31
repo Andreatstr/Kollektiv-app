@@ -33,7 +33,7 @@ public class Controller {
     @PostMapping ("/gethouse")
     public House GetHouse(@RequestBody String id)
     {
-        return new House(id);
+        return HouseController.getInstance().getHouse(id);
     }
 
     //ShoppingList
@@ -50,7 +50,7 @@ public class Controller {
         return ShoppingListController.getInstance().buyItems(request.getItems(), request.getId());
     }
 
-    @PostMapping ("/deleteitems")
+    @PostMapping ("/removeitem")
     public House deleteItems(@RequestBody ItemListRequest request)
     {
         return ShoppingListController.getInstance().removeItem(request.getItems(), request.getId());

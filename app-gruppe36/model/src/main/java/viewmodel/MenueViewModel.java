@@ -38,6 +38,11 @@ public class MenueViewModel {
         houseManager.CreateHouse(proposedHouseId);
     }
 
+    public void logOut()
+    {
+        houseManager.logOut();
+    }
+
 
 
 }

@@ -10,7 +10,7 @@ public class House
     private String id;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
-    private List<WashingTable> washingTable = new ArrayList<WashingTable>();  
+    private WashingTable washingTable = new WashingTable();  
 
     public House(){
     }
@@ -44,11 +44,11 @@ public class House
         this.shoppingListHistory = shoppingListHistory;
     }
     
-    public List<WashingTable> getWashingTable() {
+    public WashingTable getWashingTable() {
         return washingTable;
     }
     
-    public void setWashingTable(List<WashingTable> washingTable) {
+    public void setWashingTable(WashingTable washingTable) {
         this.washingTable = washingTable;
     }
 

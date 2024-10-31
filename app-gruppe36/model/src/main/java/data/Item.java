@@ -56,9 +56,7 @@ public class Item {
     }
 
     public void setBoughtDate() {
-        System.out.println("Set bougth date!");
         this.bougthDate = formatter.format(LocalDate.now());
-        System.out.println(getBoughtDate());
     }
 
     public boolean timePassed(Integer days) {

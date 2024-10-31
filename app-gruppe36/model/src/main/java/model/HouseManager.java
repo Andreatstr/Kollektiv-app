@@ -1,6 +1,9 @@
 package model;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +19,8 @@ public class HouseManager {
 
     private static HouseManager instance;
 
+    private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
+
     private HouseManager() {
         restTemplate = new RestTemplate();
     }
@@ -27,7 +32,6 @@ public class HouseManager {
     }
 
     public boolean setHouse(String houseId) {
-        System.out.println("Creating House");
         try {
             House house = restTemplate.postForObject(url + "gethouse", houseId, House.class);
             updateHouse(house);
@@ -40,7 +44,10 @@ public class HouseManager {
 
     public House getHouse() {
         if (selectedHouse == null)
+        {
+            System.out.print("using empty house!");
             selectedHouse = new House();
+        }
         return selectedHouse;
     }
 
@@ -59,12 +66,27 @@ public class HouseManager {
         if (house == null)
             return;
         selectedHouse = house;
-        ShoppingListModel.getInstance().updateEvent();
+        for (UpdateEvent subscriber : subscriptions)
+        {
+            subscriber.updateEvent();
+        }
 
     }
 
     public String getNewId() {
-        System.out.println("Getting id");
         return restTemplate.getForObject(url + "newvalidid", String.class);
+    }
+
+    public void subscribeToEvents(UpdateEvent subscriber)
+    {
+        subscriptions.add(subscriber);
+    }
+
+    public void logOut()
+    {
+        for (UpdateEvent subscriber : subscriptions)
+        {
+            subscriber.logoutEvent();
+        }
     }
 }

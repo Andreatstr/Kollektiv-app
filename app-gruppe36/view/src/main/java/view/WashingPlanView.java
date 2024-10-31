@@ -27,8 +27,6 @@ import data.WashingTable;
 public class WashingPlanView {
 
     private WashingPlanViewModel washingPlanViewModel;
-    
-    ObservableList<WashingPlanEntry> observableList = FXCollections.observableArrayList();
 
     public WashingPlanView() {
         washingPlanViewModel = WashingPlanViewModel.getInstance();
@@ -73,31 +71,20 @@ public class WashingPlanView {
 
     @FXML
     void ButtonEditWashingPlan(ActionEvent event) throws IOException {
+        washingPlanViewModel.editWashingPlan();
         SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
     }
 
     @FXML
     void ButtonLeftArrow(ActionEvent event) {
-        int currentWeek = washingPlanViewModel.getCurrentWeek();
-        if (washingPlanViewModel.isThisTheFirstWeek(currentWeek)) {
-            System.out.println("Already at the first week.");
-            return;
-        } 
         washingPlanViewModel.previousWeek(); 
         weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
-        updateWashingPlanTable(); 
     }
 
     @FXML
     void ButtonRightArrow(ActionEvent event) {
-        int currentWeek = washingPlanViewModel.getCurrentWeek(); 
-        if (washingPlanViewModel.isThisTheLastWeek(currentWeek)) {
-            System.out.println("Already at the last week.");
-            return;
-        } 
-        washingPlanViewModel.nextWeek();
-        weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek())); 
-        updateWashingPlanTable();
+        washingPlanViewModel.nextWeek(); 
+        weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     }
 
     public void initialize () {
@@ -108,30 +95,13 @@ public class WashingPlanView {
         imageView.setPreserveRatio(true);
 
         HomeButton.setGraphic(imageView);
-        //---//
         
         listOfNamesForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("person"));
         listOfTasksForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));
 
-
-        // int fromWeek = washingPlanViewModel.getStartWeek();
-        // int toWeek = washingPlanViewModel.getEndWeek();
         String startNumber = String.valueOf(washingPlanViewModel.getCurrentWeek());
 
         weekNumberField.setText(startNumber);
-        newWashingPlanTable.setItems(observableList);
-
-        updateWashingPlanTable();
+        newWashingPlanTable.setItems(washingPlanViewModel.getWashingPlanEntries());
     }
-
-    private void updateWashingPlanTable() {
-        List<WashingPlanEntry> entriesForCurrentWeek = washingPlanViewModel.getWashingPlanEntriesForCurrentWeek();
-        for (WashingPlanEntry entry : entriesForCurrentWeek) System.out.println(entry.getPerson() + "  " + entry.getTask());
-        if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) 
-        {
-            observableList.clear();
-            observableList.addAll(entriesForCurrentWeek);
-        }
-    }
-
 }

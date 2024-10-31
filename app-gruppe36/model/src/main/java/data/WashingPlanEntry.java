@@ -3,14 +3,12 @@ package data;
 public class WashingPlanEntry {
     private Person person;
     private Task task;
-    private int week;
 
     public WashingPlanEntry(){}
 
-    public WashingPlanEntry(Person person, Task task, int week) {
+    public WashingPlanEntry(Person person, Task task) {
         this.person = person;
         this.task = task;
-        this.week = week;
     }
 
     public Person getPerson() {
@@ -21,10 +19,6 @@ public class WashingPlanEntry {
         return task;
     }
 
-    public int getWeek() {
-        return week;
-    }
-
     public void setPerson(Person person)
     {
         this.person = person;
@@ -33,10 +27,5 @@ public class WashingPlanEntry {
     public void setTask(Task task)
     {
         this.task = task;
-    }
-
-    public void setWeek(int week)
-    {
-        this.week = week;
     }
 }

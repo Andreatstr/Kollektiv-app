@@ -24,8 +24,8 @@ public class ShoppingListModel implements UpdateEvent {
     private ShoppingListModel() {
         houseManager = HouseManager.getInstance();
         restTemplate = new RestTemplate();
+        houseManager.subscribeToEvents(this);
         setShoppingLists();
-        resetItemActivation(); 
     }
 
     public static ShoppingListModel getInstance() {
@@ -39,6 +39,7 @@ public class ShoppingListModel implements UpdateEvent {
         house = HouseManager.getInstance().getHouse();
         shoppingList = house.getShoppingList();
         shoppingListHistory = house.getShoppingListHistory();
+        resetItemActivation(); 
     }
 
     private void resetItemActivation() {
@@ -80,6 +81,13 @@ public class ShoppingListModel implements UpdateEvent {
         viewmodel.updateShoppingList();
         viewmodel.updateShoppingListHistory();
 
+    }
+
+    @Override
+    public void logoutEvent() {
+        house = null;
+        shoppingList = new ArrayList<Item>();
+        shoppingListHistory = new ArrayList<Item>();
     }
 
 }
