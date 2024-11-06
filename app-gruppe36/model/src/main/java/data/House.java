@@ -1,36 +1,37 @@
 package data;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.security.SecureRandom;
+// import java.security.SecureRandom;
+import java.util.Map;
 
-public class House
-{
-
+public class House {
 
     private String id;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
     private WashingTable washingTable = new WashingTable();  
+    private Map<Integer, List<String>> wastePlan = new HashMap<>();
 
-    public House(){
-    }
+  public House() {
+  }
 
-    public House(String id){
+  public House(String id) {
     this.id = id;
-    }
+  }
 
-    public List<Item>  getShoppingList() {
-        return shoppingList;
-    }
-    
-    public List<Item> getShoppingListHistory() {
-        return shoppingListHistory;
-    }
-    
-    public String getId()
-    {
-        return id;
-    }
+  public List<Item> getShoppingList() {
+    return shoppingList;
+  }
+
+  public List<Item> getShoppingListHistory() {
+    return shoppingListHistory;
+  }
+
+  public String getId() {
+    return id;
+  }
 
     public void setId(String id)
     {
@@ -52,5 +53,11 @@ public class House
         this.washingTable = washingTable;
     }
 
+  public Map<Integer, List<String>> getWastePlan() {
+    return wastePlan;
+  }
 
+  public void setWastePlan(Map<Integer, List<String>> wastePlan) {
+    this.wastePlan = wastePlan;
+  }
 }

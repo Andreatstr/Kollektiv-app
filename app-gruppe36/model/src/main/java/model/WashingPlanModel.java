@@ -24,8 +24,8 @@ public class WashingPlanModel implements UpdateEvent {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
-    public int currentWeek = 1;
-    private static WashingPlanModel washingPlanModel = null;
+  private int currentWeek = 1;
+  private static WashingPlanModel washingPlanModel = null;
 
     private House house;
 
@@ -55,13 +55,13 @@ public class WashingPlanModel implements UpdateEvent {
         return washingPlanModel;
     }
 
-    public List<Task> getWashingPlanTasks() {
-        return washingPlanTasks;
-    }
+  public List<Task> getWashingPlanTasks() {
+    return washingPlanTasks;
+  }
 
-    public List<Person> getWashingPlanPersons() {
-        return washingPlanPersons;
-    }
+  public List<Person> getWashingPlanPersons() {
+    return washingPlanPersons;
+  }
 
     public WashingTable getWashingTables() {
         return washingTable;
@@ -97,9 +97,9 @@ public class WashingPlanModel implements UpdateEvent {
         return washingTable.getWashingPlanOfWeek(currentWeek);
     }
 
-    public int getCurrentWeek() {
-        return currentWeek;
-    }
+  public int getCurrentWeek() {
+    return currentWeek;
+  }
 
     public void setCurrentWeek(int week) {
         if (week < washingTable.getLowestWeek() || week > washingTable.getHighestWeek()) {

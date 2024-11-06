@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListView">
    <children>
       <Label layoutX="332.0" layoutY="20.0" text="Handleliste">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="AddButton" layoutX="571.0" layoutY="295.0" mnemonicParsing="false" onAction="#addItem" prefHeight="39.0" prefWidth="236.0" text="Legg til" textAlignment="CENTER">
+      <Button fx:id="addButton" layoutX="571.0" layoutY="295.0" mnemonicParsing="false" onAction="#addItem" prefHeight="39.0" prefWidth="236.0" styleClass="editButton" text="Legg til" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="itemNameInput" layoutX="571.0" layoutY="174.0" prefHeight="32.0" prefWidth="300.0" />
+      <TextField fx:id="itemNameInput" layoutX="571.0" layoutY="174.0" prefHeight="32.0" prefWidth="300.0" styleClass="textFieldWithShadow" />
       <Label layoutX="571.0" layoutY="95.0" text="Legg til ny Item">
          <font>
             <Font size="24.0" />
@@ -38,41 +38,44 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="itemCountInput" layoutX="571.0" layoutY="251.0" prefHeight="32.0" prefWidth="74.0" />
-      <TableView fx:id="table" layoutX="44.0" layoutY="91.0" prefHeight="570.0" prefWidth="509.0">
+      <TextField fx:id="itemCountInput" layoutX="571.0" layoutY="251.0" prefHeight="32.0" prefWidth="74.0" styleClass="textFieldWithShadow" />
+      <TableView fx:id="table" layoutX="44.0" layoutY="91.0" prefHeight="570.0" prefWidth="519.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="itemColumn" prefWidth="411.20003509521484" text="Item" />
-            <TableColumn fx:id="countColumn" prefWidth="63.199981689453125" text="Antall" />
-            <TableColumn fx:id="checkButtonsColumn" prefWidth="32.00006103515625">
+            <TableColumn fx:id="itemColumn" prefWidth="409.0" styleClass="tableColumn" text="Item" />
+            <TableColumn fx:id="countColumn" prefWidth="67.0" styleClass="tableColumn" text="Antall" />
+            <TableColumn fx:id="checkButtonsColumn" prefWidth="39.0" styleClass="tableColumn">
                <graphic>
-                  <CheckBox fx:id="checkAll" mnemonicParsing="false" onAction="#checkBoxChanged"/>
+                  <CheckBox fx:id="checkAll" mnemonicParsing="false" onAction="#checkBoxChanged" prefHeight="0.0" prefWidth="16.0" />
                </graphic>
             </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="AddButton1" layoutX="571.0" layoutY="357.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="32.0" prefWidth="236.0" text="Marker som kjøpt" textAlignment="CENTER">
+      <Button fx:id="buyButton" layoutX="571.0" layoutY="357.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="32.0" prefWidth="236.0" styleClass="editButton" text="Marker som kjøpt" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="AddButton11" layoutX="571.0" layoutY="416.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="35.0" prefWidth="236.0" text="Slett" textAlignment="CENTER">
+      <Button fx:id="deleteButton" layoutX="571.0" layoutY="416.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="35.0" prefWidth="236.0" styleClass="deleteButton" text="Slett" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="BackFromShoppingList" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingList" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="homeButton" layoutX="830.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="30.0" prefWidth="30.0" styleClass="homeButton">
          <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
+            <ImageView fx:id="HouseImage" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+      <Button fx:id="backFromShoppingList" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingList" prefHeight="23.0" prefWidth="66.0" styleClass="backButton" text="Tilbake">
+         <graphic>
+            <Label prefHeight="25.0" prefWidth="8.0" text="&lt;">
                <font>
-                  <Font size="18.0" />
+                  <Font size="10.0" />
                </font>
             </Label>
          </graphic>
-      </Button>
-      <Button fx:id="HomeButton" layoutX="795.0" layoutY="26.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
-         <graphic>
-            <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
-         </graphic>
+         <font>
+            <Font size="10.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

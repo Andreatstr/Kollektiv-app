@@ -14,8 +14,8 @@ public class WashingTable {
 
     private List<Task> tasks = new ArrayList<>();
 
-    public WashingTable() {
-    }
+  public WashingTable() {
+  }
 
     public WashingTable(List<Person> persons,List<Task> tasks ) {
         this.tasks = tasks;
@@ -26,13 +26,13 @@ public class WashingTable {
         washingPlans.add(plan);
     }
 
-    public List<WashingPlan> getWashingPlans() {
-        return washingPlans;
-    }
+  public List<WashingPlan> getWashingPlans() {
+    return washingPlans;
+  }
 
-    public void clearWashingPlans() {
-        washingPlans.clear();
-    }
+  public void clearWashingPlans() {
+    washingPlans.clear();
+  }
 
     public void setWashingPlans(List<WashingPlan> washingPlans)
     {

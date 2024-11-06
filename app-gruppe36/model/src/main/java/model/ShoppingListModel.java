@@ -16,7 +16,7 @@ public class ShoppingListModel implements UpdateEvent {
     private List<Item> shoppingListHistory = new ArrayList<Item>();
     private HouseManager houseManager;
 
-    private Integer daysInHistory = 14;
+  private Integer daysInHistory = 14;
 
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";

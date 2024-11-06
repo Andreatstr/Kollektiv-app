@@ -1,6 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "[java]": {
+        "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
     "java.test.config": [

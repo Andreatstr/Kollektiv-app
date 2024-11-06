@@ -8,33 +8,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListHistoryView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListHistoryView">
    <children>
-      <TableView fx:id="ShoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="706.0">
+      <TableView fx:id="shoppingListTable" layoutX="97.0" layoutY="100.0" prefHeight="570.0" prefWidth="711.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="itemColumnHistory" prefWidth="411.20003509521484" text="Item" />
-            <TableColumn fx:id="countColumnHistory" prefWidth="82.39999389648438" text="Count" />
-            <TableColumn fx:id="whenColumnHistory" prefWidth="211.20001220703125" text="When" />
+            <TableColumn fx:id="itemColumnHistory" prefWidth="411.20003509521484" styleClass="tableColumn" text="Item" />
+            <TableColumn fx:id="countColumnHistory" prefWidth="82.39999389648438" styleClass="tableColumn" text="Count" />
+            <TableColumn fx:id="whenColumnHistory" prefWidth="211.20001220703125" styleClass="tableColumn" text="When" />
          </columns>
       </TableView>
-      <Button fx:id="BackFromShoppingListHistory" layoutX="29.0" layoutY="38.0" mnemonicParsing="false" onAction="#ButtonBackFromShoppingListHistory" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
-         <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </graphic>
-      </Button>
       <Label layoutX="232.0" layoutY="30.0" text="Handleliste Historikk">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="HomeButton" layoutX="806.0" layoutY="20.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="830.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="30.0" prefWidth="30.0" styleClass="homeButton">
          <graphic>
-            <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="HouseImage" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
+      </Button>
+      <Button fx:id="backFromShoppingListHistory" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListHistory" prefHeight="23.0" prefWidth="66.0" styleClass="backButton" text="Tilbake">
+         <graphic>
+            <Label prefHeight="25.0" prefWidth="8.0" text="&lt;">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </graphic>
+         <font>
+            <Font size="10.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

@@ -1,26 +1,26 @@
 package view;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.IOException;
 
 public class MainMenuView {
 
-    @FXML
-    private Button openLoginHouseIDButton;
+  @FXML
+  private Button openLoginButton;
 
-    @FXML
-    private Button openCreateHouseIDButton;
+  @FXML
+  private Button openCreateButton;
 
-    @FXML
-    void ButtonToLoginHouseID(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "LoginHouseID.fxml");
-    }
+  @FXML
+  void buttonToLogin(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "LoginHouseID.fxml");
+  }
 
-    @FXML
-    void ButtonToCreateHouseID(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
-    }
+  @FXML
+  void buttonToCreate(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
+  }
 
 }

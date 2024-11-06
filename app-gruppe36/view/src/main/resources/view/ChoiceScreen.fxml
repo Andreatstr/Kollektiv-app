@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChoiceScreenView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChoiceScreenView">
    <children>
-      <Button fx:id="BackFromChoiceScreen" layoutX="69.0" layoutY="78.0" mnemonicParsing="false" onAction="#ButtonBackFromChoiceScreen" prefHeight="25.0" prefWidth="98.0" text="Logg ut">
+      <Button fx:id="backFromChoiceScreen" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackFromChoiceScreen" prefHeight="40.0" prefWidth="100.0" text="Logg ut" styleClass="backButton">
          <font>
             <Font size="18.0" />
          </font>
@@ -17,12 +17,17 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="openWashingPlanOverviewButton" layoutX="122.0" layoutY="220.0" mnemonicParsing="false" onAction="#ButtonOpenWashingPlanOverview" prefHeight="430.0" prefWidth="287.0" text="Vaskeplan" textAlignment="CENTER">
+      <Button fx:id="openWashingPlanOverviewButton" layoutX="69.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenWashingPlanOverview" prefHeight="430.0" prefWidth="238.0" text="Vaskeplan" textAlignment="CENTER" styleClass="sceneButton">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="openShoppingListOverviewButton" layoutX="508.0" layoutY="220.0" mnemonicParsing="false" onAction="#ButtonOpenShoppingListOverview" prefHeight="430.0" prefWidth="287.0" text="Handleliste" textAlignment="CENTER">
+      <Button fx:id="openShoppingListOverviewButton" layoutX="343.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenShoppingListOverview" prefHeight="430.0" prefWidth="238.0" text="Handleliste" textAlignment="CENTER" styleClass="sceneButton">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="openTrash" layoutX="618.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOpenTrash" prefHeight="430.0" prefWidth="238.0" text="Bosstømming" textAlignment="CENTER" styleClass="sceneButton">
          <font>
             <Font size="24.0" />
          </font>

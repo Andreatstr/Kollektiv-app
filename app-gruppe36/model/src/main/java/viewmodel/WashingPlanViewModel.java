@@ -1,13 +1,12 @@
 package viewmodel;
 
-import java.util.ArrayList;
-import java.util.List;
-
+// import java.util.ArrayList;
+// import data.WashingTable;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.WashingPlanModel;
@@ -16,7 +15,7 @@ public class WashingPlanViewModel {
     
     public static WashingPlanViewModel washingPlanViewModel;
     private WashingPlanModel washingPlanModel;
-    public int currentWeek = 1;
+    private int currentWeek = 1;
     public int startWeek;
     public int endWeek;
 
@@ -24,26 +23,27 @@ public class WashingPlanViewModel {
     private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
     private ObservableList<WashingPlanEntry> washingPlanEntry = FXCollections.observableArrayList();
 
-    private WashingPlanViewModel() {
-        washingPlanModel = WashingPlanModel.getInstance();
-    }
+  private WashingPlanViewModel() {
+    washingPlanModel = WashingPlanModel.getInstance();
+  }
 
-    public static WashingPlanViewModel getInstance() {
-        if (washingPlanViewModel != null)
-            return washingPlanViewModel;
-        washingPlanViewModel = new WashingPlanViewModel();
-        return washingPlanViewModel;
+  public static WashingPlanViewModel getInstance() {
+    if (washingPlanViewModel != null) {
+      return washingPlanViewModel;
     }
+    washingPlanViewModel = new WashingPlanViewModel();
+    return washingPlanViewModel;
+  }
 
-    public void addTask(String task) {
-        if (task == null || task.isEmpty()) {
-            System.out.println("Task field is null or empty");
-            return;
-        } 
-        Task newTask = new Task(task);
-        washingPlanModel.addTask(newTask);
-        updateWashingPlanTasks();
+  public void addTask(String task) {
+    if (task == null || task.isEmpty()) {
+      System.out.println("Task field is null or empty");
+      return;
     }
+    Task newTask = new Task(task);
+    washingPlanModel.addTask(newTask);
+    updateWashingPlanTasks();
+  }
 
     public void addPerson(String person) {
         if (person == null || person.isEmpty()) {
@@ -90,15 +90,15 @@ public class WashingPlanViewModel {
         washingPlanEntry.addAll(weekPlans);
     }
 
-    public void updateWashingPlanPersons() {
-        washingPlanPersons.clear();
-        washingPlanPersons.addAll(washingPlanModel.getWashingPlanPersons());
-    }
+  public void updateWashingPlanPersons() {
+    washingPlanPersons.clear();
+    washingPlanPersons.addAll(washingPlanModel.getWashingPlanPersons());
+  }
 
-    public void updateWashingPlanTasks() {
-        washingPlanTasks.clear();
-        washingPlanTasks.addAll(washingPlanModel.getWashingPlanTasks());
-    }
+  public void updateWashingPlanTasks() {
+    washingPlanTasks.clear();
+    washingPlanTasks.addAll(washingPlanModel.getWashingPlanTasks());
+  }
 
     public ObservableList<WashingPlanEntry> getWashingPlanEntries() {
         washingPlanEntry.clear();
@@ -116,13 +116,13 @@ public class WashingPlanViewModel {
         washingPlanModel.editWashingPlan();
     }
 
-    public ObservableList<Task> getWashingPlanTasks() {
-        return washingPlanTasks;
-    }
+  public ObservableList<Task> getWashingPlanTasks() {
+    return washingPlanTasks;
+  }
 
-    public ObservableList<Person> getWashingPlanPersons() {
-        return washingPlanPersons;
-    }
+  public ObservableList<Person> getWashingPlanPersons() {
+    return washingPlanPersons;
+  }
 
     public int getCurrentWeek() {
         return washingPlanModel.getCurrentWeek();
@@ -141,17 +141,17 @@ public class WashingPlanViewModel {
     }
 
 
-    public void setEndWeek(String toWeekInput) {
-        if (!isInteger(toWeekInput)) {
-            throw new IllegalArgumentException("To Week is not a valid integer.");
-        }
-        int toWeek = Integer.parseInt(toWeekInput);
-        this.endWeek = toWeek;
+  public void setEndWeek(String toWeekInput) {
+    if (!isInteger(toWeekInput)) {
+      throw new IllegalArgumentException("To Week is not a valid integer.");
     }
+    int toWeek = Integer.parseInt(toWeekInput);
+    this.endWeek = toWeek;
+  }
 
-    public int getEndWeek() {
-        return endWeek;
-    }
+  public int getEndWeek() {
+    return endWeek;
+  }
 
     public boolean isInteger(String input) {
         try {

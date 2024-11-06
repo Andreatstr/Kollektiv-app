@@ -1,5 +1,7 @@
 package model;
 
+// import java.util.Collection;
+import data.House;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class HouseManager {
 
     private House selectedHouse;
 
-    private static HouseManager instance;
+  private static HouseManager instance;
 
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 

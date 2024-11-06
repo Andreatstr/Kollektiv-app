@@ -19,61 +19,61 @@ public class WashingPlanView {
 
     private WashingPlanViewModel washingPlanViewModel;
 
-    public WashingPlanView() {
-        washingPlanViewModel = WashingPlanViewModel.getInstance();
-    }
-    
-    @FXML
-    private Button BackFromWashingPlan;
+  public WashingPlanView() {
+    washingPlanViewModel = WashingPlanViewModel.getInstance();
+  }
 
-    @FXML
-    private Button editWashingPlan;
+  @FXML
+  private Button backFromWashingPlan;
 
-    @FXML
-    private TableView<WashingPlanEntry> newWashingPlanTable;
+  @FXML
+  private Button editWashingPlan;
 
-    @FXML
-    private Button leftArrowButton;
+  @FXML
+  private TableView<WashingPlanEntry> newWashingPlanTable;
 
-    @FXML
-    private TableColumn<WashingPlanEntry, String> listOfNamesForWashingPlan;
+  @FXML
+  private Button leftArrowButton;
 
-    @FXML
-    private TableColumn<WashingPlanEntry, String> listOfTasksForWashingPlan;
+  @FXML
+  private TableColumn<WashingPlanEntry, String> listOfNamesForWashingPlan;
 
-    @FXML
-    private Button rightArrowButton;
+  @FXML
+  private TableColumn<WashingPlanEntry, String> listOfTasksForWashingPlan;
 
-    @FXML
-    private Button HomeButton;
+  @FXML
+  private Button rightArrowButton;
 
-    @FXML
-    private Label weekNumberField;
+  @FXML
+  private Button homeButton;
 
-    @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
+  @FXML
+  private Label weekNumberField;
 
-    @FXML
-    void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
-    }
+  @FXML
+  void buttonHome(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+  }
 
-    @FXML
-    void ButtonEditWashingPlan(ActionEvent event) throws IOException {
+  @FXML
+  void buttonBackFromWashingPlan(ActionEvent event) throws IOException {
+    SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
+  }
+
+  @FXML
+  void buttonEditWashingPlan(ActionEvent event) throws IOException {
         washingPlanViewModel.editWashingPlan();
-        SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
-    }
+    SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
+  }
 
     @FXML
-    void ButtonLeftArrow(ActionEvent event) {
+    void buttonLeftArrow(ActionEvent event) {
         washingPlanViewModel.previousWeek(); 
         weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     }
 
     @FXML
-    void ButtonRightArrow(ActionEvent event) {
+    void buttonRightArrow(ActionEvent event) {
         washingPlanViewModel.nextWeek(); 
         weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     }
@@ -81,11 +81,11 @@ public class WashingPlanView {
     public void initialize () {
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(30);  
+        imageView.setFitHeight(30); 
         imageView.setPreserveRatio(true);
 
-        HomeButton.setGraphic(imageView);
+        homeButton.setGraphic(imageView);
         
         listOfNamesForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("person"));
         listOfTasksForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));

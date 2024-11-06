@@ -1,16 +1,14 @@
 package view;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
-
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,7 +25,7 @@ public class ShoppingListTest extends ApplicationTest {
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
-        // Sjekke hvor mange elementer som er i listen
+        // Check how many elements are in the list
         table = lookup("#table").queryTableView();
     }
 
@@ -35,10 +33,10 @@ public class ShoppingListTest extends ApplicationTest {
     public void testItemNavnFeltInput() {
         ObservableList<?> items = table.getItems();
         antallTing = items.size();
-        // Simulerer å skrive "Epler" i ItemNavnFelt
+        // Simulate writing "Epler" in ItemNavnFelt
         clickOn("#itemNameInput").write("Vaskemiddel");
         clickOn("#itemCountInput").write("1");
-        clickOn("#AddButton");
+        clickOn("#addButton");
 
         //Nødvendig?
         try {
@@ -49,11 +47,11 @@ public class ShoppingListTest extends ApplicationTest {
             System.out.println("Kunne ikke pause!");
         }
 
-        // Verifiserer at input feltene tømte seg
+        // Verify that input fields are empty
         verifyThat("#itemNameInput", hasText(""));
         verifyThat("#itemCountInput", hasText(""));
 
-        // Sjekker at et nytt element er lagt til i listen:
+        // Check that new element is added to list
         // assertEquals((antallTing + 1), items.size(), "Elementet ble ikke lagt til i
         // listen.");
 

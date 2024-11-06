@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import viewmodel.MenueViewModel;
 
 public class LogInHouseIDView {
@@ -23,7 +21,7 @@ public class LogInHouseIDView {
     private Button HomeButton;
 
     @FXML
-    private TextField loginHouseIDField;    // må legge til sjekk at ID finnes
+    private TextField loginHouseIDField;    //must add check to see if ID already exist
     
     @FXML
     void ButtonHome(ActionEvent event) throws IOException {
@@ -43,7 +41,7 @@ public class LogInHouseIDView {
         }
         else
         {
-            //Vise at id ikke finnes
+            //Show that ID does not exist
         }
     }
     public void initialize() {
