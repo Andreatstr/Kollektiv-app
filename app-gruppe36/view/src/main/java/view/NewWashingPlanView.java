@@ -45,12 +45,6 @@ public class NewWashingPlanView {
     public NewWashingPlanView() {
         washingPlanViewModel = WashingPlanViewModel.getInstance();
     }
-    
-    private WashingPlanViewModel washingPlanViewModel;
-
-    public NewWashingPlanView() {
-        washingPlanViewModel = WashingPlanViewModel.getInstance();
-    }
 
     @FXML
     private Button BackFromNewWashingPlan;
@@ -81,10 +75,6 @@ public class NewWashingPlanView {
 
     @FXML
     private TableColumn<Task, String> listOfTasksForNewWashingPlan;
-    private TableColumn<Person, String> listOfNamesForNewWashingPlan;
-
-    @FXML
-    private TableColumn<Task, String> listOfTasksForNewWashingPlan;
 
     @FXML
     private TableView<Person> newWashingPlanNameTable;
@@ -107,9 +97,6 @@ public class NewWashingPlanView {
         addTaskField.setText("");
     }
 
-    @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     @FXML
     void ButtonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");

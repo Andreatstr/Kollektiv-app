@@ -1,13 +1,5 @@
 package view;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,27 +10,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
-
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import viewmodel.WashingPlanViewModel;
-
 import java.io.IOException;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
-import java.util.List;
 
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
+
 
 public class WashingPlanView {
 
@@ -56,17 +31,14 @@ public class WashingPlanView {
 
     @FXML
     private TableView<WashingPlanEntry> newWashingPlanTable;
-    private TableView<WashingPlanEntry> newWashingPlanTable;
 
     @FXML
     private Button leftArrowButton;
 
     @FXML
     private TableColumn<WashingPlanEntry, String> listOfNamesForWashingPlan;
-    private TableColumn<WashingPlanEntry, String> listOfNamesForWashingPlan;
 
     @FXML
-    private TableColumn<WashingPlanEntry, String> listOfTasksForWashingPlan;
     private TableColumn<WashingPlanEntry, String> listOfTasksForWashingPlan;
 
     @FXML
@@ -76,15 +48,7 @@ public class WashingPlanView {
     private Button HomeButton;
 
     @FXML
-    private Button HomeButton;
-
-    @FXML
     private Label weekNumberField;
-
-    @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-    }
 
     @FXML
     void ButtonHome(ActionEvent event) throws IOException {
