@@ -1,8 +1,10 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 // import java.security.SecureRandom;
+import java.util.Map;
 
 public class House {
 
@@ -12,6 +14,7 @@ public class House {
   private List<Person> washingPlanPerson = new ArrayList<Person>();
   private List<Task> washingPlanTask = new ArrayList<Task>();
   private List<WashingTable> washingTable = new ArrayList<WashingTable>();
+  private Map<Integer, List<String>> wastePlan = new HashMap<>();
 
   public House() {
   }
@@ -68,4 +71,11 @@ public class House {
     this.washingTable = washingTable;
   }
 
+  public Map<Integer, List<String>> getWastePlan() {
+    return wastePlan;
+  }
+
+  public void setWastePlan(Map<Integer, List<String>> wastePlan) {
+    this.wastePlan = wastePlan;
+  }
 }

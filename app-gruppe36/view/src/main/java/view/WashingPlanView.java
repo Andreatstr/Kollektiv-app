@@ -105,8 +105,8 @@ public class WashingPlanView {
   public void initialize() {
     Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
     ImageView imageView = new ImageView(image);
-    imageView.setFitWidth(66);
-    imageView.setFitHeight(63);
+    imageView.setFitWidth(30);
+    imageView.setFitHeight(30);
     imageView.setPreserveRatio(true);
     homeButton.setGraphic(imageView);
     

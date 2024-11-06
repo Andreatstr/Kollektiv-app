@@ -5,9 +5,7 @@ import model.HouseManager;
 public class MenueViewModel {
 
   private String proposedHouseId;
-
   private static MenueViewModel instance;
-
   private HouseManager houseManager;
 
   private MenueViewModel() {

@@ -118,7 +118,7 @@ public class WashingPlanModel {
 
   public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
     if (weekNumber < 1 || weekNumber > washingTables.size()) {
-      return new ArrayList<>(); // returns empty if week is out of range
+      return new ArrayList<>();       // returns empty if week is out of range
     }
     return washingTables.get(weekNumber - 1).getWashingPlans();
   }

@@ -1,6 +1,5 @@
 package model;
 
-// import json.JsonFileManager;
 import data.House;
 import data.Item;
 import java.util.ArrayList;
@@ -67,7 +66,6 @@ public class ShoppingListModel {
   }
 
   public void addItem(Item newItem) {
-    // Sjekke at produktet ikke eksisterer allerede isåfall legg til Funker ikke
     for (Item item : shoppingList) {
       if (item.getItemName().equals(newItem.getItemName())) {
         item.setItemCount(item.getItemCount() + newItem.getItemCount());

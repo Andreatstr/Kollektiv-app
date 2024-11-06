@@ -71,7 +71,6 @@ public class WashingPlanViewModel {
     if (currentWeek < endWeek) {
       currentWeek++;
       washingPlanModel.setCurrentWeek(currentWeek);
-      System.out.println("Moving to next week: " + currentWeek); // debug comment
       updateWashingPlans();
     }
   }
@@ -80,7 +79,6 @@ public class WashingPlanViewModel {
     if (currentWeek > startWeek) {
       currentWeek--;
       washingPlanModel.setCurrentWeek(currentWeek);
-      System.out.println("Moving to previous week: " + currentWeek); // debug comment
       updateWashingPlans();
     }
   }
@@ -129,7 +127,6 @@ public class WashingPlanViewModel {
   }
 
   public ObservableList<WashingPlan> getWashingPlans() {
-    // updateWashingPlans(); // works for tests
     return washingPlans;
   }
 
@@ -142,38 +139,25 @@ public class WashingPlanViewModel {
   }
 
   public int getCurrentWeek() {
-    // System.out.println("current week in wpVm: " + currentWeek);
-    // System.out.println("current week in wpm: " +
-    // washingPlanModel.getCurrentWeek());
     return washingPlanModel.getCurrentWeek();
   }
 
   public void setCurrentWeek(int week) {
     currentWeek = week;
     washingPlanModel.setCurrentWeek(week);
-    // System.out.println("current week in wpm: " +
-    // washingPlanModel.getCurrentWeek());
   }
 
   public boolean isThisTheFirstWeek(int thisWeek) {
     if (startWeek == thisWeek) {
-      // System.out.println("true start Week: " + startWeek);
-      // System.out.println("this Week: " + thisWeek);
       return true;
     }
-    // System.out.println("false start Week: " + startWeek);
-    // System.out.println("this Week: " + thisWeek);
     return false;
   }
 
   public boolean isThisTheLastWeek(int thisWeek) {
     if (endWeek == thisWeek) {
-      // System.out.println("true end Week: " + endWeek);
-      // System.out.println("this Week: " + thisWeek);
       return true;
     }
-    // System.out.println("false end Week: " + endWeek);
-    // System.out.println("this Week: " + thisWeek);
     return false;
   }
 
@@ -212,15 +196,10 @@ public class WashingPlanViewModel {
   }
 
   public void reset() {
-    // System.out.println("Resetting WashingPlanViewModel...");
     washingPlanPersons.clear();
     washingPlanTasks.clear();
     washingPlans.clear();
     currentWeek = 1;
-    // System.out.println("Reset complete. Current week: " + currentWeek);
-    // System.out.println("Persons: " + washingPlanPersons.size());
-    // System.out.println("Tasks: " + washingPlanTasks.size());
-    // System.out.println("Plans: " + washingPlans.size());
     washingPlanModel.reset();
   }
 }
