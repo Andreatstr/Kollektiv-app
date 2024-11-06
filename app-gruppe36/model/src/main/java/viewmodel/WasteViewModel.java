@@ -13,7 +13,7 @@ public class WasteViewModel {
   private WasteModel wasteModel;
   private ObservableList<Waste> wasteCollectionData = FXCollections.observableArrayList();
 
-  private WasteViewModel() {
+  public WasteViewModel() {
     wasteModel = WasteModel.getInstance();
   }
   
@@ -51,5 +51,6 @@ public class WasteViewModel {
     wasteCollectionData.clear();
     wasteModel.scrapeWasteCollection();
     updateWasteTable();
+    System.out.println("Scraped and updated");
   }
 }

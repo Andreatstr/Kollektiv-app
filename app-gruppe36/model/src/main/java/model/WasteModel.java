@@ -12,11 +12,11 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class WasteModel {
-  private static WasteModel wasteModel = null;
+  public static WasteModel wasteModel = null;
   private House collective;
   private Map<Integer, List<String>> wastePlan = new HashMap<>();
   
-  private WasteModel() {
+  public WasteModel() {
     readWastePlanFromFile();
   }
 
@@ -40,7 +40,7 @@ public class WasteModel {
 
   public Map<Integer, List<String>> getWastePlan() {
     if (wastePlan.isEmpty()) {
-      return null;
+      return new HashMap<>();
     }
     return wastePlan;
   }
