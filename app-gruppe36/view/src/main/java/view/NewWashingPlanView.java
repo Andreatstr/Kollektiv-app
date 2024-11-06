@@ -2,12 +2,18 @@ package view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import data.Item;
+import viewmodel.WashingPlanViewModel;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import data.Item;
 import viewmodel.WashingPlanViewModel;
@@ -22,8 +28,23 @@ import data.WashingPlanEntry;
 import data.WashingTable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.List;
+
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class NewWashingPlanView {
+    
+    private WashingPlanViewModel washingPlanViewModel;
+
+    public NewWashingPlanView() {
+        washingPlanViewModel = WashingPlanViewModel.getInstance();
+    }
     
     private WashingPlanViewModel washingPlanViewModel;
 
@@ -60,6 +81,10 @@ public class NewWashingPlanView {
 
     @FXML
     private TableColumn<Task, String> listOfTasksForNewWashingPlan;
+    private TableColumn<Person, String> listOfNamesForNewWashingPlan;
+
+    @FXML
+    private TableColumn<Task, String> listOfTasksForNewWashingPlan;
 
     @FXML
     private TableView<Person> newWashingPlanNameTable;
@@ -82,6 +107,9 @@ public class NewWashingPlanView {
         addTaskField.setText("");
     }
 
+    @FXML
+    void ButtonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     @FXML
     void ButtonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
@@ -134,8 +162,8 @@ public class NewWashingPlanView {
         // ---//
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);
-        imageView.setFitHeight(63);
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
         HomeButton.setGraphic(imageView);
 
