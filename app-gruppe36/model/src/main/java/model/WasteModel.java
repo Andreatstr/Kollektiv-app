@@ -27,7 +27,6 @@ public class WasteModel {
 
   private void storeToFile() {
     collective.setWastePlan(wastePlan);
-    HouseManager.getInstance().saveHouse();
   }
 
   public static WasteModel getInstance() {

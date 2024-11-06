@@ -25,7 +25,7 @@ public class ChoiceScreenView {
   private Button openWashingPlanOverviewButton;
 
     @FXML
-    void ButtonBackFromChoiceScreen(ActionEvent event) throws IOException {
+    void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
         MenueViewModel.getInstance().logOut();
         SceneSwitcher.switchToScene(event, "MainMenu.fxml");
     }

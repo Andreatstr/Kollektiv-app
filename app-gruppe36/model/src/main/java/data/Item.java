@@ -58,6 +58,12 @@ public class Item {
         this.bougthDate = formatter.format(LocalDate.now());
     }
 
+    public String getBoughtDate() {
+      if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
+      return bougthDate;
+    }
+  
+
   public boolean timePassed(Integer days) {
     if (bougthDate == null) {
       String message = "The date for this object has not been set, boughtDate is null";

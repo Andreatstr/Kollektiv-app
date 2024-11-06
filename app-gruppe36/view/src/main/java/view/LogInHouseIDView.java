@@ -12,13 +12,13 @@ public class LogInHouseIDView {
     MenueViewModel viewModel;
 
     @FXML
-    private Button BackFromLogInHouseID;
+    private Button backFromLogInHouseID;
 
     @FXML
     private Button loginHouseIDButton;
 
     @FXML
-    private Button HomeButton;
+    private Button homeButton;
 
     @FXML
     private TextField loginHouseIDField;    //must add check to see if ID already exist
