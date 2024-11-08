@@ -29,22 +29,16 @@ public class MenueViewModel {
     return HouseManager.getInstance().setHouse(id);
   }
 
-    public String getProposedHouseId()
-    {
+    public String getProposedHouseId() {
         proposedHouseId = houseManager.getNewId();
         return proposedHouseId;
     }
 
-    public void generateHouse()
-    {
+    public void generateHouse() {
         houseManager.CreateHouse(proposedHouseId);
     }
 
-    public void logOut()
-    {
+    public void logOut() {
         houseManager.logOut();
     }
-
-
-
 }

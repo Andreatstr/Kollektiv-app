@@ -54,14 +54,14 @@ public class Item {
     this.bougthDate = bougthDate;
   }
 
-    public void setBoughtDate() {
-        this.bougthDate = formatter.format(LocalDate.now());
-    }
+  public void setBoughtDate() {
+    this.bougthDate = formatter.format(LocalDate.now());
+  }
 
-    public String getBoughtDate() {
-      if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
-      return bougthDate;
-    }
+  public String getBoughtDate() {
+    if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
+    return bougthDate;
+  }
   
 
   public boolean timePassed(Integer days) {

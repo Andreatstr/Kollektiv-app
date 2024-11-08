@@ -9,15 +9,13 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 
 public class ShoppingListModel implements UpdateEvent {
-    private static ShoppingListModel shoppingListModel = null;
 
+    private static ShoppingListModel shoppingListModel = null;
     private House house;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
     private HouseManager houseManager;
-
-  private Integer daysInHistory = 14;
-
+    private Integer daysInHistory = 14;
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
@@ -55,7 +53,7 @@ public class ShoppingListModel implements UpdateEvent {
         return shoppingListHistory;
     }
 
-    /* Metoder som sender til server */
+    // Methods sending to server
     public void addItem(Item newItem) {
         ItemRequest request = new ItemRequest(newItem, house.getId());
         house = restTemplate.postForObject(url + "additem", request, House.class);
@@ -89,5 +87,4 @@ public class ShoppingListModel implements UpdateEvent {
         shoppingList = new ArrayList<Item>();
         shoppingListHistory = new ArrayList<Item>();
     }
-
 }

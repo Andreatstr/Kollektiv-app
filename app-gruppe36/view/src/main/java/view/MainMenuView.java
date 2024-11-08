@@ -22,5 +22,4 @@ public class MainMenuView {
   void buttonToCreate(ActionEvent event) throws IOException {
     SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
   }
-
 }

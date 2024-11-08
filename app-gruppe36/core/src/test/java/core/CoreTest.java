@@ -10,11 +10,10 @@ public class CoreTest {
 
 
     //@Test
-    public void CreateNewHouse()
-    {
+    public void CreateNewHouse() {
         String id = "fffff";
         HouseController houseController = HouseController.getInstance();
-        houseController.CreateHouse(id);
+        houseController.createHouse(id);
         assertEquals(houseController.getHouse(id).getId(),id);
         JsonFileManager.getInstance().deleteHouse(id);
     }

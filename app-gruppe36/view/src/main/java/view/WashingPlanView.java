@@ -1,5 +1,7 @@
 package view;
 
+import data.WashingPlanEntry;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,14 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
-import java.io.IOException;
-import data.WashingPlanEntry;
-
-
 
 public class WashingPlanView {
 
-    private WashingPlanViewModel washingPlanViewModel;
+  private WashingPlanViewModel washingPlanViewModel;
 
   public WashingPlanView() {
     washingPlanViewModel = WashingPlanViewModel.getInstance();
@@ -78,7 +76,7 @@ public class WashingPlanView {
         weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     }
 
-    public void initialize () {
+    public void initialize() {
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(30);  

@@ -1,9 +1,8 @@
 package view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import data.Person;
+import data.Task;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,30 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import data.Item;
-import viewmodel.WashingPlanViewModel;
-
-import javafx.scene.control.cell.PropertyValueFactory;
-import data.Item;
-import viewmodel.WashingPlanViewModel;
-
-import java.io.IOException;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
@@ -110,7 +85,7 @@ public class NewWashingPlanView {
 
   @FXML
   void buttonGenerateWashingPlan(ActionEvent event) throws IOException {
-    System.out.println("Button Pressed"); // debug comment
+    System.out.println("Button Pressed"); 
     String fromWeekInput = fromWeek.getText();
     String toWeekInput = toWeek.getText();
 

@@ -8,10 +8,6 @@ import data.WashingPlanEntry;
 import data.WashingTable;
 import data.House;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class WashingPlanController {
 
     public int currentWeek = 1;
@@ -20,8 +16,7 @@ public class WashingPlanController {
     private WashingPlanController() {
     }
 
-    private void storeToFile()
-    {
+    private void storeToFile() {
         HouseController.getInstance().saveHouse();
     }
 

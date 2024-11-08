@@ -4,23 +4,15 @@ import data.Person;
 import data.Task;
 import java.util.List;
 public class CreateWashingPlanRequest {
-
+    
     public List<Person> persons;
-
     public List<Task> tasks;
-
     public int fromWeek;
-
     public int toWeek;
-
     public String id;
-
-
 
     public CreateWashingPlanRequest() {
     }
-
-    
 
     public CreateWashingPlanRequest(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek, String id) {
         this.persons = persons;

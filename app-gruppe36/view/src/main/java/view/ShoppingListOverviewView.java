@@ -51,5 +51,4 @@ public class ShoppingListOverviewView {
 
     homeButton.setGraphic(imageView);
   }
-
 }

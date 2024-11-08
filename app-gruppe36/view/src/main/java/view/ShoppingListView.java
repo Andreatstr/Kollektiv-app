@@ -1,7 +1,5 @@
 package view;
 
-// import javafx.collections.ListChangeListener;
-// import javafx.collections.FXCollections;
 import data.Item;
 import java.io.IOException;
 import javafx.collections.ObservableList;

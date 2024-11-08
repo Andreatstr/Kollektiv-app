@@ -1,36 +1,24 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
-
-
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingTable;
-import data.requests.ItemListRequest;
 import javafx.collections.FXCollections;
 import viewmodel.WashingPlanViewModel;
 import data.requests.CreateWashingPlanRequest;
 import data.House;
-import data.Item;
-
 
 public class WashingPlanModel implements UpdateEvent {
 
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
-
-  private int currentWeek = 1;
-  private static WashingPlanModel washingPlanModel = null;
-
+    private int currentWeek = 1;
+    private static WashingPlanModel washingPlanModel = null;
     private House house;
-
     private HouseManager houseManager;
-
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
     private WashingTable washingTable = new WashingTable();
@@ -55,13 +43,13 @@ public class WashingPlanModel implements UpdateEvent {
         return washingPlanModel;
     }
 
-  public List<Task> getWashingPlanTasks() {
-    return washingPlanTasks;
-  }
+    public List<Task> getWashingPlanTasks() {
+        return washingPlanTasks;
+    }
 
-  public List<Person> getWashingPlanPersons() {
-    return washingPlanPersons;
-  }
+    public List<Person> getWashingPlanPersons() {
+        return washingPlanPersons;
+    }
 
     public WashingTable getWashingTables() {
         return washingTable;
@@ -123,8 +111,7 @@ public class WashingPlanModel implements UpdateEvent {
         washingPlanViewModel.updateWashingPlanTasks();
     }
 
-    public void editWashingPlan()
-    {
+    public void editWashingPlan() {
         washingPlanPersons = washingTable.getPersons();
         washingPlanTasks = washingTable.getTasks();
         WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
@@ -132,8 +119,7 @@ public class WashingPlanModel implements UpdateEvent {
         washingPlanViewModel.updateWashingPlanTasks();
     }
 
-    public void reset()
-    {
+    public void reset() {
         washingPlanPersons.clear();
         washingPlanTasks.clear();
         washingTable = null;

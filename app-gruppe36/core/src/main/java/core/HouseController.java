@@ -2,10 +2,8 @@ package core;
 
 import java.security.SecureRandom;
 import java.util.List;
-
 import data.House;
 import json.JsonFileManager;
-
 
 public class HouseController {
 
@@ -22,13 +20,13 @@ public class HouseController {
         houses = jsonFileManager.getHouses();
     }
 
-    public static HouseController getInstance() {
+    public static synchronized HouseController getInstance() {
         if (instance == null)
             instance = new HouseController();
         return instance;
     }
 
-    // api
+    // Connects house to REST API
     public House getHouse(String id) {
         for (House house : houses) {
             if (house.getId().equals(id))
@@ -41,8 +39,8 @@ public class HouseController {
         jsonFileManager.saveToFile(houses);
     }
 
-    // api
-    public House CreateHouse(String id) {
+    // Connects house to REST API
+    public House createHouse(String id) {
         House newHouse = new House(id);
         houses.add(newHouse);
         saveHouse();

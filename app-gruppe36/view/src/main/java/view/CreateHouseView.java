@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-// import javafx.scene.image.Image;
-// import javafx.scene.image.ImageView;
 import viewmodel.MenueViewModel;
 
 public class CreateHouseView {
@@ -24,14 +22,6 @@ public class CreateHouseView {
 
   @FXML
   private Button loginButton;
-
-  // @FXML
-  // private Button HomeButton;
-
-  // @FXML
-  // void handleHome(ActionEvent event) throws IOException {
-  // SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  // }
 
   @FXML
   void handleBack(ActionEvent event) throws IOException {

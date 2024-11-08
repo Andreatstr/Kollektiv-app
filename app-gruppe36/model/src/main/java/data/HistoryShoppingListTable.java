@@ -11,7 +11,7 @@ public class HistoryShoppingListTable {
   public HistoryShoppingListTable(String item, int count, String when) {
     this.item = item;
     this.count = count;
-    this.when = when; // Skal vi bruke en int som data??
+    this.when = when;
   }
 
   public String getItem() {

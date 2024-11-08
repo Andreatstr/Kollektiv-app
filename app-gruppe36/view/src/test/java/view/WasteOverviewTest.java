@@ -12,7 +12,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 public class WasteOverviewTest extends ApplicationTest {
 
-  private TableView<?> table;
+    private TableView<?> table;
 
     @Override
     public void start(Stage stage) throws Exception {

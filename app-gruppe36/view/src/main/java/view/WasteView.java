@@ -1,15 +1,12 @@
 package view;
 
-import data.WashingPlanEntry;
 import data.Waste;
 import java.io.IOException;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -19,7 +16,6 @@ import viewmodel.WasteViewModel;
 public class WasteView {
 
   private WasteViewModel wasteViewModel;
-  ObservableList<WasteViewModel> observableList = FXCollections.observableArrayList();
 
   public WasteView() {
     wasteViewModel = WasteViewModel.getInstance();
@@ -57,7 +53,7 @@ public class WasteView {
   }
 
   public void initialize() {
-    //house photo
+    // House photo
     Image imageHouse = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
     ImageView imageViewHouse = new ImageView(imageHouse);
     imageViewHouse.setFitWidth(30);
@@ -65,14 +61,14 @@ public class WasteView {
     imageViewHouse.setPreserveRatio(true);
     homeButton.setGraphic(imageViewHouse);
 
-    //trash photo
+    // Trash photo
     Image imageTrash = new Image(getClass().getResource("/view/img/trash.png").toExternalForm());
     trashPhoto.setFitWidth(200);
     trashPhoto.setFitHeight(200);
     trashPhoto.setPreserveRatio(true);
     trashPhoto.setImage(imageTrash);
 
-    //scrape logic
+    // Scrape logic
     wasteViewModel.getWasteCollectionData().clear();
     wasteViewModel.scrapeWasteCollection();
     weekColumn.setCellValueFactory(new PropertyValueFactory<>("week"));
@@ -89,7 +85,7 @@ public class WasteView {
                 setGraphic(null);
             } else {
                 if (previousWeek[0] != null && week.equals(previousWeek[0])) {
-                    setText("");          //empty if equal to previous week cell
+                    setText("");          // Empty if equal to previous week cell
                 } else {
                     setText(week.toString());
                     previousWeek[0] = week;

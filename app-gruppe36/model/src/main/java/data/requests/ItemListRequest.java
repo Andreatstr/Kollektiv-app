@@ -1,13 +1,11 @@
 package data.requests;
 
 import java.util.List;
-
 import data.Item;
 
 public class ItemListRequest {
 
     public List<Item> items;
-
     public String id;
 
     public ItemListRequest() {

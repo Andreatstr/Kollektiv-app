@@ -1,6 +1,5 @@
 package view;
 
-// import javafx.scene.input.KeyCode;
 import data.Person;
 import data.Task;
 import javafx.fxml.FXMLLoader;

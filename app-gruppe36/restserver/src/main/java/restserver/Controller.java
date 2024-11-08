@@ -1,5 +1,5 @@
 package restserver;
-import java.util.List;
+
 import data.*;
 import data.requests.*;
 import core.*;
@@ -9,61 +9,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-
 @RestController
 @CrossOrigin
 public class Controller {
     
     @GetMapping("/newvalidid")
-    public String getNewValidId()
-    {
+    public String getNewValidId() {
         return HouseController.getInstance().getNewId();
     }
 
     @PostMapping ("/createnewhouse")
-    public House CreateNewHouse(@RequestBody String id)
-    {
-        return HouseController.getInstance().CreateHouse(id);
+    public House CreateNewHouse(@RequestBody String id) {
+        return HouseController.getInstance().createHouse(id);
     }
     
-
-    //logge inn i ett hus
+    // Log in to house
     @PostMapping ("/gethouse")
-    public House GetHouse(@RequestBody String id)
-    {
+    public House GetHouse(@RequestBody String id) {
         return HouseController.getInstance().getHouse(id);
     }
 
-    //ShoppingList
-
+    // ShoppingList
     @PostMapping ("/additem")
-    public House additem(@RequestBody ItemRequest request)
-    {
+    public House additem(@RequestBody ItemRequest request) {
         return ShoppingListController.getInstance().addItem(request.getItem(), request.getId());
     }
 
     @PostMapping ("/buyitems")
-    public House buyItem(@RequestBody ItemListRequest request)
-    {
+    public House buyItem(@RequestBody ItemListRequest request) {
         return ShoppingListController.getInstance().buyItems(request.getItems(), request.getId());
     }
 
     @PostMapping ("/removeitem")
-    public House deleteItems(@RequestBody ItemListRequest request)
-    {
+    public House deleteItems(@RequestBody ItemListRequest request) {
         return ShoppingListController.getInstance().removeItem(request.getItems(), request.getId());
     }
 
-    //WashingPlan
-
+    // WashingPlan
     @PostMapping ("/generateWashingplan")
-    public House generateWashingplan(@RequestBody CreateWashingPlanRequest request)
-    {
+    public House generateWashingplan(@RequestBody CreateWashingPlanRequest request) {
         return WashingPlanController.getInstance().generateWashingPlan(request.persons, request.tasks, request.fromWeek, request.toWeek,request.id);
     }
-    
-
-
 }

@@ -1,26 +1,17 @@
 package model;
 
-// import java.util.Collection;
 import data.House;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import data.House;
 
 public class HouseManager {
 
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
-
     private House selectedHouse;
-
-  private static HouseManager instance;
-
+    private static HouseManager instance;
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {

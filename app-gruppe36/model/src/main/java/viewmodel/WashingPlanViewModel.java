@@ -1,7 +1,5 @@
 package viewmodel;
 
-// import java.util.ArrayList;
-// import data.WashingTable;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
@@ -111,8 +109,7 @@ public class WashingPlanViewModel {
         return washingPlanEntry;
     }
 
-    public void editWashingPlan()
-    {
+    public void editWashingPlan() {
         washingPlanModel.editWashingPlan();
     }
 

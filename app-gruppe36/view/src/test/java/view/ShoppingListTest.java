@@ -1,8 +1,5 @@
 package view;
 
-
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -38,11 +35,9 @@ public class ShoppingListTest extends ApplicationTest {
         clickOn("#itemCountInput").write("1");
         clickOn("#addButton");
 
-        //Nødvendig?
         try {
             Thread.sleep(50);
         }
-
         catch (InterruptedException e) {
             System.out.println("Kunne ikke pause!");
         }

@@ -1,6 +1,5 @@
 package view;
 
-// import javafx.beans.Observable;
 import data.HistoryShoppingListTable;
 import java.io.IOException;
 import javafx.collections.ObservableList;

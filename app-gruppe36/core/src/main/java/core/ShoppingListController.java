@@ -5,38 +5,29 @@ import data.House;
 import data.Item;
 import json.JsonFileManager;
 
-public class ShoppingListController
-{
+public class ShoppingListController {
+
     private static ShoppingListController shoppingListModel = null;
-
-    private Integer daysInHistory = 14;
-
     private JsonFileManager jsonFileManager;
-
     private HouseController controller;
 
-    private ShoppingListController() 
-    {
+    private ShoppingListController() {
         jsonFileManager = JsonFileManager.getInstance();
         controller = HouseController.getInstance();
     }
 
-    public static ShoppingListController getInstance()
-    {   
+    public static synchronized ShoppingListController getInstance() {   
         if (shoppingListModel != null)
             return shoppingListModel;
         shoppingListModel = new ShoppingListController();
         return shoppingListModel;
     }
 
-
-    private void storeToFile()
-    {
+    private void storeToFile() {
         controller.saveHouse();
     }
-    //api 
-    public House addItem(Item newItem, String id)
-    {   
+
+    public House addItem(Item newItem, String id) {     // Connects House to REST API
         House house = controller.getHouse(id);
         if (house == null) return null;
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
@@ -53,9 +44,9 @@ public class ShoppingListController
         storeToFile();
         return house;
     }
-    //api 
-    public House removeItem(List<Item> items, String id)
-    {
+
+
+    public House removeItem(List<Item> items, String id) {    // Connects house to REST API
         House house = controller.getHouse(id);
         if (house == null) return null;
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
@@ -63,9 +54,8 @@ public class ShoppingListController
         storeToFile();
         return house;
     }
-    //api 
-    public House buyItems(List<Item> items, String id)
-    {
+
+    public House buyItems(List<Item> items, String id) {    // Connects house to REST API
         House house = controller.getHouse(id);
         if (house == null) return null;
         List<Item> shoppingListHistory = controller.getHouse(id).getShoppingListHistory();

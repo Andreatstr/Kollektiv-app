@@ -63,7 +63,7 @@ public class WasteModel {
 
       wastePlan.clear();
 
-      //Go through rows in scraped table
+      // Go through rows in scraped table
       for (Element row : rows) {
         String weekText = row.select("td.week").text();
         Elements wasteTypesElements = row.select("td.wastetype_container ul li");

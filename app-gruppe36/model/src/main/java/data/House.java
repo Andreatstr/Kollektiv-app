@@ -3,7 +3,6 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-// import java.security.SecureRandom;
 import java.util.Map;
 
 public class House {
@@ -33,8 +32,7 @@ public class House {
     return id;
   }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
     public void setShoppingList(List<Item> shoppingList) {

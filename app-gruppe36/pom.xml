@@ -88,6 +88,7 @@
                         <consoleOutput>false</consoleOutput>
                         <failsOnError>false</failsOnError>
                         <linkXRef>false</linkXRef>
+                        <suppressionsLocation>/config/checkstyle/exclude.xml</suppressionsLocation>
                     </configuration>
                     <executions>
                         <execution>

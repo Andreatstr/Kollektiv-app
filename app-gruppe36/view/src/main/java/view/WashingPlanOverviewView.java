@@ -48,7 +48,6 @@ public class WashingPlanOverviewView {
     imageView.setFitWidth(30);
     imageView.setFitHeight(30);
     imageView.setPreserveRatio(true);
-
     homeButton.setGraphic(imageView);
   }
 }
