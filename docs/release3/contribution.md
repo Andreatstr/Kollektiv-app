@@ -6,11 +6,11 @@ Denne filen gir en oversikt over hvert medlems bidrag til prosjektet. Alle har d
 Andrea har hatt hovedansvaret for SceneBuilder, JavaFX, og styling, og har utviklet de fleste av appens scener og kontroller samt koblet dem sammen. Sammen med Tonje har hun også hatt hovedansvaret for funksjonalitetene knyttet til vaskeplan og søppelhenting. I tillegg har Andrea gjennomgått Checkstyle-rapportene og rettet opp filer basert på disse.
 
 ## Kristian Håøy Rokne
-Kristian har vært ansvarlig for handlelistedelen av prosjektet, og implementeringen av et ID-system som knytter hvert kollektiv til en unik ID, samt fillagringslogikken. Han har også jobbet med prosjektets arkitektur, lagt ned mye grunnarbeid i prosjektoppsettet, og laget diagrammer til release 2. Server/REST
+Kristian har vært ansvarlig for handlelistedelen av prosjektet, og implementeringen av et ID-system som knytter hvert kollektiv til en unik ID, samt fillagringslogikken. Han har også jobbet med prosjektets arkitektur, lagt ned mye grunnarbeid i prosjektoppsettet, og laget diagrammer til release 2. Sammen med Lars har han også satt opp SpringBoot-server og koblet backend med serveren gjennom REST API.
 
 
 ## Lars Kristian Lerås Furhovde
-Lars har satt opp pipelines i Git som kjøres ved hver push-event, og har implementert Checkstyle og JaCoCo. Han har hatt hovedansvaret for testing og har lagt ned et solid grunnarbeid her. Lars har også håndtert flere administrative oppgaver, som kontakt med studentassistenten og booking av møterom. Server/REST
+Lars har satt opp pipelines i Git som kjøres ved hver push-event, og har implementert Checkstyle og JaCoCo. Han har hatt hovedansvaret for testing og har lagt ned et solid grunnarbeid her. Lars har også håndtert flere administrative oppgaver, som kontakt med studentassistenten og booking av møterom. Sammen med Kristian har han også satt opp SpringBoot-server og koblet backend med serveren gjennom REST API.
 
 
 ## Tonje Halse
