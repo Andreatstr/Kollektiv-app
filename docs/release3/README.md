@@ -30,13 +30,13 @@ Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjekte
 ### Pakkediagram
 
 Pakkediagrammet viser hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Datapakken er et bibliotek for klasser som trengs av flere andre pakker samtidig.
-- Selve pakkediagrammet
+![](diagrams/packageDiagram.png)
 
 
 ### Klassediagram
 
-Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra data pakken.
-- Selve klassediagrammet
+Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra datapakken.
+![](diagrams/classDiagram.png)
 
 
 ### Sekvensdiagram
