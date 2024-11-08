@@ -13,7 +13,7 @@ I dette prosjektet benyttes implisitt lagring istedenfor dokumentmetafor, da det
 ## Brukerhistorie
 
 En brukerhistorie som beskriver den nye boss-funksjonen aiv applikasjonen:
-![En brukerhistorie som beskriver et brukstilfellet av applikasjonen](brukerhistorie2.png)
+![En brukerhistorie som beskriver et brukstilfellet av applikasjonen](diagrams/brukerhistorie2.png)
 
 
 ## Arkitekur og diagrammer
@@ -23,17 +23,18 @@ Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjekte
 
 ### Pakkediagram
 
-- Litt om pakkediagrammet: Et pakkedigram for løsningen...osv
+Pakkediagrammet viser hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Datapakken er et bibliotek for klasser som trengs av flere andre pakker samtidig.
 - Selve pakkediagrammet
 
 
 ### Klassediagram
 
-- Litt om klassediagrammet: Et klassediagram for viktigste deler av systemet...osv
+Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra data pakken.
 - Selve klassediagrammet
 
 
 ### Sekvensdiagram
 
-- Litt om sekvensdiagrammet: Et sekvensdiagram for et viktig brukstilfelle, som viser koblingen mellom brukerinteraksjon og hva som skjer inni systemet inkl. REST-kall... osv
-- Selve sekvensdiagrammet
+Sekvensdiagrammet viser koblingen mellom brukerinteraksjon og det som skjer inni systemet for et viktig brukstilfellet. Brukstilfellet er når bruker oppretter et nytt kollektiv med tilhørende ID, og videre oppretter en ny vaskeplan i applikasjonen.
+
+![](diagrams/sequenceDiagram.png)

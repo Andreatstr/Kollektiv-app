@@ -2,9 +2,9 @@
 
 Her presenteres et bærekraftsdiagram (SusAD), utviklet med utgangspunkt i Sustainability Awareness-rammeverket (SusAF), sammen med en tilhørende tabell. Diagrammet og tabellen illustrerer de ulike bærekraftsaspektene ved appen, samt deres respektive påvirkninger. Under diagrammet og tabellen følger en beskrivelse av hver virkning og hvordan de ulike aspektene henger sammen.
 
-![En brukerhistorie som beskriver et brukstilfellet av applikasjonen](SusAD.png)
+![](diagrams/SusAD.png)
 
-![En brukerhistorie som beskriver et brukstilfellet av applikasjonen](SusTable.png)
+![](diagrams/SusTable.png)
 
 
 ### Samhold i kollektivet 
