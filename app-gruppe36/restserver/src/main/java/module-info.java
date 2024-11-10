@@ -5,4 +5,6 @@ module restserver {
     requires model;
     requires core;
     exports restserver;
+    requires java.net.http;
+    //requires org.junit.jupiter.api;
 }

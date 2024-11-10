@@ -13,12 +13,13 @@
     <artifactId>integrationtest</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
+<dependencyManagement>
+</dependencyManagement>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <jetty.port>8999</jetty.port>
-        <jetty.port.stop>9000</jetty.port>
+        <jetty.port>8080</jetty.port>
+        <jetty.port.stop>8081</jetty.port.stop>
     </properties>
 
     <dependencies>
@@ -26,28 +27,43 @@
         <dependency>
             <groupId>gr36</groupId>
             <artifactId>core</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>gr36</groupId>
             <artifactId>view</artifactId>
-            <version>${project.version}</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>gr36</groupId>
             <artifactId>restserver</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.0</version>
         </dependency>
+
+        <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet-core</artifactId>
+        <version>2.27</version>
+        </dependency>
+        <dependency>
+        <groupId>org.glassfish.jersey.inject</groupId>
+        <artifactId>jersey-hk2</artifactId>
+        <version>2.27</version>
+        </dependency>
+
+        
 
         <!-- TestFX for JavaFX testing -->
         <dependency>
@@ -77,6 +93,21 @@
                     <version>jdk-12.0.1+2</version>
                     <scope>test</scope>
                 </dependency>
+            <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>11.0.15</version> <!-- Or your Jetty version -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-logging-juli</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
             </dependencies>
         </profile>
     </profiles>
@@ -98,7 +129,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>11.0.12</version>
+                <version>11.0.24</version>
                 <configuration>
                     <httpConnector>
                         <port>${jetty.port}</port>
@@ -124,27 +155,26 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Failsafe Plugin -->
+
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <skipTests>${skipUiTests}</skipTests>
-                    <systemPropertyVariables>
-                        <headless>${headlessTests}</headless>
-                        <jetty.port>${jetty.port}</jetty.port>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.0.0-M1</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <systemPropertyVariables>
+                    <jetty.port>${jetty.port}</jetty.port>
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 </project>
