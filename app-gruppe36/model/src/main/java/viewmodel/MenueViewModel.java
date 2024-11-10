@@ -48,7 +48,4 @@ public class MenueViewModel {
     {
         houseManager.logOut();
     }
-
-
-
 }

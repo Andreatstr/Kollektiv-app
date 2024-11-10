@@ -1,8 +1,14 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -16,10 +22,16 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
+import data.WashingTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import viewmodel.WashingPlanViewModel;
@@ -27,6 +39,7 @@ import restapi.DummyApi;
 
 public class WashingPlanViewModelTest {
 
+    //private HouseManager houseManager;
     private static WashingPlanViewModel washingPlanViewModel;
     private static WashingPlanModel mockWashingPlanModel;
     private WashingPlanModel washingPlanModel;
@@ -38,6 +51,7 @@ public class WashingPlanViewModelTest {
 
     @BeforeEach
     public void setUp() {
+        MockitoAnnotations.openMocks(this);
         washingPlanViewModel = WashingPlanViewModel.getInstance();
         mockWashingPlanModel = mock(WashingPlanModel.class);
         setWashingPlanModel(washingPlanViewModel, mockWashingPlanModel);

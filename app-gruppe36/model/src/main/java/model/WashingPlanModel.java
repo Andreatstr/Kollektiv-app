@@ -132,6 +132,10 @@ public class WashingPlanModel implements UpdateEvent {
         washingPlanViewModel.updateWashingPlanTasks();
     }
 
+    public void setWashingTable(WashingTable washingTable) {
+        this.washingTable = washingTable;
+    }
+
     public void reset() {
         washingPlanPersons.clear();
         washingPlanTasks.clear();

@@ -16,11 +16,8 @@ import restapi.*;
 public class HouseManager {
 
     public RestApi api;
- 
     private House selectedHouse;
-
     private static HouseManager instance;
-
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {
@@ -70,7 +67,6 @@ public class HouseManager {
         for (UpdateEvent subscriber : subscriptions) {
             subscriber.updateEvent();
         }
-
     }
 
     public String getNewId() {

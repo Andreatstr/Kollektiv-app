@@ -36,11 +36,9 @@ public class ShoppingListViewModelTest {
     public void testAddItemInvalidCount() {
         int initialSize = viewModel.getShoppingList().size();
 
-        // Try adding an item with an empty count
         viewModel.addItem("Bread", "");
         assertEquals(initialSize, viewModel.getShoppingList().size(), "Shopping list size should remain the same with an empty count");
     
-        // Try adding an item with a non-numeric count
         viewModel.addItem("Bread", "abc");
         assertEquals(initialSize, viewModel.getShoppingList().size(), "Shopping list size should remain the same with a non-numeric count");
     }
