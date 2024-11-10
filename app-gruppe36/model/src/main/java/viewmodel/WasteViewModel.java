@@ -13,7 +13,7 @@ import model.WasteModel;
  */
 public class WasteViewModel {
 
-    public static WasteViewModel wasteViewModel;
+    private static WasteViewModel wasteViewModel;
     private WasteModel wasteModel;
     private ObservableList<Waste> wasteCollectionData = FXCollections.observableArrayList();
 
@@ -23,6 +23,10 @@ public class WasteViewModel {
 
     public ObservableList<Waste> getWasteCollectionData() {
         return wasteCollectionData;
+    }
+
+    public static void setWasteViewModel(WasteViewModel viewModel) {
+        wasteViewModel = viewModel;
     }
 
     /**

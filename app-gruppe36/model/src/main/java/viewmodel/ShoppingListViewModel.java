@@ -13,10 +13,9 @@ import model.ShoppingListModel;
  * buying, removing items, and updating the shopping list.
  */
 public class ShoppingListViewModel {
-    public static ShoppingListViewModel shoppingListViewModel;
 
+    private static ShoppingListViewModel shoppingListViewModel;
     private ShoppingListModel shoppingListModel;
-
     private ObservableList<Item> shoppingList = FXCollections.observableArrayList();
     private ObservableList<HistoryShoppingListTable> shopHist = FXCollections.observableArrayList();
 

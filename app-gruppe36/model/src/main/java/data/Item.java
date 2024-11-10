@@ -70,7 +70,7 @@ public class Item {
      * Otherwise, it will return the value of `bougthDate`.
      */
     public String getBoughtDate() {
-        if (bougthDate.equals(null) || bougthDate.equals("")) {
+        if (bougthDate == null || bougthDate.equals("")) {
             return "?";
         }
         return bougthDate;

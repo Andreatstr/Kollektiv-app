@@ -6,6 +6,7 @@ import data.Task;
 import data.WashingPlan;
 import data.WashingTable;
 import data.requests.CreateWashingPlanRequest;
+import java.util.Collections;
 import java.util.List;
 import javafx.collections.FXCollections;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +17,7 @@ public class WashingPlanModel implements UpdateEvent {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
     private int currentWeek = 1;
-    private static WashingPlanModel washingPlanModel = null;
+    private static final WashingPlanModel washingPlanModel = new WashingPlanModel();
     private House house;
     private HouseManager houseManager;
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
@@ -37,19 +38,15 @@ public class WashingPlanModel implements UpdateEvent {
     }
 
     public static WashingPlanModel getInstance() {
-        if (washingPlanModel != null) {
-            return washingPlanModel;
-        }
-        washingPlanModel = new WashingPlanModel();
         return washingPlanModel;
     }
 
     public List<Task> getWashingPlanTasks() {
-        return washingPlanTasks;
+        return Collections.unmodifiableList(washingPlanTasks);
     }
 
     public List<Person> getWashingPlanPersons() {
-        return washingPlanPersons;
+        return Collections.unmodifiableList(washingPlanPersons);
     }
 
     public WashingTable getWashingTables() {

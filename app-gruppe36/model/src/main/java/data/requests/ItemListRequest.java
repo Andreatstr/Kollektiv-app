@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ItemListRequest {
 
-    public List<Item> items;
-    public String id;
+    private List<Item> items;
+    private String id;
 
     public ItemListRequest() {
     }

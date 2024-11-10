@@ -16,7 +16,7 @@ import org.jsoup.select.Elements;
  * and scrape waste collection data from a specified URL.
  */
 public class WasteModel {
-    public static WasteModel wasteModel = null;
+    private static WasteModel wasteModel = null;
     private House collective;
     private Map<Integer, List<String>> wastePlan = new HashMap<>();
 

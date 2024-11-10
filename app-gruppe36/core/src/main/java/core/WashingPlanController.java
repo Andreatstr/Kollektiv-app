@@ -10,7 +10,6 @@ import java.util.List;
 
 public class WashingPlanController {
 
-    public int currentWeek = 1;
     private static WashingPlanController washingPlanModel = null;
 
     private WashingPlanController() {
@@ -20,7 +19,7 @@ public class WashingPlanController {
         HouseController.getInstance().saveHouse();
     }
 
-    public static WashingPlanController getInstance() {
+    public static synchronized WashingPlanController getInstance() {
         if (washingPlanModel != null) {
             return washingPlanModel;
         }

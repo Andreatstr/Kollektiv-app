@@ -11,7 +11,7 @@ public class HouseManager {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
     private House selectedHouse;
-    private static HouseManager instance;
+    private static final HouseManager instance = new HouseManager();;
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {
@@ -19,9 +19,6 @@ public class HouseManager {
     }
 
     public static HouseManager getInstance() {
-        if (instance == null) {
-            instance = new HouseManager();
-        }
         return instance;
     }
 

@@ -5,23 +5,23 @@ import data.House;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class JsonFileManager {
 
     private static JsonFileManager instance;
+    private String path = "data.json";
 
     private JsonFileManager() {
     }
 
-    public static JsonFileManager getInstance() {
+    public static synchronized JsonFileManager getInstance() {
         if (instance == null) {
             instance = new JsonFileManager();
         }
         return instance;
     }
-
-    String path = "data.json";
 
     public void saveHouse(House house) {
         List<House> houses = getNewHouseList(house);
@@ -51,18 +51,19 @@ public class JsonFileManager {
             String jsonString = mapper.writeValueAsString(houses);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("An error occured while saving data    " + e.getMessage());
+            System.out.println("An error occurred while saving data    " + e.getMessage());
         }
     }
 
     public List<House> getHouses() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(getPath(),
+            List<House> houses = mapper.readValue(getPath(),
                     mapper.getTypeFactory().constructCollectionType(List.class, House.class));
+                return Collections.unmodifiableList(houses);
         } catch (IOException e) {
-            System.out.println("An error occured while loading data    " + e.getMessage());
-            return new ArrayList<>();
+            System.out.println("An error occurred while loading data    " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -71,7 +72,7 @@ public class JsonFileManager {
     }
 
     private List<House> getNewHouseList(House house) {
-        List<House> houses = getHouses();
+        List<House> houses = new ArrayList<>(getHouses());
         for (int i = 0; i < houses.size(); i++) {
             if (houses.get(i).getId().equals(house.getId())) {
                 houses.set(i, house);

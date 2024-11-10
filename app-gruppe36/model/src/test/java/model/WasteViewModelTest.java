@@ -43,9 +43,16 @@ public class WasteViewModelTest {
             throw new RuntimeException("Failed to set HouseManager instance for testing", e);
         }
 
-        WasteViewModel.wasteViewModel = new WasteViewModel();
-        WasteModel.wasteModel = new WasteModel();
-        wasteModel = WasteModel.getInstance();
+        try {
+            var wasteModelField = WasteModel.class.getDeclaredField("wasteModel");
+            wasteModelField.setAccessible(true);
+            wasteModelField.set(null, mockWasteModel);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set WasteModel instance for testing", e);
+        }
+
+        WasteViewModel.setWasteViewModel(new WasteViewModel());
+        // wasteModel = WasteModel.getInstance();
         wasteViewModel = WasteViewModel.getInstance();
         setWasteModel(wasteViewModel, mockWasteModel);
     }

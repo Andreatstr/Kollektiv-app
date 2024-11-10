@@ -16,11 +16,10 @@ import model.WashingPlanModel;
  */
 public class WashingPlanViewModel {
 
-    public static WashingPlanViewModel washingPlanViewModel;
+    private static WashingPlanViewModel washingPlanViewModel;
     private WashingPlanModel washingPlanModel;
-    private int currentWeek = 1;
-    public int startWeek;
-    public int endWeek;
+    private int startWeek;
+    private int endWeek;
 
     private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
     private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
@@ -111,7 +110,6 @@ public class WashingPlanViewModel {
      */
     public void updateWashingPlans() {
         washingPlanEntry.clear();
-        currentWeek = washingPlanModel.getCurrentWeek();
         WashingPlan plan = washingPlanModel.getPlanForWeek();
         if (plan == null) {
             return;
@@ -237,7 +235,6 @@ public class WashingPlanViewModel {
     public void reset() {
         washingPlanPersons.clear();
         washingPlanTasks.clear();
-        currentWeek = 1;
         washingPlanModel.reset();
     }
 }

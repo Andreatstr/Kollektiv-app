@@ -3,9 +3,9 @@ package data.requests;
 import data.Item;
 
 public class ItemRequest {
-    public Item item;
-
-    public String id;
+    
+    private Item item;
+    private String id;
 
     public ItemRequest() {
     }

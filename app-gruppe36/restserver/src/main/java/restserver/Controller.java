@@ -1,14 +1,30 @@
 package restserver;
 
-import data.*;
-import data.requests.*;
-import core.*;
+import core.HouseController;
+import core.ShoppingListController;
+import core.WashingPlanController;
+// import data.HistoryShoppingListTable;
+import data.House;
+// import data.Item;
+// import data.Person;
+// import data.Task;
+// import data.WashingPlan;
+// import data.WashingPlanEntry;
+// import data.WashingTable;
+import data.requests.CreateWashingPlanRequest;
+import data.requests.ItemListRequest;
+import data.requests.ItemRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST controller for handling requests related to houses, shopping lists, and washing plans.
+ * This controller includes endpoints for creating houses, retrieving house data, managing
+ * shopping list items, and generating washing plans for a house.
+ */
 @RestController
 @CrossOrigin
 public class Controller {
@@ -19,13 +35,13 @@ public class Controller {
     }
 
     @PostMapping ("/createnewhouse")
-    public House CreateNewHouse(@RequestBody String id) {
+    public House createNewHouse(@RequestBody String id) {
         return HouseController.getInstance().createHouse(id);
     }
     
     // Log in to house
     @PostMapping ("/gethouse")
-    public House GetHouse(@RequestBody String id) {
+    public House getHouse(@RequestBody String id) {
         return HouseController.getInstance().getHouse(id);
     }
 
@@ -48,6 +64,7 @@ public class Controller {
     // WashingPlan
     @PostMapping ("/generateWashingplan")
     public House generateWashingplan(@RequestBody CreateWashingPlanRequest request) {
-        return WashingPlanController.getInstance().generateWashingPlan(request.persons, request.tasks, request.fromWeek, request.toWeek,request.id);
+        return WashingPlanController.getInstance().generateWashingPlan(request.getPersons(),
+        request.getTasks(), request.getFromWeek(), request.getToWeek(), request.getId());
     }
 }

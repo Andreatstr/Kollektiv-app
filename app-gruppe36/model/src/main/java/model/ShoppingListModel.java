@@ -5,18 +5,18 @@ import data.Item;
 import data.requests.ItemListRequest;
 import data.requests.ItemRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.web.client.RestTemplate;
 import viewmodel.ShoppingListViewModel;
 
 public class ShoppingListModel implements UpdateEvent {
 
-    private static ShoppingListModel shoppingListModel = null;
+    private static final ShoppingListModel shoppingListModel = new ShoppingListModel();
     private House house;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
     private HouseManager houseManager;
-    private Integer daysInHistory = 14;
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
@@ -28,10 +28,6 @@ public class ShoppingListModel implements UpdateEvent {
     }
 
     public static ShoppingListModel getInstance() {
-        if (shoppingListModel != null) {
-            return shoppingListModel;
-        }
-        shoppingListModel = new ShoppingListModel();
         return shoppingListModel;
     }
 
@@ -49,11 +45,11 @@ public class ShoppingListModel implements UpdateEvent {
     }
 
     public List<Item> getShoppingList() {
-        return shoppingList;
+        return Collections.unmodifiableList(shoppingList);
     }
 
     public List<Item> getshoppingListHistory() {
-        return shoppingListHistory;
+        return Collections.unmodifiableList(shoppingListHistory);
     }
 
     // Methods sending to server

@@ -3,7 +3,6 @@ package core;
 import data.House;
 import data.Item;
 import java.util.List;
-import json.JsonFileManager;
 
  /**
  * The `ShoppingListController` class manages shopping list operations by connecting to a REST API
@@ -12,11 +11,9 @@ import json.JsonFileManager;
 public class ShoppingListController {
 
     private static ShoppingListController shoppingListModel = null;
-    private JsonFileManager jsonFileManager;
     private HouseController controller;
 
     private ShoppingListController() {
-        jsonFileManager = JsonFileManager.getInstance();
         controller = HouseController.getInstance();
     }
 
@@ -27,10 +24,9 @@ public class ShoppingListController {
      * @return An instance of the `ShoppingListController` class is being returned.
      */
     public static synchronized ShoppingListController getInstance() {
-        if (shoppingListModel != null) {
-            return shoppingListModel;
+        if (shoppingListModel == null) {
+            shoppingListModel = new ShoppingListController();
         }
-        shoppingListModel = new ShoppingListController();
         return shoppingListModel;
     }
 

@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class CreateWashingPlanRequest {
 
-    public List<Person> persons;
-    public List<Task> tasks;
-    public int fromWeek;
-    public int toWeek;
-    public String id;
+    private List<Person> persons;
+    private List<Task> tasks;
+    private int fromWeek;
+    private int toWeek;
+    private String id;
 
     public CreateWashingPlanRequest() {
     }

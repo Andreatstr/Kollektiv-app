@@ -10,6 +10,7 @@ public class MenueViewModel {
 
     private String proposedHouseId;
     private static MenueViewModel instance;
+    private static final Object lock = new Object();
     private HouseManager houseManager;
 
     private MenueViewModel() {
@@ -24,7 +25,11 @@ public class MenueViewModel {
      */
     public static MenueViewModel getInstance() {
         if (instance == null) {
-            instance = new MenueViewModel();
+            synchronized (lock) {
+                if (instance == null) {
+                    instance = new MenueViewModel(); // Only create once
+                }
+            }
         }
         return instance;
     }
@@ -39,10 +44,7 @@ public class MenueViewModel {
      * @return The method `setCollective(String id)` returns a `Boolean` value.
      */
     public Boolean setCollective(String id) {
-        if (id == null) {
-            return false;
-        }
-        if (id.length() == 0) {
+        if (id == null || id.length() == 0) {
             return false;
         }
         return HouseManager.getInstance().setHouse(id);
