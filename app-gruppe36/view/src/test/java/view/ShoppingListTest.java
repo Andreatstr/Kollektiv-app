@@ -37,8 +37,7 @@ public class ShoppingListTest extends ApplicationTest {
 
         try {
             Thread.sleep(50);
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             System.out.println("Kunne ikke pause!");
         }
 

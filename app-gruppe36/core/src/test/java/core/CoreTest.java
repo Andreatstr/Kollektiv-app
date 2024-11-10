@@ -1,4 +1,5 @@
 package core;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import data.*;
@@ -8,13 +9,12 @@ import java.util.List;
 
 public class CoreTest {
 
-
-    //@Test
+    // @Test
     public void CreateNewHouse() {
         String id = "fffff";
         HouseController houseController = HouseController.getInstance();
         houseController.createHouse(id);
-        assertEquals(houseController.getHouse(id).getId(),id);
+        assertEquals(houseController.getHouse(id).getId(), id);
         JsonFileManager.getInstance().deleteHouse(id);
     }
 

@@ -1,15 +1,15 @@
 package model;
 
-import java.util.List;
-import org.springframework.web.client.RestTemplate;
+import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingTable;
-import javafx.collections.FXCollections;
-import viewmodel.WashingPlanViewModel;
 import data.requests.CreateWashingPlanRequest;
-import data.House;
+import java.util.List;
+import javafx.collections.FXCollections;
+import org.springframework.web.client.RestTemplate;
+import viewmodel.WashingPlanViewModel;
 
 public class WashingPlanModel implements UpdateEvent {
 
@@ -37,8 +37,9 @@ public class WashingPlanModel implements UpdateEvent {
     }
 
     public static WashingPlanModel getInstance() {
-        if (washingPlanModel != null)
+        if (washingPlanModel != null) {
             return washingPlanModel;
+        }
         washingPlanModel = new WashingPlanModel();
         return washingPlanModel;
     }
@@ -75,8 +76,9 @@ public class WashingPlanModel implements UpdateEvent {
         washingPlanTasks.add(newTask);
     }
 
-    public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        CreateWashingPlanRequest request = new CreateWashingPlanRequest(persons, tasks, fromWeek, toWeek, house.getId());
+    public void generateWashingPlan(List<Person> person, List<Task> task, int fw, int tw) {
+        CreateWashingPlanRequest request = new CreateWashingPlanRequest(person, task, fw, tw,
+                house.getId());
         house = restTemplate.postForObject(url + "generateWashingplan", request, House.class);
         houseManager.updateHouse(house);
     }
@@ -85,9 +87,9 @@ public class WashingPlanModel implements UpdateEvent {
         return washingTable.getWashingPlanOfWeek(currentWeek);
     }
 
-  public int getCurrentWeek() {
-    return currentWeek;
-  }
+    public int getCurrentWeek() {
+        return currentWeek;
+    }
 
     public void setCurrentWeek(int week) {
         if (week < washingTable.getLowestWeek() || week > washingTable.getHighestWeek()) {

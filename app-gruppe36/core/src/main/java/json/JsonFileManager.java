@@ -1,12 +1,11 @@
 package json;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import data.House;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import data.House;
 
 public class JsonFileManager {
 
@@ -16,8 +15,9 @@ public class JsonFileManager {
     }
 
     public static JsonFileManager getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new JsonFileManager();
+        }
         return instance;
     }
 
@@ -37,8 +37,9 @@ public class JsonFileManager {
                 break;
             }
         }
-        if (houseToDelete == null)
+        if (houseToDelete == null) {
             return;
+        }
         houses.remove(houseToDelete);
         saveToFile(houses);
     }
@@ -83,13 +84,17 @@ public class JsonFileManager {
 
     public House getSavedHouse(String id) {
         List<House> houses = getHouses();
-        if (houses == null)
+        if (houses == null) {
             return null;
-        if (houses.size() == 0)
+        }
+        if (houses.size() == 0) {
             return null;
-        for (House house : houses)
-            if (house.getId().equals(id))
+        }
+        for (House house : houses) {
+            if (house.getId().equals(id)) {
                 return house;
+            }
+        }
         return null;
     }
 }

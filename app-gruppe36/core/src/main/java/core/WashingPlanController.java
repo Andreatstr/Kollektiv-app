@@ -1,12 +1,12 @@
 package core;
 
-import java.util.List;
+import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
-import data.House;
+import java.util.List;
 
 public class WashingPlanController {
 
@@ -21,35 +21,38 @@ public class WashingPlanController {
     }
 
     public static WashingPlanController getInstance() {
-        if (washingPlanModel != null)
+        if (washingPlanModel != null) {
             return washingPlanModel;
+        }
         washingPlanModel = new WashingPlanController();
         return washingPlanModel;
     }
 
-    public House generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek,String id) {
+    public House generateWashingPlan(List<Person> per, List<Task> tsk, int fw, int tw, String id) {
         House house = HouseController.getInstance().getHouse(id);
-        WashingTable washingTable = new WashingTable(persons,tasks);
-        if (house == null) return null;
+        WashingTable washingTable = new WashingTable(per, tsk);
+        if (house == null) {
+            return null;
+        }
 
-          List<Person> names = persons;
-          int numPeople = names.size();
-          int numTasks = tasks.size();
-          
-          for (int week = fromWeek; week <= toWeek; week++) {
+        List<Person> names = per;
+        int numPeople = names.size();
+        int numTasks = tsk.size();
+
+        for (int week = fw; week <= tw; week++) {
             WashingPlan washingPlan = new WashingPlan(week);
             for (int i = 0; i < numTasks; i++) {
-                Task task = tasks.get(i);
-                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
+                Task task = tsk.get(i);
+                Person assignedPerson = names.get((i + (week - fw)) % numPeople);
                 WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task);
                 washingPlan.addEntry(entry);
             }
             washingTable.addWashingPlan(washingPlan);
-          }
-          house.setWashingTable(washingTable);
-          storeToFile();
-          return house;
-         
+        }
+        house.setWashingTable(washingTable);
+        storeToFile();
+        return house;
+
     }
 
 }

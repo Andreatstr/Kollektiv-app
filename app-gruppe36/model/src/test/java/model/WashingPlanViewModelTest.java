@@ -53,51 +53,60 @@ public class WashingPlanViewModelTest {
 
     @Test
     public void testGenerateWashingPlan() {
-        /* 
-        viewModel.addPerson("Lars");
-        viewModel.addPerson("Andrea");
-        viewModel.addTask("Vaske bad");
-        viewModel.addTask("Vaske stue");
-
-        viewModel.generateWashingPlan(1, 4);
-
-        ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
-        assertFalse(washingPlans.isEmpty(), "Washing plans should be generated");
-        assertEquals(1, washingPlans.get(0).getWeekNumber(), "First week's plan should be for week 1");*/
+        /*
+         * viewModel.addPerson("Lars");
+         * viewModel.addPerson("Andrea");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.addTask("Vaske stue");
+         * 
+         * viewModel.generateWashingPlan(1, 4);
+         * 
+         * ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
+         * assertFalse(washingPlans.isEmpty(), "Washing plans should be generated");
+         * assertEquals(1, washingPlans.get(0).getWeekNumber(),
+         * "First week's plan should be for week 1");
+         */
     }
 
     @Test
     public void testGenerateWashingPlanWithPersonsAndTasks() {
         /*
-        viewModel.addPerson("Lars");
-        viewModel.addPerson("Andrea");
-        viewModel.addTask("Vaske bad");
-        viewModel.addTask("Vaske stue");
-
-        List<Person> persons = viewModel.getWashingPlanPersons();
-        List<Task> tasks = viewModel.getWashingPlanTasks();
-
-        viewModel.generateWashingPlan(persons, tasks, 1, 4);
-
-        ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
-        assertFalse(washingPlans.isEmpty(), "Washing plans should be generated with persons and tasks");
-        assertEquals(1, washingPlans.get(0).getWeekNumber(), "First week's plan should be for week 1");*/
+         * viewModel.addPerson("Lars");
+         * viewModel.addPerson("Andrea");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.addTask("Vaske stue");
+         * 
+         * List<Person> persons = viewModel.getWashingPlanPersons();
+         * List<Task> tasks = viewModel.getWashingPlanTasks();
+         * 
+         * viewModel.generateWashingPlan(persons, tasks, 1, 4);
+         * 
+         * ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
+         * assertFalse(washingPlans.isEmpty(),
+         * "Washing plans should be generated with persons and tasks");
+         * assertEquals(1, washingPlans.get(0).getWeekNumber(),
+         * "First week's plan should be for week 1");
+         */
     }
 
     @Test
     public void testGetWashingPlansForCurrentWeek() {
-        /* 
-        viewModel.addPerson("Lars");
-        viewModel.addPerson("Andrea");
-        viewModel.addTask("Vaske bad");
-        viewModel.addTask("Vaske stue");
-
-        viewModel.generateWashingPlan(1, 4);
-        viewModel.setCurrentWeek(1);
-        List<WashingPlan> currentWeekPlans = viewModel.getWashingPlansForCurrentWeek();
-
-        assertEquals(2, currentWeekPlans.get(0).getEntries().size(), "Two tasks should be assigned in week 1");
-        assertEquals(1, currentWeekPlans.get(0).getWeekNumber(), "Week number should be 1");*/
+        /*
+         * viewModel.addPerson("Lars");
+         * viewModel.addPerson("Andrea");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.addTask("Vaske stue");
+         * 
+         * viewModel.generateWashingPlan(1, 4);
+         * viewModel.setCurrentWeek(1);
+         * List<WashingPlan> currentWeekPlans =
+         * viewModel.getWashingPlansForCurrentWeek();
+         * 
+         * assertEquals(2, currentWeekPlans.get(0).getEntries().size(),
+         * "Two tasks should be assigned in week 1");
+         * assertEquals(1, currentWeekPlans.get(0).getWeekNumber(),
+         * "Week number should be 1");
+         */
     }
 
     @Test
@@ -164,53 +173,58 @@ public class WashingPlanViewModelTest {
 
     @Test
     public void testUpdateWashingPlans() {
-        /* 
-        List<WashingPlan> generatedPlans = new ArrayList<>();
-        WashingPlan plan = new WashingPlan(1);
-        generatedPlans.add(plan);
-
-        viewModel.addPerson("Lars");
-        viewModel.addTask("Vaske bad");
-
-        viewModel.generateWashingPlan(1, 1);
-        ObservableList<WashingPlan> initialPlans = viewModel.getWashingPlans();
-
-        viewModel.addTask("Vaske stue");
-        viewModel.generateWashingPlan(1, 1);
-
-        ObservableList<WashingPlan> updatedPlans = viewModel.getWashingPlans();
-        assertEquals(initialPlans.size(), updatedPlans.size(), "Number of plans should be the same after update");
-        assertEquals(2, updatedPlans.get(0).getEntries().size(),
-                "There should be two entries for week 1 after adding a new task");*/
+        /*
+         * List<WashingPlan> generatedPlans = new ArrayList<>();
+         * WashingPlan plan = new WashingPlan(1);
+         * generatedPlans.add(plan);
+         * 
+         * viewModel.addPerson("Lars");
+         * viewModel.addTask("Vaske bad");
+         * 
+         * viewModel.generateWashingPlan(1, 1);
+         * ObservableList<WashingPlan> initialPlans = viewModel.getWashingPlans();
+         * 
+         * viewModel.addTask("Vaske stue");
+         * viewModel.generateWashingPlan(1, 1);
+         * 
+         * ObservableList<WashingPlan> updatedPlans = viewModel.getWashingPlans();
+         * assertEquals(initialPlans.size(), updatedPlans.size(),
+         * "Number of plans should be the same after update");
+         * assertEquals(2, updatedPlans.get(0).getEntries().size(),
+         * "There should be two entries for week 1 after adding a new task");
+         */
     }
 
     @Test
     public void testUpdateWashingPlansWithoutParameters() {
         /*
-        viewModel.addPerson("Lars");
-        viewModel.addTask("Vaske bad");
-        viewModel.generateWashingPlan(1, 1);
-
-        ObservableList<WashingPlan> initialPlans = viewModel.getWashingPlans();
-
-        viewModel.updateWashingPlans();
-
-        ObservableList<WashingPlan> updatedPlans = viewModel.getWashingPlans();
-        assertEquals(initialPlans.size(), updatedPlans.size(),
-                "Number of plans should be the same after update without changes");*/
+         * viewModel.addPerson("Lars");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.generateWashingPlan(1, 1);
+         * 
+         * ObservableList<WashingPlan> initialPlans = viewModel.getWashingPlans();
+         * 
+         * viewModel.updateWashingPlans();
+         * 
+         * ObservableList<WashingPlan> updatedPlans = viewModel.getWashingPlans();
+         * assertEquals(initialPlans.size(), updatedPlans.size(),
+         * "Number of plans should be the same after update without changes");
+         */
     }
-
 
     @Test
     public void testGetWashingPlans() {
-        /*viewModel.addPerson("Lars");
-        viewModel.addTask("Vaske bad");
-        viewModel.generateWashingPlan(1, 1);
-
-        ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
-        assertFalse(washingPlans.isEmpty(), "Washing plans should not be empty after generation");
-        assertEquals(1, washingPlans.size(), "There should be one washing plan generated");
-        */
+        /*
+         * viewModel.addPerson("Lars");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.generateWashingPlan(1, 1);
+         * 
+         * ObservableList<WashingPlan> washingPlans = viewModel.getWashingPlans();
+         * assertFalse(washingPlans.isEmpty(),
+         * "Washing plans should not be empty after generation");
+         * assertEquals(1, washingPlans.size(),
+         * "There should be one washing plan generated");
+         */
     }
 
     @Test
@@ -233,33 +247,41 @@ public class WashingPlanViewModelTest {
 
     @Test
     public void testGetWashingPlanEntriesForCurrentWeek() {
-        /*viewModel.reset();
-        viewModel.addPerson("Lars");
-        viewModel.addPerson("Andrea");
-        viewModel.addTask("Vaske bad");
-        viewModel.addTask("Vaske stue");
-
-        viewModel.generateWashingPlan(1, 4);
-        ObservableList<WashingPlanEntry> entries = viewModel.getWashingPlanEntriesForCurrentWeek();
-
-        assertFalse(entries.isEmpty(), "Entries should be generated for the current week");
-        assertEquals(2, entries.size(), "There should be two entries for week 1");
-        */
+        /*
+         * viewModel.reset();
+         * viewModel.addPerson("Lars");
+         * viewModel.addPerson("Andrea");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.addTask("Vaske stue");
+         * 
+         * viewModel.generateWashingPlan(1, 4);
+         * ObservableList<WashingPlanEntry> entries =
+         * viewModel.getWashingPlanEntriesForCurrentWeek();
+         * 
+         * assertFalse(entries.isEmpty(),
+         * "Entries should be generated for the current week");
+         * assertEquals(2, entries.size(), "There should be two entries for week 1");
+         */
     }
 
     @Test
     public void testReset() {
-        /*viewModel.addPerson("Lars");
-        viewModel.addTask("Vaske bad");
-        viewModel.generateWashingPlan(1, 1);
-
-        assertFalse(viewModel.getWashingPlans().isEmpty(), "Washing plans should not be empty before reset");
-        assertEquals(1, viewModel.getWashingPlanPersons().size(), "There should be one person before reset");
-
-        viewModel.reset();
-
-        assertTrue(viewModel.getWashingPlans().isEmpty(), "Washing plans should be empty after reset");
-        assertTrue(viewModel.getWashingPlanPersons().isEmpty(), "Person list should be empty after reset");
-        */
+        /*
+         * viewModel.addPerson("Lars");
+         * viewModel.addTask("Vaske bad");
+         * viewModel.generateWashingPlan(1, 1);
+         * 
+         * assertFalse(viewModel.getWashingPlans().isEmpty(),
+         * "Washing plans should not be empty before reset");
+         * assertEquals(1, viewModel.getWashingPlanPersons().size(),
+         * "There should be one person before reset");
+         * 
+         * viewModel.reset();
+         * 
+         * assertTrue(viewModel.getWashingPlans().isEmpty(),
+         * "Washing plans should be empty after reset");
+         * assertTrue(viewModel.getWashingPlanPersons().isEmpty(),
+         * "Person list should be empty after reset");
+         */
     }
 }

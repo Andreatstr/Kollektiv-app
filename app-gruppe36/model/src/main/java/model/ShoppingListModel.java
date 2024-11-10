@@ -1,12 +1,13 @@
 package model;
-import data.Item;
+
 import data.House;
-import data.requests.*;
-import viewmodel.ShoppingListViewModel;
+import data.Item;
+import data.requests.ItemListRequest;
+import data.requests.ItemRequest;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.web.client.RestTemplate;
+import viewmodel.ShoppingListViewModel;
 
 public class ShoppingListModel implements UpdateEvent {
 
@@ -27,8 +28,9 @@ public class ShoppingListModel implements UpdateEvent {
     }
 
     public static ShoppingListModel getInstance() {
-        if (shoppingListModel != null)
+        if (shoppingListModel != null) {
             return shoppingListModel;
+        }
         shoppingListModel = new ShoppingListModel();
         return shoppingListModel;
     }
@@ -37,12 +39,13 @@ public class ShoppingListModel implements UpdateEvent {
         house = HouseManager.getInstance().getHouse();
         shoppingList = house.getShoppingList();
         shoppingListHistory = house.getShoppingListHistory();
-        resetItemActivation(); 
+        resetItemActivation();
     }
 
     private void resetItemActivation() {
-        for (Item item : shoppingList)
+        for (Item item : shoppingList) {
             item.setActive(false);
+        }
     }
 
     public List<Item> getShoppingList() {

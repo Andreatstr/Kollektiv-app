@@ -13,57 +13,65 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.ShoppingListViewModel;
 
+/**
+ * The `ShoppingListHistoryView` class in Java represents a view for displaying shopping
+ * list history with buttons for navigation and table columns for count, item, and date.
+ */
 public class ShoppingListHistoryView {
 
-  private ShoppingListViewModel shoppingListViewModel;
+    private ShoppingListViewModel shoppingListViewModel;
 
-  private ObservableList<HistoryShoppingListTable> historyShoppingList;
+    private ObservableList<HistoryShoppingListTable> historyShoppingList;
 
-  @FXML
-  private Button backFromShoppingListHistory;
+    @FXML
+    private Button backFromShoppingListHistory;
 
-  @FXML
-  private Button homeButton;
+    @FXML
+    private Button homeButton;
 
-  @FXML
-  private TableView<HistoryShoppingListTable> shoppingListTable;
+    @FXML
+    private TableView<HistoryShoppingListTable> shoppingListTable;
 
-  @FXML
-  private TableColumn<HistoryShoppingListTable, Integer> countColumnHistory;
+    @FXML
+    private TableColumn<HistoryShoppingListTable, Integer> countColumnHistory;
 
-  @FXML
-  private TableColumn<HistoryShoppingListTable, String> itemColumnHistory;
+    @FXML
+    private TableColumn<HistoryShoppingListTable, String> itemColumnHistory;
 
-  @FXML
-  private TableColumn<HistoryShoppingListTable, String> whenColumnHistory;
+    @FXML
+    private TableColumn<HistoryShoppingListTable, String> whenColumnHistory;
 
-  @FXML
-  void buttonHome(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  }
+    @FXML
+    void buttonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
-  @FXML
-  void buttonBackFromShoppingListHistory(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
-  }
+    @FXML
+    void buttonBackFromShoppingListHistory(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
+    }
 
-  public void initialize() {
-    Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
+    /**
+     * The `initialize` function sets up an image for a button, populates a table view with shopping
+     * list history data, and configures the columns for the table view.
+     */
+    public void initialize() {
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
 
-    ImageView imageView = new ImageView(image);
-    imageView.setFitWidth(30);
-    imageView.setFitHeight(30);
-    imageView.setPreserveRatio(true);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
+        imageView.setPreserveRatio(true);
 
-    homeButton.setGraphic(imageView);
+        homeButton.setGraphic(imageView);
 
-    shoppingListViewModel = ShoppingListViewModel.getInstance();
-    historyShoppingList = shoppingListViewModel.getShoppingListHistory();
+        shoppingListViewModel = ShoppingListViewModel.getInstance();
+        historyShoppingList = shoppingListViewModel.getShoppingListHistory();
 
-    countColumnHistory.setCellValueFactory(new PropertyValueFactory<>("count"));
-    itemColumnHistory.setCellValueFactory(new PropertyValueFactory<>("item"));
-    whenColumnHistory.setCellValueFactory(new PropertyValueFactory<>("when"));
+        countColumnHistory.setCellValueFactory(new PropertyValueFactory<>("count"));
+        itemColumnHistory.setCellValueFactory(new PropertyValueFactory<>("item"));
+        whenColumnHistory.setCellValueFactory(new PropertyValueFactory<>("when"));
 
-    shoppingListTable.setItems(historyShoppingList);
-  }
+        shoppingListTable.setItems(historyShoppingList);
+    }
 }

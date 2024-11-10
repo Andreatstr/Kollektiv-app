@@ -19,8 +19,9 @@ public class HouseManager {
     }
 
     public static HouseManager getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new HouseManager();
+        }
         return instance;
     }
 
@@ -36,15 +37,14 @@ public class HouseManager {
     }
 
     public House getHouse() {
-        if (selectedHouse == null)
-        {
+        if (selectedHouse == null) {
             System.out.print("using empty house!");
             selectedHouse = new House();
         }
         return selectedHouse;
     }
 
-    public boolean CreateHouse(String id) {
+    public boolean createHouse(String id) {
         try {
             House house = restTemplate.postForObject(url + "createnewhouse", id, House.class);
             updateHouse(house);
@@ -56,11 +56,11 @@ public class HouseManager {
     }
 
     public void updateHouse(House house) {
-        if (house == null)
+        if (house == null) {
             return;
+        }
         selectedHouse = house;
-        for (UpdateEvent subscriber : subscriptions)
-        {
+        for (UpdateEvent subscriber : subscriptions) {
             subscriber.updateEvent();
         }
 
@@ -70,15 +70,12 @@ public class HouseManager {
         return restTemplate.getForObject(url + "newvalidid", String.class);
     }
 
-    public void subscribeToEvents(UpdateEvent subscriber)
-    {
+    public void subscribeToEvents(UpdateEvent subscriber) {
         subscriptions.add(subscriber);
     }
 
-    public void logOut()
-    {
-        for (UpdateEvent subscriber : subscriptions)
-        {
+    public void logOut() {
+        for (UpdateEvent subscriber : subscriptions) {
             subscriber.logoutEvent();
         }
     }

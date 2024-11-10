@@ -1,7 +1,7 @@
 package data.requests;
 
-import java.util.List;
 import data.Item;
+import java.util.List;
 
 public class ItemListRequest {
 

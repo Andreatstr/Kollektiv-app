@@ -7,47 +7,51 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import viewmodel.MenueViewModel;
 
+/**
+ * The CreateHouseView class in Java contains methods for handling button actions related to 
+ * generating a new house ID and switching scenes.
+ */
 public class CreateHouseView {
 
-  MenueViewModel menueViewModel;
+    MenueViewModel menueViewModel;
 
-  @FXML
-  private Button backButton;
+    @FXML
+    private Button backButton;
 
-  @FXML
-  private Button generateHouseIdButton;
+    @FXML
+    private Button generateHouseIdButton;
 
-  @FXML
-  private Label generatedHouseIdLabel;
+    @FXML
+    private Label generatedHouseIdLabel;
 
-  @FXML
-  private Button loginButton;
+    @FXML
+    private Button loginButton;
 
-  @FXML
-  void handleBack(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "MainMenu.fxml");
-  }
+    @FXML
+    void handleBack(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+    }
 
-  @FXML
-  void handleGenerateNewHouseId(ActionEvent event) throws IOException {
-    generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
-  }
+    @FXML
+    void handleGenerateNewHouseId(ActionEvent event) throws IOException {
+        generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
+    }
 
-  @FXML
-  void handleGenerateNewHouse(ActionEvent event) throws IOException {
-    menueViewModel.generateHouse();
-    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  }
+    @FXML
+    void handleGenerateNewHouse(ActionEvent event) throws IOException {
+        menueViewModel.generateHouse();
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
-  @FXML
-  void handleLoginFromCreateHouseId(ActionEvent event) throws IOException {
-    menueViewModel.generateHouse();
-    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  }
+    @FXML
+    void handleLoginFromCreateHouseId(ActionEvent event) throws IOException {
+        menueViewModel.generateHouse();
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
-  public void initialize() {
-    menueViewModel = MenueViewModel.getInstance();
-    generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
-  }
+    public void initialize() {
+        menueViewModel = MenueViewModel.getInstance();
+        generatedHouseIdLabel.setText(menueViewModel.getProposedHouseId());
+    }
 
 }

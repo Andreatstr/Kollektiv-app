@@ -1,15 +1,15 @@
 package core;
 
+import data.House;
 import java.security.SecureRandom;
 import java.util.List;
-import data.House;
 import json.JsonFileManager;
 
 public class HouseController {
 
     private List<House> houses;
 
-    private String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     private static HouseController instance;
 
@@ -21,16 +21,18 @@ public class HouseController {
     }
 
     public static synchronized HouseController getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new HouseController();
+        }
         return instance;
     }
 
     // Connects house to REST API
     public House getHouse(String id) {
         for (House house : houses) {
-            if (house.getId().equals(id))
+            if (house.getId().equals(id)) {
                 return house;
+            }
         }
         return null;
     }
@@ -59,8 +61,9 @@ public class HouseController {
                     validId = false;
                 }
             }
-            if (validId)
+            if (validId) {
                 return randomId;
+            }
         }
         return null;
     }
@@ -70,8 +73,8 @@ public class HouseController {
         StringBuilder stringBuilder = new StringBuilder(length);
 
         for (int i = 0; i < length; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            stringBuilder.append(CHARACTERS.charAt(index));
+            int index = random.nextInt(characters.length());
+            stringBuilder.append(characters.charAt(index));
         }
 
         return stringBuilder.toString();

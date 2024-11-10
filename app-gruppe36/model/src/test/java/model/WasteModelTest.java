@@ -24,7 +24,6 @@ public class WasteModelTest {
     private WasteModel wasteModel;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-
     @BeforeEach
     public void setUp() {
         wasteModel = Mockito.spy(WasteModel.getInstance());
@@ -86,7 +85,7 @@ public class WasteModelTest {
             assertTrue(wastePlan.isEmpty(), "Waste plan should be empty due to invalid week format");
 
             assertTrue(outputStreamCaptor.toString().contains("Ugyldig ukeformat for InvalidWeek"),
-                       "Expected error message for invalid week format");
+                    "Expected error message for invalid week format");
         }
     }
 }

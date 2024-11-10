@@ -7,48 +7,55 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * The `ShoppingListOverviewView` class in Java is a controller class for a GUI application that
+ * handles button actions and initializes the view with images.
+ */
 public class ShoppingListOverviewView {
 
-  @FXML
-  private Button activeShoppingList;
+    @FXML
+    private Button activeShoppingList;
 
-  @FXML
-  private Button backFromShoppingListOverview;
+    @FXML
+    private Button backFromShoppingListOverview;
 
-  @FXML
-  private Button shoppingListHistory;
+    @FXML
+    private Button shoppingListHistory;
 
-  @FXML
-  private Button homeButton;
+    @FXML
+    private Button homeButton;
 
-  @FXML
-  void buttonHome(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  }
+    @FXML
+    void buttonHome(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
-  @FXML
-  void buttonActiveShoppingList(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ShoppingList.fxml");
-  }
+    @FXML
+    void buttonActiveShoppingList(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ShoppingList.fxml");
+    }
 
-  @FXML
-  void buttonBackFromShoppingListOverview(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-  }
+    @FXML
+    void buttonBackFromShoppingListOverview(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
+    }
 
-  @FXML
-  void buttonShoppingListHistory(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "ShoppingListHistory.fxml");
-  }
+    @FXML
+    void buttonShoppingListHistory(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToScene(event, "ShoppingListHistory.fxml");
+    }
 
-  public void initialize() {
-    Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
+    /**
+     * The `initialize` function sets an image of a house on a button in a Java application.
+     */
+    public void initialize() {
+        Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
 
-    ImageView imageView = new ImageView(image);
-    imageView.setFitWidth(30);
-    imageView.setFitHeight(30);
-    imageView.setPreserveRatio(true);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
+        imageView.setPreserveRatio(true);
 
-    homeButton.setGraphic(imageView);
-  }
+        homeButton.setGraphic(imageView);
+    }
 }
