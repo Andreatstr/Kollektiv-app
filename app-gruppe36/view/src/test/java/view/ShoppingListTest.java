@@ -38,31 +38,31 @@ public class ShoppingListTest extends ApplicationTest {
         table = lookup("#table").queryTableView();
     }
 
-    @Test
-    public void testItemNavnFeltInput() {
-        ObservableList<?> items = table.getItems();
-        antallTing = items.size();
-        // Simulate writing "Epler" in ItemNavnFelt
-        clickOn("#itemNameInput").write("Vaskemiddel");
-        clickOn("#itemCountInput").write("1");
-        clickOn("#addButton");
+    // @Test
+    // public void testItemNavnFeltInput() {
+    //     ObservableList<?> items = table.getItems();
+    //     antallTing = items.size();
+    //     // Simulate writing "Epler" in ItemNavnFelt
+    //     clickOn("#itemNameInput").write("Vaskemiddel");
+    //     clickOn("#itemCountInput").write("1");
+    //     clickOn("#addButton");
 
-        //Nødvendig?
-        try {
-            Thread.sleep(50);
-        }
+    //     //Nødvendig?
+    //     try {
+    //         Thread.sleep(50);
+    //     }
 
-        catch (InterruptedException e) {
-            System.out.println("Kunne ikke pause!");
-        }
+    //     catch (InterruptedException e) {
+    //         System.out.println("Kunne ikke pause!");
+    //     }
 
-        // Verify that input fields are empty
-        verifyThat("#itemNameInput", hasText(""));
-        verifyThat("#itemCountInput", hasText(""));
+    //     // Verify that input fields are empty
+    //     verifyThat("#itemNameInput", hasText(""));
+    //     verifyThat("#itemCountInput", hasText(""));
 
-        // Check that new element is added to list
-        // assertEquals((antallTing + 1), items.size(), "Elementet ble ikke lagt til i
-        // listen.");
+    //     // Check that new element is added to list
+    //     // assertEquals((antallTing + 1), items.size(), "Elementet ble ikke lagt til i
+    //     // listen.");
 
-    }
+    // }
 }

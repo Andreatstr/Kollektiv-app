@@ -18,8 +18,7 @@ public class ServerApi implements RestApi {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
-    public ServerApi()
-    {
+    public ServerApi() {
         restTemplate = new RestTemplate();
     }
 

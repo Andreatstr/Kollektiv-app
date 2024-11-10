@@ -12,8 +12,7 @@ public class MenueViewModel {
     houseManager = HouseManager.getInstance();
   }
 
-  public void setTestApi()
-  {
+  public void setTestApi() {
     houseManager.setTestApi();
   }
 
