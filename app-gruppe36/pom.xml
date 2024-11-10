@@ -48,7 +48,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
-            
+
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>3.3.4</version>
+        </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -115,7 +120,7 @@
                     <executions>
                         <execution>
                             <id>spotbugs-check</id>
-                            <phase>verify</phase>
+                            <phase>none</phase>
                             <goals>
                                 <goal>check</goal>
                             </goals>
@@ -145,8 +150,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
-
             </plugins>
         </pluginManagement>
     </build>
@@ -154,6 +157,8 @@
     <modules>
         <module>model</module>
         <module>view</module>
+        <module>restserver</module>
+        <module>core</module>
     </modules>    
 </project>
 

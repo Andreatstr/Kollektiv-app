@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import restapi.DummyApi;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -31,6 +33,7 @@ public class WasteModelTest {
     public void setUp() {
         wasteModel = Mockito.spy(WasteModel.getInstance());
         System.setOut(new PrintStream(outputStreamCaptor));
+        HouseManager.getInstance().api = new DummyApi();
     }
 
     @Test

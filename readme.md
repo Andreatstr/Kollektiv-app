@@ -5,7 +5,7 @@
 ## Nødvendige versioner for å kjøre prosjektet:
 
 Maven version 3.9.9
-Java testet versjoner : Java 21.0.1, 21.0.4, java 23
+Java testet versjoner : Java 21.0.1, 21.0.4
 
 
 ## Innhold

@@ -1,53 +1,57 @@
 package model;
 
-// import javafx.collections.ObservableList;
-// import data.Item;
-import data.House;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
 import data.Person;
 import data.Task;
 import data.WashingPlan;
-import data.WashingPlanEntry;
 import data.WashingTable;
-import java.util.ArrayList;
-import java.util.List;
+import data.requests.ItemListRequest;
 import javafx.collections.FXCollections;
+import viewmodel.WashingPlanViewModel;
+import data.requests.CreateWashingPlanRequest;
+import data.House;
+import data.Item;
 
-public class WashingPlanModel {
+
+public class WashingPlanModel implements UpdateEvent {
+
 
   private int currentWeek = 1;
   private static WashingPlanModel washingPlanModel = null;
 
-  private House collective;
+    private House house;
 
-  private List<Person> washingPlanPersons = FXCollections.observableArrayList();
-  private List<Task> washingPlanTasks = FXCollections.observableArrayList();
-  private List<WashingTable> washingTables = new ArrayList<>();
+    private HouseManager houseManager;
 
-  private WashingPlanModel() {
-    readWashingPlanFromFile();
-  }
+    private List<Person> washingPlanPersons = FXCollections.observableArrayList();
+    private List<Task> washingPlanTasks = FXCollections.observableArrayList();
+    private WashingTable washingTable = new WashingTable();
 
-  private void readWashingPlanFromFile() {
-    collective = HouseManager.getInstance().getHouse();
-    washingPlanPersons = collective.getWashingPlanPerson();
-    washingPlanTasks = collective.getWashingPlanTask();
-    washingTables = collective.getWashingTable();
-  }
-
-  private void storeToFile() {
-    collective.setWashingTable(washingTables);
-    collective.setWashingPlanPerson(washingPlanPersons);
-    collective.setWashingPlanTask(washingPlanTasks);
-    HouseManager.getInstance().saveHouse();
-  }
-
-  public static WashingPlanModel getInstance() {
-    if (washingPlanModel != null) {
-      return washingPlanModel;
+    private WashingPlanModel() {
+        houseManager = HouseManager.getInstance();
+        houseManager.subscribeToEvents(this);
+        setWashingPlan();
     }
-    washingPlanModel = new WashingPlanModel();
-    return washingPlanModel;
-  }
+
+    private void setWashingPlan() {
+        house = houseManager.getHouse();
+        washingTable = house.getWashingTable();
+        if (washingTable == null) return;
+        currentWeek = washingTable.getLowestWeek();
+    }
+
+    public static WashingPlanModel getInstance() {
+        if (washingPlanModel != null)
+            return washingPlanModel;
+        washingPlanModel = new WashingPlanModel();
+        return washingPlanModel;
+    }
 
   public List<Task> getWashingPlanTasks() {
     return washingPlanTasks;
@@ -57,84 +61,82 @@ public class WashingPlanModel {
     return washingPlanPersons;
   }
 
-  public List<WashingTable> getWashingTables() {
-    return washingTables;
-  }
-
-  public void addPerson(Person newPerson) {
-    for (Person name : washingPlanPersons) {
-      if (name.getName().equals(newPerson.getName())) {
-        System.out.println("Name already in list");
-        return;
-      }
+    public WashingTable getWashingTables() {
+        return washingTable;
     }
 
-    washingPlanPersons.add(newPerson);
-    storeToFile();
-  }
-
-  public void addTask(Task newTask) {
-    for (Task task : washingPlanTasks) {
-      if (task.getTask().equals(newTask.getTask())) {
-        System.out.println("Task already in list");
-        return;
-      }
+    public void addPerson(Person newPerson) {
+        for (Person name : washingPlanPersons) {
+            if (name.getName().equals(newPerson.getName())) {
+                System.out.println("Name already in list");
+                return;
+            }
+        }
+        washingPlanPersons.add(newPerson);
     }
-    washingPlanTasks.add(newTask);
-    storeToFile();
-  }
 
-  public void generateWashingPlan(List<Person> ps, List<Task> ts, int fromWeek, int toWeek) {
-    washingTables.clear();
-    List<Person> names = ps;
-    int numPeople = names.size();
-    int numTasks = ts.size();
-
-    for (int week = fromWeek; week <= toWeek; week++) {
-      WashingPlan washingPlan = new WashingPlan(week);
-
-      for (int i = 0; i < numTasks; i++) {
-        Task task = ts.get(i);
-        Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
-        WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
-        washingPlan.addEntry(entry);
-      }
-      WashingTable washingTable = new WashingTable();
-      washingTable.addWashingPlanEntry(washingPlan);
-      washingTables.add(washingTable);
+    public void addTask(Task newTask) {
+        for (Task task : washingPlanTasks) {
+            if (task.getTask().equals(newTask.getTask())) {
+                System.out.println("Task already in list");
+                return;
+            }
+        }
+        washingPlanTasks.add(newTask);
     }
-    storeToFile();
-  }
 
-  public List<Person> rotateNames(List<Person> names) {
-    if (names.size() > 1) {
-      List<Person> rotatedNames = names;
-      Person last = rotatedNames.remove(rotatedNames.size() - 1);
-      rotatedNames.add(0, last);
-      return rotatedNames;
+    public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
+        house = houseManager.api.generateWashingplan(persons, tasks, fromWeek, toWeek,house.getId());
+        houseManager.updateHouse(house);
     }
-    return names;
-  }
 
-  public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
-    if (weekNumber < 1 || weekNumber > washingTables.size()) {
-      return new ArrayList<>();       // returns empty if week is out of range
+    public WashingPlan getPlanForWeek() {
+        if (washingTable == null) return null;
+        return washingTable.getWashingPlanOfWeek(currentWeek);
     }
-    return washingTables.get(weekNumber - 1).getWashingPlans();
-  }
 
   public int getCurrentWeek() {
     return currentWeek;
   }
 
-  public void setCurrentWeek(int week) {
-    this.currentWeek = week;
-  }
+    public void setCurrentWeek(int week) {
+        if (washingTable == null) return;
+        if (week < washingTable.getLowestWeek() || week > washingTable.getHighestWeek()) {
+            return;
+        }
+        this.currentWeek = week;
+    }
 
-  public void reset() {
-    washingPlanPersons.clear();
-    washingPlanTasks.clear();
-    washingTables.clear();
-    currentWeek = 1;
-  }
+    @Override
+    public void updateEvent() {
+        setWashingPlan();
+        WashingPlanViewModel.getInstance().updateWashingPlans();
+    }
+
+    @Override
+    public void logoutEvent() {
+        System.out.println("Logout");
+        reset();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
+    }
+
+    public void editWashingPlan()
+    {
+        if (washingTable == null) return;
+        washingPlanPersons = washingTable.getPersons();
+        washingPlanTasks = washingTable.getTasks();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
+    }
+
+    public void reset()
+    {
+        washingPlanPersons.clear();
+        washingPlanTasks.clear();
+        washingTable = null;
+        currentWeek = 0;
+    }
 }

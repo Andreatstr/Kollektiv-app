@@ -12,6 +12,11 @@ public class MenueViewModel {
     houseManager = HouseManager.getInstance();
   }
 
+  public void setTestApi()
+  {
+    houseManager.setTestApi();
+  }
+
   public static MenueViewModel getInstance() {
     if (instance == null) {
       instance = new MenueViewModel();
@@ -29,12 +34,22 @@ public class MenueViewModel {
     return HouseManager.getInstance().setHouse(id);
   }
 
-  public String getProposedHouseId() {
-    proposedHouseId = houseManager.getNewId();
-    return proposedHouseId;
-  }
+    public String getProposedHouseId()
+    {
+        proposedHouseId = houseManager.getNewId();
+        return proposedHouseId;
+    }
 
-  public void generateHouse() {
-    houseManager.createHouse(proposedHouseId);
-  }
+    public void generateHouse()
+    {
+        houseManager.CreateHouse(proposedHouseId);
+    }
+
+    public void logOut()
+    {
+        houseManager.logOut();
+    }
+
+
+
 }

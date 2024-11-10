@@ -1,15 +1,9 @@
 package view;
 
-// import javafx.collections.FXCollections;
-// import data.Item;
-// import javafx.collections.ObservableList;
-// import java.util.List;
-// import data.WashingPlan;
-// import data.WashingPlanEntry;
-// import data.WashingTable;
-import data.Person;
-import data.Task;
-import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +11,30 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import data.Item;
+import viewmodel.WashingPlanViewModel;
+
+import javafx.scene.control.cell.PropertyValueFactory;
+import data.Item;
+import viewmodel.WashingPlanViewModel;
+
+import java.io.IOException;
+import java.util.List;
+
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.List;
+
+import data.Person;
+import data.Task;
+import data.WashingPlan;
+import data.WashingPlanEntry;
+import data.WashingTable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
