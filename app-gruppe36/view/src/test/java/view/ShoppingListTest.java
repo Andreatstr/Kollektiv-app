@@ -1,6 +1,7 @@
 package view;
 
 
+import org.junit.jupiter.api.BeforeAll;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 // import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewmodel.MenueViewModel;
 
 public class ShoppingListTest extends ApplicationTest {
+
+
+    @BeforeAll
+    static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+    }
 
     private TableView<?> table;
     private int antallTing;

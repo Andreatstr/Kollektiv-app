@@ -1,5 +1,6 @@
 package view;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,28 +16,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewmodel.MenueViewModel;
 
 public class WashingPlanTest extends ApplicationTest {
 
-    // @Override
-    // public void start(Stage stage) throws Exception {
-    // Parent root =
-    // FXMLLoader.load(getClass().getResource("WashingPlanOverview.fxml"));
-    // Scene scene = new Scene(root);
-    // stage.setScene(scene);
-    // stage.show();
+    @BeforeAll
+    static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+    }
 
-    // }
+    @Override
+    public void start(Stage stage) throws Exception {
+    Parent root =
+    FXMLLoader.load(getClass().getResource("WashingPlanOverview.fxml"));
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
 
-    // @Test
-    // public void TestInputFields() {
-    // // clickOn("#createNewWashingPlanButton");
-    // // clickOn("#newWashingPlanNameTable");
-    // // clickOn("#addPersonField").write("Lars");
-    // // clickOn("addPersonButton");
-    // // clickOn("#addTaskField").write("Vaske do");
-    // // clickOn("addTaskButton");
-    // // clickOn("#fromWeek").write("1");
-    // // clickOn("#toWeek").write("30");
-    // }
+    }
+
+    @Test
+    public void TestInputFields() {
+    /*clickOn("#createNewWashingPlanButton");
+    clickOn("#newWashingPlanNameTable");
+    clickOn("#addPersonField").write("Lars");
+    clickOn("addPersonButton");
+    clickOn("#addTaskField").write("Vaske do");
+    clickOn("addTaskButton");
+    clickOn("#fromWeek").write("1");
+    clickOn("#toWeek").write("30");*/
+    }
 }

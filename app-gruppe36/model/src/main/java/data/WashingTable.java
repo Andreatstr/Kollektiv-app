@@ -43,6 +43,7 @@ public class WashingTable {
     {
         if (washingPlans == null) return 0;
         if (washingPlans.size() == 0) return 0;
+        
         return washingPlans.get(0).getWeekNumber();
     }
 

@@ -11,20 +11,25 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import data.House;
+import restapi.*;
 
 public class HouseManager {
 
-    private RestTemplate restTemplate;
-    private String url = "http://localhost:8080/";
-
+    public RestApi api;
+ 
     private House selectedHouse;
 
-  private static HouseManager instance;
+    private static HouseManager instance;
 
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {
-        restTemplate = new RestTemplate();
+        api = new DummyApi();
+    }
+
+    public void setTestApi()
+    {
+        api = new DummyApi();
     }
 
     public static HouseManager getInstance() {
@@ -34,13 +39,7 @@ public class HouseManager {
     }
 
     public boolean setHouse(String houseId) {
-        try {
-            House house = restTemplate.postForObject(url + "gethouse", houseId, House.class);
-            updateHouse(house);
-        } catch (RestClientException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        api.GetHouse(houseId);
         return true;
     }
 
@@ -55,7 +54,7 @@ public class HouseManager {
 
     public boolean CreateHouse(String id) {
         try {
-            House house = restTemplate.postForObject(url + "createnewhouse", id, House.class);
+            House house = api.CreateNewHouse(id);
             updateHouse(house);
         } catch (RestClientException e) {
             System.out.println(e.getMessage());
@@ -76,7 +75,7 @@ public class HouseManager {
     }
 
     public String getNewId() {
-        return restTemplate.getForObject(url + "newvalidid", String.class);
+        return api.getNewValidId();
     }
 
     public void subscribeToEvents(UpdateEvent subscriber)

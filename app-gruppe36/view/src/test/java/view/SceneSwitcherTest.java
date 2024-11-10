@@ -4,12 +4,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewmodel.MenueViewModel;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 // import static org.junit.jupiter.api.Assertions.assertNotNull;
 // import static org.testfx.api.FxAssert.verifyThat;
 
 public class SceneSwitcherTest extends ApplicationTest {
+
+      @BeforeAll
+      static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+    }
 
   @Override
   public void start(Stage stage) throws Exception {
@@ -31,7 +40,7 @@ public class SceneSwitcherTest extends ApplicationTest {
 
   @Test
   public void HomeButtonTest() {
-    int waitTime = 1;
+    int waitTime = 2;
 
     clickAndWait("#homeButton", waitTime);
 

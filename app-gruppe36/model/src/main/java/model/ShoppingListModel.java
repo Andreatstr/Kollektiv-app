@@ -57,20 +57,17 @@ public class ShoppingListModel implements UpdateEvent {
 
     /* Metoder som sender til server */
     public void addItem(Item newItem) {
-        ItemRequest request = new ItemRequest(newItem, house.getId());
-        house = restTemplate.postForObject(url + "additem", request, House.class);
+        house = houseManager.api.addItem(newItem, house.getId());
         houseManager.updateHouse(house);
     }
 
     public void removeItem(List<Item> items) {
-        ItemListRequest request = new ItemListRequest(items, house.getId());
-        house = restTemplate.postForObject(url + "removeitem", request, House.class);
+        house = houseManager.api.deleteItems(items,house.getId());
         houseManager.updateHouse(house);
     }
 
     public void buyItems(List<Item> items) {
-        ItemListRequest request = new ItemListRequest(items, house.getId());
-        house = restTemplate.postForObject(url + "buyitems", request, House.class);
+        house = houseManager.api.buyItem(items,house.getId());
         houseManager.updateHouse(house);
     }
 
