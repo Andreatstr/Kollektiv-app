@@ -109,5 +109,10 @@ public class ServerApi implements RestApi {
                 return "";
             }
     }
+
+    @Override
+    public String type() {
+        return "Server-Api";
+    }
     
 }

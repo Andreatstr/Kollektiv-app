@@ -70,4 +70,11 @@ public class DummyApi implements RestApi  {
     house.setWashingTable(washingTable);
     return house;
     }
+
+
+    @Override
+    public String type() {
+        return "Dummy-Api";
+    }
+    
 }

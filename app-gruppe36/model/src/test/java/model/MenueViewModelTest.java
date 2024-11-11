@@ -14,7 +14,7 @@ public class MenueViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().api = new DummyApi();
+        HouseManager.getInstance().setTestApi();
     }
 
     @BeforeEach
@@ -56,6 +56,7 @@ public class MenueViewModelTest {
 
     @Test
     public void testGetProposedHouseId() {
+        System.out.println(HouseManager.getInstance().api.type());
         String proposedId = menueViewModel.getProposedHouseId();
         assertNotNull(proposedId, "getProposedHouseId() should return a non-null ID");
         assertEquals("fffff", proposedId, "The proposed ID should match the DummyApi ID 'fffff'");
@@ -63,6 +64,7 @@ public class MenueViewModelTest {
 
     @Test
     public void testGenerateHouseWithValidId() {
+        System.out.println(HouseManager.getInstance().api.type());
         menueViewModel.getProposedHouseId();
         menueViewModel.generateHouse();
         HouseManager houseManager = HouseManager.getInstance();
@@ -72,6 +74,7 @@ public class MenueViewModelTest {
 
     @Test
     public void testLogOut() {
+        
         HouseManager houseManager = HouseManager.getInstance();
         houseManager.subscribeToEvents(new TestUpdateEvent());
         menueViewModel.logOut();
