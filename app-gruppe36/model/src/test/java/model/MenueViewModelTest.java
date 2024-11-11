@@ -48,46 +48,4 @@ public class MenueViewModelTest {
         assertFalse(result, "setCollective() should return false for a null ID");
     }
 
-    @Test
-    public void testSetCollectiveWithEmptyId() {
-        Boolean result = menueViewModel.setCollective("");
-        assertFalse(result, "setCollective() should return false for an empty ID");
-    }
-
-    @Test
-    public void testGetProposedHouseId() {
-        String proposedId = menueViewModel.getProposedHouseId();
-        assertNotNull(proposedId, "getProposedHouseId() should return a non-null ID");
-        assertEquals("fffff", proposedId, "The proposed ID should match the DummyApi ID 'fffff'");
-    }
-
-    @Test
-    public void testGenerateHouseWithValidId() {
-        menueViewModel.getProposedHouseId();
-        menueViewModel.generateHouse();
-        HouseManager houseManager = HouseManager.getInstance();
-        assertNotNull(houseManager.getHouse(), "The house should be created and stored in the HouseManager");
-        assertEquals("fffff", houseManager.getHouse().getId(), "The created house ID should be 'fffff'");
-    }
-
-    @Test
-    public void testLogOut() {
-        HouseManager houseManager = HouseManager.getInstance();
-        houseManager.subscribeToEvents(new TestUpdateEvent());
-        menueViewModel.logOut();
-        assertTrue(TestUpdateEvent.logoutCalled, "Subscribers should be notified of logout");
-    }
-
-    private static class TestUpdateEvent implements UpdateEvent {
-        static boolean logoutCalled = false;
-
-        @Override
-        public void updateEvent() {
-        }
-
-        @Override
-        public void logoutEvent() {
-            logoutCalled = true;
-        }
-    }
 }

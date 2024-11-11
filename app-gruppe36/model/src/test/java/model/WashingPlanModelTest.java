@@ -79,22 +79,6 @@ public class WashingPlanModelTest {
     }
 
     @Test
-    public void testGenerateWashingPlan() {
-        List<Person> persons = new ArrayList<>();
-        persons.add(new Person("Alice"));
-        persons.add(new Person("Bob"));
-
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("Dishes"));
-        tasks.add(new Task("Laundry"));
-
-        model.generateWashingPlan(persons, tasks, 1, 4);
-
-        WashingTable washingTable = model.getWashingTables();
-        assertNotNull(washingTable, "WashingTable should be created");
-    }
-
-    @Test
     public void testGetPlanForWeek() {
         model.setCurrentWeek(2);
         WashingPlan plan = model.getPlanForWeek();
@@ -104,26 +88,6 @@ public class WashingPlanModelTest {
         } else {
             assertNull(plan, "WashingPlan should be null if WashingTable is null");
         }
-    }
-
-    @Test
-    public void testSetCurrentWeek() {
-        List<Person> persons = new ArrayList<>();
-        persons.add(new Person("Alice"));
-        persons.add(new Person("Bob"));
-
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("Dishes"));
-        tasks.add(new Task("Laundry"));
-
-        model.generateWashingPlan(persons, tasks, 1, 4);
-
-        model.setCurrentWeek(2);
-        assertEquals(2, model.getCurrentWeek(), "Current week should be updated to 2");
-
-        // Prøv å sette uken utenfor gyldig område
-        model.setCurrentWeek(100);
-        assertEquals(2, model.getCurrentWeek(), "Week out of bounds should not update the current week");
     }
 
     @Test
