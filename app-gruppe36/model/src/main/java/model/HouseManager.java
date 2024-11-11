@@ -16,25 +16,22 @@ import restapi.*;
 public class HouseManager {
 
     public RestApi api;
- 
     private House selectedHouse;
-
     private static HouseManager instance;
-
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {
         api = new DummyApi();
     }
 
-    public void setTestApi()
-    {
+    public void setTestApi() {
         api = new DummyApi();
     }
 
     public static HouseManager getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new HouseManager();
+        }
         return instance;
     }
 
@@ -44,8 +41,7 @@ public class HouseManager {
     }
 
     public House getHouse() {
-        if (selectedHouse == null)
-        {
+        if (selectedHouse == null) {
             System.out.print("using empty house!");
             selectedHouse = new House();
         }
@@ -64,29 +60,25 @@ public class HouseManager {
     }
 
     public void updateHouse(House house) {
-        if (house == null)
+        if (house == null) {
             return;
+        }
         selectedHouse = house;
-        for (UpdateEvent subscriber : subscriptions)
-        {
+        for (UpdateEvent subscriber : subscriptions) {
             subscriber.updateEvent();
         }
-
     }
 
     public String getNewId() {
         return api.getNewValidId();
     }
 
-    public void subscribeToEvents(UpdateEvent subscriber)
-    {
+    public void subscribeToEvents(UpdateEvent subscriber) {
         subscriptions.add(subscriber);
     }
 
-    public void logOut()
-    {
-        for (UpdateEvent subscriber : subscriptions)
-        {
+    public void logOut() {
+        for (UpdateEvent subscriber : subscriptions) {
             subscriber.logoutEvent();
         }
     }

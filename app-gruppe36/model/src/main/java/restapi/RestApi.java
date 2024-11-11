@@ -19,8 +19,7 @@ public interface RestApi {
     public House GetHouse(String id);
     public House buyItem(List<Item> items, String id);
     public House deleteItems(List<Item> items, String id);
-    public House generateWashingplan(List<Person> persons, List<Task> tasks, int fromWeek,int toWeek,String houseId); 
-    
-
-
+    public House generateWashingplan(List<Person> persons, List<Task> tasks, 
+            int fromWeek,int toWeek,String houseId); 
+    public String type();
 }

@@ -18,8 +18,7 @@ public class ServerApi implements RestApi {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
-    public ServerApi()
-    {
+    public ServerApi() {
         restTemplate = new RestTemplate();
     }
 
@@ -109,6 +108,11 @@ public class ServerApi implements RestApi {
                 System.out.println(e.getMessage());
                 return "";
             }
+    }
+
+    @Override
+    public String type() {
+        return "Server-Api";
     }
     
 }
