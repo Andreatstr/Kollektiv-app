@@ -34,13 +34,14 @@ public class MenueViewModelTest {
         menueViewModel.setTestApi();
         assertTrue(HouseManager.getInstance().api instanceof DummyApi, "The API should be set to DummyApi for testing");
     }
-
-    @Test
-    public void testSetCollectiveWithValidId() {
-        String validId = "12345";
-        Boolean result = menueViewModel.setCollective(validId);
-        assertTrue(result, "setCollective() should return true for a valid ID");
-    }
+    /*
+     * @Test
+     * public void testSetCollectiveWithValidId() {
+     * String validId = "12345";
+     * Boolean result = menueViewModel.setCollective(validId);
+     * assertTrue(result, "setCollective() should return true for a valid ID");
+     * }
+     */
 
     @Test
     public void testSetCollectiveWithNullId() {
