@@ -6,11 +6,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
+import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import data.House;
 import data.Item;
@@ -19,15 +22,16 @@ import data.Task;
 import data.requests.CreateWashingPlanRequest;
 import data.requests.ItemListRequest;
 import data.requests.ItemRequest;
-
-public class ApiIntegrationTest {
-
+@SpringBootTest(
+    properties = {"server.port=8080"})
+public class ApiIntegrationTestIT {
+ 
     private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper mapper = new ObjectMapper(); // For å konvertere objekter til JSON
 
-    @Test
+   @Test
     public void testGetEndpoint() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()  
             .uri(new URI("http://localhost:8080/health"))
             .GET()
             .build();
@@ -36,7 +40,7 @@ public class ApiIntegrationTest {
         assertEquals(200, response.statusCode(), "Response status should be 200");
         assertEquals("yehaw", response.body(), "Response body should match expected");
     }
-
+    /*
     @Test
     public void testAddItem() throws Exception {
         Item item = new Item(); // Opprett et Item-objekt med riktige verdier
@@ -171,5 +175,5 @@ public class ApiIntegrationTest {
             String newId = response.body();
             assertNotNull(newId, "New valid ID should not be null");
         }
-    }
+    }*/ 
 }

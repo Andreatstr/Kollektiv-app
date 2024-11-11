@@ -159,7 +159,6 @@
         <module>view</module>
         <module>restserver</module>
         <module>core</module>
-        <module>integrationtest</module>
     </modules>    
 </project>
 
