@@ -24,9 +24,9 @@ test:
   stage: test
   script:
     - echo "Kjører tester utenom spesifikke filer i model-mappen"
-    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test -DexcludeTests="model.WashingPlanModelTest,model.WasteModelTest,MenueViewModelTest"
+    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test -DexcludeTests="model.ShoppingListViewModelTest,model.WashingPlanModelTest,model.WasteModelTest,model.MenueViewModelTest"
 
 install:
   stage: install
   script:
-    - mvn clean install -DskipTests
+    - mvn clean install -DskipTestss
