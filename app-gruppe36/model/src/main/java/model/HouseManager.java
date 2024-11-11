@@ -24,7 +24,7 @@ public class HouseManager {
     private List<UpdateEvent> subscriptions = new ArrayList<UpdateEvent>();
 
     private HouseManager() {
-        api = new DummyApi();
+        api = new ServerApi();
     }
 
     public void setTestApi()
