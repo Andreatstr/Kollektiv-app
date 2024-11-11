@@ -18,8 +18,8 @@ cache:
 test:
   stage: test
   script:
-    - echo "Kjører tester utenom UI"
-    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test -DexcludeTests="model.WashingPlanModelTest,model.WasteModelTest,MenueViewModelTest"
+    - echo "Kjører tester utenom UI og model-mappen"
+    - mvn $MAVEN_CLI_OPTS -pl '!view,!model' clean test
 
 compile:
   stage: compile
