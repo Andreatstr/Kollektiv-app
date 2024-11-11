@@ -7,9 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.Init;
+
+import viewmodel.MenueViewModel;
 import viewmodel.WashingPlanViewModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -20,6 +25,12 @@ public class NewWashingPlanTest extends ApplicationTest {
     private TableView<Person> personTable;
     private TableView<Task> taskTable;
     private WashingPlanViewModel viewModel;
+
+    @BeforeAll
+    static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -73,9 +84,7 @@ public class NewWashingPlanTest extends ApplicationTest {
     public void testWeekRangeValidation() {
         clickOn("#fromWeek").write("5");
         clickOn("#toWeek").write("1");
-
         clickOn("#generateWashingPlan");
-
         assertEquals(1, viewModel.getCurrentWeek(), "Current week should not change with invalid range.");
     }
 

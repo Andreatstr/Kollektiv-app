@@ -53,6 +53,9 @@ public class ShoppingListController {
         if (house == null) {
             return null;
         }
+        if (house == null) {
+            return null;
+        }
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
         for (Item item : shoppingList) {
             if (item.getItemName().equals(newItem.getItemName())) {

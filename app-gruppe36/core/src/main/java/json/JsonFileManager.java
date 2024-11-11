@@ -23,11 +23,6 @@ public class JsonFileManager {
         return instance;
     }
 
-    public void saveHouse(House house) {
-        List<House> houses = getNewHouseList(house);
-        saveToFile(houses);
-    }
-
     public void deleteHouse(String id) {
         List<House> houses = getHouses();
         House houseToDelete = null;
@@ -71,31 +66,4 @@ public class JsonFileManager {
         return new File(path);
     }
 
-    private List<House> getNewHouseList(House house) {
-        List<House> houses = new ArrayList<>(getHouses());
-        for (int i = 0; i < houses.size(); i++) {
-            if (houses.get(i).getId().equals(house.getId())) {
-                houses.set(i, house);
-                return houses;
-            }
-        }
-        houses.add(house);
-        return houses;
-    }
-
-    public House getSavedHouse(String id) {
-        List<House> houses = getHouses();
-        if (houses == null) {
-            return null;
-        }
-        if (houses.size() == 0) {
-            return null;
-        }
-        for (House house : houses) {
-            if (house.getId().equals(id)) {
-                return house;
-            }
-        }
-        return null;
-    }
 }

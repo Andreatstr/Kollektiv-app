@@ -3,6 +3,7 @@ package model;
 import data.House;
 import data.Waste;
 import javafx.collections.ObservableList;
+import restapi.DummyApi;
 import viewmodel.WasteViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,9 @@ public class WasteViewModelTest {
 
     @BeforeEach
     public void setUp() {
-        mockWasteModel = Mockito.mock(WasteModel.class);
-        mockHouse = Mockito.mock(House.class);
+      HouseManager.getInstance().api = new DummyApi();
+      mockWasteModel = Mockito.mock(WasteModel.class);
+      mockHouse = Mockito.mock(House.class);
 
         HouseManager mockHouseManager = Mockito.mock(HouseManager.class);
         when(mockHouseManager.getHouse()).thenReturn(mockHouse);

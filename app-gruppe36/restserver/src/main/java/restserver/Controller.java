@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 /**
  * REST controller for handling requests related to houses, shopping lists, and washing plans.
  * This controller includes endpoints for creating houses, retrieving house data, managing
@@ -45,7 +46,12 @@ public class Controller {
         return HouseController.getInstance().getHouse(id);
     }
 
-    // ShoppingList
+    @GetMapping ("/health")
+    public String health()
+    {
+        return "yehaw";
+    }
+
     @PostMapping ("/additem")
     public House additem(@RequestBody ItemRequest request) {
         return ShoppingListController.getInstance().addItem(request.getItem(), request.getId());

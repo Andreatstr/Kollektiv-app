@@ -21,9 +21,9 @@ public class WashingPlanViewModel {
     private int startWeek;
     private int endWeek;
 
-    private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
-    private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
-    private ObservableList<WashingPlanEntry> washingPlanEntry = FXCollections.observableArrayList();
+  private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
+  private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
+  private ObservableList<WashingPlanEntry> washingPlanEntry = FXCollections.observableArrayList();
 
     private WashingPlanViewModel() {
         washingPlanModel = WashingPlanModel.getInstance();
@@ -89,10 +89,10 @@ public class WashingPlanViewModel {
         updateWashingPlans();
     }
 
-    public void setCurrentWeek(Integer week) {
-        washingPlanModel.setCurrentWeek(week);
-        updateWashingPlans();
-    }
+  public void setCurrentWeek(Integer week) {
+    washingPlanModel.setCurrentWeek(week);
+    updateWashingPlans();
+  }
 
     public void generateWashingPlan(int fw, int tw) {
         washingPlanModel.generateWashingPlan(washingPlanPersons, washingPlanTasks, fw, tw);
@@ -149,8 +149,8 @@ public class WashingPlanViewModel {
         }
         washingPlanEntry.addAll(plansForCurrentWeek.getEntries());
 
-        return washingPlanEntry;
-    }
+    return washingPlanEntry;
+  }
 
     public void editWashingPlan() {
         washingPlanModel.editWashingPlan();
@@ -164,13 +164,13 @@ public class WashingPlanViewModel {
         return washingPlanPersons;
     }
 
-    public int getCurrentWeek() {
-        return washingPlanModel.getCurrentWeek();
-    }
+  public int getCurrentWeek() {
+    return washingPlanModel.getCurrentWeek();
+  }
 
-    public int getStartWeek() {
-        return startWeek;
-    }
+  public int getStartWeek() {
+    return startWeek;
+  }
 
     /**
      * The function `setStartWeek` sets the start week based on the input string after 

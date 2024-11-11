@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <skipTests>true</skipTests>
+        <skipTests>false</skipTests>
         
     </properties>
 
@@ -47,6 +47,12 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+        </dependency>
+
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>3.3.4</version>
         </dependency>
         </dependencies>
     </dependencyManagement>
@@ -145,8 +151,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
-
             </plugins>
         </pluginManagement>
     </build>

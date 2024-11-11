@@ -1,6 +1,7 @@
 package viewmodel;
 
 import model.HouseManager;
+import restapi.ServerApi;
 
 /**
  * The MenueViewModel class manages house-related operations such as setting a collective, getting a
@@ -13,9 +14,18 @@ public class MenueViewModel {
     private static final Object lock = new Object();
     private HouseManager houseManager;
 
-    private MenueViewModel() {
-        houseManager = HouseManager.getInstance();
-    }
+  private MenueViewModel() {
+    houseManager = HouseManager.getInstance();
+  }
+
+  public void setTestApi() {
+    houseManager.setTestApi();
+  }
+
+  public void setServerApi()
+  {
+    houseManager.setServerApi();
+  }
 
     /**
      * The getInstance method returns the singleton instance of MenueViewModel,
