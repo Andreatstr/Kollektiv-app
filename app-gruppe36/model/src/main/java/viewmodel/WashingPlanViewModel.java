@@ -12,18 +12,18 @@ import javafx.collections.ObservableList;
 import model.WashingPlanModel;
 
 public class WashingPlanViewModel {
-    
-    public static WashingPlanViewModel washingPlanViewModel;
-    private WashingPlanModel washingPlanModel;
-    private int currentWeek = 1;
-    public int startWeek;
-    public int endWeek;
 
-    private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
-    private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
-    private ObservableList<WashingPlanEntry> washingPlanEntry = FXCollections.observableArrayList();
+  public static WashingPlanViewModel washingPlanViewModel;
+  private WashingPlanModel washingPlanModel;
+  private int currentWeek = 1;
+  public int startWeek;
+  public int endWeek;
 
-  private WashingPlanViewModel() {
+  private ObservableList<Person> washingPlanPersons = FXCollections.observableArrayList();
+  private ObservableList<Task> washingPlanTasks = FXCollections.observableArrayList();
+  private ObservableList<WashingPlanEntry> washingPlanEntry = FXCollections.observableArrayList();
+
+  public WashingPlanViewModel() {
     washingPlanModel = WashingPlanModel.getInstance();
   }
 
@@ -45,50 +45,53 @@ public class WashingPlanViewModel {
     updateWashingPlanTasks();
   }
 
-    public void addPerson(String person) {
-        if (person == null || person.isEmpty()) {
-            System.out.println("Person field is null or empty");
-            return;
-        } 
-        Person newPerson = new Person(person);
-        washingPlanModel.addPerson(newPerson);
-        updateWashingPlanPersons();
+  public void addPerson(String person) {
+    if (person == null || person.isEmpty()) {
+      System.out.println("Person field is null or empty");
+      return;
     }
+    Person newPerson = new Person(person);
+    washingPlanModel.addPerson(newPerson);
+    washingPlanPersons.add(newPerson);
+    updateWashingPlanPersons();
+  }
 
-    public void generateWashingPlan(int fromWeek, int toWeek) {
-        washingPlanModel.generateWashingPlan(washingPlanPersons, washingPlanTasks, fromWeek, toWeek);
-        updateWashingPlans();
-    }
+  public void generateWashingPlan(int fromWeek, int toWeek) {
+    washingPlanModel.generateWashingPlan(washingPlanPersons, washingPlanTasks, fromWeek, toWeek);
+    updateWashingPlans();
+  }
 
-    public void nextWeek() {
-        washingPlanModel.setCurrentWeek(washingPlanModel.getCurrentWeek()+1);
-        updateWashingPlans();
-    }
+  public void nextWeek() {
+    washingPlanModel.setCurrentWeek(washingPlanModel.getCurrentWeek() + 1);
+    updateWashingPlans();
+  }
 
-    public void previousWeek() {
-        washingPlanModel.setCurrentWeek(washingPlanModel.getCurrentWeek()-1);
-        updateWashingPlans();
-    }
+  public void previousWeek() {
+    washingPlanModel.setCurrentWeek(washingPlanModel.getCurrentWeek() - 1);
+    updateWashingPlans();
+  }
 
-    public void setCurrentWeek(Integer week) {
-        washingPlanModel.setCurrentWeek(week);
-        updateWashingPlans();
-    }
+  public void setCurrentWeek(Integer week) {
+    washingPlanModel.setCurrentWeek(week);
+    updateWashingPlans();
+  }
 
-    public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        washingPlanModel.generateWashingPlan(persons, tasks, fromWeek, toWeek);
-        updateWashingPlans();
-    }
+  public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
+    washingPlanModel.generateWashingPlan(persons, tasks, fromWeek, toWeek);
+    updateWashingPlans();
+  }
 
-    public void updateWashingPlans() {
-        washingPlanEntry.clear();
-        currentWeek = washingPlanModel.getCurrentWeek();
-        WashingPlan plan = washingPlanModel.getPlanForWeek();
-        if (plan == null) return;
-        List<WashingPlanEntry> weekPlans = plan.getEntries();
-        if (weekPlans == null) return;
-        washingPlanEntry.addAll(weekPlans);
-    }
+  public void updateWashingPlans() {
+    washingPlanEntry.clear();
+    currentWeek = washingPlanModel.getCurrentWeek();
+    WashingPlan plan = washingPlanModel.getPlanForWeek();
+    if (plan == null)
+      return;
+    List<WashingPlanEntry> weekPlans = plan.getEntries();
+    if (weekPlans == null)
+      return;
+    washingPlanEntry.addAll(weekPlans);
+  }
 
   public void updateWashingPlanPersons() {
     washingPlanPersons.clear();
@@ -100,21 +103,22 @@ public class WashingPlanViewModel {
     washingPlanTasks.addAll(washingPlanModel.getWashingPlanTasks());
   }
 
-    public ObservableList<WashingPlanEntry> getWashingPlanEntries() {
-        washingPlanEntry.clear();
-        WashingPlan plansForCurrentWeek = washingPlanModel.getPlanForWeek();
+  public ObservableList<WashingPlanEntry> getWashingPlanEntries() {
+    washingPlanEntry.clear();
+    WashingPlan plansForCurrentWeek = washingPlanModel.getPlanForWeek();
 
-        if (plansForCurrentWeek == null) return washingPlanEntry;
-        if (plansForCurrentWeek.getEntries() == null) return washingPlanEntry;
-        washingPlanEntry.addAll(plansForCurrentWeek.getEntries());
+    if (plansForCurrentWeek == null)
+      return washingPlanEntry;
+    if (plansForCurrentWeek.getEntries() == null)
+      return washingPlanEntry;
+    washingPlanEntry.addAll(plansForCurrentWeek.getEntries());
 
-        return washingPlanEntry;
-    }
+    return washingPlanEntry;
+  }
 
-    public void editWashingPlan()
-    {
-        washingPlanModel.editWashingPlan();
-    }
+  public void editWashingPlan() {
+    washingPlanModel.editWashingPlan();
+  }
 
   public ObservableList<Task> getWashingPlanTasks() {
     return washingPlanTasks;
@@ -124,22 +128,21 @@ public class WashingPlanViewModel {
     return washingPlanPersons;
   }
 
-    public int getCurrentWeek() {
-        return washingPlanModel.getCurrentWeek();
-    }
+  public int getCurrentWeek() {
+    return washingPlanModel.getCurrentWeek();
+  }
 
-    public int getStartWeek() {
-        return startWeek;
-    }
+  public int getStartWeek() {
+    return startWeek;
+  }
 
-    public void setStartWeek(String toWeekInput) {
-        if (!isInteger(toWeekInput)) {
-            throw new IllegalArgumentException("To Week is not a valid integer.");
-        }
-        int newStartWeek = Integer.parseInt(toWeekInput);
-        this.startWeek = newStartWeek;
+  public void setStartWeek(String toWeekInput) {
+    if (!isInteger(toWeekInput)) {
+      throw new IllegalArgumentException("To Week is not a valid integer.");
     }
-
+    int newStartWeek = Integer.parseInt(toWeekInput);
+    this.startWeek = newStartWeek;
+  }
 
   public void setEndWeek(String toWeekInput) {
     if (!isInteger(toWeekInput)) {
@@ -153,19 +156,19 @@ public class WashingPlanViewModel {
     return endWeek;
   }
 
-    public boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+  public boolean isInteger(String input) {
+    try {
+      Integer.parseInt(input);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
     }
+  }
 
-    public void reset() {
-        washingPlanPersons.clear();
-        washingPlanTasks.clear();
-        currentWeek = 1;
-        washingPlanModel.reset();
-    }
+  public void reset() {
+    washingPlanPersons.clear();
+    washingPlanTasks.clear();
+    currentWeek = 1;
+    washingPlanModel.reset();
+  }
 }

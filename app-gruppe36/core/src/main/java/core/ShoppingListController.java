@@ -15,16 +15,15 @@ public class ShoppingListController
 
     private HouseController controller;
 
-    private ShoppingListController() 
-    {
+    private ShoppingListController() {
         jsonFileManager = JsonFileManager.getInstance();
         controller = HouseController.getInstance();
     }
 
-    public static ShoppingListController getInstance()
-    {   
-        if (shoppingListModel != null)
+    public static ShoppingListController getInstance() {   
+        if (shoppingListModel != null) {
             return shoppingListModel;
+        }
         shoppingListModel = new ShoppingListController();
         return shoppingListModel;
     }
@@ -38,7 +37,9 @@ public class ShoppingListController
     public House addItem(Item newItem, String id)
     {   
         House house = controller.getHouse(id);
-        if (house == null) return null;
+        if (house == null) {
+            return null;
+        }
         List<Item> shoppingList = controller.getHouse(id).getShoppingList();
         for (Item item : shoppingList)
         {

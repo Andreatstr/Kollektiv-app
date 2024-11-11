@@ -13,8 +13,6 @@ import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
 
-import java.util.List;
-
 public class DummyApi implements RestApi  {
 
     House house = new House("fffff");
@@ -74,6 +72,12 @@ public class DummyApi implements RestApi  {
         }
     house.setWashingTable(washingTable);
     return house;
+    }
+
+
+    @Override
+    public String type() {
+        return "Dummy-Api";
     }
     
 }

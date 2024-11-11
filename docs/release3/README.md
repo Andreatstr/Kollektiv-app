@@ -1,5 +1,20 @@
-# Beskrivelse av prosjektet (release 2)
+# Beskrivelse av prosjektet (release 3)
+Denne applikasjonen gjør det enkelt for beboere i et kollektiv å holde oversikt over både vaskeplaner, innkjøpslister og tømmeplan for søppel. Beboerne får en god oversikt over rengjøringsoppgavene og bosshentingsdatoer, samtidig som de kan være sikre på at nødvendige varer alltid er på plass. Når et nytt kollektiv opprettes, genereres en unik kollektiv-ID som kan brukes til å opprette et nytt kollektiv i appen. Denne IDen kan senere benyttes til å logge inn i det eksisterende kollektivet.
 
+Vaskeplanfunksjonen gjør at kollektivet kan opprette en egen vaskeplan hvor man kan legge inn navn og ukentlige gjøremål, og automatisk generere en vaskeplan for ønskede uker. Navnene i vaskeplanen roteres automatisk mellom gjøremålene hver uke. Det er også mulig å redigere vaskeplanen, samt å lage en helt ny som erstatter den gamle.
+
+Handlelistefunksjonen består av en aktiv handleliste, samt en handlehistorikk. I den aktive handlelisten kan alle legge til varenavn og -antall av det som må kjøpes, og enten slette eller markere som kjøpt de varene som ikke lenger skal stå på listen. Dersom varen markeres som kjøpt havner den automatisk i handlehistorikken, hvor varenavn og handledato står, slik at man enkelt kan sjekke når en vare sist ble handlet om man er på butikken og er usikker på om man skal kjøpe en vare til kollektivet.
+
+Den nye funksjonaliteten som ble lagt til i release3 implementerer en bosstømmingsplan, som viser hvilke uker ulike avfallstyper skal tømmes. Tømmeplanen hentes dynamisk fra Trondheim Renholdsverk sin nettside ved hjelp av web-scraping, noe som sikrer at planen alltid er oppdatert dersom det skjer endringer på nettsiden.
+
+## REST-tjenesten
+
+REST APIet støtter følgende formater: GET- og POST-forespørsler med JSON som input- og output-format. Objektene blir automatisk omgjort til JSON, slik at det ikke trengs ekstra logikk for serialisering eller deserialisering av data. Dette gjør at REST-API-et enkelt kan kommunisere med frontend eller andre tjenester uten behov for tilleggsimplementering.
+
+
+## Refleksjon rundt implisitt lagring (krav fra øving 2)
+
+I dette prosjektet benyttes implisitt lagring istedenfor dokumentmetafor, da dette er mest gunstig med tanke på brukeropplevelsen og appens funksjon. I forhold til en dokumentmetafor, hvor brukeren er direkte involvert med lagring av filene sine, gjør dette applikasjonen mer brukervennlig, da bruker slippet å bekymre seg for tap av data om en glemmer å trykke på en "lagre"-knapp og annen filhåndtering. All data som lagres er knyttet til en kollektiv-ID, og lagres automatisk i en JSON-fil, og er sikret kontinuerlig synkronisering og konsistens ved slik automatisk lagring. Det bør dog merkes at det finnes noen ulemper med denne løsninger, for eksempel mangel på versjonshåndtering og mindre kontroll for brukeren på hva som lagres hvor og når. Gruppen ser likevel at implisitt lagring gir best brukeropplevelse i forhold til applikajsonens bruksområde og tenkt brukermåte.
 
 
 ## Arbeidsflyt
@@ -29,11 +44,12 @@ Under hele denne prosessen er vi nesten daglig i kontakt i gruppechatten der vi 
 
 
 ## Kodekvalitet - Bruk av kvalitetsverktøy
+
 I dette prosjektet har vi implementert en rekke verktøy for å opprettholde høy kodekvalitet. Disse verktøyene hjelper oss med å sikre at koden er robust, godt strukturert, og lett å vedlikeholde. Under har vi nevnt hvilke verktøy vi har brukt i utviklingsprossesen.
 
 
 ### CI Pipeline
-Vi har satt opp en CI-pipeline i GitLab som automatiserer kjøring av tester, kompilering, bygging og initialisering av prosjektet i en Docker-kontainer på en separat server. Denne prosessen sikrer at systemet fungerer som forventet før koden merges med andre grener. CI-Pipeline flagger også kode som ikke passerer tester eller som ikke kan kjøres korrekt. Et av hovedformålene med Ci-pipeline er å sikre at koden initialiserer alle lokale variabler korrekt.
+Vi har satt opp en CI-pipeline i GitLab som automatiserer kjøring av enhets- og integrasjonstester, kompilering, bygging og initialisering av prosjektet i en Docker-kontainer på en separat server. Denne prosessen sikrer at systemet fungerer som forventet før koden merges med andre grener. CI-Pipeline flagger også kode som ikke passerer tester eller som ikke kan kjøres korrekt. Et av hovedformålene med CI-pipeline er å sikre at koden initialiserer alle lokale variabler korrekt.
 
 ### Testdekning med Jacoco
 For å sikre at all kode blir tilstrekkelig testet, har vi brukt Jacoco til å måle testdekning. Jacoco kjøres automatisk hver gang vi utfører mvn clean install, og gir oss innsikt i hvor stor del av koden som er dekket av tester. Dette hjelper oss med å identifisere hvilke deler av applikasjonen som eventuelt mangler tester.
@@ -51,18 +67,43 @@ I prosjektet vårt har vi en enkel teststrategi som dekker enhetstester, integra
 Alle verktøyene våre spiller sammen for å sikre høy kodekvalitet. Testene forbedrer dekningsgraden i CI-pipelinen, som automatisk sikrer at prosjektet bygger og kjører. Jacoco gir oversikt over testdekning, mens SpotBugs og Checkstyle hjelper oss med å identifisere bugs og kodekonvensjoner vi må forbedre. Dette gir oss mulighet til å iterativt forbedre koden, samt alltid levere kode av høy kvalitet.
 
 
-### Arkitekur og diagrammer
-Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjektet med forskjellige mengde abstraksjon. 
+## Arkitekur og diagrammer
+
+Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjektet med forskjellige på forskjellig abstraksjonsnivå. 
+
+
+### Pakkediagram
+
+Pakkediagrammet viser hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Datapakken er et bibliotek for klasser som trengs av flere andre pakker samtidig. Vi har valgt å inkludere persistence i core-komponenten fordi vi valgte å holde persistence-mappen enkel og anså det som unødvendig å opprette en egen modul for denne funksjonaliteten.
+
+![Et pakkediagram](diagrams/packageDiagram.png)
+
+
+### Klassediagram
+
+Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra datapakken.
+
+![Et klassediagram](diagrams/classDiagram.png)
+
+### Sekvensdiagram
+
+Sekvensdiagrammet viser koblingen mellom brukerinteraksjon og det som skjer inni systemet for et viktig brukstilfellet. Brukstilfellet er når bruker oppretter et nytt kollektiv med tilhørende ID, og videre oppretter en ny vaskeplan i applikasjonen.
+
+![Et sekvensdiagram](diagrams/sequenceDiagram.png)
+
+### Model-View-ViewModel (MVVM) logical view
 
  Først har vi et enkelt diagram som beskriver flyt av data og ansvar over logikk i prosjektet. View har ansvar for brukergrensesnitt og vising av data. Viewmodel er et mellomlag som forbereder data mellom view og model. Model Inneholder logikken til applikasjonen og persistance har ansvar for lagring. Vi har valgt å inkludere persistence i core-komponenten fordi vi valgte å holde persistence-mappen enkel og anså det som unødvendig å opprette en egen modul for denne funksjonaliteten.
 
-![MVVM logical view](MVVMDiagram.png)
+![MVVM logical view](diagrams/MVVMDiagram.png)
 
-Package diagram beskriver hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Data pakken et er bibliotek for klasser som trengs av flere andre pakker samtidig.
 
-![Et pakkediagram](packagediagram.png)
+## Brukerhistorie
+Brukerhistorie for vaskeplan- og handlelistefunksjonene:
 
-Class diagram viser klasene i prosjekter og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra data pakken.
+![En brukerhistorie som beskriver to brukstilfellet av applikasjonen](diagrams/brukerhistorie.png)
 
-![Et klassediagram](classdiagram.png)
 
+En brukerhistorie som beskriver den nye boss-funksjonen i applikasjonen:
+
+![En brukerhistorie som beskriver et brukstilfellet av applikasjonen](diagrams/brukerhistorie2.png)

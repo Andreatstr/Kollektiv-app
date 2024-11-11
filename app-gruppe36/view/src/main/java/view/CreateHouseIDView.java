@@ -18,7 +18,7 @@ public class CreateHouseIDView {
     private Button generateNewHouseIDButton;
 
     @FXML
-    private Label generatedHouseIDText; //TODO: må lage model som genererer og lagrer HouseID
+    private Label generatedHouseIDText;
 
     @FXML
     private Button loginFromCreateHouseIDButton;

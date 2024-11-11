@@ -20,8 +20,7 @@ public class ServerApi implements RestApi {
     private RestTemplate restTemplate;
     private String url = "http://localhost:8080/";
 
-    public ServerApi()
-    {
+    public ServerApi() {
         restTemplate = new RestTemplate();
         restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(url));
     }
@@ -114,9 +113,14 @@ public class ServerApi implements RestApi {
             }
     }
 
+
     public void setRestTemplate(RestTemplate template)
     {
         this.restTemplate = template;
+    }
+    @Override
+    public String type() {
+        return "Server-Api";
     }
     
 }
