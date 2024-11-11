@@ -1,6 +1,7 @@
 package viewmodel;
 
 import model.HouseManager;
+import restapi.ServerApi;
 
 public class MenueViewModel {
 
@@ -15,6 +16,11 @@ public class MenueViewModel {
   public void setTestApi()
   {
     houseManager.setTestApi();
+  }
+
+  public void setServerApi()
+  {
+    houseManager.setServerApi();
   }
 
   public static MenueViewModel getInstance() {

@@ -2,8 +2,10 @@ package restapi;
 
 import java.util.List;
 
+
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import data.House;
 import data.Item;
@@ -21,6 +23,7 @@ public class ServerApi implements RestApi {
     public ServerApi()
     {
         restTemplate = new RestTemplate();
+        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(url));
     }
 
     @Override
@@ -109,6 +112,11 @@ public class ServerApi implements RestApi {
                 System.out.println(e.getMessage());
                 return "";
             }
+    }
+
+    public void setRestTemplate(RestTemplate template)
+    {
+        this.restTemplate = template;
     }
     
 }

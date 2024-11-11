@@ -7,5 +7,4 @@ module restserver {
     exports restserver;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
-    //requires org.junit.jupiter.api;
 }

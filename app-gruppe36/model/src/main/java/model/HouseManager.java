@@ -32,6 +32,11 @@ public class HouseManager {
         api = new DummyApi();
     }
 
+    public void setServerApi()
+    {
+        api = new ServerApi();
+    }
+
     public static HouseManager getInstance() {
         if (instance == null)
             instance = new HouseManager();

@@ -24,6 +24,14 @@
 
     <dependencies>
         <!-- Spring Boot Web -->
+
+
+        <dependency>
+            <groupId>gr36</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
