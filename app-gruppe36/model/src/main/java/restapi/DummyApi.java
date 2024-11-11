@@ -2,6 +2,9 @@ package restapi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.web.client.RestTemplate;
+
 import data.House;
 import data.Item;
 import data.Person;

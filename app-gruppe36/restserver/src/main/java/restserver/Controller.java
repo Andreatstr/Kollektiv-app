@@ -1,13 +1,17 @@
 package restserver;
-import java.util.List;
-import data.*;
-import data.requests.*;
-import core.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import core.HouseController;
+import core.ShoppingListController;
+import core.WashingPlanController;
+import data.House;
+import data.requests.CreateWashingPlanRequest;
+import data.requests.ItemListRequest;
+import data.requests.ItemRequest;
 
 
 
@@ -34,6 +38,12 @@ public class Controller {
     public House GetHouse(@RequestBody String id)
     {
         return HouseController.getInstance().getHouse(id);
+    }
+
+    @GetMapping ("/health")
+    public String health()
+    {
+        return "yehaw";
     }
 
     //ShoppingList

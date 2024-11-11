@@ -10,6 +10,8 @@ module model {
     requires spring.webflux;
     requires javafx.base;
     exports viewmodel;
+    exports model;
     exports data;
+    exports restapi;
     exports data.requests;
 }

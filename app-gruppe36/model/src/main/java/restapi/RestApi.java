@@ -3,6 +3,7 @@ package restapi;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
 
 import data.House;
 import data.Item;
