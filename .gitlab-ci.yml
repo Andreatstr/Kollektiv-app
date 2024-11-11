@@ -15,16 +15,16 @@ cache:
   paths:
     - .m2/repository
 
-test:
-  stage: test
-  script:
-    - echo "Kjører tester utenom UI og model-mappen"
-    - mvn $MAVEN_CLI_OPTS -pl '!view,!model' clean test
-
 compile:
   stage: compile
   script:
     - mvn clean compile
+
+test:
+  stage: test
+  script:
+    - echo "Kjører tester utenom spesifikke filer i model-mappen"
+    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test -DexcludeTests="model.WashingPlanModelTest,model.WasteModelTest,MenueViewModelTest"
 
 install:
   stage: install
