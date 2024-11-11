@@ -4,8 +4,11 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import java.io.IOException;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import viewmodel.MenueViewModel;
 
 public class ChoiceScreenView {
 
@@ -21,14 +24,15 @@ public class ChoiceScreenView {
   @FXML
   private Button openWashingPlanOverviewButton;
 
-  @FXML
-  void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
-    SceneSwitcher.switchToScene(event, "MainMenu.fxml");
-  }
+    @FXML
+    void handleBackFromChoiceScreen(ActionEvent event) throws IOException {
+        MenueViewModel.getInstance().logOut();
+        SceneSwitcher.switchToScene(event, "MainMenu.fxml");
+    }
 
   @FXML
     void handleOpenTrash(ActionEvent event) throws IOException {
-      SceneSwitcher.switchToScene(event, "Trash.fxml");
+      SceneSwitcher.switchToScene(event, "WasteOverview.fxml");
     }
 
   @FXML

@@ -6,36 +6,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListOverviewView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShoppingListOverviewView">
    <children>
       <Label layoutX="293.0" layoutY="87.0" text="Handleliste">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="backFromShoppingListOverview" layoutX="19.0" layoutY="28.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListOverview" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
+      <Button fx:id="activeShoppingList" layoutX="112.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonActiveShoppingList" prefHeight="430.0" prefWidth="300.0" styleClass="sceneButton" text="Aktiv Handleliste" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="shoppingListHistory" layoutX="499.0" layoutY="210.0" mnemonicParsing="false" onAction="#buttonShoppingListHistory" prefHeight="430.0" prefWidth="300.0" styleClass="sceneButton" text="Historikk">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="homeButton" layoutX="830.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="30.0" prefWidth="30.0" styleClass="homeButton">
          <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
+            <ImageView fx:id="HouseImage" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+      <Button fx:id="backFromShoppingListOverview" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonBackFromShoppingListOverview" prefHeight="23.0" prefWidth="66.0" styleClass="backButton" text="Tilbake">
+         <graphic>
+            <Label prefHeight="25.0" prefWidth="8.0" text="&lt;">
                <font>
-                  <Font size="18.0" />
+                  <Font size="10.0" />
                </font>
             </Label>
          </graphic>
-      </Button>
-      <Button fx:id="activeShoppingList" layoutX="122.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonActiveShoppingList" prefHeight="430.0" prefWidth="300.0" text="Aktiv Handleliste" textAlignment="CENTER">
          <font>
-            <Font size="24.0" />
+            <Font size="10.0" />
          </font>
-      </Button>
-      <Button fx:id="shoppingListHistory" layoutX="480.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonShoppingListHistory" prefHeight="430.0" prefWidth="300.0" text="Historikk">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="homeButton" layoutX="796.0" layoutY="27.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="70.0" prefWidth="70.0">
-         <graphic>
-            <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
-         </graphic>
       </Button>
    </children>
 </AnchorPane>

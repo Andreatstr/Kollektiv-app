@@ -27,7 +27,7 @@ public class WashingPlan {
     return weekNumber;
   }
 
-  // For at Json skal fungere
+  // For Json to work
   public void setWeekNumber(int weekNumber) {
     this.weekNumber = weekNumber;
   }

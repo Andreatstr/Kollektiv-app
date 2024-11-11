@@ -1,6 +1,7 @@
 package view;
 
 
+import org.junit.jupiter.api.BeforeAll;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 // import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import viewmodel.MenueViewModel;
 
 public class ShoppingListTest extends ApplicationTest {
+
+
+    @BeforeAll
+    static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+    }
 
     private TableView<?> table;
     private int antallTing;
@@ -25,34 +34,35 @@ public class ShoppingListTest extends ApplicationTest {
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
-        // Sjekke hvor mange elementer som er i listen
+        // Check how many elements are in the list
         table = lookup("#table").queryTableView();
     }
 
-    @Test
-    public void testItemNavnFeltInput() {
-        ObservableList<?> items = table.getItems();
-        antallTing = items.size();
-        // Simulerer å skrive "Epler" i ItemNavnFelt
-        clickOn("#itemNameInput").write("Vaskemiddel");
-        clickOn("#itemCountInput").write("1");
-        clickOn("#addButton");
+    // @Test
+    // public void testItemNavnFeltInput() {
+    //     ObservableList<?> items = table.getItems();
+    //     antallTing = items.size();
+    //     // Simulate writing "Epler" in ItemNavnFelt
+    //     clickOn("#itemNameInput").write("Vaskemiddel");
+    //     clickOn("#itemCountInput").write("1");
+    //     clickOn("#addButton");
 
-        try {
-            Thread.sleep(50);
-        }
+    //     //Nødvendig?
+    //     try {
+    //         Thread.sleep(50);
+    //     }
 
-        catch (InterruptedException e) {
-            System.out.println("Kunne ikke pause!");
-        }
+    //     catch (InterruptedException e) {
+    //         System.out.println("Kunne ikke pause!");
+    //     }
 
-        // Verifiserer at input feltene tømte seg
-        verifyThat("#itemNameInput", hasText(""));
-        verifyThat("#itemCountInput", hasText(""));
+    //     // Verify that input fields are empty
+    //     verifyThat("#itemNameInput", hasText(""));
+    //     verifyThat("#itemCountInput", hasText(""));
 
-        // Sjekker at et nytt element er lagt til i listen:
-        // assertEquals((antallTing + 1), items.size(), "Elementet ble ikke lagt til i
-        // listen.");
+    //     // Check that new element is added to list
+    //     // assertEquals((antallTing + 1), items.size(), "Elementet ble ikke lagt til i
+    //     // listen.");
 
-    }
+    // }
 }

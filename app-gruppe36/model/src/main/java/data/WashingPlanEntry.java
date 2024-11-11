@@ -1,40 +1,31 @@
 package data;
 
 public class WashingPlanEntry {
-  private Person person;
-  private Task task;
-  private int week;
+    private Person person;
+    private Task task;
 
   public WashingPlanEntry() {
   }
 
-  public WashingPlanEntry(Person person, Task task, int week) {
-    this.person = person;
-    this.task = task;
-    this.week = week;
-  }
+    public WashingPlanEntry(Person person, Task task) {
+        this.person = person;
+        this.task = task;
+    }
 
   public Person getPerson() {
     return person;
   }
 
-  public Task getTask() {
-    return task;
-  }
-
-  public int getWeek() {
-    return week;
-  }
+    public Task getTask() {
+        return task;
+    }
 
   public void setPerson(Person person) {
     this.person = person;
   }
 
-  public void setTask(Task task) {
-    this.task = task;
-  }
-
-  public void setWeek(int week) {
-    this.week = week;
-  }
+    public void setTask(Task task)
+    {
+        this.task = task;
+    }
 }

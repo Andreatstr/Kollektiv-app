@@ -5,13 +5,15 @@ import model.HouseManager;
 public class MenueViewModel {
 
   private String proposedHouseId;
-
   private static MenueViewModel instance;
-
   private HouseManager houseManager;
 
   private MenueViewModel() {
     houseManager = HouseManager.getInstance();
+  }
+
+  public void setTestApi() {
+    houseManager.setTestApi();
   }
 
   public static MenueViewModel getInstance() {
@@ -31,12 +33,19 @@ public class MenueViewModel {
     return HouseManager.getInstance().setHouse(id);
   }
 
-  public String getProposedHouseId() {
-    proposedHouseId = houseManager.getNewId();
-    return proposedHouseId;
-  }
+    public String getProposedHouseId()
+    {
+        proposedHouseId = houseManager.getNewId();
+        return proposedHouseId;
+    }
 
-  public void generateHouse() {
-    houseManager.createHouse(proposedHouseId);
-  }
+    public void generateHouse()
+    {
+        houseManager.CreateHouse(proposedHouseId);
+    }
+
+    public void logOut()
+    {
+        houseManager.logOut();
+    }
 }

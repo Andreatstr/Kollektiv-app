@@ -3,6 +3,8 @@ package data;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -54,16 +56,16 @@ public class Item {
     this.bougthDate = bougthDate;
   }
 
-  public void setBoughtDate() {
-    System.out.println("Set bougth date!");
-    this.bougthDate = formatter.format(LocalDate.now());
-    System.out.println(getBoughtDate());
-  }
+    public void setBoughtDate() {
+        this.bougthDate = formatter.format(LocalDate.now());
+    }
 
-  public String getBoughtDate() {
-    if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
-    return bougthDate;
-  }
+    public String getBoughtDate() {
+      if (bougthDate == null) return "?";
+      if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
+      return bougthDate;
+    }
+  
 
   public boolean timePassed(Integer days) {
     if (bougthDate == null) {
@@ -71,10 +73,7 @@ public class Item {
       throw new IllegalStateException(message);
     }
     LocalDate date = LocalDate.parse(bougthDate);
-    Period period = Period.between(LocalDate.now(), date);
-    if (period.getDays() > days) {
-      return true;
-    }
-    return false;
+    long daysBetween = ChronoUnit.DAYS.between(date, LocalDate.now());
+    return daysBetween > days;
   }
 }
