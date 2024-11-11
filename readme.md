@@ -2,10 +2,12 @@
 
 [open in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2024/gr2436/gr2436?new)
 
-## Nødvendige versioner for å kjøre prosjektet:
+## Nødvendige versjoner for å kjøre prosjektet:
 
 Maven version 3.9.9
 Java testet og fungerende versjoner : Java 21.0.1 og 21.0.4
+
+GitLab CI Pipeline docker image brukt: maven:3.8.3-openjdk-17
 
 ## Innhold
 
@@ -15,7 +17,7 @@ Vi bruker view-modulen for å håndtere brukergrensesnittet. View-kontrollerne h
 
 ## Bygging og kjøring av prosjektet
 
-For å kjøre prosjektet må du følge disse 4 stegene:
+For å kjøre prosjektet må du følge disse 7 stegene:
 
 ### 1
 
@@ -41,6 +43,10 @@ Deretter kan man kjøre prosjektet
 
 mvn javafx:run
 
+### NB!
+
+Full funksjonalitet for applikasjonen vil ikke fungere uten server, siden applikasjonen er designet og bygget rundt en server-klient arkitektur.
+
 ### 5
 
 For å starte serveren må man åpne en ny terminal
@@ -59,38 +65,34 @@ For å starte Springboot serveren
 
 mvn spring-boot:run
 
-### Nb!
-
-Applikasjonen vil ikke fungere uen server. Applikasjonen er designet og bygget rundt en server-klient ar
-
 ## Brukerhistorier, Beskrivelse av prosjekt og flytdiagram
 
-Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner du på README.md filen under docs/release1 og docs/release3. Her er det også grafiske illustrasjoner, og beskrivelser av brukerhistoriene.
+Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner du i README.md filen under docs/release1 og docs/release3. Her er det også grafiske illustrasjoner, og beskrivelser av brukerhistoriene.
 
 ## Testrapporter fra JaCoCo, Checkstyle og SpotBugs
 
 Testrapportene fra JaCoCo, Checkstyle og SpotBugs er å finne i target-mappen i hver modul etter å ha kjørt følgende kommandoer:
 
-### Jacoco:
+### Jacoco versjon (0.8.12):
 
 - mvn jacoco:prepare-agent test jacoco:report
 
-### Ckeckstyle:
+### Checkstyle (10.3.4):
 
 - mvn checkstyle:check
 
-### SpotBugs:
+### SpotBugs (versjon 4.8.6.0):
 
 - mvn spotbugs:spotbugs
 
 ## Mer om arbeidsflyt, arbeidsvaner og kodekvalitet
 
-Beskrivelse arbeidsflyt, arbeidsvaner og testdekning finner man i README.md under docs/release2.
+Beskrivelse av arbeidsflyt, arbeidsvaner og testdekning finner man i README.md under docs/release3.
 
 ## Pakkediagram, Klassediagram, Sekvensdiagram og MVVM logical view
 
-Finner man under docs/release2 og docs/release3.
+Disse diagrammene finner man under docs/release2 og docs/release3.
 
-## AI/KI deklarasjon
+## AI/KI-deklarasjon
 
-For hver del av prosjektet er det vedlagt en egen AI/KI deklarsjon, som heter "ai-tools.md". Dette finnes under hver release mappe.
+For hver del av prosjektet er det vedlagt en egen AI/KI deklarsjon, som heter "ai-tools.md". Dette finnes under hver release-mappe.
