@@ -33,8 +33,6 @@ public class LoginView {
     void handleLogin(ActionEvent event) throws IOException {
         if (viewModel.setCollective(loginField.getText())) {
             SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
-        } else {
-            // TODO: Show that ID does not exist
         }
     }
 

@@ -4,7 +4,6 @@ import data.Item;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import restapi.DummyApi;
 import viewmodel.ShoppingListViewModel;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +13,7 @@ public class ShoppingListViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().api = new DummyApi();
+        HouseManager.getInstance().setTestApi();
         viewModel = ShoppingListViewModel.getInstance();
     }
 

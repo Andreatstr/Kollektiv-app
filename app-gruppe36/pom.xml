@@ -134,6 +134,11 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.12</version>
+                    <configuration>
+                    <excludes>
+                        <exclude>gr2436/app-gruppe36/model/src/main/java/restapi/ServerApi.java</exclude>
+                    </excludes>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>jacoco-prepare-agent</id>

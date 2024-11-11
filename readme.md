@@ -65,6 +65,10 @@ For å starte Springboot serveren
 
 mvn spring-boot:run
 
+### NB!
+
+Server kan ikke kjøre dersom integrasjonstestene skal kjøres.agent
+
 ## Brukerhistorier, Beskrivelse av prosjekt og flytdiagram
 
 Beskrivelse av prosjektet samt annen informasjon knyttet til brukeropplevelse og brukerhistorie, finner du i README.md filen under docs/release1 og docs/release3. Her er det også grafiske illustrasjoner, og beskrivelser av brukerhistoriene.

@@ -1,10 +1,5 @@
 package restapi;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.web.client.RestTemplate;
-
 import data.House;
 import data.Item;
 import data.Person;
@@ -12,8 +7,17 @@ import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DummyApi implements RestApi  {
+/**
+ * A mock implementation of the RestApi interface used for testing and
+ * development.
+ * This class simulates interactions with a REST API, providing hardcoded
+ * responses for various API calls. It allows for testing and debugging functionality
+ * without needing an actual backend or server connection.
+ */
+public class DummyApi implements RestApi {
 
     House house = new House("fffff");
 
@@ -31,13 +35,13 @@ public class DummyApi implements RestApi  {
     }
 
     @Override
-    public House CreateNewHouse(String id) {
+    public House createNewHouse(String id) {
         house = new House(id);
         return house;
     }
 
     @Override
-    public House GetHouse(String id) {
+    public House getHouse(String id) {
         return house;
     }
 
@@ -54,30 +58,29 @@ public class DummyApi implements RestApi  {
     }
 
     @Override
-    public House generateWashingplan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek, String houseId) {
-        WashingTable washingTable = new WashingTable(persons,tasks);
-          List<Person> names = persons;
-          int numPeople = names.size();
-          int numTasks = tasks.size();
-          
-          for (int week = fromWeek; week <= toWeek; week++) {
+    public House generateWashingplan(List<Person> psn, List<Task> tsk, int fw, int tw, String id) {
+        WashingTable washingTable = new WashingTable(psn, tsk);
+        List<Person> names = psn;
+        int numPeople = names.size();
+        int numTasks = tsk.size();
+
+        for (int week = fw; week <= tw; week++) {
             WashingPlan washingPlan = new WashingPlan(week);
             for (int i = 0; i < numTasks; i++) {
-                Task task = tasks.get(i);
-                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
+                Task task = tsk.get(i);
+                Person assignedPerson = names.get((i + (week - fw)) % numPeople);
                 WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task);
                 washingPlan.addEntry(entry);
             }
             washingTable.addWashingPlan(washingPlan);
         }
-    house.setWashingTable(washingTable);
-    return house;
+        house.setWashingTable(washingTable);
+        return house;
     }
-
 
     @Override
     public String type() {
         return "Dummy-Api";
     }
-    
+
 }

@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a washing table, which contains a list of washing plans, persons, and tasks.
+ * This class provides methods to manage the washing plans, retrieve the plans for specific weeks,
+ * and manage the persons and tasks associated with the washing table.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WashingTable {
     private List<WashingPlan> washingPlans = new ArrayList<>();
@@ -34,6 +39,12 @@ public class WashingTable {
         this.washingPlans = washingPlans;
     }
 
+    /**
+     * Retrieves the week number of the earliest washing plan.
+     * If no plans exist, returns 0.
+     *
+     * @return the week number of the earliest washing plan, or 0 if no plans exist.
+     */
     public int getLowestWeek() {
         if (washingPlans == null) {
             return 0;
@@ -44,6 +55,12 @@ public class WashingTable {
         return washingPlans.get(0).getWeekNumber();
     }
 
+    /**
+     * Retrieves the week number of the latest washing plan.
+     * If no plans exist, returns 0.
+     *
+     * @return the week number of the latest washing plan, or 0 if no plans exist.
+     */
     public int getHighestWeek() {
         if (washingPlans == null) {
             return 0;
@@ -54,6 +71,13 @@ public class WashingTable {
         return washingPlans.get(washingPlans.size() - 1).getWeekNumber();
     }
 
+    /**
+     * Retrieves the washing plan for a specific week.
+     * If no plan exists for that week, returns null.
+     *
+     * @param week the week number to retrieve the washing plan for.
+     * @return the {@link WashingPlan} for the given week, or null if no plan exists.
+     */
     public WashingPlan getWashingPlanOfWeek(Integer week) {
         if (washingPlans == null) {
             return null;

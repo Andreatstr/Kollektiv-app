@@ -16,11 +16,11 @@ import org.jsoup.select.Elements;
  * and scrape waste collection data from a specified URL.
  */
 public class WasteModel {
-    private static WasteModel wasteModel = null;
+    private static WasteModel wasteModel = new WasteModel();
     private House collective;
     private Map<Integer, List<String>> wastePlan = new HashMap<>();
 
-    public WasteModel() {
+    private WasteModel() {
         readWastePlanFromFile();
     }
 
@@ -40,10 +40,6 @@ public class WasteModel {
      * @return The `WasteModel` instance is being returned.
      */
     public static WasteModel getInstance() {
-        if (wasteModel != null) {
-            return wasteModel;
-        }
-        wasteModel = new WasteModel();
         return wasteModel;
     }
 

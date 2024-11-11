@@ -1,15 +1,14 @@
 package data;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
- * The `Item` class represents an item with properties such as name, count, purchase date,
+ * The `Item` class represents an item with properties such as name, count,
+ * purchase date,
  * and active status, along with methods to manipulate these properties.
  */
 public class Item {
@@ -65,30 +64,39 @@ public class Item {
     }
 
     /**
-     * The function `getBoughtDate` returns the bought date if it is not null or empty, otherwise it
+     * The function `getBoughtDate` returns the bought date if it is not null or
+     * empty, otherwise it
      * returns "?".
-
-     * @return If the `bougthDate` is `null` or an empty string, the method will return `"?"`.
-     * Otherwise, it will return the value of `bougthDate`.
      */
     public String getBoughtDate() {
-        if (bougthDate == null) return "?";
-        if (bougthDate.equals(null) || bougthDate.equals("")) return "?";
+        if (bougthDate == null) {
+            return "?";
+        }
+        if (bougthDate.isEmpty()) {
+            return "?";
+        }
         return bougthDate;
     }
 
     /**
-     * The function `timePassed` checks if a certain number of days have passed since a specified
+     * The function `timePassed` checks if a certain number of days have passed
+     * since a specified
      * date.
-
-     * @param days The `days` parameter in the `timePassed` method represents the number of days to
-     * compare with the difference between the current date and the date stored in the `boughtDate`
-     * variable. The method calculates the difference in days between the current date and the
-     * `boughtDate`, and then checks
-
-     * @return The method `timePassed` returns a boolean value indicating whether the number
-     * of days passed since the `boughtDate` is greater than the input parameter `days`. If the
-     * number of days passed is greater than `days`, it returns `true`, otherwise it returns `false`
+     *
+     * @param days The `days` parameter in the `timePassed` method represents the
+     *             number of days to
+     *             compare with the difference between the current date and the date
+     *             stored in the `boughtDate`
+     *             variable. The method calculates the difference in days between
+     *             the current date and the
+     *             `boughtDate`, and then checks
+     *
+     * @return The method `timePassed` returns a boolean value indicating whether
+     *         the number
+     *         of days passed since the `boughtDate` is greater than the input
+     *         parameter `days`. If the
+     *         number of days passed is greater than `days`, it returns `true`,
+     *         otherwise it returns `false`
      */
     public boolean timePassed(Integer days) {
         if (bougthDate == null) {

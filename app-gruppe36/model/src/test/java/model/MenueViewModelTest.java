@@ -2,7 +2,6 @@ package model;
 
 import restapi.DummyApi;
 import viewmodel.MenueViewModel;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ public class MenueViewModelTest {
     @Test
     public void testSetTestApi() {
         menueViewModel.setTestApi();
-        assertTrue(HouseManager.getInstance().api instanceof DummyApi, "The API should be set to DummyApi for testing");
+        assertTrue(HouseManager.getInstance().getApi() instanceof DummyApi, "The API should be set to DummyApi for testing");
     }
     /*
      * @Test
@@ -47,6 +46,26 @@ public class MenueViewModelTest {
     public void testSetCollectiveWithNullId() {
         Boolean result = menueViewModel.setCollective(null);
         assertFalse(result, "setCollective() should return false for a null ID");
+    }
+
+    @Test
+    public void EventTest()
+    {
+        HouseManager houseManager = HouseManager.getInstance();
+        houseManager.setHouse("fffff");
+        WashingPlanModel washingPlanModel = WashingPlanModel.getInstance();
+        ShoppingListModel shoppingListModel = ShoppingListModel.getInstance();
+        houseManager.createHouse("test");
+        houseManager.updateHouse(houseManager.getHouse());
+        assertEquals(washingPlanModel.getHouseId(),"test");
+        assertEquals(shoppingListModel.getHouseId(),"test");
+        houseManager.logOut();
+        assertNull(washingPlanModel.getHouseId());
+        assertNull(shoppingListModel.getHouseId());
+
+        // Reset so it does not crash on other tests
+        houseManager.createHouse("fffff");
+        houseManager.setHouse("fffff");
     }
 
 }

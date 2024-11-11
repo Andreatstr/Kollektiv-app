@@ -14,7 +14,7 @@ import model.ShoppingListModel;
  */
 public class ShoppingListViewModel {
 
-    private static ShoppingListViewModel shoppingListViewModel;
+    private static final ShoppingListViewModel shoppingListViewModel = new ShoppingListViewModel();
     private ShoppingListModel shoppingListModel;
     private ObservableList<Item> shoppingList = FXCollections.observableArrayList();
     private ObservableList<HistoryShoppingListTable> shopHist = FXCollections.observableArrayList();
@@ -30,10 +30,6 @@ public class ShoppingListViewModel {
      * @return The `ShoppingListViewModel` instance is being returned.
      */
     public static ShoppingListViewModel getInstance() {
-        if (shoppingListViewModel != null) {
-            return shoppingListViewModel;
-        }
-        shoppingListViewModel = new ShoppingListViewModel();
         return shoppingListViewModel;
     }
 
@@ -126,7 +122,7 @@ public class ShoppingListViewModel {
      * history by creating a new list of history items based on the current shopping list.
      */
     public void updateShoppingListHistory() {
-        List<Item> newShoppingList = shoppingListModel.getshoppingListHistory();
+        List<Item> newShoppingList = shoppingListModel.getShoppingListHistory();
         shopHist.clear();
         for (Item item : newShoppingList) {
             String name = item.getItemName();

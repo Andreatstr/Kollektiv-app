@@ -3,14 +3,7 @@ package restserver;
 import core.HouseController;
 import core.ShoppingListController;
 import core.WashingPlanController;
-// import data.HistoryShoppingListTable;
 import data.House;
-// import data.Item;
-// import data.Person;
-// import data.Task;
-// import data.WashingPlan;
-// import data.WashingPlanEntry;
-// import data.WashingTable;
 import data.requests.CreateWashingPlanRequest;
 import data.requests.ItemListRequest;
 import data.requests.ItemRequest;
@@ -19,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 
 /**
  * REST controller for handling requests related to houses, shopping lists, and washing plans.
@@ -46,9 +38,9 @@ public class Controller {
         return HouseController.getInstance().getHouse(id);
     }
 
+    // Used to check connection to the server
     @GetMapping ("/health")
-    public String health()
-    {
+    public String health() {
         return "yehaw";
     }
 

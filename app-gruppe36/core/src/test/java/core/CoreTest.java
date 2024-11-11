@@ -6,13 +6,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import data.Item;
 import java.util.List;
 import data.Person;
 import data.Task;
 import data.WashingTable;
-import data.House;
 import json.JsonFileManager;
 
 public class CoreTest {
@@ -22,7 +20,7 @@ public class CoreTest {
     public static void initialize()
     {
         String id = "test";
-        HouseController.getInstance().CreateHouse(id);
+        HouseController.getInstance().createHouse(id);
     }
 
     @Test

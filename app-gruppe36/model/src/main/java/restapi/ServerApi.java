@@ -1,12 +1,5 @@
 package restapi;
 
-import java.util.List;
-
-
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
-
 import data.House;
 import data.Item;
 import data.Person;
@@ -14,7 +7,21 @@ import data.Task;
 import data.requests.CreateWashingPlanRequest;
 import data.requests.ItemListRequest;
 import data.requests.ItemRequest;
+import java.util.List;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
+/**
+ * Implements the {@link RestApi} interface to provide methods for interacting
+ * with a remote server.
+ * The {@link ServerApi} class uses {@link RestTemplate} to send HTTP requests
+ * to a server that manages house data,
+ * shopping lists, and washing plans. Each method corresponds to an endpoint on
+ * the server that performs actions
+ * like adding items to a shopping list, generating washing plans, and
+ * retrieving house information.
+ */
 public class ServerApi implements RestApi {
 
     private RestTemplate restTemplate;
@@ -28,38 +35,32 @@ public class ServerApi implements RestApi {
     @Override
     public House addItem(Item item, String id) {
         try {
-        ItemRequest request = new ItemRequest(item, id);
-        return restTemplate.postForObject(url + "additem", request, House.class);
-        }
-        catch(RestClientException e)
-        {
+            ItemRequest request = new ItemRequest(item, id);
+            return restTemplate.postForObject(url + "additem", request, House.class);
+        } catch (RestClientException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
-    public House CreateNewHouse(String id) {
+    public House createNewHouse(String id) {
         try {
             return restTemplate.postForObject(url + "createnewhouse", id, House.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return null;
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public House GetHouse(String id) {
+    public House getHouse(String id) {
         try {
             return restTemplate.postForObject(url + "gethouse", id, House.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return null;
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -67,12 +68,10 @@ public class ServerApi implements RestApi {
         try {
             ItemListRequest request = new ItemListRequest(items, id);
             return restTemplate.postForObject(url + "buyitems", request, House.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return null;
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -80,47 +79,40 @@ public class ServerApi implements RestApi {
         try {
             ItemListRequest request = new ItemListRequest(items, id);
             return restTemplate.postForObject(url + "removeitem", request, House.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return null;
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public House generateWashingplan(List<Person> persons, List<Task> tasks, int fromWeek,int toWeek,String houseId) {
+    public House generateWashingplan(List<Person> psn, List<Task> tsk, int fw, int tw, String id) {
         try {
-            CreateWashingPlanRequest request = new CreateWashingPlanRequest(persons, tasks, fromWeek, toWeek, houseId);
+            CreateWashingPlanRequest request = new CreateWashingPlanRequest(psn, tsk, fw, tw, id);
             return restTemplate.postForObject(url + "generateWashingplan", request, House.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return null;
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public String getNewValidId() {
         try {
             return restTemplate.getForObject(url + "newvalidid", String.class);
-            }
-            catch(RestClientException e)
-            {
-                System.out.println(e.getMessage());
-                return "";
-            }
+        } catch (RestClientException e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
     }
 
-
-    public void setRestTemplate(RestTemplate template)
-    {
+    public void setRestTemplate(RestTemplate template) {
         this.restTemplate = template;
     }
+
     @Override
     public String type() {
         return "Server-Api";
     }
-    
+
 }

@@ -3,7 +3,6 @@ package model;
 import data.House;
 import data.Waste;
 import javafx.collections.ObservableList;
-import restapi.DummyApi;
 import viewmodel.WasteViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,9 +29,10 @@ public class WasteViewModelTest {
 
     @BeforeEach
     public void setUp() {
-      HouseManager.getInstance().api = new DummyApi();
-      mockWasteModel = Mockito.mock(WasteModel.class);
-      mockHouse = Mockito.mock(House.class);
+        HouseManager.getInstance().setTestApi();
+        mockWasteModel = Mockito.mock(WasteModel.class);
+        mockHouse = Mockito.mock(House.class);
+        wasteModel = WasteModel.getInstance();
 
         HouseManager mockHouseManager = Mockito.mock(HouseManager.class);
         when(mockHouseManager.getHouse()).thenReturn(mockHouse);
@@ -54,7 +54,6 @@ public class WasteViewModelTest {
         }
 
         WasteViewModel.setWasteViewModel(new WasteViewModel());
-        // wasteModel = WasteModel.getInstance();
         wasteViewModel = WasteViewModel.getInstance();
         setWasteModel(wasteViewModel, mockWasteModel);
     }
@@ -80,7 +79,6 @@ public class WasteViewModelTest {
 
         when(mockHouse.getWastePlan()).thenReturn(wastePlan);
         when(mockWasteModel.getWastePlan()).thenReturn(wastePlan);
-        // setWasteModel(wasteModel, mockWasteModel);
 
         Map<Integer, List<String>> returnedWastePlan = mockWasteModel.getWastePlan();
         assertNotNull(returnedWastePlan);
@@ -139,11 +137,6 @@ public class WasteViewModelTest {
         wastePlan.put(2, Arrays.asList("Organic"));
         return wastePlan;
     }
-
-    // @Test
-    // public void testScrapeWasteCollection() {
-    // assertDoesNotThrow(() -> wasteViewModel.scrapeWasteCollection());
-    // }
 
     @Test
     public void testScrapeWasteCollectionCallsUpdateWasteTable() {

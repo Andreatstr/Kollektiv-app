@@ -10,6 +10,8 @@ import data.WashingPlan;
 import data.WashingPlanEntry;
 import data.WashingTable;
 import data.Waste;
+import data.requests.CreateWashingPlanRequest;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -352,5 +354,14 @@ public class DataTest {
 
         waste.weekProperty().set(10);
         assertEquals(10, waste.getWeek());
+    }
+
+    @Test
+    public void testWashingPlanRequest()
+    {
+        CreateWashingPlanRequest request = new CreateWashingPlanRequest(List.of(new Person("Lars")), List.of(new Task("vaske do")), 1, 5, "55555");
+        assertEquals(request.getFromWeek(),1);
+        assertEquals(request.getToWeek(),5);
+        assertEquals(request.getId(),"55555");
     }
 }

@@ -3,6 +3,10 @@ package data.requests;
 import data.Item;
 import java.util.List;
 
+/**
+ * Represents a request containing a list of items and an associated identifier.
+ * This class provides methods to get and set the list of items and the identifier.
+ */
 public class ItemListRequest {
 
     private List<Item> items;

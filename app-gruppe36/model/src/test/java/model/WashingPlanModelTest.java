@@ -1,21 +1,16 @@
 package model;
 
+import data.Person;
+import data.Task;
+import data.WashingPlan;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingTable;
-import restapi.DummyApi;
 
 public class WashingPlanModelTest {
 
@@ -24,8 +19,8 @@ public class WashingPlanModelTest {
     @BeforeEach
     public void setUp() {
         model = WashingPlanModel.getInstance();
-        HouseManager.getInstance().api = new DummyApi(); // Setter opp DummyApi som mock API for testing
-        model.reset(); // Sikrer at modellen er resatt før hver test
+        HouseManager.getInstance().setTestApi(); // Sets DummyApi as mock API for testing
+        model.reset(); // Ensures that modell is reset before each test
     }
 
     @Test
@@ -47,7 +42,7 @@ public class WashingPlanModelTest {
         Person person = new Person("Charlie");
 
         model.addPerson(person);
-        model.addPerson(person); // Prøver å legge til samme person igjen
+        model.addPerson(person); // Tries to add same person again 
 
         List<Person> persons = model.getWashingPlanPersons();
         assertEquals(1, persons.size(), "Duplicate person should not be added");
@@ -72,7 +67,7 @@ public class WashingPlanModelTest {
         Task task = new Task("Mop Floor");
 
         model.addTask(task);
-        model.addTask(task); // Prøver å legge til samme oppgave igjen
+        model.addTask(task); // Tries to add same task again 
 
         List<Task> tasks = model.getWashingPlanTasks();
         assertEquals(1, tasks.size(), "Duplicate task should not be added");
@@ -97,5 +92,20 @@ public class WashingPlanModelTest {
         assertTrue(model.getWashingPlanTasks().isEmpty(), "Washing plan tasks should be cleared after reset");
         assertNull(model.getWashingTables(), "WashingTable should be null after reset");
         assertEquals(0, model.getCurrentWeek(), "Current week should be reset to 0");
+    }
+
+    @Test
+    public void TestWashingPlanGeneration()
+    {
+        HouseManager houseManager = HouseManager.getInstance();
+        houseManager.setHouse("fffff");
+        houseManager.updateHouse(houseManager.getHouse());
+        WashingPlanModel.getInstance().generateWashingPlan(List.of(new Person("lars")),List.of(new Task("do")),1,50);
+        assertEquals(model.getWashingTables().getLowestWeek(),1);
+        model.setCurrentWeek(2);
+        assertEquals(model.getCurrentWeek(),2);
+        model.setCurrentWeek(100);
+        assertEquals(model.getCurrentWeek(),2);
+
     }
 }
