@@ -14,7 +14,7 @@ public class MenueViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().api = new DummyApi();
+        HouseManager.getInstance().setTestApi();
     }
 
     @BeforeEach
