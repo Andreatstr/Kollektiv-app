@@ -5,20 +5,17 @@ import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
 import viewmodel.WashingPlanViewModel;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import javafx.collections.FXCollections;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.ObservableList;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WashingPlanViewModelTest {
 
@@ -28,7 +25,7 @@ public class WashingPlanViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().setTestApi();
+        HouseManager.getInstance().setTestApi(); // Setter opp DummyApi for
     }
 
     @BeforeEach

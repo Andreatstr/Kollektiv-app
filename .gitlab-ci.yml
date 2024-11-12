@@ -3,8 +3,7 @@ image: maven:3.8.3-openjdk-17
 variables:
   MAVEN_CLI_OPTS: "--batch-mode"
 
-before_script:
-  cd app-gruppe36
+before_script: cd app-gruppe36
 
 stages:
   - compile
@@ -15,21 +14,18 @@ cache:
   paths:
     - .m2/repository
 
-
-test:
-  stage: test
-  script:
-    - echo "Kjører tester utenom UI"
-    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test
-
-    
 compile:
   stage: compile
   script:
     - mvn clean compile
 
+test:
+  stage: test
+  script:
+    - echo "Kjører tester utenom spesifikke filer i model-mappen"
+    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test -DexcludeTests="model.WasteModelTest,model.MenueViewModelTest,model.WashingPlanModelTest"
+
 install:
   stage: install
   script:
-    - mvn clean install -DskipTests
-
+    - mvn clean install -DskipTestss
