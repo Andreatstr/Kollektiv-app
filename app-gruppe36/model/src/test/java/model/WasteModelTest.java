@@ -26,7 +26,7 @@ public class WasteModelTest {
 
     @BeforeEach
     public void setUp() {
-        wasteModel = Mockito.spy(WasteModel.getInstance());
+        wasteModel = WasteModel.getInstance();
         System.setOut(new PrintStream(outputStreamCaptor));
         HouseManager.getInstance().setTestApi();
     }
