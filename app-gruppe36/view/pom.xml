@@ -28,6 +28,16 @@
             <artifactId>javafx-fxml</artifactId>
             <version>17.0.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>17.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.8</version>
+        </dependency>
 
 
         <!-- test javafx with TextFX -->
@@ -49,12 +59,10 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
-        <profiles>
-       
+
+    <profiles>
         <profile> <!-- headless profil for å kjøre pipeline!!-->
             <id>headless</id>
             <properties>
@@ -76,23 +84,33 @@
     <build>
         <plugins>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-                <source>17</source>
-                <target>17</target>
-            </configuration>
-        </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>view.App</mainClass>
-                    <argLine>--add-modules javafx.controls,javafx.fxml</argLine>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>ryddeplanen</launcher>
+                    <jlinkImageName>ryddeplanen</jlinkImageName>
+                    <jlinkZipName>ryddeplanen.zip</jlinkZipName>
+                    <argLine>--add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics</argLine>
+                    <addModules>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</addModules>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
@@ -108,6 +126,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -118,30 +137,68 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.jsoup:jsoup</include>
+                                    <include>org.openjfx:javafx-controls</include>
+                                    <include>org.openjfx:javafx-fxml</include>
+                                    <include>org.openjfx:javafx-base</include>
+                                    <include>org.openjfx:javafx-graphics</include>
                                 </includes>
                             </artifactSet>
                             <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-all.jar</outputFile>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <manifestEntries>
+                                <Main-Class>view.App</Main-Class>
+                            </manifestEntries>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            
-
             <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>view.view.App</mainClass>
-                    <compress>2</compress>
-                    <noHeaderFiles>true</noHeaderFiles>
-                    <stripDebug>true</stripDebug>
-                    <noManPages>true</noManPages>
-                    <launcher>ryddeplanen</launcher>
-                    <jlinkImageName>ryddeplanen</jlinkImageName>
-                    <jlinkZipName>ryddeplanen</jlinkZipName>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                            <finalName>view</finalName>
+                            <archive>
+                                <manifestEntries>
+                                    <Manifest-Version>1.0</Manifest-Version>
+                                    <Main-Class>view.App</Main-Class>
+                                    <Module-Name>view</Module-Name>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>shaded-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                            <finalName>app-jar</finalName>
+                            <classifier>shaded</classifier>
+                            <archive>
+                                <manifestEntries>
+                                    <Main-Class>view.App</Main-Class>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
@@ -154,11 +211,8 @@
                     <appVersion>1.0.0</appVersion>
                     <vendor>gr36</vendor>
                     <destination>target/dist</destination>
-                    <module>view</module>
-                    <modulePaths>
-                        <modulePath>target/classes</modulePath>
-                    </modulePaths>
-                    <mainClass>view.App</mainClass> <!-- Add the main class -->
+                    <module>classes.view</module>
+                    <mainClass>view.App</mainClass>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
                     </javaOptions>
@@ -166,6 +220,9 @@
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
                     <winMenuGroup>Ryddeplanen</winMenuGroup>
+                    <modulePaths>
+                        <modulePath>target/ryddeplanen</modulePath>
+                    </modulePaths>
                 </configuration>
             </plugin>
         </plugins>

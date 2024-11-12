@@ -12,7 +12,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <javafx.version>17.0.8</javafx.version>
         <skipTests>true</skipTests>
-        
+        <spring-boot.version>3.3.4</spring-boot.version>
     </properties>
 
     <repositories>
@@ -24,31 +24,51 @@
 
     <dependencyManagement>
         <dependencies>
-        <dependency>
-            <groupId>org.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>4.4.0</version>
-        </dependency>
+            <dependency>
+                <groupId>org.htmlunit</groupId>
+                <artifactId>htmlunit</artifactId>
+                <version>4.4.0</version>
+            </dependency>
 
-        <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>${javafx.version}</version>
-        </dependency>
+            <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version> 
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-        </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.10.0</version> 
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-controls</artifactId>
+                <version>${javafx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-fxml</artifactId>
+                <version>${javafx.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -101,6 +121,43 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-maven-plugin</artifactId>
+                    <version>0.0.8</version>
+                    <configuration>
+                        <mainClass>view.App</mainClass>
+                        <addModules>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</addModules>
+                        <jlinkImageName>ryddeplanen-runtime</jlinkImageName>
+                        <jlinkZipName>ryddeplanen-runtime.zip</jlinkZipName>
+                        <outputDirectory>${project.build.directory}/runtime</outputDirectory>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.panteleyev</groupId>
+                    <artifactId>jpackage-maven-plugin</artifactId>
+                    <version>1.4.0</version>
+                    <configuration>
+                        <name>Ryddeplanen</name>
+                        <appVersion>1.0.0</appVersion>
+                        <vendor>gr36</vendor>
+                        <destination>${project.build.directory}/dist</destination>
+                        <module>view</module>
+                        <modulePaths>
+                            <modulePath>${project.build.directory}/runtime</modulePath>
+                        </modulePaths>
+                        <mainClass>view.App</mainClass>
+                        <javaOptions>
+                            <option>-Dfile.encoding=UTF-8</option>
+                        </javaOptions>
+                        <winDirChooser>true</winDirChooser>
+                        <winShortcut>true</winShortcut>
+                        <winMenu>true</winMenu>
+                        <winMenuGroup>Ryddeplanen</winMenuGroup>
+                    </configuration>
                 </plugin>
 
                 <!-- Run the SpotBugs code quality tool -->
@@ -161,7 +218,7 @@
         <module>view</module>
         <module>restserver</module>
         <module>core</module>
-    </modules>    
+    </modules>
 </project>
 
 

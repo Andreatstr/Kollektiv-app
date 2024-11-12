@@ -14,7 +14,7 @@
             "type": "java",
             "name": "Launch modules-template - multi-module, multi-package ",
             "request": "launch",
-            "mainClass": "view/view.App",
+            "mainClass": "view.App",
             "projectName": "modules-ui",
             "vmArgs": ["--add-opens", "view/ui=ALL-UNNAMED", "--add-exports", "javafx.graphics/com.sun.javafx.application=ALL-UNNAMED"]
 

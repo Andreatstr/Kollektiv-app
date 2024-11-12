@@ -4,7 +4,7 @@ module view {
     requires javafx.base;
     requires model;
     requires java.net.http;
-    // requires javafx.graphics;
+    requires javafx.graphics;
     opens view to javafx.graphics, javafx.fxml; // Open 'view' for JavaFX for FXML
     exports view; // Export 'view'-package
 }
