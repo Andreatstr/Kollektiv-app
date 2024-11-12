@@ -40,7 +40,7 @@ public class WasteModelTest {
         Elements mockWasteTypesElements = Mockito.mock(Elements.class);
         Element mockWasteTypeElement = Mockito.mock(Element.class);
 
-        // Simuler en gyldig uke og avfallstype som returneres fra nettsiden
+        // Simuler en gyldig uke og avfallstype som returneres fra
         when(mockDocument.select("table tbody tr")).thenReturn(mockRows);
         when(mockRows.iterator()).thenReturn(List.of(mockRow).iterator());
         when(mockRow.select("td.week")).thenReturn(new Elements(new Element("td").text("1"))); // Gyldig uke

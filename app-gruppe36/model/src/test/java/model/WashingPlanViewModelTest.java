@@ -25,7 +25,7 @@ public class WashingPlanViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().setTestApi(); // Setter opp DummyApi for testing
+        HouseManager.getInstance().setTestApi(); // Setter opp DummyApi for
     }
 
     @BeforeEach
