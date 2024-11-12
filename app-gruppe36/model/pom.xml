@@ -3,6 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>gr36</groupId>
     <artifactId>model</artifactId>
+    <packaging>jar</packaging>
+
 
     <parent>
         <groupId>gr36</groupId>
