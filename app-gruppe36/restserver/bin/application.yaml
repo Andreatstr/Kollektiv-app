@@ -1,0 +1,14 @@
+server:
+  port: 8080 # Set the main application server port
+
+spring:
+  jmx:
+    enabled: true # Enable JMX for management endpoints
+
+management:
+  server:
+    port: 8081 # Set the management server port for JMX
+  endpoints:
+    jmx:
+      exposure:
+        include: "*" # Expose all management endpoints via JMX

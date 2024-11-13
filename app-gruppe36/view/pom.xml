@@ -123,27 +123,11 @@
                                     <mainClass>view.MainLauncher</mainClass>
                                 </transformer>
                             </transformers>
-                            <!-- <artifactSet>
-                                <includes>
-                                    <include>*:*</include>
-                                    <include>org.jsoup:jsoup</include>
-                                    <include>org.openjfx:javafx-controls</include>
-                                    <include>org.openjfx:javafx-fxml</include>
-                                    <include>org.openjfx:javafx-base</include>
-                                    <include>org.openjfx:javafx-graphics</include>
-                                </includes>
-                            </artifactSet> -->
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
-                                    <!-- <excludes>
-                                        <exclude>module-info.class</exclude>
-                                    </excludes> -->
                                 </filter>
                             </filters>
-                            <!-- <manifestEntries>
-                                <Main-Class>view.MainLauncher</Main-Class>
-                            </manifestEntries> -->
                         </configuration>
                     </execution>
                 </executions>
@@ -166,13 +150,12 @@
                                 <manifestEntries>
                                     <Manifest-Version>1.0</Manifest-Version>
                                     <Main-Class>view.MainLauncher</Main-Class>
-                                    <!-- <Main-Class>view.App</Main-Class> -->
                                     <Module-Name>view</Module-Name>
                                 </manifestEntries>
                             </archive>
                         </configuration>
                     </execution>
-                    <execution>
+                    <!-- <execution>
                         <id>shaded-jar</id>
                         <goals>
                             <goal>jar</goal>
@@ -187,7 +170,7 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
-                    </execution>
+                    </execution> -->
                 </executions>
             </plugin>
 

@@ -73,22 +73,6 @@
               </archive>
             </configuration>
           </execution>
-          <execution>
-            <id>shaded-jar</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/jar</outputDirectory>
-              <finalName>app-jar</finalName>
-              <classifier>shaded</classifier>
-              <archive>
-                <manifestEntries>
-                  <Main-Class>view.MainLauncher</Main-Class>
-                </manifestEntries>
-              </archive>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
