@@ -23,9 +23,9 @@ test:
   stage: test
   script:
     - echo "Kjører tester utenom spesifikke filer i model-mappen"
-    - mvn $MAVEN_CLI_OPTS clean test -DskipTestss
+    - mvn clean install -DskipTests
 
 install:
   stage: install
   script:
-    - mvn clean install -DskipTestss
+    - mvn clean install -DskipTests

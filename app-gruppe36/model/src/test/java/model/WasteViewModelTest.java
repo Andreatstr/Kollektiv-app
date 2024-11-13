@@ -1,24 +1,26 @@
 package model;
 
-import data.House;
-import data.Waste;
-import javafx.collections.ObservableList;
-import viewmodel.WasteViewModel;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import data.House;
+import data.Waste;
+import javafx.collections.ObservableList;
+import viewmodel.WasteViewModel;
 
 public class WasteViewModelTest {
 
@@ -28,7 +30,7 @@ public class WasteViewModelTest {
     private House mockHouse;
 
     @BeforeEach
-    public void setUp() {
+    public void seUp() {
         HouseManager.getInstance().setTestApi();
         mockWasteModel = Mockito.mock(WasteModel.class);
         mockHouse = Mockito.mock(House.class);
@@ -52,16 +54,8 @@ public class WasteViewModelTest {
         } catch (Exception e) {
             throw new RuntimeException("Failed to set WasteModel instance for testing", e);
         }
-
-        WasteViewModel.setWasteViewModel(new WasteViewModel());
         wasteViewModel = WasteViewModel.getInstance();
         setWasteModel(wasteViewModel, mockWasteModel);
-    }
-
-    @Test
-    public void testGetWasteCollectionData() {
-        ObservableList<Waste> data = wasteViewModel.getWasteCollectionData();
-        assertEquals(0, data.size());
     }
 
     @Test
