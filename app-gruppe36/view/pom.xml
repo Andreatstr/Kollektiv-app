@@ -21,25 +21,25 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
             <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
             <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
             <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
             <classifier>win</classifier>
         </dependency>
 
@@ -118,7 +118,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>view.MainLauncher</mainClass>
@@ -142,10 +141,9 @@
                                     </excludes> -->
                                 </filter>
                             </filters>
-                            <manifestEntries>
+                            <!-- <manifestEntries>
                                 <Main-Class>view.MainLauncher</Main-Class>
-                                <!-- <Main-Class>view.App</Main-Class> -->
-                            </manifestEntries>
+                            </manifestEntries> -->
                         </configuration>
                     </execution>
                 </executions>
@@ -186,7 +184,6 @@
                             <archive>
                                 <manifestEntries>
                                     <Main-Class>view.MainLauncher</Main-Class>
-                                    <!-- <Main-Class>view.App</Main-Class> -->
                                 </manifestEntries>
                             </archive>
                         </configuration>
@@ -199,31 +196,49 @@
                 <groupId>org.panteleyev</groupId>
                 <artifactId>jpackage-maven-plugin</artifactId>
                 <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <name>Ryddeplan</name>
                     <appVersion>1.0.0</appVersion>
                     <vendor>gr36</vendor>
-                    <dest>target/dist</dest>
+                    <destination>target/dist</destination>
+                    <runtimeImage>target/ryddeplanapp</runtimeImage>
+
                     <mainClass>view.MainLauncher</mainClass>
+                    <mainJar>app-jar-shaded.jar</mainJar>
 
-                    <javaOptions>
-                        <option>--add-opens</option>
-                        <option>javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED</option>
-                        <option>-Dfile.encoding=UTF-8</option>
-                    </javaOptions>
-
-                    <jvmArgs>
-                        <arg>--module-path</arg>
-                        <arg>${java.home}/lib/modules</arg>
-                        <arg>--add-modules</arg>
-                        <arg>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</arg>
-                    </jvmArgs>
-                    
                     <!-- Windows-specific settings -->
+                    <type>pkg</type> <!-- installer -->
                     <winDirChooser>true</winDirChooser>
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
-                    <winMenuGroup>Ryddeplan</winMenuGroup>
+                    <winMenuGroup>RyddeplanAPP</winMenuGroup>
+
+                    <!-- <winshortcut>true</winshortcut>
+                    <winmenu>true</winmenu>
+                    <winmenugroup>Ryddeplan</winmenugroup>
+                    <winconsole>false</winconsole> -->
+                    <!-- <winDirChooser>true</winDirChooser> -->
+
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxMenuGroup>RyddeplanAPP</linuxMenuGroup>
+
+                    <!-- <input>${project.build.directory}</input>
+                    <output>${project.build.directory}/dist</output>
+                    <modulePath>C:javafx-sdk-23.0.1\lib</modulePath> -->
+
+                    <addModules>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</addModules>
+
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    
                 </configuration>
             </plugin>
         </plugins>

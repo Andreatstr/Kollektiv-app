@@ -15,6 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println("Application APP starting...");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainMenu.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));

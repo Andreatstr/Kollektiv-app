@@ -6,6 +6,7 @@ module model {
     requires javafx.fxml;
     requires spring.web;
     requires javafx.base;
+    
     exports viewmodel;
     exports model;
     exports data;
