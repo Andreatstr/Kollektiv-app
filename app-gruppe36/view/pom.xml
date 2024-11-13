@@ -22,23 +22,26 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>17.0.8</version>
+            <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>17.0.8</version>
+            <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>17.0.8</version>
+            <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>17.0.8</version>
+            <classifier>win</classifier>
         </dependency>
-
 
         <!-- test javafx with TextFX -->
 		<dependency>
@@ -80,7 +83,6 @@
         </profile>
     </profiles>
 
-
     <build>
         <plugins>
             <plugin>
@@ -90,24 +92,6 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>view.App</mainClass>
-                    <compress>2</compress>
-                    <noHeaderFiles>true</noHeaderFiles>
-                    <stripDebug>true</stripDebug>
-                    <noManPages>true</noManPages>
-                    <launcher>ryddeplanen</launcher>
-                    <jlinkImageName>ryddeplanen</jlinkImageName>
-                    <jlinkZipName>ryddeplanen.zip</jlinkZipName>
-                    <argLine>--add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics</argLine>
-                    <addModules>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</addModules>
                 </configuration>
             </plugin>
 
@@ -134,26 +118,33 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>view.MainLauncher</mainClass>
+                                </transformer>
+                            </transformers>
+                            <!-- <artifactSet>
                                 <includes>
+                                    <include>*:*</include>
                                     <include>org.jsoup:jsoup</include>
                                     <include>org.openjfx:javafx-controls</include>
                                     <include>org.openjfx:javafx-fxml</include>
                                     <include>org.openjfx:javafx-base</include>
                                     <include>org.openjfx:javafx-graphics</include>
                                 </includes>
-                            </artifactSet>
-                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-all.jar</outputFile>
+                            </artifactSet> -->
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
-                                    <excludes>
+                                    <!-- <excludes>
                                         <exclude>module-info.class</exclude>
-                                    </excludes>
+                                    </excludes> -->
                                 </filter>
                             </filters>
                             <manifestEntries>
-                                <Main-Class>view.App</Main-Class>
+                                <Main-Class>view.MainLauncher</Main-Class>
+                                <!-- <Main-Class>view.App</Main-Class> -->
                             </manifestEntries>
                         </configuration>
                     </execution>
@@ -176,7 +167,8 @@
                             <archive>
                                 <manifestEntries>
                                     <Manifest-Version>1.0</Manifest-Version>
-                                    <Main-Class>view.App</Main-Class>
+                                    <Main-Class>view.MainLauncher</Main-Class>
+                                    <!-- <Main-Class>view.App</Main-Class> -->
                                     <Module-Name>view</Module-Name>
                                 </manifestEntries>
                             </archive>
@@ -193,7 +185,8 @@
                             <classifier>shaded</classifier>
                             <archive>
                                 <manifestEntries>
-                                    <Main-Class>view.App</Main-Class>
+                                    <Main-Class>view.MainLauncher</Main-Class>
+                                    <!-- <Main-Class>view.App</Main-Class> -->
                                 </manifestEntries>
                             </archive>
                         </configuration>
@@ -207,22 +200,30 @@
                 <artifactId>jpackage-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <name>Ryddeplanen</name>
+                    <name>Ryddeplan</name>
                     <appVersion>1.0.0</appVersion>
                     <vendor>gr36</vendor>
-                    <destination>target/dist</destination>
-                    <module>classes.view</module>
-                    <mainClass>view.App</mainClass>
+                    <dest>target/dist</dest>
+                    <mainClass>view.MainLauncher</mainClass>
+
                     <javaOptions>
+                        <option>--add-opens</option>
+                        <option>javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED</option>
                         <option>-Dfile.encoding=UTF-8</option>
                     </javaOptions>
+
+                    <jvmArgs>
+                        <arg>--module-path</arg>
+                        <arg>${java.home}/lib/modules</arg>
+                        <arg>--add-modules</arg>
+                        <arg>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</arg>
+                    </jvmArgs>
+                    
+                    <!-- Windows-specific settings -->
                     <winDirChooser>true</winDirChooser>
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
-                    <winMenuGroup>Ryddeplanen</winMenuGroup>
-                    <modulePaths>
-                        <modulePath>target/ryddeplanen</modulePath>
-                    </modulePaths>
+                    <winMenuGroup>Ryddeplan</winMenuGroup>
                 </configuration>
             </plugin>
         </plugins>
