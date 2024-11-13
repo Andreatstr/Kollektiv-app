@@ -1,22 +1,24 @@
 package model;
 
-import data.House;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import data.House;
 
 /**
  * The WasteModel class manages waste plans for a house, allowing users to add, retrieve,
  * and scrape waste collection data from a specified URL.
  */
 public class WasteModel {
-    private static WasteModel wasteModel = new WasteModel();
+    private static WasteModel wasteModel;
     private House collective;
     private Map<Integer, List<String>> wastePlan = new HashMap<>();
 
@@ -40,6 +42,7 @@ public class WasteModel {
      * @return The `WasteModel` instance is being returned.
      */
     public static WasteModel getInstance() {
+        if (wasteModel == null){wasteModel = new WasteModel();}
         return wasteModel;
     }
 
