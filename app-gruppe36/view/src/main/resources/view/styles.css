@@ -1,0 +1,166 @@
+.root {
+  -fx-background-color: #B3DFF0;
+}
+
+.button {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 5, 5);
+  -fx-padding: 10px;
+  -fx-border-insets: 0;
+  -fx-background-insets: 0;
+}
+
+.button:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 7, 0.4, 3, 3);
+}
+
+.homeButton {
+  -fx-background-color: #59a4f4;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.homeButton:hover {
+  -fx-background-color: #7dbafb;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.backButton {
+  -fx-background-color: #59a4f4;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.backButton:hover {
+  -fx-background-color: #7dbafb;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.addButton {
+  -fx-background-color: #6fadf3;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.addButton:hover {
+  -fx-background-color: #90c4ff;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.deleteButton {
+  -fx-background-color: #ed6e7bcf;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.deleteButton:hover {
+  -fx-background-color: #e8c1c5cf;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.editButton {
+  -fx-background-color: #81bffd;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.editButton:hover {
+  -fx-background-color: #a1cefa;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.sceneButton {
+  -fx-background-color: #63b0eb;
+  -fx-background-radius: 16px;
+  -fx-border-radius: 16px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.sceneButton:hover {
+  -fx-background-color: #7fc3f7;
+  -fx-background-radius: 16px;
+  -fx-border-radius: 16px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.arrowButton {
+  -fx-background-color: #6495ED;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.arrowButton:hover {
+  -fx-background-color: #7ea2e3;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.tableView {
+  -fx-background-color: #abd4fa;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.tableColumn {
+  -fx-background-color: #5497d5;
+  -fx-text-fill: black;
+  -fx-border-color: #000000;
+  -fx-border-width: 1px;
+}
+
+.tableColumn:hover {
+  -fx-background-color: #9bbefd;
+}
+
+.tableView .table-cell {
+  -fx-background-color: #81bde8;
+  -fx-border-color: black;
+  -fx-border-width: 0.5px;
+}
+
+.tableView .table-cell:hover {
+  -fx-background-color: #a4d4f6;
+}
+
+.tableView .table-cell:selected {
+  -fx-background-color: #c8e4f7;
+  -fx-text-fill: black;
+}
+
+.textFieldWithShadow {
+  -fx-background-color: white;
+  -fx-border-color: black;
+  -fx-border-width: 1px;
+  
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 5, 5);
+}

@@ -21,14 +21,27 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
+            <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.8</version>
+            <version>23.0.1</version>
+            <classifier>win</classifier>
         </dependency>
-
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>23.0.1</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>23.0.1</version>
+            <classifier>win</classifier>
+        </dependency>
 
         <!-- test javafx with TextFX -->
 		<dependency>
@@ -51,85 +64,8 @@
         </dependency>
     </dependencies>
 
-        <profiles>
-        <profile>
-            <id>fontawesome</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openjfx</groupId>
-                        <artifactId>javafx-maven-plugin</artifactId>
-                        <version>0.0.6</version>
-                        <configuration>                    
-                            <mainClass>de.jensd.fx.glyphs.fontawesome.demo.FontAwesomeIconsDemoApp</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>documentapp</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openjfx</groupId>
-                        <artifactId>javafx-maven-plugin</artifactId>
-                        <version>0.0.6</version>
-                        <configuration>                    
-                            <mainClass>todolist.ui/todolist.ui.TodoDocumentApp</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>remoteapp</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openjfx</groupId>
-                        <artifactId>javafx-maven-plugin</artifactId>
-                        <version>0.0.6</version>
-                        <configuration>                    
-                            <mainClass>todolist.ui/todolist.ui.TodoRemoteApp</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>jpro</id>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>jpro - sandec repository</id>
-                    <url>https://sandec.bintray.com/repo</url>
-                </pluginRepository>
-            </pluginRepositories>
-            <repositories>
-                <repository>
-                    <id>jpro - sandec repository</id>
-                    <url>https://sandec.bintray.com/repo</url>
-                </repository>
-            </repositories>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.sandec.jpro</groupId>
-                        <artifactId>jpro-maven-plugin</artifactId>
-                        <version>2020.1.5</version>
-                        <configuration>
-                            <visible>false</visible>
-                            <JVMArgs>
-                                <!-- <JVMArg>your-args</JVMArg> -->
-                            </JVMArgs>
-                            <mainClassName>todolist.ui/todolist.ui.TodoApp</mainClassName>
-                            <openingPath>/</openingPath>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
+    <profiles>
         <profile> <!-- headless profil for å kjøre pipeline!!-->
             <id>headless</id>
             <properties>
@@ -147,13 +83,142 @@
         </profile>
     </profiles>
 
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>view.MainLauncher</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                            <finalName>view</finalName>
+                            <archive>
+                                <manifestEntries>
+                                    <Manifest-Version>1.0</Manifest-Version>
+                                    <Main-Class>view.MainLauncher</Main-Class>
+                                    <Module-Name>view</Module-Name>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution>
+                    <!-- <execution>
+                        <id>shaded-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                            <finalName>app-jar</finalName>
+                            <classifier>shaded</classifier>
+                            <archive>
+                                <manifestEntries>
+                                    <Main-Class>view.MainLauncher</Main-Class>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution> -->
+                </executions>
+            </plugin>
+
+            <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>Ryddeplan</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>gr36</vendor>
+                    <destination>target/dist</destination>
+                    <runtimeImage>target/ryddeplanapp</runtimeImage>
+
+                    <mainClass>view.MainLauncher</mainClass>
+                    <mainJar>app-jar-shaded.jar</mainJar>
+
+                    <!-- Windows-specific settings -->
+                    <type>pkg</type> <!-- installer -->
+                    <winDirChooser>true</winDirChooser>
+                    <winShortcut>true</winShortcut>
+                    <winMenu>true</winMenu>
+                    <winMenuGroup>RyddeplanAPP</winMenuGroup>
+
+                    <!-- <winshortcut>true</winshortcut>
+                    <winmenu>true</winmenu>
+                    <winmenugroup>Ryddeplan</winmenugroup>
+                    <winconsole>false</winconsole> -->
+                    <!-- <winDirChooser>true</winDirChooser> -->
+
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxMenuGroup>RyddeplanAPP</linuxMenuGroup>
+
+                    <!-- <input>${project.build.directory}</input>
+                    <output>${project.build.directory}/dist</output>
+                    <modulePath>C:javafx-sdk-23.0.1\lib</modulePath> -->
+
+                    <addModules>javafx.controls,javafx.fxml,javafx.base,javafx.graphics</addModules>
+
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    
+                </configuration>
+            </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-surefire-plugin</artifactId>
@@ -164,21 +229,7 @@
                     </argLine>
                 </configuration>
 	        </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <!-- Default configuration for running -->
-                <!-- Usage: mvn javafx:run -->
-                <configuration>
-                    <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>view/view.App</mainClass>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -186,6 +237,9 @@
                     <propertyName>jaCoCoArgLine</propertyName>
                 </configuration>
             </plugin>
+
+
+
         </plugins>
     </build>
     

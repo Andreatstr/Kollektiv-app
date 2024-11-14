@@ -1,66 +1,69 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
-import data.WashingPlanEntry;
 import data.WashingTable;
+import java.util.Collections;
+import java.util.List;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import data.House;
-import data.Item;
+import viewmodel.WashingPlanViewModel;
 
-public class WashingPlanModel {
+/**
+ * Manages the washing plans for a specific house.
+ * This class is responsible for handling the washing plan, tasks, and persons in the plan.
+ * It interacts with the {@link HouseManager} to update and retrieve house-related data and uses
+ * a {@link WashingTable} to store the washing plans and related information. It also communicates
+ * with the server to generate washing plans.
+ */
+public class WashingPlanModel implements UpdateEvent {
 
-    public int currentWeek = 1;
-    private static WashingPlanModel washingPlanModel = null;
+    private int currentWeek = 1;
+    private static final WashingPlanModel washingPlanModel = new WashingPlanModel();
 
-    private House collective;
-
+    private House house;
+    private HouseManager houseManager;
     private List<Person> washingPlanPersons = FXCollections.observableArrayList();
     private List<Task> washingPlanTasks = FXCollections.observableArrayList();
-    private List<WashingTable> washingTables = new ArrayList<>();
+    private WashingTable washingTable = new WashingTable();
 
     private WashingPlanModel() {
-        readWashingPlanFromFile();
+        houseManager = HouseManager.getInstance();
+        houseManager.subscribeToEvents(this);
+        setWashingPlan();
     }
 
-    private void readWashingPlanFromFile() {
-        collective = HouseManager.getInstance().getHouse();
-        washingPlanPersons = collective.getWashingPlanPerson();
-        washingPlanTasks = collective.getWashingPlanTask();
-        washingTables = collective.getWashingTable();
-    }
-
-    private void storeToFile() {
-        collective.setWashingTable(washingTables);
-        collective.setWashingPlanPerson(washingPlanPersons);
-        collective.setWashingPlanTask(washingPlanTasks);
-        HouseManager.getInstance().saveHouse();
+    private void setWashingPlan() {
+        house = houseManager.getHouse();
+        washingTable = house.getWashingTable();
+        if (washingTable == null) {
+            return;
+        }
+        currentWeek = washingTable.getLowestWeek();
     }
 
     public static WashingPlanModel getInstance() {
-        if (washingPlanModel != null)
-            return washingPlanModel;
-        washingPlanModel = new WashingPlanModel();
         return washingPlanModel;
     }
 
     public List<Task> getWashingPlanTasks() {
-        return washingPlanTasks;
+        return Collections.unmodifiableList(washingPlanTasks);
     }
 
     public List<Person> getWashingPlanPersons() {
-        return washingPlanPersons;
+        return Collections.unmodifiableList(washingPlanPersons);
     }
 
-    public List<WashingTable> getWashingTables() {
-        return washingTables;
+    public WashingTable getWashingTables() {
+        return washingTable;
     }
 
+    /**
+     * Adds a new person to the washing plan if the person is not already in the list.
+     *
+     * @param newPerson the person to add to the washing plan.
+     */
     public void addPerson(Person newPerson) {
         for (Person name : washingPlanPersons) {
             if (name.getName().equals(newPerson.getName())) {
@@ -68,11 +71,14 @@ public class WashingPlanModel {
                 return;
             }
         }
-
         washingPlanPersons.add(newPerson);
-        storeToFile();
     }
 
+    /**
+     * Adds a new task to the washing plan if the task is not already in the list.
+     *
+     * @param newTask the task to add to the washing plan.
+     */
     public void addTask(Task newTask) {
         for (Task task : washingPlanTasks) {
             if (task.getTask().equals(newTask.getTask())) {
@@ -81,60 +87,98 @@ public class WashingPlanModel {
             }
         }
         washingPlanTasks.add(newTask);
-        storeToFile();
     }
 
-    public void generateWashingPlan(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek) {
-        washingTables.clear();
-        List<Person> names = persons;
-        int numPeople = names.size();
-        int numTasks = tasks.size();
-
-        for (int week = fromWeek; week <= toWeek; week++) {
-            WashingPlan washingPlan = new WashingPlan(week);
-
-            for (int i = 0; i < numTasks; i++) {
-                Task task = tasks.get(i);
-                Person assignedPerson = names.get((i + (week - fromWeek)) % numPeople);
-                WashingPlanEntry entry = new WashingPlanEntry(assignedPerson, task, week);
-                washingPlan.addEntry(entry);
-            }
-            WashingTable washingTable = new WashingTable();
-            washingTable.addWashingPlanEntry(washingPlan);
-            washingTables.add(washingTable);
-        }
-        storeToFile();
+    public void generateWashingPlan(List<Person> person, List<Task> task, int fw, int tw) {
+        house = houseManager.getApi().generateWashingplan(person, task, fw, tw, house.getId());
+        houseManager.updateHouse(house);
     }
 
-    public List<Person> rotateNames(List<Person> names) {
-        if (names.size() > 1) {
-            List<Person> rotatedNames = names;
-            Person last = rotatedNames.remove(rotatedNames.size() - 1);
-            rotatedNames.add(0, last);
-            return rotatedNames;
+    /**
+     * Retrieves the washing plan for the current week.
+     *
+     * @return the washing plan for the current week, or null if no washing plan exists.
+     */
+    public WashingPlan getPlanForWeek() {
+        if (washingTable == null) {
+            return null;
         }
-        return names;
-    }
-
-    public List<WashingPlan> getWashingTableForWeek(int weekNumber) {
-        if (weekNumber < 1 || weekNumber > washingTables.size()) {
-            return new ArrayList<>(); // returns empty if week is out of range
-        }
-        return washingTables.get(weekNumber - 1).getWashingPlans();
+        return washingTable.getWashingPlanOfWeek(currentWeek);
     }
 
     public int getCurrentWeek() {
         return currentWeek;
     }
 
+    /**
+     * Sets the current week number, ensuring it's within the valid range.
+     *
+     * @param week the week number to set as the current week.
+     */
     public void setCurrentWeek(int week) {
+        if (washingTable == null) {
+            return;
+        }
+        if (week < washingTable.getLowestWeek() || week > washingTable.getHighestWeek()) {
+            return;
+        }
         this.currentWeek = week;
     }
 
+    @Override
+    public void updateEvent() {
+        setWashingPlan();
+        WashingPlanViewModel.getInstance().updateWashingPlans();
+    }
+
+    @Override
+    public void logoutEvent() {
+        System.out.println("Logout");
+        reset();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
+    }
+
+    /**
+     * Edits the current washing plan by setting the persons and tasks from the washing table.
+     * It updates the corresponding view model.
+     */
+    public void editWashingPlan() {
+        if (washingTable == null) {
+            return;
+        }
+        washingPlanPersons = washingTable.getPersons();
+        washingPlanTasks = washingTable.getTasks();
+        WashingPlanViewModel washingPlanViewModel = WashingPlanViewModel.getInstance();
+        washingPlanViewModel.updateWashingPlanPersons();
+        washingPlanViewModel.updateWashingPlanTasks();
+    }
+
+    public void setWashingTable(WashingTable washingTable) {
+        this.washingTable = washingTable;
+    }
+
+    /**
+     * Resets the washing plan data by clearing persons, tasks, and washing table.
+     */
     public void reset() {
         washingPlanPersons.clear();
         washingPlanTasks.clear();
-        washingTables.clear();
-        currentWeek = 1;
+        washingTable = null;
+        house = null;
+        currentWeek = 0;
+    }
+
+    /**
+     * Retrieves the ID of the currently selected house.
+     *
+     * @return the ID of the house, or null if no house is selected.
+     */
+    public String getHouseId() {
+        if (house == null) {
+            return null;
+        }
+        return house.getId();
     }
 }

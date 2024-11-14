@@ -6,13 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import viewmodel.MenueViewModel;
 import viewmodel.WashingPlanViewModel;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
@@ -22,6 +22,13 @@ public class NewWashingPlanTest extends ApplicationTest {
     private TableView<Person> personTable;
     private TableView<Task> taskTable;
     private WashingPlanViewModel viewModel;
+
+    @BeforeAll
+    static public void Initialize()
+    {
+        MenueViewModel.getInstance().setTestApi();
+        MenueViewModel.getInstance().setCollective("fffff");
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -62,6 +69,7 @@ public class NewWashingPlanTest extends ApplicationTest {
 
     @Test
     public void testSetWeekRange() {
+        MenueViewModel.getInstance().setCollective("fffff");
         clickOn("#fromWeek").write("1");
         clickOn("#toWeek").write("5");
 
@@ -73,11 +81,10 @@ public class NewWashingPlanTest extends ApplicationTest {
 
     @Test
     public void testWeekRangeValidation() {
+        MenueViewModel.getInstance().setCollective("fffff");
         clickOn("#fromWeek").write("5");
         clickOn("#toWeek").write("1");
-
         clickOn("#generateWashingPlan");
-
         assertEquals(1, viewModel.getCurrentWeek(), "Current week should not change with invalid range.");
     }
 
@@ -126,6 +133,7 @@ public class NewWashingPlanTest extends ApplicationTest {
 
     @Test
     public void testSettingWeekRangeEdgeCases() {
+        MenueViewModel.getInstance().setCollective("fffff");
         clickOn("#fromWeek").write("1");
         clickOn("#toWeek").write("52");
 
@@ -133,6 +141,6 @@ public class NewWashingPlanTest extends ApplicationTest {
 
         assertEquals(1, viewModel.getCurrentWeek(), "The current week should be set to the start week.");
         assertEquals(52, viewModel.getEndWeek(), "The end week should be set correctly.");
-        clickOn("#HomeButton");
+        clickOn("#homeButton");
     }
 }

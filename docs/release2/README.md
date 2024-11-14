@@ -3,6 +3,7 @@
 
 
 ## Arbeidsflyt
+
 Vi har brukt scrum for å sikre en oversiktlig og profesjonell arbeidsflyt. Gjennom ukentlige planleggingsmøter, arbeid både individuelt og i workshops, samt jevnlige oppdateringer om fremdrift og eventuelle utfordringer, har vi oppnådd et svært godt samarbeid som team. 
 Scrum-metoden har gitt oss en lav terskel for å diskutere og løse problemer sammen, og har gjort det mulig med kontinuerlig forbedring av prosjektet. Arbeidsmetoden har vært strukturert og effektiv, noe som har ført til gode resultater. 
 
@@ -19,6 +20,7 @@ Når det kommer til review og testing, følger teamet praksiser som sikrer at ko
 
 
 ## Arbeidsvaner
+
 Teamet har som nevnt fulgt en fast ukentlig rutine med mandags- og onsdagsmøter på faste tidspunkter. Hvert møte starter med en standup hvor hvert teammedlem forteller i korte trekk hva de har gjort siden sist, og nevner eventuelle utfordringer de har støtt på. Etter denne gjennomgangen tar teamet tak i spesifikke problemer, løser dem sammen, og blir enige om planen for resten av møtet. For å unngå at denne planleggingen tar for mye av tiden til planlagte arbeidsøkter, er mandagsmøtet dedikert til dette. Under mandagsmøtene diskuterer vi kravene til neste innlevering, og hvordan vi best mulig kan obbe frem mot innleveringsfristen. Hvert teammedlem får delegert oppgaver basert på ønsker eller kompetanse, og så bruker teamet god tid på å være enige i konkret hva som skal gjøres, og hvordan. Frem til onsdagsmøtet er det dermed muligheter til å begynne med sin delegerte oppgave. 
 
 Onsdagsmøtet er en ren arbeidsøkt, hvor vi begynner med en kort standup, og deretter bruker mesteparten av tiden til prosjektarbeid. Som en del av onsdagsøktene har vi gjort det til en vane å spise et måltid sammen. Dette hjelper oss med å holde motivasjonen oppe, styrker teamfølelsen, og gir oss en pause til å koble av litt midt i arbeidet. På slutten av onsdagsmøtet setter vi alltid interne frister, vanligvis til et av møtene neste uke, slik at vi er sikre på at vi er i rute og oppholder en jevn fremdrift. Større oppgaver som er vanskelig å dele opp, delegeres til to personer, som da organsierer egne arbeidsøkter hvor de parprogrammerer. 
@@ -52,14 +54,15 @@ Alle verktøyene våre spiller sammen for å sikre høy kodekvalitet. Testene fo
 ### Arkitekur og diagrammer
 Vi har laget tre diagrammer som beskriver arkitekturen og strukturen i prosjektet med forskjellige mengde abstraksjon. 
 
- Først har vi et enkelt diagram som beskriver flyt av data og ansvar over logikk i prosjektet. View har ansvar for brukergrensesnitt og vising av data. Viewmodel er et mellomlag som forbereder data mellom view og model. Model Inneholder logikken til applikasjonen og persistance har ansvar for lagring. Dette er arkitekturen i prosjektet vårt. 
+ Først har vi et enkelt diagram som beskriver flyt av data og ansvar over logikk i prosjektet. View har ansvar for brukergrensesnitt og vising av data. Viewmodel er et mellomlag som forbereder data mellom view og model. Model Inneholder logikken til applikasjonen og persistance har ansvar for lagring. Vi har valgt å inkludere persistence i core-komponenten fordi vi valgte å holde persistence-mappen enkel og anså det som unødvendig å opprette en egen modul for denne funksjonaliteten.
 
-![](MVVMDiagram.png)
+![MVVM logical view](MVVMDiagram.png)
 
 Package diagram beskriver hvordan pakkene og modulene i prosjektet kommuniserer med hverandre. Data pakken et er bibliotek for klasser som trengs av flere andre pakker samtidig.
 
-![](packagediagram.png)
+![Et pakkediagram](packagediagram.png)
 
 Class diagram viser klasene i prosjekter og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra data pakken.
 
-![](classdiagram.png)
+![Et klassediagram](classdiagram.png)
+

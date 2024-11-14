@@ -1,26 +1,29 @@
 package view;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.IOException;
 
+/**
+ * The MainMenuView class contains methods for switching to the login and create house scenes in a
+ * JavaFX application.
+ */
 public class MainMenuView {
 
     @FXML
-    private Button openLoginHouseIDButton;
+    private Button openLoginButton;
 
     @FXML
-    private Button openCreateHouseIDButton;
+    private Button openCreateButton;
 
     @FXML
-    void ButtonToLoginHouseID(ActionEvent event) throws IOException {
+    void buttonToLogin(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "LoginHouseID.fxml");
     }
 
     @FXML
-    void ButtonToCreateHouseID(ActionEvent event) throws IOException {
+    void buttonToCreate(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "CreateHouseID.fxml");
     }
-
 }

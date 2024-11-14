@@ -1,8 +1,7 @@
 package view;
 
 import data.Item;
-import viewmodel.ShoppingListViewModel;
-import javafx.collections.FXCollections;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,16 +10,18 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TextFormatter;
-import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.IOException;
+import viewmodel.ShoppingListViewModel;
 
-
-    public class ShoppingListView {
+/**
+ * The `ShoppingListView` class in Java represents the view component of a shopping list application
+ * with various JavaFX elements and event handlers.
+ */
+public class ShoppingListView {
 
     private ObservableList<Item> list;
     private ShoppingListViewModel shoppingListViewModel;
@@ -36,7 +37,13 @@ import java.io.IOException;
     private TableColumn<Item, Integer> countColumn;
 
     @FXML
-    private Button AddButton;
+    private Button addButton;
+
+    @FXML
+    private Button buyButton;
+
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private CheckBox checkAll;
@@ -49,7 +56,7 @@ import java.io.IOException;
 
     @FXML
     private TextField itemNameInput;
-    
+
     @FXML
     private TableView<Item> table;
 
@@ -58,18 +65,16 @@ import java.io.IOException;
         shoppingListViewModel.buyItems();
     }
 
-    private Button BackFromShoppingList;
+    @FXML
+    private Button homeButton;
 
     @FXML
-    private Button HomeButton;
-
-    @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
+    void buttonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonBackFromShoppingList(ActionEvent event) throws IOException {
+    void buttonBackFromShoppingList(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
 
@@ -88,19 +93,23 @@ import java.io.IOException;
     @FXML
     private void checkBoxChanged(ActionEvent event) {
         shoppingListViewModel.selectAllCheckBoxChanged(checkAll.isSelected());
-    }    
+    }
 
+    /**
+     * The `initialize` function sets up a JavaFX table with columns for item name, item count, and
+     * checkboxes, along with input validation and a home button with an image.
+     */
     public void initialize() {
         list = shoppingListViewModel.getShoppingList();
-        itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName")); // Adjusted for JavaFX property
-        countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount")); // Adjusted for JavaFX property
+        itemColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        countColumn.setCellValueFactory(new PropertyValueFactory<>("itemCount"));
 
         checkButtonsColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkButtonsColumn));
         checkButtonsColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
 
         table.setEditable(true);
         table.setItems(list);
-        
+
         itemCountInput.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getControlNewText();
             if (newText.matches("\\d*")) { // Allow only digits
@@ -110,12 +119,12 @@ import java.io.IOException;
         }));
 
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
-        
+
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
 
-        HomeButton.setGraphic(imageView);
+        homeButton.setGraphic(imageView);
     }
 }

@@ -1,6 +1,7 @@
 package view;
 
-import javafx.beans.Observable;
+import data.HistoryShoppingListTable;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,13 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import data.HistoryShoppingListTable;
-import viewmodel.ShoppingListViewModel;
-
-import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import viewmodel.ShoppingListViewModel;
 
+/**
+ * The `ShoppingListHistoryView` class in Java represents a view for displaying shopping
+ * list history with buttons for navigation and table columns for count, item, and date.
+ */
 public class ShoppingListHistoryView {
 
     private ShoppingListViewModel shoppingListViewModel;
@@ -22,13 +24,13 @@ public class ShoppingListHistoryView {
     private ObservableList<HistoryShoppingListTable> historyShoppingList;
 
     @FXML
-    private Button BackFromShoppingListHistory;
-    
-    @FXML
-    private Button HomeButton;
+    private Button backFromShoppingListHistory;
 
     @FXML
-    private TableView<HistoryShoppingListTable> ShoppingListTable;
+    private Button homeButton;
+
+    @FXML
+    private TableView<HistoryShoppingListTable> shoppingListTable;
 
     @FXML
     private TableColumn<HistoryShoppingListTable, Integer> countColumnHistory;
@@ -40,32 +42,36 @@ public class ShoppingListHistoryView {
     private TableColumn<HistoryShoppingListTable, String> whenColumnHistory;
 
     @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
+    void buttonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonBackFromShoppingListHistory(ActionEvent event) throws IOException {
+    void buttonBackFromShoppingListHistory(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListOverview.fxml");
     }
-    public void initialize (){
+
+    /**
+     * The `initialize` function sets up an image for a button, populates a table view with shopping
+     * list history data, and configures the columns for the table view.
+     */
+    public void initialize() {
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
-        
+
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
 
-        HomeButton.setGraphic(imageView);
+        homeButton.setGraphic(imageView);
 
         shoppingListViewModel = ShoppingListViewModel.getInstance();
-        historyShoppingList= shoppingListViewModel.getShoppingListHistory();
+        historyShoppingList = shoppingListViewModel.getShoppingListHistory();
 
-        countColumnHistory.setCellValueFactory(new PropertyValueFactory<>("count")); 
-        itemColumnHistory.setCellValueFactory(new PropertyValueFactory<>("item")); 
-        whenColumnHistory.setCellValueFactory(new PropertyValueFactory<>("when")); 
+        countColumnHistory.setCellValueFactory(new PropertyValueFactory<>("count"));
+        itemColumnHistory.setCellValueFactory(new PropertyValueFactory<>("item"));
+        whenColumnHistory.setCellValueFactory(new PropertyValueFactory<>("when"));
 
-        ShoppingListTable.setItems(historyShoppingList);
+        shoppingListTable.setItems(historyShoppingList);
     }
-
 }

@@ -1,55 +1,61 @@
 package view;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * The `ShoppingListOverviewView` class in Java is a controller class for a GUI application that
+ * handles button actions and initializes the view with images.
+ */
 public class ShoppingListOverviewView {
 
     @FXML
-    private Button ActiveShoppingList;
+    private Button activeShoppingList;
 
     @FXML
-    private Button BackFromShoppingListOverview;
+    private Button backFromShoppingListOverview;
 
     @FXML
-    private Button ShoppingListHistory;
+    private Button shoppingListHistory;
 
     @FXML
-    private Button HomeButton;
+    private Button homeButton;
 
     @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
+    void buttonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonActiveShoppingList(ActionEvent event) throws IOException {
+    void buttonActiveShoppingList(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingList.fxml");
     }
 
     @FXML
-    void ButtonBackFromShoppingListOverview(ActionEvent event) throws IOException {
+    void buttonBackFromShoppingListOverview(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonShoppingListHistory(ActionEvent event) throws IOException {
+    void buttonShoppingListHistory(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ShoppingListHistory.fxml");
     }
 
-    public void initialize (){
+    /**
+     * The `initialize` function sets an image of a house on a button in a Java application.
+     */
+    public void initialize() {
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
-        
+
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
 
-        HomeButton.setGraphic(imageView);
+        homeButton.setGraphic(imageView);
     }
-
 }

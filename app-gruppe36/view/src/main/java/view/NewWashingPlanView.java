@@ -1,7 +1,8 @@
 package view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import data.Person;
+import data.Task;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,22 +10,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import data.Item;
-import viewmodel.WashingPlanViewModel;
-
-import java.io.IOException;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import viewmodel.WashingPlanViewModel;
 
+/**
+ * The `NewWashingPlanView` class in Java is a controller class for a GUI interface that 
+ * handles adding persons and tasks, generating a washing plan, and switching between scenes.
+ */
 public class NewWashingPlanView {
-    
+
     private WashingPlanViewModel washingPlanViewModel;
 
     public NewWashingPlanView() {
@@ -32,7 +27,7 @@ public class NewWashingPlanView {
     }
 
     @FXML
-    private Button BackFromNewWashingPlan;
+    private Button backFromNewWashingPlan;
 
     @FXML
     private Button addPersonButton;
@@ -68,33 +63,33 @@ public class NewWashingPlanView {
     private TableView<Task> newWashingPlanTaskTable;
 
     @FXML
-    private Button HomeButton;
+    private Button homeButton;
 
     @FXML
-    private void ButtonAddPerson(ActionEvent event) {
+    private void buttonAddPerson(ActionEvent event) {
         washingPlanViewModel.addPerson(addPersonField.getText());
         addPersonField.setText("");
     }
 
     @FXML
-    private void ButtonAddTask(ActionEvent event) {
+    private void buttonAddTask(ActionEvent event) {
         washingPlanViewModel.addTask(addTaskField.getText());
         addTaskField.setText("");
     }
 
     @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
+    void buttonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonBackFromNewWashingPlan(ActionEvent event) throws IOException {
+    void buttonBackFromNewWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
     }
 
     @FXML
-    void ButtonGenerateWashingPlan(ActionEvent event) throws IOException {
-        System.out.println("Button Pressed"); // debug comment
+    void buttonGenerateWashingPlan(ActionEvent event) throws IOException {
+        System.out.println("Button Pressed");
         String fromWeekInput = fromWeek.getText();
         String toWeekInput = toWeek.getText();
 
@@ -104,18 +99,16 @@ public class NewWashingPlanView {
         if (start > end) {
             washingPlanViewModel.setStartWeek(toWeekInput);
             washingPlanViewModel.setEndWeek(fromWeekInput);
-        }
-        else {
-        washingPlanViewModel.setStartWeek(fromWeekInput);
-        washingPlanViewModel.setEndWeek(toWeekInput);
+        } else {
+            washingPlanViewModel.setStartWeek(fromWeekInput);
+            washingPlanViewModel.setEndWeek(toWeekInput);
         }
 
         int fromWeek = washingPlanViewModel.getStartWeek();
         int toWeek = washingPlanViewModel.getEndWeek();
 
         if (fromWeek > toWeek) {
-            System.out.println("From Week cannot be greater than To Week."); // TODO: include plans that go over new
-                                                                             // years
+            System.out.println("From Week cannot be greater than To Week.");
             return;
         }
 
@@ -124,6 +117,10 @@ public class NewWashingPlanView {
         SceneSwitcher.switchToScene(event, "WashingPlan.fxml");
     }
 
+    /**
+     * The `initialize` function sets up cell value factories for tables, populates tables 
+     * with data, and sets a graphic for a button using an image.
+     */
     public void initialize() {
         listOfNamesForNewWashingPlan.setCellValueFactory(new PropertyValueFactory<>("name"));
         listOfTasksForNewWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));
@@ -131,14 +128,11 @@ public class NewWashingPlanView {
         newWashingPlanNameTable.setItems(washingPlanViewModel.getWashingPlanPersons());
         newWashingPlanTaskTable.setItems(washingPlanViewModel.getWashingPlanTasks());
 
-        // ---//
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);
-        imageView.setFitHeight(63);
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
-        HomeButton.setGraphic(imageView);
-
+        homeButton.setGraphic(imageView);
     }
-
 }

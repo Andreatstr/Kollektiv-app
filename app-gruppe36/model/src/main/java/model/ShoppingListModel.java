@@ -1,108 +1,99 @@
 package model;
-import json.JsonFileManager;
-import data.Item;
+
 import data.House;
-import java.util.ArrayList; 
+import data.Item;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import viewmodel.ShoppingListViewModel;
 
-public class ShoppingListModel
-{
-    private static ShoppingListModel shoppingListModel = null;
+/**
+ * Manages the shopping list and shopping list history for a specific house.
+ * This class handles the operations for adding, removing, and buying items within the shopping
+ * list. It also interacts with the {@link HouseManager} to update the house and communicates with
+ * the server through REST API calls to reflect changes in the shopping list.
+ */
+public class ShoppingListModel implements UpdateEvent {
 
-    private House collective;
+    private static final ShoppingListModel shoppingListModel = new ShoppingListModel();
+    private House house;
     private List<Item> shoppingList = new ArrayList<Item>();
-    private List<Item> shoppingListHistory = new ArrayList<Item>();  
+    private List<Item> shoppingListHistory = new ArrayList<Item>();
+    private HouseManager houseManager;
 
-
-    private Integer daysInHistory = 14;
-
-    private ShoppingListModel() 
-    {
-        readShoppingListFromFile();
-        resetItemActivation();
+    private ShoppingListModel() {
+        houseManager = HouseManager.getInstance();
+        houseManager.subscribeToEvents(this);
+        setShoppingLists();
     }
 
-    public static ShoppingListModel getInstance()
-    {   
-        if (shoppingListModel != null)
-            return shoppingListModel;
-        shoppingListModel = new ShoppingListModel();
+    public static ShoppingListModel getInstance() {
         return shoppingListModel;
     }
 
-    private void readShoppingListFromFile()
-    {
-        collective = HouseManager.getInstance().getHouse();
-        shoppingList = collective.getShoppingList();
-        shoppingListHistory = collective.getShoppingListHistory();
+    private void setShoppingLists() {
+        house = HouseManager.getInstance().getHouse();
+        shoppingList = house.getShoppingList();
+        shoppingListHistory = house.getShoppingListHistory();
+        resetItemActivation();
     }
 
-    private void resetItemActivation()
-    {
-        for (Item item : shoppingList) item.setActive(false);
-    }
-
-    private void storeToFile()
-    {
-        collective.setShoppingList(shoppingList);
-        collective.setShoppingListHistory(shoppingListHistory);
-        HouseManager.getInstance().saveHouse();
-    }
-
-    public List<Item> getShoppingList()
-    {
-        return shoppingList;
-    }
-
-    public List<Item> getshoppingListHistory()
-    {
-        boolean historyChanged = false;
-
-        for (Item item : shoppingListHistory)
-        {
-            if (item.timePassed(daysInHistory))
-            {
-                shoppingListHistory.remove(item);
-                historyChanged = true;
-            }
+    private void resetItemActivation() {
+        for (Item item : shoppingList) {
+            item.setActive(false);
         }
-
-        if (historyChanged) storeToFile(); 
-        return shoppingListHistory;
     }
 
-    public void addItem(Item newItem)
-    {
-        //Sjekke at produktet ikke eksisterer allerede isåfall legg til Funker ikke
-        for (Item item : shoppingList)
-        {
-            if (item.getItemName().equals(newItem.getItemName()))
-            {
-                item.setItemCount(item.getItemCount() + newItem.getItemCount());
-                storeToFile();
-                return;
-            }
+    public List<Item> getShoppingList() {
+        return Collections.unmodifiableList(shoppingList);
+    }
+
+
+    public List<Item> getShoppingListHistory() {
+        return Collections.unmodifiableList(shoppingListHistory);
+    }
+
+    // Methods sending to server
+    public void addItem(Item newItem) {
+        house = houseManager.getApi().addItem(newItem, house.getId());
+        houseManager.updateHouse(house);
+    }
+
+    public void removeItem(List<Item> items) {
+        house = houseManager.getApi().deleteItems(items, house.getId());
+        houseManager.updateHouse(house);
+    }
+
+    public void buyItems(List<Item> items) {
+        house = houseManager.getApi().buyItem(items, house.getId());
+        houseManager.updateHouse(house);
+    }
+
+    @Override
+    public void updateEvent() {
+        ShoppingListViewModel viewmodel = ShoppingListViewModel.getInstance();
+        setShoppingLists();
+        viewmodel.updateShoppingList();
+        viewmodel.updateShoppingListHistory();
+
+    }
+
+    @Override
+    public void logoutEvent() {
+        house = null;
+        shoppingList = new ArrayList<>();
+        shoppingListHistory = new ArrayList<>();
+    }
+
+    /**
+     * Retrieves the ID of the currently selected house.
+     *
+     * @return the ID of the house, or null if no house is selected.
+     */
+    public String getHouseId() {
+        if (house == null) {
+            return null;
         }
-
-        shoppingList.add(newItem);
-        storeToFile();
+        return house.getId();
     }
-
-    public void removeItem(List<Item> items)
-    {
-        for (Item itemToRemove : items) shoppingList.removeIf(b->b.getItemName().equals(itemToRemove.getItemName()));
-        storeToFile();
-    }
-    
-    public void buyItems(List<Item> items)
-    {
-        removeItem(items);
-        for (Item item : items) item.setBoughtDate();
-        shoppingListHistory.addAll(items);
-        storeToFile();
-    }
-
-
-
-
 }

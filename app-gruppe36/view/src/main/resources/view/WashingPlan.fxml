@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WashingPlanView">
    <children>
-      <Button fx:id="editWashingPlan" layoutX="601.0" layoutY="550.0" mnemonicParsing="false" onAction="#ButtonEditWashingPlan" prefHeight="76.0" prefWidth="182.0" text="Rediger Vaskeplan">
+      <Button fx:id="editWashingPlan" layoutX="601.0" layoutY="550.0" mnemonicParsing="false" onAction="#buttonEditWashingPlan" prefHeight="76.0" prefWidth="182.0" styleClass="editButton" text="Rediger Vaskeplan">
          <font>
             <Font size="18.0" />
          </font>
@@ -20,19 +20,10 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="BackFromWashingPlan" layoutX="39.0" layoutY="48.0" mnemonicParsing="false" onAction="#ButtonBackFromWashingPlan" prefHeight="25.0" prefWidth="98.0" text="Tilbake">
-         <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" text="&lt;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </graphic>
-      </Button>
-      <TableView fx:id="newWashingPlanTable" layoutX="39.0" layoutY="172.0" prefHeight="513.0" prefWidth="498.0">
+      <TableView fx:id="newWashingPlanTable" layoutX="39.0" layoutY="156.0" prefHeight="513.0" prefWidth="504.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="listOfNamesForWashingPlan" prefWidth="174.39998626708984" text="Navn" />
-            <TableColumn fx:id="listOfTasksForWashingPlan" prefWidth="324.0000305175781" text="Oppgave" />
+            <TableColumn fx:id="listOfNamesForWashingPlan" prefWidth="174.39998626708984" styleClass="tableColumn" text="Navn" />
+            <TableColumn fx:id="listOfTasksForWashingPlan" prefWidth="324.0000305175781" styleClass="tableColumn" text="Oppgave" />
          </columns>
       </TableView>
       <Label layoutX="560.0" layoutY="187.0" prefHeight="54.0" prefWidth="134.0" text="Uke:">
@@ -40,12 +31,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#ButtonLeftArrow" prefHeight="54.0" prefWidth="118.0" text="&lt;">
+      <Button fx:id="leftArrowButton" layoutX="554.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonLeftArrow" prefHeight="54.0" prefWidth="118.0" styleClass="arrowButton" text="&lt;">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#ButtonRightArrow" prefHeight="54.0" prefWidth="118.0" text="&gt;">
+      <Button fx:id="rightArrowButton" layoutX="692.0" layoutY="272.0" mnemonicParsing="false" onAction="#buttonRightArrow" prefHeight="54.0" prefWidth="118.0" styleClass="arrowButton" text="&gt;">
          <font>
             <Font size="24.0" />
          </font>
@@ -55,10 +46,22 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="HomeButton" layoutX="797.0" layoutY="30.0" mnemonicParsing="false" onAction="#ButtonHome" prefHeight="70.0" prefWidth="70.0">
+      <Button fx:id="homeButton" layoutX="830.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonHome" prefHeight="30.0" prefWidth="30.0" styleClass="homeButton">
          <graphic>
-            <ImageView fx:id="HouseImage" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="HouseImage" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
+      </Button>
+      <Button fx:id="backFromWashingPlan" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonBackFromWashingPlan" prefHeight="23.0" prefWidth="66.0" styleClass="backButton" text="Tilbake">
+         <graphic>
+            <Label prefHeight="25.0" prefWidth="8.0" text="&lt;">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </graphic>
+         <font>
+            <Font size="10.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

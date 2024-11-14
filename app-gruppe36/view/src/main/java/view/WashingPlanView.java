@@ -1,9 +1,7 @@
 package view;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import data.WashingPlanEntry;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,27 +13,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import viewmodel.WashingPlanViewModel;
 
-import java.io.IOException;
-import java.util.List;
-
-import data.Person;
-import data.Task;
-import data.WashingPlan;
-import data.WashingPlanEntry;
-import data.WashingTable;
-
+/**
+ * The `WashingPlanView` class in Java represents the view component of a washing plan
+ * application with various JavaFX elements and event handlers.
+ */
 public class WashingPlanView {
 
     private WashingPlanViewModel washingPlanViewModel;
-    
-    ObservableList<WashingPlanEntry> observableList = FXCollections.observableArrayList();
 
     public WashingPlanView() {
         washingPlanViewModel = WashingPlanViewModel.getInstance();
     }
-    
+
     @FXML
-    private Button BackFromWashingPlan;
+    private Button backFromWashingPlan;
 
     @FXML
     private Button editWashingPlan;
@@ -56,82 +47,58 @@ public class WashingPlanView {
     private Button rightArrowButton;
 
     @FXML
-    private Button HomeButton;
+    private Button homeButton;
 
     @FXML
     private Label weekNumberField;
 
     @FXML
-    void ButtonHome(ActionEvent event) throws IOException {
+    void buttonHome(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "ChoiceScreen.fxml");
     }
 
     @FXML
-    void ButtonBackFromWashingPlan(ActionEvent event) throws IOException {
+    void buttonBackFromWashingPlan(ActionEvent event) throws IOException {
         SceneSwitcher.switchToScene(event, "WashingPlanOverview.fxml");
     }
 
     @FXML
-    void ButtonEditWashingPlan(ActionEvent event) throws IOException {
+    void buttonEditWashingPlan(ActionEvent event) throws IOException {
+        washingPlanViewModel.editWashingPlan();
         SceneSwitcher.switchToScene(event, "NewWashingPlan.fxml");
     }
 
     @FXML
-    void ButtonLeftArrow(ActionEvent event) {
-        int currentWeek = washingPlanViewModel.getCurrentWeek();
-        if (washingPlanViewModel.isThisTheFirstWeek(currentWeek)) {
-            System.out.println("Already at the first week.");
-            return;
-        } 
-        washingPlanViewModel.previousWeek(); 
+    void buttonLeftArrow(ActionEvent event) {
+        washingPlanViewModel.previousWeek();
         weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
-        updateWashingPlanTable(); 
     }
 
     @FXML
-    void ButtonRightArrow(ActionEvent event) {
-        int currentWeek = washingPlanViewModel.getCurrentWeek(); 
-        if (washingPlanViewModel.isThisTheLastWeek(currentWeek)) {
-            System.out.println("Already at the last week.");
-            return;
-        } 
+    void buttonRightArrow(ActionEvent event) {
         washingPlanViewModel.nextWeek();
-        weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek())); 
-        updateWashingPlanTable();
+        weekNumberField.setText(String.valueOf(washingPlanViewModel.getCurrentWeek()));
     }
 
-    public void initialize () {
+    /**
+     * The `initialize` function sets up an image for a button, binds data to table columns, and
+     * populates a table with washing plan entries.
+     */
+    public void initialize() {
         Image image = new Image(getClass().getResource("/view/img/house.png").toExternalForm());
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(66);  
-        imageView.setFitHeight(63); 
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         imageView.setPreserveRatio(true);
 
-        HomeButton.setGraphic(imageView);
-        //---//
-        
+        homeButton.setGraphic(imageView);
+
         listOfNamesForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("person"));
         listOfTasksForWashingPlan.setCellValueFactory(new PropertyValueFactory<>("task"));
 
-
-        // int fromWeek = washingPlanViewModel.getStartWeek();
-        // int toWeek = washingPlanViewModel.getEndWeek();
         String startNumber = String.valueOf(washingPlanViewModel.getCurrentWeek());
 
         weekNumberField.setText(startNumber);
-        newWashingPlanTable.setItems(observableList);
-
-        updateWashingPlanTable();
+        newWashingPlanTable.setItems(washingPlanViewModel.getWashingPlanEntries());
     }
-
-    private void updateWashingPlanTable() {
-        List<WashingPlanEntry> entriesForCurrentWeek = washingPlanViewModel.getWashingPlanEntriesForCurrentWeek();
-        for (WashingPlanEntry entry : entriesForCurrentWeek) System.out.println(entry.getPerson() + "  " + entry.getTask());
-        if (entriesForCurrentWeek != null && !entriesForCurrentWeek.isEmpty()) 
-        {
-            observableList.clear();
-            observableList.addAll(entriesForCurrentWeek);
-        }
-    }
-
 }

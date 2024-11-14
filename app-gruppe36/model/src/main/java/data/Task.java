@@ -1,9 +1,13 @@
 package data;
 
+/**
+ * The `Task` class represents a task with a task description and getter/setter methods.
+ */
 public class Task {
     private String task;
 
-    public Task(){}
+    public Task() {
+    }
 
     public Task(String newTask) {
         this.task = newTask;
@@ -19,7 +23,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.task; 
+        return this.task;
     }
 }
-

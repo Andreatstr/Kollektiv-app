@@ -1,9 +1,14 @@
 package data;
 
+/**
+ * The `Person` class in Java represents a person with a name attribute and getter/setter methods
+ * for the name.
+ */
 public class Person {
     private String name;
 
-    public Person(){}
+    public Person() {
+    }
 
     public Person(String newName) {
         this.name = newName;
