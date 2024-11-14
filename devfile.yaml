@@ -31,4 +31,9 @@ components:
           name: 5500-tcp
           protocol: http
           targetPort: 5500
-
+commands:
+  - id: changedir
+    exec:
+      component: app-gruppe36
+      commandLine: cd app-gruppe36
+      label: change directory
