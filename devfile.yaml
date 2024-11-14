@@ -4,7 +4,7 @@ metadata:
 components:
   - name: app-gruppe36
     container:
-      image: maven:3.9.9-ibm-semeru-21-jammy
+      image: eclipse-temurin:21-jdk
       memoryLimit: 3Gi
       endpoints:
         - exposure: public
