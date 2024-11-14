@@ -1,74 +1,68 @@
 package model;
 
-import data.House;
-import data.Waste;
-import javafx.collections.ObservableList;
-import restapi.DummyApi;
-import viewmodel.WasteViewModel;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import data.House;
+import data.Waste;
+import javafx.collections.ObservableList;
+import viewmodel.WasteViewModel;
+
 public class WasteViewModelTest {
-  
+
     private WasteViewModel wasteViewModel;
     private WasteModel wasteModel;
     private WasteModel mockWasteModel;
     private House mockHouse;
 
-
     @BeforeEach
-    public void setUp() {
-      HouseManager.getInstance().api = new DummyApi();
-      mockWasteModel = Mockito.mock(WasteModel.class);
-      mockHouse = Mockito.mock(House.class);
+    public void seUp() {
+        HouseManager.getInstance().setTestApi();
+        mockWasteModel = Mockito.mock(WasteModel.class);
+        mockHouse = Mockito.mock(House.class);
+        wasteModel = WasteModel.getInstance();
 
-      HouseManager mockHouseManager = Mockito.mock(HouseManager.class);
-      when(mockHouseManager.getHouse()).thenReturn(mockHouse);
+        HouseManager mockHouseManager = Mockito.mock(HouseManager.class);
+        when(mockHouseManager.getHouse()).thenReturn(mockHouse);
 
-      try {
+        try {
             var field = HouseManager.class.getDeclaredField("instance");
             field.setAccessible(true);
             field.set(null, mockHouseManager);
-      } catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Failed to set HouseManager instance for testing", e);
-      }
+        }
 
-      WasteViewModel.wasteViewModel = new WasteViewModel();
-      WasteModel.wasteModel = new WasteModel();
-      wasteModel = WasteModel.getInstance();
-      wasteViewModel = WasteViewModel.getInstance();
-      setWasteModel(wasteViewModel, mockWasteModel);
-    }
-
-
-    @Test
-    public void testGetWasteCollectionData() {
-        ObservableList<Waste> data = wasteViewModel.getWasteCollectionData();
-        assertEquals(0, data.size()); 
+        try {
+            var wasteModelField = WasteModel.class.getDeclaredField("wasteModel");
+            wasteModelField.setAccessible(true);
+            wasteModelField.set(null, mockWasteModel);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set WasteModel instance for testing", e);
+        }
+        wasteViewModel = WasteViewModel.getInstance();
+        setWasteModel(wasteViewModel, mockWasteModel);
     }
 
     @Test
     public void testGetWasteForWeekReturnsEmptyListIfNoWaste() {
-      when(mockWasteModel.getWasteForWeek(2)).thenReturn(new ArrayList<>());
-      List<String> wasteForWeek = wasteModel.getWasteForWeek(2);
-      assertTrue(wasteForWeek.isEmpty());
+        when(mockWasteModel.getWasteForWeek(2)).thenReturn(new ArrayList<>());
+        List<String> wasteForWeek = wasteModel.getWasteForWeek(2);
+        assertTrue(wasteForWeek.isEmpty());
     }
 
     @Test
@@ -79,7 +73,6 @@ public class WasteViewModelTest {
 
         when(mockHouse.getWastePlan()).thenReturn(wastePlan);
         when(mockWasteModel.getWastePlan()).thenReturn(wastePlan);
-        // setWasteModel(wasteModel, mockWasteModel);
 
         Map<Integer, List<String>> returnedWastePlan = mockWasteModel.getWastePlan();
         assertNotNull(returnedWastePlan);
@@ -103,11 +96,11 @@ public class WasteViewModelTest {
         Map<Integer, List<String>> wastePlan = new HashMap<>();
         wastePlan.put(1, Arrays.asList("Plastic", "Glass"));
         wastePlan.put(2, Arrays.asList("Organic"));
-        
+
         Mockito.when(mockWasteModel.getWastePlan()).thenReturn(wastePlan);
         wasteViewModel.updateWasteTable();
         ObservableList<Waste> wasteCollectionData = wasteViewModel.getWasteCollectionData();
-        
+
         assertEquals(3, wasteCollectionData.size());
         assertEquals(new Waste(1, "Plastic").getWasteType(), wasteCollectionData.get(0).getWasteType());
         assertEquals(new Waste(1, "Glass").getWasteType(), wasteCollectionData.get(1).getWasteType());
@@ -139,19 +132,14 @@ public class WasteViewModelTest {
         return wastePlan;
     }
 
-    // @Test
-    // public void testScrapeWasteCollection() {
-    //   assertDoesNotThrow(() -> wasteViewModel.scrapeWasteCollection());
-    // }
-
     @Test
-      public void testScrapeWasteCollectionCallsUpdateWasteTable() {
-          doNothing().when(mockWasteModel).scrapeWasteCollection();
-          when(mockWasteModel.getWastePlan()).thenReturn(createSampleWastePlan());
-          wasteViewModel.scrapeWasteCollection();
-          verify(mockWasteModel).scrapeWasteCollection();
-          assertEquals(3, wasteViewModel.getWasteCollectionData().size());
-      }
+    public void testScrapeWasteCollectionCallsUpdateWasteTable() {
+        doNothing().when(mockWasteModel).scrapeWasteCollection();
+        when(mockWasteModel.getWastePlan()).thenReturn(createSampleWastePlan());
+        wasteViewModel.scrapeWasteCollection();
+        verify(mockWasteModel).scrapeWasteCollection();
+        assertEquals(3, wasteViewModel.getWasteCollectionData().size());
+    }
 
     @Test
     public void testScrapeWasteCollection() {

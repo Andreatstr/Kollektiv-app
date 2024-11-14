@@ -1,14 +1,16 @@
 package data.requests;
 
+import data.Item;
 import java.util.List;
 
-import data.Item;
-
+/**
+ * Represents a request containing a list of items and an associated identifier.
+ * This class provides methods to get and set the list of items and the identifier.
+ */
 public class ItemListRequest {
 
-    public List<Item> items;
-
-    public String id;
+    private List<Item> items;
+    private String id;
 
     public ItemListRequest() {
     }

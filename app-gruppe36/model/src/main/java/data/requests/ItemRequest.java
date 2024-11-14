@@ -2,10 +2,14 @@ package data.requests;
 
 import data.Item;
 
+/**
+ * Represents a request containing a single item and an associated identifier.
+ * This class provides methods to get and set the item and its associated identifier.
+ */
 public class ItemRequest {
-    public Item item;
-
-    public String id;
+    
+    private Item item;
+    private String id;
 
     public ItemRequest() {
     }

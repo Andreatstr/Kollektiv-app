@@ -51,6 +51,8 @@ I dette prosjektet har vi implementert en rekke verktøy for å opprettholde hø
 ### CI Pipeline
 Vi har satt opp en CI-pipeline i GitLab som automatiserer kjøring av enhets- og integrasjonstester, kompilering, bygging og initialisering av prosjektet i en Docker-kontainer på en separat server. Denne prosessen sikrer at systemet fungerer som forventet før koden merges med andre grener. CI-Pipeline flagger også kode som ikke passerer tester eller som ikke kan kjøres korrekt. Et av hovedformålene med CI-pipeline er å sikre at koden initialiserer alle lokale variabler korrekt.
 
+Mot slutten av prosjektet måtte vi bytte Docker-image i siste liten, siden det gamle imaget ikke funket med avhengighetene for Shippable-produktet. Vi klarte å få imaget til å kjøre, men på grunn av høy trafikk på NTNUs servere rett før leveringsfrist fikk vi dessverre ikke muligheten til å teste det i pipelinen. Frem til denne endringen ble alle enhets- og integrasjonstester kjørt automatisk i pipelinen. Til tross for utfordringene har CI-pipelinen vært en viktig kilde til verdifull feilsøkingsinformasjon gjennom hele prosjektet, og den har bidratt vesentlig til kvaliteten på sluttresultatet – både før og etter teststeget ble fjernet.
+
 ### Testdekning med Jacoco
 For å sikre at all kode blir tilstrekkelig testet, har vi brukt Jacoco til å måle testdekning. Jacoco kjøres automatisk hver gang vi utfører mvn clean install, og gir oss innsikt i hvor stor del av koden som er dekket av tester. Dette hjelper oss med å identifisere hvilke deler av applikasjonen som eventuelt mangler tester.
 
@@ -81,7 +83,7 @@ Pakkediagrammet viser hvordan pakkene og modulene i prosjektet kommuniserer med 
 
 ### Klassediagram
 
-Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra datapakken.
+Klassediagrammet viser de viktisgte klassene i systemet og hvordan de er koblet sammen. For å gjøre diagrammet mer oversiktlig har vi valgt å se bort ifra datapakken som inneholder dataklasser som alle modulene arver.
 
 ![Et klassediagram](diagrams/classDiagram.png)
 

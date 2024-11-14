@@ -3,33 +3,39 @@ package data.requests;
 import data.Person;
 import data.Task;
 import java.util.List;
+
+/**
+ * The `CreateWashingPlanRequest` class in Java represents a request object containing lists
+ * of persons and tasks, along with week range and an ID.
+ */
 public class CreateWashingPlanRequest {
 
-    public List<Person> persons;
-
-    public List<Task> tasks;
-
-    public int fromWeek;
-
-    public int toWeek;
-
-    public String id;
-
-
+    private List<Person> persons;
+    private List<Task> tasks;
+    private int fromWeek;
+    private int toWeek;
+    private String id;
 
     public CreateWashingPlanRequest() {
     }
 
-    
-
-    public CreateWashingPlanRequest(List<Person> persons, List<Task> tasks, int fromWeek, int toWeek, String id) {
-        this.persons = persons;
-        this.tasks = tasks;
-        this.fromWeek = fromWeek;
-        this.toWeek = toWeek;
+    /**
+     * Constructs a new `CreateWashingPlanRequest` with specified lists of persons and tasks, 
+     * a range of weeks, and an identifier.
+     *
+     * @param prsn  the list of `Person` objects involved in the washing plan
+     * @param task  the list of `Task` objects to be scheduled in the washing plan
+     * @param fw    the starting week number for the plan
+     * @param tw    the ending week number for the plan
+     * @param id    a unique identifier for this washing plan request
+     */
+    public CreateWashingPlanRequest(List<Person> prsn, List<Task> task, int fw, int tw, String id) {
+        this.persons = prsn;
+        this.tasks = task;
+        this.fromWeek = fw;
+        this.toWeek = tw;
         this.id = id;
     }
-
 
     public List<Person> getPersons() {
         return this.persons;

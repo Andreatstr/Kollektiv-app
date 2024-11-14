@@ -1,52 +1,31 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.mockito.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import java.lang.reflect.Field;
-import javafx.collections.FXCollections;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import data.House;
 import data.Person;
 import data.Task;
 import data.WashingPlan;
 import data.WashingPlanEntry;
-import data.WashingTable;
+import viewmodel.WashingPlanViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import viewmodel.WashingPlanViewModel;
-import restapi.DummyApi;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WashingPlanViewModelTest {
 
-    //private HouseManager houseManager;
     private static WashingPlanViewModel washingPlanViewModel;
     private static WashingPlanModel mockWashingPlanModel;
     private WashingPlanModel washingPlanModel;
 
     @BeforeAll
     public static void setUpClass() {
-        HouseManager.getInstance().api = new DummyApi();
+        HouseManager.getInstance().setTestApi(); // Setter opp DummyApi for
     }
 
     @BeforeEach

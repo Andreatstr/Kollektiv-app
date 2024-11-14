@@ -1,37 +1,33 @@
 package model;
-import data.Item;
+
 import data.House;
-import data.requests.*;
-import viewmodel.ShoppingListViewModel;
+import data.Item;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import viewmodel.ShoppingListViewModel;
 
-import org.springframework.web.client.RestTemplate;
-
+/**
+ * Manages the shopping list and shopping list history for a specific house.
+ * This class handles the operations for adding, removing, and buying items within the shopping
+ * list. It also interacts with the {@link HouseManager} to update the house and communicates with
+ * the server through REST API calls to reflect changes in the shopping list.
+ */
 public class ShoppingListModel implements UpdateEvent {
-    private static ShoppingListModel shoppingListModel = null;
 
+    private static final ShoppingListModel shoppingListModel = new ShoppingListModel();
     private House house;
     private List<Item> shoppingList = new ArrayList<Item>();
     private List<Item> shoppingListHistory = new ArrayList<Item>();
     private HouseManager houseManager;
 
-  private Integer daysInHistory = 14;
-
-    private RestTemplate restTemplate;
-    private String url = "http://localhost:8080/";
-
     private ShoppingListModel() {
         houseManager = HouseManager.getInstance();
-        restTemplate = new RestTemplate();
         houseManager.subscribeToEvents(this);
         setShoppingLists();
     }
 
     public static ShoppingListModel getInstance() {
-        if (shoppingListModel != null)
-            return shoppingListModel;
-        shoppingListModel = new ShoppingListModel();
         return shoppingListModel;
     }
 
@@ -39,35 +35,37 @@ public class ShoppingListModel implements UpdateEvent {
         house = HouseManager.getInstance().getHouse();
         shoppingList = house.getShoppingList();
         shoppingListHistory = house.getShoppingListHistory();
-        resetItemActivation(); 
+        resetItemActivation();
     }
 
     private void resetItemActivation() {
-        for (Item item : shoppingList)
+        for (Item item : shoppingList) {
             item.setActive(false);
+        }
     }
 
     public List<Item> getShoppingList() {
-        return shoppingList;
+        return Collections.unmodifiableList(shoppingList);
     }
 
-    public List<Item> getshoppingListHistory() {
-        return shoppingListHistory;
+
+    public List<Item> getShoppingListHistory() {
+        return Collections.unmodifiableList(shoppingListHistory);
     }
 
-    /* Metoder som sender til server */
+    // Methods sending to server
     public void addItem(Item newItem) {
-        house = houseManager.api.addItem(newItem, house.getId());
+        house = houseManager.getApi().addItem(newItem, house.getId());
         houseManager.updateHouse(house);
     }
 
     public void removeItem(List<Item> items) {
-        house = houseManager.api.deleteItems(items,house.getId());
+        house = houseManager.getApi().deleteItems(items, house.getId());
         houseManager.updateHouse(house);
     }
 
     public void buyItems(List<Item> items) {
-        house = houseManager.api.buyItem(items,house.getId());
+        house = houseManager.getApi().buyItem(items, house.getId());
         houseManager.updateHouse(house);
     }
 
@@ -83,8 +81,19 @@ public class ShoppingListModel implements UpdateEvent {
     @Override
     public void logoutEvent() {
         house = null;
-        shoppingList = new ArrayList<Item>();
-        shoppingListHistory = new ArrayList<Item>();
+        shoppingList = new ArrayList<>();
+        shoppingListHistory = new ArrayList<>();
     }
 
+    /**
+     * Retrieves the ID of the currently selected house.
+     *
+     * @return the ID of the house, or null if no house is selected.
+     */
+    public String getHouseId() {
+        if (house == null) {
+            return null;
+        }
+        return house.getId();
+    }
 }

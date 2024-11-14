@@ -7,16 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import viewmodel.MenueViewModel;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.testfx.framework.junit5.ApplicationTest;
 
 public class WasteOverviewTest extends ApplicationTest {
 
-  private TableView<?> table;
+    private TableView<?> table;
 
     @BeforeAll
     static public void Initialize()

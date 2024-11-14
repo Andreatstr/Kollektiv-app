@@ -2,7 +2,6 @@ package model;
 
 import restapi.DummyApi;
 import viewmodel.MenueViewModel;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,7 @@ public class MenueViewModelTest {
 
     @BeforeAll
     public static void setUpClass() {
+        // Initialiserer HouseManager med test-api
         HouseManager.getInstance().setTestApi();
     }
 
@@ -32,16 +32,9 @@ public class MenueViewModelTest {
     @Test
     public void testSetTestApi() {
         menueViewModel.setTestApi();
-        assertTrue(HouseManager.getInstance().api instanceof DummyApi, "The API should be set to DummyApi for testing");
+        assertTrue(HouseManager.getInstance().getApi() instanceof DummyApi,
+                "The API should be set to DummyApi for testing");
     }
-    /*
-     * @Test
-     * public void testSetCollectiveWithValidId() {
-     * String validId = "12345";
-     * Boolean result = menueViewModel.setCollective(validId);
-     * assertTrue(result, "setCollective() should return true for a valid ID");
-     * }
-     */
 
     @Test
     public void testSetCollectiveWithNullId() {
@@ -49,4 +42,29 @@ public class MenueViewModelTest {
         assertFalse(result, "setCollective() should return false for a null ID");
     }
 
+    @Test
+    public void EventTest() {
+        // Initialiserer HouseManager og modellen
+        HouseManager houseManager = HouseManager.getInstance();
+        houseManager.setHouse("initialHouse");
+        WashingPlanModel washingPlanModel = WashingPlanModel.getInstance();
+        ShoppingListModel shoppingListModel = ShoppingListModel.getInstance();
+
+        // Oppretter og oppdaterer house med "test" ID
+        houseManager.createHouse("test");
+        houseManager.updateHouse(houseManager.getHouse());
+
+        // Validerer at house ID er satt korrekt
+        assertEquals("test", washingPlanModel.getHouseId(), "House ID in WashingPlanModel should be 'test'");
+        assertEquals("test", shoppingListModel.getHouseId(), "House ID in ShoppingListModel should be 'test'");
+
+        // Logger ut og verifiserer at ID-er nullstilles
+        houseManager.logOut();
+        assertNull(washingPlanModel.getHouseId(), "House ID in WashingPlanModel should be null after logout");
+        assertNull(shoppingListModel.getHouseId(), "House ID in ShoppingListModel should be null after logout");
+
+        // Tilbakestiller for å unngå påvirkning på andre tester
+        houseManager.createHouse("initialHouse");
+        houseManager.setHouse("initialHouse");
+    }
 }

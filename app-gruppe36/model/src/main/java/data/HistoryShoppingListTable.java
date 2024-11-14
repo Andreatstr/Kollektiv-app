@@ -1,40 +1,44 @@
 package data;
 
+/**
+ * The `HistoryShoppingListTable` class represents an item in a shopping list with details
+ * such as item name, count, and when it was added.
+ */
 public class HistoryShoppingListTable {
-  private String item;
-  private int count;
-  private String when;
+    private String item;
+    private int count;
+    private String when;
 
-  public HistoryShoppingListTable() {
-  }
+    public HistoryShoppingListTable() {
+    }
 
-  public HistoryShoppingListTable(String item, int count, String when) {
-    this.item = item;
-    this.count = count;
-    this.when = when; // Skal vi bruke en int som data??
-  }
+    public HistoryShoppingListTable(String item, int count, String when) {
+        this.item = item;
+        this.count = count;
+        this.when = when;
+    }
 
-  public String getItem() {
-    return item;
-  }
+    public String getItem() {
+        return item;
+    }
 
-  public void setItem(String item) {
-    this.item = item;
-  }
+    public void setItem(String item) {
+        this.item = item;
+    }
 
-  public int getCount() {
-    return count;
-  }
+    public int getCount() {
+        return count;
+    }
 
-  public void setCount(int count) {
-    this.count = count;
-  }
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-  public String getWhen() {
-    return when;
-  }
+    public String getWhen() {
+        return when;
+    }
 
-  public void setWhen(String when) {
-    this.when = when;
-  }
+    public void setWhen(String when) {
+        this.when = when;
+    }
 }
