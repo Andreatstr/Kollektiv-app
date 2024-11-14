@@ -1,4 +1,4 @@
-image: maven:3.8.3-openjdk-17
+image: maven:3.9.9-ibm-semeru-21-jammy
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode"
@@ -22,8 +22,8 @@ compile:
 test:
   stage: test
   script:
-    - echo "Kjører tester utenom spesifikke filer i model-mappen"
-    - mvn clean install -DskipTests
+    - echo "Kjører tester utenom UI"
+    - mvn $MAVEN_CLI_OPTS -pl '!view' test
 
 install:
   stage: install
