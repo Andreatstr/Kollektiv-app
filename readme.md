@@ -67,7 +67,7 @@ mvn spring-boot:run
 
 ### NB!
 
-Server kan ikke kjøre dersom integrasjonstestene skal kjøres.agent
+Server kan ikke kjøre dersom tester skal kjøres!
 
 ## Brukerhistorier, Beskrivelse av prosjekt og flytdiagram
 
@@ -96,6 +96,9 @@ Beskrivelse av arbeidsflyt, arbeidsvaner og testdekning finner man i README.md u
 ## Pakkediagram, Klassediagram, Sekvensdiagram og MVVM logical view
 
 Disse diagrammene finner man under docs/release2 og docs/release3.
+
+## Shippable produkt
+For oversiktens skyld er all informasjon om shippable-produkt i docs/release3/shippable-produkt.md
 
 ## AI/KI-deklarasjon
 
