@@ -23,7 +23,7 @@ test:
   stage: test
   script:
     - echo "Kjører tester utenom UI"
-    - mvn $MAVEN_CLI_OPTS -pl '!view' test
+    - mvn $MAVEN_CLI_OPTS -pl '!view' clean test
 
 install:
   stage: install
