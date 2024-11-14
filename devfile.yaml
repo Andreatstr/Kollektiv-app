@@ -4,7 +4,7 @@ metadata:
 components:
   - name: app-gruppe36
     container:
-      image: adrianstocia/it1901:latest
+      image: maven:3.9.9-ibm-semeru-21-jammy
       memoryLimit: 3Gi
       endpoints:
         - exposure: public
