@@ -6,14 +6,16 @@
 
 Maven version 3.9.9
 
-Java testet og fungerende versjoner : Java 21.0.1 og 21.0.4
-
+Java testet og fungerende versjoner : Java 21.0.1, 21.0.2, 21.0.3 og 21.0.4
 
 #### GitLab CI Pipeline docker-image brukt:
+
 ##### Første:
+
 maven:3.8.3-openjdk-17
 
 ##### Nåværende:
+
 maven:3.9.9-ibm-semeru-21-jammy
 
 ## Innhold
@@ -34,7 +36,7 @@ cd app-gruppe36
 
 ### 2
 
-Deretter kan man bygge prosjektet med:
+Deretter kan man bygge prosjektet med (Om du får feilmeldinger etter clean install, kjør den en gang til):
 
 mvn clean install
 
@@ -105,6 +107,7 @@ Beskrivelse av arbeidsflyt, arbeidsvaner og testdekning finner man i README.md u
 Disse diagrammene finner man under docs/release2 og docs/release3.
 
 ## Shippable produkt
+
 For å holde README-filen ryddig er all informasjon om hvordan man går frem for å opprette shippable-produkt i docs/release3/shippable-produkt.md.
 
 ## AI/KI-deklarasjon
